@@ -5,7 +5,6 @@
 
 using namespace std;
 
-//Tucker Checking In
 class Game
 {
 	private:
