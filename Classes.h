@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Hi, I'm testing my ability to commit
 class Game
 {
 	private:
