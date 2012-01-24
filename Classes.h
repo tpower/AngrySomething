@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 
-//This is a dumb place for a comment, so i'm gonna delete it later
 using namespace std;
 
 //Tucker Checking In
