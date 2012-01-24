@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//test
+//test: rawr, rawr
 class Game
 {
 	private:
