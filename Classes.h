@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//test
 class Game
 {
 	private:
