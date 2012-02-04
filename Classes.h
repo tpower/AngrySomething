@@ -1,11 +1,20 @@
 #ifndef CLASSES_H
 #define CLASSES_H
+
 #include <fstream>
 #include <string>
 
 using namespace std;
 
-class Game
+class Base
+{
+    private:
+    
+    public:
+    
+}
+
+class Game : public Base
 {
 	private:
 		int currentRoom;
@@ -30,10 +39,11 @@ class Game
 		void stop();
 }
 
-class Room
+class Room : public Base
 {
 	private:
 		Object* arr;
+    
 	public:
 		Room();
 		Room(Room&);
@@ -46,7 +56,15 @@ class Room
 		void update();
 }
 
-class Object
+class MainView : public Base
+{
+    private:
+    
+    public:
+    
+}
+
+class Object : public Base
 {
 	private:
 		Component *arr;
@@ -62,11 +80,21 @@ class Object
 		void update();
 }
 
-class Component
+class Component : public Base
 {
 	public:
 		// updates the specific components
 		update();
+}
+    
+class ControllerComp : public Component
+{
+    
+}
+    
+class ModelComp : public Component
+{
+    
 }
 
 #endif
