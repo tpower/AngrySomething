@@ -12,3 +12,62 @@
  ******************************************************************************/
 
 #include "View.h"
+
+/*******************************************************************************
+ Name:              View
+ Description:       Primary constructor for View class
+ 
+ Input:
+    bgfile          string representing filepath for background image
+ ******************************************************************************/
+View::View(string bgFile)
+{
+    //Set video mode for screen
+    screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+    
+    //Load background image
+    background = SDL_LoadBMP(bgFile.c_str());
+    
+    //Prepare first render
+    SDL_BlitSurface(background, NULL, screen, NULL);
+    needsUpdate = true;
+}
+
+/*******************************************************************************
+ Name:              View
+ Description:       Copy constructor for View class
+ 
+ Input:
+    other           View to be copied
+ ******************************************************************************/
+View::View(const View&)
+{
+    
+}
+
+/*******************************************************************************
+ Name:              ~View
+ Description:       Deconstructor for View class
+ ******************************************************************************/
+View::~View()
+{
+    if(screen) delete screen;
+    if(background) delete background;
+}
+
+/*******************************************************************************
+ Name:              update
+ Description:       This method updates the screen
+ ******************************************************************************/
+void View::update()
+{
+    if (needsUpdate)
+    {
+        SDL_Flip(screen); //Render screen
+        
+        SDL_BlitSurface(background, NULL, screen, NULL); //Creates new pallete
+        
+        needsUpdate = false;
+    }
+}
+

@@ -14,14 +14,26 @@
 #ifndef AngrySomething_View_h
 #define AngrySomething_View_h
 
+#include <SDL/SDL.h>
+#include <string>
+
 #include "Base.h"
+
+using namespace std;
 
 class View : public Base
 {
     private:
-        
+        SDL_Surface*    screen;
+        SDL_Surface*    background;
+        bool            needsUpdate;
+    
     public:
-        
+        View(string);
+        View(const View&);
+        ~View();
+    
+        void update();
 };
 
 #endif

@@ -31,9 +31,6 @@ class Game : public Base
         View *view;
         bool running;
     
-        bool init();
-        void handleEvent(SDL_Event* event);
-    
     public:
         Game();
         Game(const Game&);
@@ -41,6 +38,8 @@ class Game : public Base
     
         int  run();
         void stop();
+        bool init();
+        void handleEvent(SDL_Event* event);
 };
 
 #endif

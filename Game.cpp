@@ -15,38 +15,13 @@
 #include "Game.h"
 
 /*******************************************************************************
- Name:              init
- Description:       This method handles any initialization involved before the
-                    run loop begins
- Output:
-    returns         boolean value representing if the game initialized correctly
- ******************************************************************************/
-bool Game::init()
-{
-    return true;
-}
-
-/*******************************************************************************
- Name:              handleEvent
- Description:       This method handles event in the game loop. If the event
-                    does not affect the game as a whole, it is tested against
-                    the individual objects within the game
- 
- Input:
-    event           SDL_Event*
- ******************************************************************************/
-void Game::handleEvent(SDL_Event* event)
-{
-    
-}
-
-/*******************************************************************************
  Name:              Game
  Description:       Default constructor for Game class
  ******************************************************************************/
 Game::Game()
 {
-    
+    room = new Room;
+    view = new View("bgtest.bmp");
 }
 
 /*******************************************************************************
@@ -80,6 +55,19 @@ Game::~Game()
  ******************************************************************************/
 int Game::run()
 {
+    running = init();
+    
+    SDL_Event event;
+    
+    while(running)
+    {
+        while(SDL_PollEvent(&event))
+        {
+            handleEvent(&event);
+        }
+        view->update();
+    }
+    
     return 0;
 }
 
@@ -89,5 +77,35 @@ int Game::run()
  ******************************************************************************/
 void Game::stop()
 {
-    
+    running = false;
 }
+
+/*******************************************************************************
+ Name:              init
+ Description:       This method handles any initialization involved before the
+ run loop begins
+ Output:
+ returns         boolean value representing if the game initialized correctly
+ ******************************************************************************/
+bool Game::init()
+{
+    return true;
+}
+
+/*******************************************************************************
+ Name:              handleEvent
+ Description:       This method handles event in the game loop. If the event
+ does not affect the game as a whole, it is tested against
+ the individual objects within the game
+ 
+ Input:
+ event           SDL_Event*
+ ******************************************************************************/
+void Game::handleEvent(SDL_Event* event)
+{
+    if(event->type == SDL_QUIT)
+    {
+        running = false; //Exit run loop
+    }
+}
+
