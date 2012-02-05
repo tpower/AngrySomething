@@ -1,3 +1,15 @@
+/*******************************************************************************
+ Filename:                  Object.h
+ Classname:                 Object
+ 
+ Description:               This file declares the Object class. The Object
+                            class holds the components that define the objects
+                            in the game.
+ 
+ Last Modified:            				02.04.12
+ By:									Tyler Orr
+ - File created
+ ******************************************************************************/
 
 #ifndef AngrySomething_Object_h
 #define AngrySomething_Object_h
@@ -9,21 +21,15 @@
 
 using namespace std;
 
-// Object template
 class Object : public Base
 {
     private:
-        Component *arr;
+        Component *comp;
+    
     public:
         Object();
         Object(Object&);
         ~Object();
-        
-        // Loads all of the components from object
-        void loadAllComponent(string);
-        
-        // updates all the components
-        void update();
 };
 
 #endif
