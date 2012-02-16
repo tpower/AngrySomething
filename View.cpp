@@ -20,7 +20,7 @@
  Input:
     bgfile          string representing filepath for background image
  ******************************************************************************/
-View::View(string bgFile)
+View::View(string bgFile) : Base("view")
 {
     //Set video mode for screen
     screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
@@ -40,7 +40,7 @@ View::View(string bgFile)
  Input:
     other           View to be copied
  ******************************************************************************/
-View::View(const View&)
+View::View(const View&) : Base("view")
 {
     
 }

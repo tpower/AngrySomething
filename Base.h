@@ -15,14 +15,24 @@
 #ifndef AngrySomething_Base_h
 #define AngrySomething_Base_h
 
-#include "Base.h"
+#include <string>
+
+using namespace std;
 
 class Base
 {
     private:
+        static int  counter;
+        int         id;
+        string      type;
         
     public:
-        
+        Base();
+        Base(string);
+        Base(const Base&);
+    
+        int getID();
+        string getType();
 };
 
 #endif

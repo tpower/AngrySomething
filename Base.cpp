@@ -13,3 +13,33 @@
  ******************************************************************************/
 
 #include "Base.h"
+
+int Base::counter = 0;
+
+Base::Base()
+{
+    id = counter++;
+    type = "base";
+}
+
+Base::Base(string t)
+{
+    id = counter++;
+    type = t;
+}
+
+Base::Base(const Base& other)
+{
+    type = other.type;
+    id = counter++;
+}
+
+int Base::getID()
+{
+    return id;
+}
+
+string Base::getType()
+{
+    return type;
+}

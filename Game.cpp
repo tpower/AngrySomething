@@ -18,7 +18,7 @@
  Name:              Game
  Description:       Default constructor for Game class
  ******************************************************************************/
-Game::Game()
+Game::Game() : Base("game")
 {
     room = new Room;
     view = new View("bgtest.bmp");
@@ -31,9 +31,11 @@ Game::Game()
  Input:
     other           Game object to be copied
  ******************************************************************************/
-Game::Game(const Game& other)
+Game::Game(const Game& other) : Base("game")
 {
-    
+    running = other.running;
+    *room = *(other.room);
+    *view = *(other.view);
 }
 
 /*******************************************************************************

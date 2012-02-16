@@ -17,7 +17,7 @@
  Name:              Object
  Description:       Default constructor for Object class
  ******************************************************************************/
-Object::Object()
+Object::Object() : Base("object")
 {
     
 }
@@ -26,7 +26,7 @@ Object::Object()
  Name:              Object
  Description:       Copy constructor for Object class
  ******************************************************************************/
-Object::Object(Object&)
+Object::Object(Object&) : Base("object")
 {
     
 }
@@ -37,5 +37,5 @@ Object::Object(Object&)
  ******************************************************************************/
 Object::~Object()
 {
-    
+    if(comp) delete [] comp;
 }
