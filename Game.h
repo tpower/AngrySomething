@@ -15,12 +15,11 @@
 #ifndef AngrySomething_Game_h
 #define AngrySomething_Game_h
 
-#include <SDL/SDL.h>
-#include <string>
-
 #include "Base.h"
 #include "Room.h"
 #include "View.h"
+#include <SDL/SDL.h>
+#include <string>
 
 using namespace std;
 
@@ -36,9 +35,15 @@ class Game : public Base
         Game(const Game&);
         ~Game();
     
+        Game operator=(const Game& other);
+    
+        Room*   getRoom();
+        View*   getView();
+        bool    getRunning();
+    
+        bool init();
         int  run();
         void stop();
-        bool init();
         void handleEvent(SDL_Event* event);
 };
 

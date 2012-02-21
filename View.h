@@ -14,10 +14,10 @@
 #ifndef AngrySomething_View_h
 #define AngrySomething_View_h
 
+#include "Base.h"
+#include "Object.h"
 #include <SDL/SDL.h>
 #include <string>
-
-#include "Base.h"
 
 using namespace std;
 
@@ -33,7 +33,9 @@ class View : public Base
         View(const View&);
         ~View();
     
+        View operator=(const View& other);
         void update();
+        void draw(const Object& obj);
 };
 
 #endif

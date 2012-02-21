@@ -15,10 +15,9 @@
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
 
-#include <string>
-
 #include "Base.h"
 #include "Object.h"
+#include <string>
 
 using namespace std;
 
@@ -26,14 +25,19 @@ class Room : public Base
 {
     private:
         Object* object;
+        int     numObjects;
         
     public:
         Room();
         Room(const Room&);
         ~Room();
         
+        Room operator=(const Room& other);
+    
+        Object& getObjectAt(int);
+        int     getNumObjects();
+    
         bool load(string);
-        void update();
 };
 
 #endif

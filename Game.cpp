@@ -46,6 +46,58 @@ Game::~Game()
 {
     if(room) delete room;
     if(view) delete view;
+    
+    SDL_Quit();
+}
+
+/*******************************************************************************
+ Name:              operator=
+ Description:       Overloaded assignment operator for Game class
+ 
+ Input:
+    other           const Game&
+ ******************************************************************************/
+Game Game::operator=(const Game& other)
+{
+    if(&other != this)
+    {
+        running = other.running;
+        *room = *(other.room);
+        *view = *(other.view);
+    }
+    
+    return *this;
+}
+
+/*******************************************************************************
+ ACCESSORS
+ Name:              getRoom, getView, getRunning
+ ******************************************************************************/
+Room* Game::getRoom()
+{
+    return room;
+}
+
+View* Game::getView()
+{
+    return view;
+}
+
+bool Game::getRunning()
+{
+    return running;
+}
+
+/*******************************************************************************
+ Name:              init
+ Description:       This method handles any initialization involved before the
+ run loop begins
+ Output:
+ returns         boolean value representing if the game initialized correctly
+ ******************************************************************************/
+bool Game::init()
+{
+    return true;
 }
 
 /*******************************************************************************
@@ -67,6 +119,16 @@ int Game::run()
         {
             handleEvent(&event);
         }
+        
+        for(int i = 0; i < room->getNumObjects(); i++)
+        {
+            (room->getObjectAt(i)).update();
+            
+            if((room->getObjectAt(i)).getNeedsUpdate())
+            {
+                view->draw(room->getObjectAt(i));
+            }
+        }
         view->update();
     }
     
@@ -83,25 +145,13 @@ void Game::stop()
 }
 
 /*******************************************************************************
- Name:              init
- Description:       This method handles any initialization involved before the
- run loop begins
- Output:
- returns         boolean value representing if the game initialized correctly
- ******************************************************************************/
-bool Game::init()
-{
-    return true;
-}
-
-/*******************************************************************************
  Name:              handleEvent
  Description:       This method handles event in the game loop. If the event
- does not affect the game as a whole, it is tested against
- the individual objects within the game
+                    does not affect the game as a whole, it is tested against
+                    the individual objects within the game
  
  Input:
- event           SDL_Event*
+    event           SDL_Event*
  ******************************************************************************/
 void Game::handleEvent(SDL_Event* event)
 {

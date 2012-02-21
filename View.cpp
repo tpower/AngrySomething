@@ -12,6 +12,7 @@
  ******************************************************************************/
 
 #include "View.h"
+#include <iostream>
 
 /*******************************************************************************
  Name:              View
@@ -22,11 +23,27 @@
  ******************************************************************************/
 View::View(string bgFile) : Base("view")
 {
-    //Set video mode for screen
+    if(SDL_Init(SDL_INIT_VIDEO) == -1)
+    {
+        cout << "ERROR: View:View:SDL_Init" << endl;
+        exit(-1);
+    }
+    
     screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
     
-    //Load background image
+    if(!screen)
+    {
+        cout << "ERROR: View:View:SDL_SetVideoMode" << endl;
+        exit(-1);
+    }
+    
     background = SDL_LoadBMP(bgFile.c_str());
+    
+    if(!background)
+    {
+        cout << "ERROR: View:View:SDL_LoadBMP" << endl;
+        exit(-1);
+    }
     
     //Prepare first render
     SDL_BlitSurface(background, NULL, screen, NULL);
@@ -40,9 +57,11 @@ View::View(string bgFile) : Base("view")
  Input:
     other           View to be copied
  ******************************************************************************/
-View::View(const View&) : Base("view")
+View::View(const View& other) : Base("view")
 {
-    
+    *screen     = *(other.screen);
+    *background = *(other.background);
+    needsUpdate = other.needsUpdate;
 }
 
 /*******************************************************************************
@@ -51,8 +70,27 @@ View::View(const View&) : Base("view")
  ******************************************************************************/
 View::~View()
 {
-    if(screen) delete screen;
-    if(background) delete background;
+    SDL_FreeSurface(screen);
+    SDL_FreeSurface(background);
+}
+
+/*******************************************************************************
+ Name:              operator=
+ Description:       Overloaded assignment operator for View class
+ 
+ Input:
+    other           const View&
+ ******************************************************************************/
+View View::operator=(const View& other)
+{
+    if(&other != this)
+    {
+        *screen     = *(other.screen);
+        *background = *(other.background);
+        needsUpdate = other.needsUpdate;
+    }
+    
+    return *this;
 }
 
 /*******************************************************************************
@@ -70,4 +108,27 @@ void View::update()
         needsUpdate = false;
     }
 }
+
+/*******************************************************************************
+ Name:              draw
+ Description:       This method draws the given object to the screens buffer
+ 
+ Input:
+    obj       const Object&
+ ******************************************************************************/
+void View::draw(const Object& obj)
+{
+    SDL_Rect f = obj.getFrame();
+    SDL_Rect l = obj.getLoc();
+    SDL_Surface i = obj.getImage();
+    
+//    SDL_Surface* optimized = SDL_DisplayFormat(&i);
+    
+    SDL_BlitSurface(&i, &f, screen, &l);
+    
+//    SDL_FreeSurface(optimized);
+    
+    needsUpdate = true;
+}
+
 

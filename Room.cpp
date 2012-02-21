@@ -20,7 +20,8 @@
  ******************************************************************************/
 Room::Room() : Base("room")
 {
-    
+    object = new Object[1];
+    numObjects = 1;
 }
 
 /*******************************************************************************
@@ -32,16 +33,61 @@ Room::Room() : Base("room")
  ******************************************************************************/
 Room::Room(const Room& other) : Base("room")
 {
+    numObjects = other.numObjects;
     
+    object = new Object[numObjects];
+    for(int i = 0; i < numObjects; i++)
+    {
+        object[i] = other.object[i];
+    }
 }
 
 /*******************************************************************************
- Name:              Room
+ Name:              ~Room
  Description:       Destructor for Room class
  ******************************************************************************/
 Room::~Room()
 {
     if(object) delete [] object;
+}
+
+/*******************************************************************************
+ Name:              operator=
+ Description:       Overloaded assignment operator for Room class
+ 
+ Input:
+    other           const Room&
+ ******************************************************************************/
+Room Room::operator=(const Room& other)
+{
+    if(&other != this)
+    {
+        numObjects = other.numObjects;
+        
+        if(object) delete [] object;
+        object = new Object[numObjects];
+        
+        for(int i = 0; i < numObjects; i++)
+        {
+            object[i] = other.object[i];
+        }
+    }
+    
+    return *this;
+}
+
+/*******************************************************************************
+ ACCESSORS
+ Name:              getObjectAt, getNumObjects
+ ******************************************************************************/
+Object& Room::getObjectAt(int i)
+{
+    return object[i];
+}
+
+int Room::getNumObjects()
+{
+    return numObjects;
 }
 
 /*******************************************************************************
@@ -56,16 +102,6 @@ Room::~Room()
  ******************************************************************************/
 bool Room::load(string file)
 {
-    
     return true;
 }
 
-/*******************************************************************************
- Name:              update
- Description:       This method updates the room by updating the objects within
-                    the room
- ******************************************************************************/
-void Room::update()
-{
-    
-}

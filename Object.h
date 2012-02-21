@@ -14,22 +14,37 @@
 #ifndef AngrySomething_Object_h
 #define AngrySomething_Object_h
 
-#include <string>
-
 #include "Base.h"
-#include "Component.h"
-
-using namespace std;
+#include <SDL/SDL.h>
 
 class Object : public Base
 {
     private:
-        Component *comp;
+        SDL_Rect        loc;
+        SDL_Rect        frame;
+        SDL_Surface*    image;
+        bool            needsUpdate;
     
     public:
         Object();
-        Object(Object&);
+        Object(const Object&);
         ~Object();
+    
+        Object operator=(const Object& other);
+     
+        void setLoc(const SDL_Rect&);
+        void setFrame(const SDL_Rect&);
+        void setImage(const SDL_Surface&);
+        void setNeedsUpdate(bool);
+    
+        SDL_Rect     getLoc() const;
+        SDL_Rect     getFrame() const;
+        SDL_Surface  getImage() const;
+        bool                getNeedsUpdate();
+        
+        void update();
+        void load();
+        void save();
 };
 
 #endif

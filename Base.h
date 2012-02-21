@@ -30,6 +30,9 @@ class Base
         Base();
         Base(string);
         Base(const Base&);
+        ~Base();
+    
+        Base operator=(const Base& other);
     
         int getID();
         string getType();
