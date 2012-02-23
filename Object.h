@@ -17,10 +17,16 @@
 #include "Base.h"
 #include <SDL/SDL.h>
 
+struct vector {
+    double x;
+    double y;
+};
+
 class Object : public Base
 {
     private:
         SDL_Rect        loc;
+        vector          vel;
         SDL_Rect        frame;
         SDL_Surface*    image;
         bool            needsUpdate;

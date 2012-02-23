@@ -43,7 +43,6 @@ class Game : public Base
     
         bool init();
         int  run();
-        void stop();
         void handleEvent(SDL_Event* event);
 };
 

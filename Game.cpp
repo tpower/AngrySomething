@@ -129,19 +129,11 @@ int Game::run()
                 view->draw(room->getObjectAt(i));
             }
         }
+        
         view->update();
     }
     
     return 0;
-}
-
-/*******************************************************************************
- Name:              stop
- Description:       This method disrupts the game loop and exits the game
- ******************************************************************************/
-void Game::stop()
-{
-    running = false;
 }
 
 /*******************************************************************************

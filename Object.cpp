@@ -27,8 +27,8 @@ Object::Object() : Base("object")
     loc.y = 0;
     
     //Set default velocity vector
-    loc.w = 1;
-    loc.h = 1;
+    vel.x = 1;
+    vel.y = 1;
     
     //Set default frame
     frame.x = 0;
@@ -144,19 +144,19 @@ void Object::update()
 {
     if(loc.x < 0  || loc.x + frame.w > 640)
     {
-        loc.w *= -1;
+        vel.x *= -1;
     }
     
     if(loc.y < 0  || loc.y + frame.h > 480)
     {
-        loc.h *= -1;
+        vel.y *= -1;
     }
     
-    loc.x += loc.w;
-    loc.y += loc.h;
+    loc.x += vel.x;
+    loc.y += vel.y;
     
-    frame.x += loc.w;
-    frame.y += loc.h;
+    frame.x += vel.x;
+    frame.y += vel.y;
     
     needsUpdate = true;
 }
