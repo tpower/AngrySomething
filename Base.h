@@ -7,7 +7,7 @@
                             handle the fundamental actions of classes, such
                             as Value Observing.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -22,7 +22,7 @@ using namespace std;
 class Base
 {
     private:
-        static int  counter;
+        static int  idGen;
         int         id;
         string      type;
         
@@ -31,7 +31,6 @@ class Base
         Base(string);
         Base(const Base&);
         ~Base();
-    
         Base operator=(const Base& other);
     
         int getID();

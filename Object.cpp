@@ -6,7 +6,7 @@
                             class holds the components that define the objects
                             in the game.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -22,29 +22,8 @@ using namespace std;
  ******************************************************************************/
 Object::Object() : Base("object")
 {
-    //Set default location
-    loc.x = 0;
-    loc.y = 0;
-    
-    //Set default velocity vector
-    vel.x = 1;
-    vel.y = 1;
-    
-    //Set default frame
-    frame.x = 0;
-    frame.y = 0;
-    frame.w = 200;
-    frame.h = 200;
-    
-    //Load default image
-    image = SDL_LoadBMP("object.bmp");
-    if(!image)
-    {
-        cout << "ERROR: Object:Object:SDL_LoadBMP" << endl;
-        exit(-1);
-    }
-    
-    needsUpdate = true;
+    comp = new Component[1];
+    numComps = 1;
 }
 
 /*******************************************************************************
@@ -53,10 +32,14 @@ Object::Object() : Base("object")
  ******************************************************************************/
 Object::Object(const Object& other) : Base("object")
 {
-    loc         = other.loc;
-    frame       = other.frame;
-    *image      = *(other.image);
-    needsUpdate = other.needsUpdate;
+    numComps = other.numComps;
+    
+    comp = new Component[numComps];
+    
+    for(int i = 0; i < numComps; i++)
+    {
+        comp[i] = other.comp[i];
+    }
 }
 
 /*******************************************************************************
@@ -65,7 +48,7 @@ Object::Object(const Object& other) : Base("object")
  ******************************************************************************/
 Object::~Object()
 {
-    SDL_FreeSurface(image);
+    if(comp) delete [] comp;
 }
 
 /*******************************************************************************
@@ -79,61 +62,32 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        loc         = other.loc;
-        frame       = other.frame;
-        *image      = *(other.image);
-        needsUpdate = other.needsUpdate;
+        numComps = other.numComps;
+        
+        if(comp) delete [] comp;
+        comp = new Component[numComps];
+        
+        for(int i = 0; i < numComps; i++)
+        {
+            comp[i] = other.comp[i];
+        }
     }
     
     return *this;
 }
 
 /*******************************************************************************
- MODIFIERS
- Name:              setLoc, setFrame, setImage, setNeedsUpdate
- ******************************************************************************/
-void Object::setLoc(const SDL_Rect& l)
-{
-    loc = l;
-}
-
-void Object::setFrame(const SDL_Rect& f)
-{
-    frame = f;
-}
-
-void Object::setImage(const SDL_Surface& i)
-{
-    *image = i;
-}
-
-void Object::setNeedsUpdate(bool b)
-{
-    needsUpdate = b;
-}
-
-/*******************************************************************************
  ACCESSORS
- Name:              getLoc, getFrame, getImage, getNeedsUpdate
+ Name:              getObjectAt, getNumObjects
  ******************************************************************************/
-SDL_Rect Object::getLoc() const
+Component& Object::getCompAt(int i)
 {
-    return loc;
+    return comp[i];
 }
 
-SDL_Rect Object::getFrame() const
+int Object::getNumComps()
 {
-    return frame;
-}
-
-SDL_Surface Object::getImage() const
-{
-    return *image;
-}
-
-bool Object::getNeedsUpdate()
-{
-    return needsUpdate;
+    return numComps;
 }
 
 /*******************************************************************************
@@ -141,40 +95,6 @@ bool Object::getNeedsUpdate()
  Description:       This method updates the object
  ******************************************************************************/
 void Object::update()
-{
-    if(loc.x < 0  || loc.x + frame.w > 640)
-    {
-        vel.x *= -1;
-    }
-    
-    if(loc.y < 0  || loc.y + frame.h > 480)
-    {
-        vel.y *= -1;
-    }
-    
-    loc.x += vel.x;
-    loc.y += vel.y;
-    
-    frame.x += vel.x;
-    frame.y += vel.y;
-    
-    needsUpdate = true;
-}
-
-/*******************************************************************************
- Name:              load
- Description:       loads an object from a file
- ******************************************************************************/
-void Object::load()
-{
-    
-}
-
-/*******************************************************************************
- Name:              save
- Description:       saves an object to a file
- ******************************************************************************/
-void Object::save()
 {
     
 }

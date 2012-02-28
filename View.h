@@ -6,7 +6,7 @@
                             responsible for output to the screen. Most of the
                             SDL implementation will belong in this class.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -24,18 +24,14 @@ using namespace std;
 class View : public Base
 {
     private:
-        SDL_Surface*    screen;
-        SDL_Surface*    background;
-        bool            needsUpdate;
     
     public:
-        View(string);
+        View();
         View(const View&);
         ~View();
-    
         View operator=(const View& other);
+    
         void update();
-        void draw(const Object& obj);
 };
 
 #endif

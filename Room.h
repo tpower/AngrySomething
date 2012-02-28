@@ -7,7 +7,7 @@
                             the game, holds the objects currently in the game,
                             and handles saving and loading the game.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -24,20 +24,19 @@ using namespace std;
 class Room : public Base
 {
     private:
-        Object* object;
+        Object  *object;
         int     numObjects;
         
     public:
         Room();
         Room(const Room&);
         ~Room();
-        
         Room operator=(const Room& other);
     
         Object& getObjectAt(int);
         int     getNumObjects();
     
-        bool load(string);
+        void update();
 };
 
 #endif

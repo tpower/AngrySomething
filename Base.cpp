@@ -7,14 +7,14 @@
                             handle the fundamental actions of classes, such
                             as Value Observing.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
 
 #include "Base.h"
 
-int Base::counter = 0;
+int Base::idGen = 0;
 
 
 /*******************************************************************************
@@ -23,7 +23,7 @@ int Base::counter = 0;
  ******************************************************************************/
 Base::Base()
 {
-    id = counter++;
+    id = idGen++;
     type = "base";
 }
 
@@ -36,7 +36,7 @@ Base::Base()
  ******************************************************************************/
 Base::Base(string t)
 {
-    id = counter++;
+    id = idGen++;
     type = t;
 }
 
@@ -47,7 +47,7 @@ Base::Base(string t)
 Base::Base(const Base& other)
 {
     type = other.type;
-    id = counter++;
+    id = idGen++;
 }
 
 /*******************************************************************************
@@ -56,7 +56,7 @@ Base::Base(const Base& other)
  ******************************************************************************/
 Base::~Base()
 {
-    
+    //No implementation necessary
 }
 
 /*******************************************************************************

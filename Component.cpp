@@ -1,57 +1,58 @@
 /*******************************************************************************
- Filename:                  View.cpp
- Classname:                 View
+ Filename:                  Component.cpp
+ Classname:                 Component
  
- Description:               This file defines the View class. The View class is
-                            responsible for output to the screen. Most of the
-                            SDL implementation will belong in this class.
+ Description:               This file declares the Component class. The
+                            Component class is an abstract class that is used as
+                            a template for extensions of this class. The role of
+                            a Component object is to define a characteristic of
+                            an object that contains it.
  
  Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
 
-#include "View.h"
+#include "Component.h"
 #include <iostream>
 
+using namespace std;
+
 /*******************************************************************************
- Name:              View
- Description:       Default constructor for View class
+ Name:              Component
+ Description:       Default constructor for Component class
  ******************************************************************************/
-View::View() : Base("view")
+Component::Component() : Base("component")
 {
     
 }
 
 /*******************************************************************************
- Name:              View
- Description:       Copy constructor for View class
- 
- Input:
-    other           View to be copied
+ Name:              Component
+ Description:       Copy constructor for Component class
  ******************************************************************************/
-View::View(const View& other) : Base("view")
+Component::Component(const Component& other) : Base("component")
 {
     
 }
 
 /*******************************************************************************
- Name:              ~View
- Description:       Deconstructor for View class
+ Name:              ~Component
+ Description:       Destructor for Component class
  ******************************************************************************/
-View::~View()
+Component::~Component()
 {
     
 }
 
 /*******************************************************************************
  Name:              operator=
- Description:       Overloaded assignment operator for View class
+ Description:       Overloaded assignment operator for Component class
  
  Input:
-    other           const View&
+ other           const Component&
  ******************************************************************************/
-View View::operator=(const View& other)
+Component Component::operator=(const Component& other)
 {
     if(&other != this)
     {
@@ -63,9 +64,11 @@ View View::operator=(const View& other)
 
 /*******************************************************************************
  Name:              update
- Description:       This method updates the screen
+ Description:       This method updates the Component
  ******************************************************************************/
-void View::update()
+void Component::update()
 {
     
 }
+
+
