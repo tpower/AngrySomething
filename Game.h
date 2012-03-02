@@ -18,7 +18,7 @@
 #include "Base.h"
 #include "Room.h"
 #include "View.h"
-#include <SDL/SDL.h>
+#include <SDL/SDL.h> 
 #include <string>
 
 using namespace std;
