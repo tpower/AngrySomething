@@ -97,6 +97,7 @@ bool Game::getRunning()
  ******************************************************************************/
 void Game::init()
 {
+    running = true;
     room->load();
 }
 
