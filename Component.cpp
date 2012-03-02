@@ -46,23 +46,6 @@ Component::~Component()
 }
 
 /*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Component class
- 
- Input:
- other           const Component&
- ******************************************************************************/
-Component Component::operator=(const Component& other)
-{
-    if(&other != this)
-    {
-        
-    }
-    
-    return *this;
-}
-
-/*******************************************************************************
  Name:              load
  Description:       This method loads the component
  

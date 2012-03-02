@@ -22,8 +22,7 @@ using namespace std;
  ******************************************************************************/
 Object::Object() : Base("object")
 {
-    comp = new Component[1];
-    numComps = 1;
+    numComps = 0;
 }
 
 /*******************************************************************************
@@ -32,14 +31,7 @@ Object::Object() : Base("object")
  ******************************************************************************/
 Object::Object(const Object& other) : Base("object")
 {
-    numComps = other.numComps;
     
-    comp = new Component[numComps];
-    
-    for(int i = 0; i < numComps; i++)
-    {
-        comp[i] = other.comp[i];
-    }
 }
 
 /*******************************************************************************
@@ -48,7 +40,7 @@ Object::Object(const Object& other) : Base("object")
  ******************************************************************************/
 Object::~Object()
 {
-    if(comp) delete [] comp;
+    delete [] comp;
 }
 
 /*******************************************************************************
@@ -62,15 +54,7 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        numComps = other.numComps;
         
-        if(comp) delete [] comp;
-        comp = new Component[numComps];
-        
-        for(int i = 0; i < numComps; i++)
-        {
-            comp[i] = other.comp[i];
-        }
     }
     
     return *this;

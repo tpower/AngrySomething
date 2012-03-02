@@ -28,10 +28,8 @@ public:
     Component(const Component&);
     ~Component();
     
-    Component operator=(const Component& other);
-    
-    bool    load();
-    int     update();
+    virtual bool    load() = 0;
+    virtual int     update() = 0;
 };
 
 #endif
