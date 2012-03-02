@@ -30,7 +30,7 @@ public:
     
     Component operator=(const Component& other);
     
-    void    load();
+    bool    load();
     int     update();
 };
 

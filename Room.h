@@ -36,7 +36,7 @@ class Room : public Base
         Object& getObjectAt(int);
         int     getNumObjects();
     
-        void    load();
+        bool    load();
         int     update();
 };
 

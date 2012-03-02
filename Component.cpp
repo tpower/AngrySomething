@@ -65,10 +65,13 @@ Component Component::operator=(const Component& other)
 /*******************************************************************************
  Name:              load
  Description:       This method loads the component
+ 
+ Output:
+    returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-void Component::load()
+bool Component::load()
 {
-    
+    return true;
 }
 
 /*******************************************************************************

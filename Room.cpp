@@ -95,10 +95,13 @@ int Room::getNumObjects()
  Name:              load
  Description:       This method dynamically allocates and loads objects in the 
                     room
+ 
+ Output:
+    returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-void Room::load()
+bool Room::load()
 {
-    
+    return true;
 }
 
 /*******************************************************************************
@@ -108,15 +111,23 @@ void Room::load()
  ******************************************************************************/
 int Room::update()
 {
+    int objectsUpdated = 0;
+    
     for(int i = 0; i < numObjects; i++)
     {
         int temp = object[i].update();
         
-        if(temp)
+        if(temp < 0)
         {
-            //implementation reacting to state of object
+            if(object[i].getType() == "roomController")
+                load(/* object[i].getNextRoom() */);
+            //else removeObjectAt(i);
+        }
+        else if(temp > 0)
+        {
+            objectsUpdated++;
         }
     }
     
-    return 0;
+    return objectsUpdated;
 }

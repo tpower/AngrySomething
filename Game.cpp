@@ -97,8 +97,7 @@ bool Game::getRunning()
  ******************************************************************************/
 void Game::init()
 {
-    running = true;
-    room->load();
+    running = room->load();
 }
 
 /*******************************************************************************
@@ -112,7 +111,8 @@ int Game::run()
 {
     while(running)
     {
-        room->update();
+        if(room->update())
+            view->update();
     }
     
     return 0;

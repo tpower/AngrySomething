@@ -34,7 +34,7 @@ class Object : public Base
         Component&  getCompAt(int);
         int         getNumComps();
         
-        void    load();
+        bool    load();
         int     update();
 };
 
