@@ -63,12 +63,21 @@ Component Component::operator=(const Component& other)
 }
 
 /*******************************************************************************
+ Name:              load
+ Description:       This method loads the component
+ ******************************************************************************/
+void Component::load()
+{
+    
+}
+
+/*******************************************************************************
  Name:              update
  Description:       This method updates the Component
  ******************************************************************************/
-void Component::update()
+int Component::update()
 {
-    
+    return 0;
 }
 
 

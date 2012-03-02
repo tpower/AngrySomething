@@ -77,8 +77,17 @@ Base Base::operator=(const Base& other)
 }
 
 /*******************************************************************************
+ MODIFIERS
+ Name:              setState
+ ******************************************************************************/
+void Base::setState(int s)
+{
+    state = s;
+}
+
+/*******************************************************************************
  ACCESSSORS
- Name:              getID, getType
+ Name:              getID, getType, getState
  ******************************************************************************/
 int Base::getID()
 {
@@ -88,6 +97,11 @@ int Base::getID()
 string Base::getType()
 {
     return type;
+}
+
+int Base::getState()
+{
+    return state;
 }
 
 

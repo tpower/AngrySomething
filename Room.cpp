@@ -92,11 +92,31 @@ int Room::getNumObjects()
 }
 
 /*******************************************************************************
+ Name:              load
+ Description:       This method dynamically allocates and loads objects in the 
+                    room
+ ******************************************************************************/
+void Room::load()
+{
+    
+}
+
+/*******************************************************************************
  Name:              update
  Description:       This method enumerates through the objects in the room and
                     calls their update methods
  ******************************************************************************/
-void Room::update()
+int Room::update()
 {
+    for(int i = 0; i < numObjects; i++)
+    {
+        int temp = object[i].update();
+        
+        if(temp)
+        {
+            //implementation reacting to state of object
+        }
+    }
     
+    return 0;
 }

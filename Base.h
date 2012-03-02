@@ -25,6 +25,7 @@ class Base
         static int  idGen;
         int         id;
         string      type;
+        int         state;
         
     public:
         Base();
@@ -33,8 +34,11 @@ class Base
         ~Base();
         Base operator=(const Base& other);
     
-        int getID();
-        string getType();
+        void setState(int s);
+    
+        int     getID();
+        string  getType();
+        int     getState();
 };
 
 #endif

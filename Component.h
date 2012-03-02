@@ -30,7 +30,8 @@ public:
     
     Component operator=(const Component& other);
     
-    void update();
+    void    load();
+    int     update();
 };
 
 #endif

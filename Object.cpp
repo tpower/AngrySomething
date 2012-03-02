@@ -91,12 +91,32 @@ int Object::getNumComps()
 }
 
 /*******************************************************************************
+ Name:              load
+ Description:       This method dynamically allocates and loads components in
+                    the room
+ ******************************************************************************/
+void Object::load()
+{
+    
+}
+
+/*******************************************************************************
  Name:              update
  Description:       This method updates the object
  ******************************************************************************/
-void Object::update()
+int Object::update()
 {
+    for(int i = 0; i < numComps; i++)
+    {
+        int temp = comp[i].update();
+        
+        if(temp)
+        {
+            //implementation reacting to state of object
+        }
+    }
     
+    return 0;
 }
 
 

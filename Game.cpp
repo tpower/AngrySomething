@@ -95,11 +95,9 @@ bool Game::getRunning()
  Output:
     returns         boolean value representing if the game initialized correctly
  ******************************************************************************/
-bool Game::init()
+void Game::init()
 {
-    //load implementation here if necessary
-    
-    return true;
+    room->load();
 }
 
 /*******************************************************************************
@@ -111,11 +109,9 @@ bool Game::init()
  ******************************************************************************/
 int Game::run()
 {
-    running = init();
-    
     while(running)
     {
-        //game loop implementation goes here
+        room->update();
     }
     
     return 0;
