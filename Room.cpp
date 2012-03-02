@@ -7,7 +7,7 @@
                             the game, holds the objects currently in the game,
                             and handles saving and loading the game.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -36,6 +36,7 @@ Room::Room(const Room& other) : Base("room")
     numObjects = other.numObjects;
     
     object = new Object[numObjects];
+    
     for(int i = 0; i < numObjects; i++)
     {
         object[i] = other.object[i];
@@ -92,16 +93,30 @@ int Room::getNumObjects()
 
 /*******************************************************************************
  Name:              load
- Description:       This method loads a room from the specified file
- 
- Input:
-    file            string value of filepath
- 
- Output:
-    returns         boolean value representing if the room loaded successfully
+ Description:       This method dynamically allocates and loads objects in the 
+                    room
  ******************************************************************************/
-bool Room::load(string file)
+void Room::load()
 {
-    return true;
+    
 }
 
+/*******************************************************************************
+ Name:              update
+ Description:       This method enumerates through the objects in the room and
+                    calls their update methods
+ ******************************************************************************/
+int Room::update()
+{
+    for(int i = 0; i < numObjects; i++)
+    {
+        int temp = object[i].update();
+        
+        if(temp)
+        {
+            //implementation reacting to state of object
+        }
+    }
+    
+    return 0;
+}

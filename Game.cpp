@@ -7,7 +7,7 @@
                             running the game loop and handling communication
                             between the Room and the View
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -21,7 +21,7 @@
 Game::Game() : Base("game")
 {
     room = new Room;
-    view = new View("bgtest.bmp");
+    view = new View;
 }
 
 /*******************************************************************************
@@ -91,13 +91,13 @@ bool Game::getRunning()
 /*******************************************************************************
  Name:              init
  Description:       This method handles any initialization involved before the
- run loop begins
+                    run loop begins
  Output:
- returns         boolean value representing if the game initialized correctly
+    returns         boolean value representing if the game initialized correctly
  ******************************************************************************/
-bool Game::init()
+void Game::init()
 {
-    return true;
+    room->load();
 }
 
 /*******************************************************************************
@@ -109,47 +109,11 @@ bool Game::init()
  ******************************************************************************/
 int Game::run()
 {
-    running = init();
-    
-    SDL_Event event;
-    
     while(running)
     {
-        while(SDL_PollEvent(&event))
-        {
-            handleEvent(&event);
-        }
-        
-        for(int i = 0; i < room->getNumObjects(); i++)
-        {
-            (room->getObjectAt(i)).update();
-            
-            if((room->getObjectAt(i)).getNeedsUpdate())
-            {
-                view->draw(room->getObjectAt(i));
-            }
-        }
-        
-        view->update();
+        room->update();
     }
     
     return 0;
-}
-
-/*******************************************************************************
- Name:              handleEvent
- Description:       This method handles event in the game loop. If the event
-                    does not affect the game as a whole, it is tested against
-                    the individual objects within the game
- 
- Input:
-    event           SDL_Event*
- ******************************************************************************/
-void Game::handleEvent(SDL_Event* event)
-{
-    if(event->type == SDL_QUIT)
-    {
-        running = false; //Exit run loop
-    }
 }
 

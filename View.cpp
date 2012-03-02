@@ -6,7 +6,7 @@
                             responsible for output to the screen. Most of the
                             SDL implementation will belong in this class.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -16,38 +16,11 @@
 
 /*******************************************************************************
  Name:              View
- Description:       Primary constructor for View class
- 
- Input:
-    bgfile          string representing filepath for background image
+ Description:       Default constructor for View class
  ******************************************************************************/
-View::View(string bgFile) : Base("view")
+View::View() : Base("view")
 {
-    if(SDL_Init(SDL_INIT_VIDEO) == -1)
-    {
-        cout << "ERROR: View:View:SDL_Init" << endl;
-        exit(-1);
-    }
     
-    screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
-    
-    if(!screen)
-    {
-        cout << "ERROR: View:View:SDL_SetVideoMode" << endl;
-        exit(-1);
-    }
-    
-    background = SDL_LoadBMP(bgFile.c_str());
-    
-    if(!background)
-    {
-        cout << "ERROR: View:View:SDL_LoadBMP" << endl;
-        exit(-1);
-    }
-    
-    //Prepare first render
-    SDL_BlitSurface(background, NULL, screen, NULL);
-    needsUpdate = true;
 }
 
 /*******************************************************************************
@@ -59,9 +32,7 @@ View::View(string bgFile) : Base("view")
  ******************************************************************************/
 View::View(const View& other) : Base("view")
 {
-    *screen     = *(other.screen);
-    *background = *(other.background);
-    needsUpdate = other.needsUpdate;
+    
 }
 
 /*******************************************************************************
@@ -70,8 +41,7 @@ View::View(const View& other) : Base("view")
  ******************************************************************************/
 View::~View()
 {
-    SDL_FreeSurface(screen);
-    SDL_FreeSurface(background);
+    
 }
 
 /*******************************************************************************
@@ -85,9 +55,7 @@ View View::operator=(const View& other)
 {
     if(&other != this)
     {
-        *screen     = *(other.screen);
-        *background = *(other.background);
-        needsUpdate = other.needsUpdate;
+        
     }
     
     return *this;
@@ -99,36 +67,5 @@ View View::operator=(const View& other)
  ******************************************************************************/
 void View::update()
 {
-    if (needsUpdate)
-    {
-        SDL_Flip(screen); //Render screen
-        
-        SDL_BlitSurface(background, NULL, screen, NULL); //Creates new pallete
-        
-        needsUpdate = false;
-    }
+    
 }
-
-/*******************************************************************************
- Name:              draw
- Description:       This method draws the given object to the screens buffer
- 
- Input:
-    obj       const Object&
- ******************************************************************************/
-void View::draw(const Object& obj)
-{
-    SDL_Rect f = obj.getFrame();
-    SDL_Rect l = obj.getLoc();
-    SDL_Surface i = obj.getImage();
-    
-//    SDL_Surface* optimized = SDL_DisplayFormat(&i);
-    
-    SDL_BlitSurface(&i, &f, screen, &l);
-    
-//    SDL_FreeSurface(optimized);
-    
-    needsUpdate = true;
-}
-
-

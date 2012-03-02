@@ -6,7 +6,7 @@
                             class holds the components that define the objects
                             in the game.
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -15,21 +15,14 @@
 #define AngrySomething_Object_h
 
 #include "Base.h"
+#include "Component.h"
 #include <SDL/SDL.h>
-
-struct vector {
-    double x;
-    double y;
-};
 
 class Object : public Base
 {
     private:
-        SDL_Rect        loc;
-        vector          vel;
-        SDL_Rect        frame;
-        SDL_Surface*    image;
-        bool            needsUpdate;
+        Component   *comp;
+        int         numComps;
     
     public:
         Object();
@@ -37,20 +30,12 @@ class Object : public Base
         ~Object();
     
         Object operator=(const Object& other);
-     
-        void setLoc(const SDL_Rect&);
-        void setFrame(const SDL_Rect&);
-        void setImage(const SDL_Surface&);
-        void setNeedsUpdate(bool);
     
-        SDL_Rect     getLoc() const;
-        SDL_Rect     getFrame() const;
-        SDL_Surface  getImage() const;
-        bool                getNeedsUpdate();
+        Component&  getCompAt(int);
+        int         getNumComps();
         
-        void update();
-        void load();
-        void save();
+        void    load();
+        int     update();
 };
 
 #endif

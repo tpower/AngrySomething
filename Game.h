@@ -7,7 +7,7 @@
                             running the game loop and handling communication
                             between the Room and the View
  
- Last Modified:            				02.04.12
+ Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
  ******************************************************************************/
@@ -34,16 +34,14 @@ class Game : public Base
         Game();
         Game(const Game&);
         ~Game();
-    
         Game operator=(const Game& other);
     
         Room*   getRoom();
         View*   getView();
         bool    getRunning();
     
-        bool init();
+        void init();
         int  run();
-        void handleEvent(SDL_Event* event);
 };
 
 #endif
