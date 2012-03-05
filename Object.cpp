@@ -23,6 +23,7 @@ using namespace std;
 Object::Object() : Base("object")
 {
     numComps = 0;
+    comp = new Component*[numComps];
 }
 
 /*******************************************************************************
@@ -66,7 +67,7 @@ Object Object::operator=(const Object& other)
  ******************************************************************************/
 Component& Object::getCompAt(int i)
 {
-    return comp[i];
+    return *comp[i];
 }
 
 int Object::getNumComps()
@@ -82,8 +83,35 @@ int Object::getNumComps()
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-bool Object::load()
+bool Object::load(fstream& file)
 {
+    if(!file) return false;
+    
+    //read number of components in object
+    file.read(reinterpret_cast<char*>(numComps), sizeof(numComps));
+    
+    //read component types
+    int compTypes[numComps];
+    for(int i = 0; i < numComps; i++)
+    {
+        file.read(reinterpret_cast<char*>(compTypes[i]), sizeof(compTypes[i]));
+    }
+    
+    //create and load components
+    for(int i = 0; i < numComps; i++)
+    {
+        switch(compTypes[i])
+        {
+            case TEMPCOMP:
+                comp[i] = new TempComp();
+                (comp[i])->load(file);      //DOES NOT CHECK IF LOADS PROPERLY
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
     return true;
 }
 
@@ -97,7 +125,7 @@ int Object::update()
     
     for(int i = 0; i < numComps; i++)
     {
-        int temp = comp[i].update();
+        int temp = (comp[i])->update();
         
         if(temp)
         {

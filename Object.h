@@ -16,12 +16,16 @@
 
 #include "Base.h"
 #include "Component.h"
+#include "TempComp.h"
 #include <SDL/SDL.h>
+#include <fstream>
+
+using namespace std;
 
 class Object : public Base
 {
     private:
-        Component   *comp;
+        Component   **comp;
         int         numComps;
     
     public:
@@ -34,7 +38,7 @@ class Object : public Base
         Component&  getCompAt(int);
         int         getNumComps();
         
-        bool    load();
+        bool    load(fstream& file);
         int     update();
 };
 

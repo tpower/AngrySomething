@@ -99,8 +99,23 @@ int Room::getNumObjects()
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-bool Room::load()
+bool Room::load(fstream& file)
 {
+    if(!file) return false;
+    
+    //read number of objects in room
+    file.read(reinterpret_cast<char*>(numObjects), sizeof(numObjects));
+    
+    //create objects
+    delete [] object;
+    object = new Object[numObjects];
+    
+    //load objects
+    for(int i = 0; i < numObjects; i++)
+    {
+        object[i].load(file);       //DOES NOT CHECK IF LOADS PROPERLY
+    }
+    
     return true;
 }
 
@@ -119,9 +134,9 @@ int Room::update()
         
         if(temp < 0)
         {
-            if(object[i].getType() == "roomController")
-                load(/* object[i].getNextRoom() */);
-            //else removeObjectAt(i);
+//            if(object[i].getType() == "roomController")
+//                load(object[i].getNextRoom());
+//            else removeObjectAt(i);
         }
         else if(temp > 0)
         {

@@ -16,6 +16,7 @@
 
 #include "Component.h"
 #include <SDL/SDL.h>
+#include <fstream>
 
 class TempComp : public Component
 {
@@ -28,7 +29,7 @@ public:
     TempComp(const TempComp&);
     ~TempComp();
     
-    virtual bool    load();
+    virtual bool    load(fstream& file);
     virtual int     update();
 };
 

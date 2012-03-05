@@ -52,7 +52,7 @@ Component::~Component()
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-bool Component::load()
+bool Component::load(fstream& file)
 {
     return true;
 }

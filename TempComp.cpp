@@ -22,8 +22,8 @@ using namespace std;
  ******************************************************************************/
 TempComp::TempComp() : Component()
 {
-    numData = 0;
-    charData = new char[4];
+    numData = 4;
+    charData = new char[numData];
     charData = "ABC";
 }
 
@@ -54,8 +54,13 @@ TempComp::~TempComp()
  Output:
     returns         bool value of whether the TempComp loaded correctly
  ******************************************************************************/
-bool TempComp::load()
+bool TempComp::load(fstream& file)
 {
+    if(!file) return false;
+    
+    file.read(reinterpret_cast<char*>(numData), sizeof(numData));
+    file.read(reinterpret_cast<char*>(charData), numData * sizeof(charData));
+    
     return true;
 }
 

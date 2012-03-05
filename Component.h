@@ -18,6 +18,12 @@
 
 #include "Base.h"
 #include <SDL/SDL.h>
+#include <fstream>
+
+enum compType
+{
+    TEMPCOMP = 1
+};
 
 class Component : public Base
 {
@@ -28,7 +34,7 @@ public:
     Component(const Component&);
     ~Component();
     
-    virtual bool    load() = 0;
+    virtual bool    load(fstream& file) = 0;
     virtual int     update() = 0;
 };
 

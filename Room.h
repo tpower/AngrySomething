@@ -18,6 +18,7 @@
 #include "Base.h"
 #include "Object.h"
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -36,7 +37,7 @@ class Room : public Base
         Object& getObjectAt(int);
         int     getNumObjects();
     
-        bool    load();
+        bool    load(fstream& file);
         int     update();
 };
 

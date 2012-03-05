@@ -97,7 +97,16 @@ bool Game::getRunning()
  ******************************************************************************/
 void Game::init()
 {
-    running = room->load();
+    //open game file
+    fstream file("GameFile.gel", ios::in | ios::binary);    
+    int numRooms;
+    
+    //Move cursor to first room of game
+    file.read(reinterpret_cast<char*>(numRooms), sizeof(numRooms));
+    file.seekg((sizeof(int) * numRooms), ios::cur);
+    
+    //load first room
+    running = room->load(file);
 }
 
 /*******************************************************************************
