@@ -96,6 +96,9 @@ int Room::getNumObjects()
  Description:       This method dynamically allocates and loads objects in the 
                     room
  
+ Input:
+    file            fstream& from which to load the Room
+ 
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
@@ -113,7 +116,7 @@ bool Room::load(fstream& file)
     //load objects
     for(int i = 0; i < numObjects; i++)
     {
-        object[i].load(file);       //DOES NOT CHECK IF LOADS PROPERLY
+        if(!object[i].load(file)) return false;
     }
     
     return true;

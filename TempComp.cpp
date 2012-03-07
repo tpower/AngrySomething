@@ -51,6 +51,9 @@ TempComp::~TempComp()
  Name:              load
  Description:       This method loads the TempComp
  
+ Input:
+    file            fstream& from which to load the TempComp
+ 
  Output:
     returns         bool value of whether the TempComp loaded correctly
  ******************************************************************************/

@@ -80,6 +80,9 @@ int Object::getNumComps()
  Description:       This method dynamically allocates and loads components in
                     the room
  
+ Input:
+    file            fstream& from which to load the Object
+ 
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
@@ -104,7 +107,7 @@ bool Object::load(fstream& file)
         {
             case TEMPCOMP:
                 comp[i] = new TempComp();
-                (comp[i])->load(file);      //DOES NOT CHECK IF LOADS PROPERLY
+                if(!(comp[i])->load(file)) return false;
                 break;
                 
             default:

@@ -49,6 +49,9 @@ Component::~Component()
  Name:              load
  Description:       This method loads the component
  
+ Input:
+    file            fstream& from which to load the Component
+ 
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
