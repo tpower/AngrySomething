@@ -92,20 +92,32 @@ bool Game::getRunning()
  Name:              init
  Description:       This method handles any initialization involved before the
                     run loop begins
+ Input:
+    roomNum         int representing roomNumber to load
+ 
  Output:
     returns         boolean value representing if the game initialized correctly
  ******************************************************************************/
-void Game::init()
+void Game::init(int roomNum)
 {
     //open game file
     fstream file("GameFile.gel", ios::in | ios::binary);    
-    int numRooms;
+    int numRooms, roomLoc;
     
-    //Move cursor to first room of game
+    //Read number of rooms and check validity of room request
     file.read(reinterpret_cast<char*>(numRooms), sizeof(numRooms));
-    file.seekg((sizeof(int) * numRooms), ios::cur);
+    if(roomNum < numRooms)
+    {
+        running = false;
+        return;
+    }
     
-    //load first room
+    //Move cursor to location of requested room
+    file.seekg((sizeof(int) * roomNum), ios::cur);
+    file.read(reinterpret_cast<char*>(roomLoc), sizeof(roomLoc));
+    file.seekg(roomLoc, ios::beg);
+    
+    //load room
     running = room->load(file);
 }
 
@@ -120,8 +132,7 @@ int Game::run()
 {
     while(running)
     {
-        if(room->update())
-            view->update();
+        room->update();
     }
     
     return 0;

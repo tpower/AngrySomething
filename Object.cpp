@@ -124,19 +124,17 @@ bool Object::load(fstream& file)
  ******************************************************************************/
 int Object::update()
 {
-    int compsUpdated = 0;
-    
     for(int i = 0; i < numComps; i++)
     {
-        int temp = (comp[i])->update();
+        int temp = comp[i].update();
         
         if(temp)
         {
-            compsUpdated++;
+            //implementation reacting to state of object
         }
     }
     
-    return compsUpdated;
+    return 0;
 }
 
 

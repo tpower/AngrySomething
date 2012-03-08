@@ -129,23 +129,15 @@ bool Room::load(fstream& file)
  ******************************************************************************/
 int Room::update()
 {
-    int objectsUpdated = 0;
-    
     for(int i = 0; i < numObjects; i++)
     {
         int temp = object[i].update();
         
-        if(temp < 0)
+        if(temp)
         {
-//            if(object[i].getType() == "roomController")
-//                load(object[i].getNextRoom());
-//            else removeObjectAt(i);
-        }
-        else if(temp > 0)
-        {
-            objectsUpdated++;
+            //implementation reacting to state of object
         }
     }
     
-    return objectsUpdated;
+    return 0;
 }

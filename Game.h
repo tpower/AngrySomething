@@ -40,7 +40,7 @@ class Game : public Base
         View*   getView();
         bool    getRunning();
     
-        void init();
+        void init(int roomNum = 0);
         int  run();
 };
 
