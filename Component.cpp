@@ -20,9 +20,9 @@ using namespace std;
 
 /*******************************************************************************
  Name:              Component
- Description:       Default constructor for Component class
+ Description:       Primary constructor for Component class
  ******************************************************************************/
-Component::Component() : Base("component")
+Component::Component(int type) : Base(type)
 {
     
 }
@@ -31,42 +31,7 @@ Component::Component() : Base("component")
  Name:              Component
  Description:       Copy constructor for Component class
  ******************************************************************************/
-Component::Component(const Component& other) : Base("component")
+Component::Component(const Component& other) : Base(other.getType())
 {
     
 }
-
-/*******************************************************************************
- Name:              ~Component
- Description:       Destructor for Component class
- ******************************************************************************/
-Component::~Component()
-{
-    
-}
-
-/*******************************************************************************
- Name:              load
- Description:       This method loads the component
- 
- Input:
-    file            fstream& from which to load the Component
- 
- Output:
-    returns         bool value of whether the component loaded correctly
- ******************************************************************************/
-bool Component::load(fstream& file)
-{
-    return true;
-}
-
-/*******************************************************************************
- Name:              update
- Description:       This method updates the Component
- ******************************************************************************/
-int Component::update()
-{
-    return 0;
-}
-
-

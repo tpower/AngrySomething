@@ -15,7 +15,7 @@
  Name:              MechComp
  Description:       Default constructor for MechComp class
  ******************************************************************************/
-MechComp::MechComp() : Component()
+MechComp::MechComp() : Component(MECHCOMP)
 {
     
 }
@@ -24,7 +24,7 @@ MechComp::MechComp() : Component()
  Name:              MechComp
  Description:       Copy constructor for MechComp class
  ******************************************************************************/
-MechComp::MechComp(const MechComp& other)
+MechComp::MechComp(const MechComp& other) : Component(MECHCOMP)
 {
     
 }

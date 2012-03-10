@@ -20,7 +20,7 @@ using namespace std;
  Name:              Object
  Description:       Default constructor for Object class
  ******************************************************************************/
-Object::Object() : Base("object")
+Object::Object() : Base(OBJECT)
 {
     numComps = 0;
     comp = new Component*[numComps];
@@ -30,7 +30,7 @@ Object::Object() : Base("object")
  Name:              Object
  Description:       Copy constructor for Object class
  ******************************************************************************/
-Object::Object(const Object& other) : Base("object")
+Object::Object(const Object& other) : Base(OBJECT)
 {
     
 }
@@ -63,11 +63,19 @@ Object Object::operator=(const Object& other)
 
 /*******************************************************************************
  ACCESSORS
- Name:              getObjectAt, getNumObjects
+ Name:              getComp, getNumObjects
  ******************************************************************************/
-Component& Object::getCompAt(int i)
+Component& Object::getComp(int type)
 {
-    return *comp[i];
+    for(int i = 0; i < numComps; i++)
+    {
+        if(comp[i]->getType() == type)
+        {
+            return *comp[i];
+        }
+    }
+    
+    return NULL;
 }
 
 int Object::getNumComps()
