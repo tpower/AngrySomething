@@ -22,7 +22,10 @@
 
 enum compType
 {
-    TEMPCOMP = 1
+    MECHCOMP = 1,
+    TRANCOMP = 2,
+    PHYSCOMP = 3,
+    GRPHCOMP = 4
 };
 
 class Component : public Base

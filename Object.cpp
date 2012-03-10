@@ -105,8 +105,23 @@ bool Object::load(fstream& file)
     {
         switch(compTypes[i])
         {
-            case TEMPCOMP:
-                comp[i] = new TempComp();
+            case MECHCOMP:
+                comp[i] = new MechComp();
+                if(!(comp[i])->load(file)) return false;
+                break;
+                
+            case TRANCOMP:
+                comp[i] = new TranComp();
+                if(!(comp[i])->load(file)) return false;
+                break;
+                
+            case PHYSCOMP:
+                comp[i] = new PhysComp();
+                if(!(comp[i])->load(file)) return false;
+                break;
+                
+            case GRPHCOMP:
+                comp[i] = new GrphComp();
                 if(!(comp[i])->load(file)) return false;
                 break;
                 
@@ -126,7 +141,7 @@ int Object::update()
 {
     for(int i = 0; i < numComps; i++)
     {
-        int temp = comp[i].update();
+        int temp = comp[i]->update();
         
         if(temp)
         {
