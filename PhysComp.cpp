@@ -39,6 +39,23 @@ PhysComp::~PhysComp()
 }
 
 /*******************************************************************************
+ Name:              operator=
+ Description:       Overloaded assignment operator for PhysComp class
+ 
+ Input:
+ other           const PhysComp&
+ ******************************************************************************/
+PhysComp PhysComp::operator=(const PhysComp& other)
+{
+    if(&other != this)
+    {
+        
+    }
+    
+    return *this;
+}
+
+/*******************************************************************************
  Name:              load
  Description:       This method loads the PhysComp
  

@@ -25,6 +25,8 @@ public:
     TranComp(const TranComp&);
     ~TranComp();
     
+    TranComp operator=(const TranComp& other);
+    
     virtual bool    load(fstream& file);
     virtual int     update();
 };

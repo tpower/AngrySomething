@@ -39,6 +39,23 @@ MechComp::~MechComp()
 }
 
 /*******************************************************************************
+ Name:              operator=
+ Description:       Overloaded assignment operator for MechComp class
+ 
+ Input:
+ other           const MechComp&
+ ******************************************************************************/
+MechComp MechComp::operator=(const MechComp& other)
+{
+    if(&other != this)
+    {
+        
+    }
+    
+    return *this;
+}
+
+/*******************************************************************************
  Name:              load
  Description:       This method loads the MechComp
  

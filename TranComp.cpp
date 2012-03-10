@@ -39,6 +39,23 @@ TranComp::~TranComp()
 }
 
 /*******************************************************************************
+ Name:              operator=
+ Description:       Overloaded assignment operator for TranComp class
+ 
+ Input:
+ other           const TranComp&
+ ******************************************************************************/
+TranComp TranComp::operator=(const TranComp& other)
+{
+    if(&other != this)
+    {
+        
+    }
+    
+    return *this;
+}
+
+/*******************************************************************************
  Name:              load
  Description:       This method loads the TranComp
  

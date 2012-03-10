@@ -19,11 +19,15 @@
 class GrphComp : public Component
 {
 private:
+    SDL_Surface *image;     //sprite sheet
+    SDL_Rect    frame;      //current frame within sprite sheet
     
 public:
     GrphComp();
     GrphComp(const GrphComp&);
     ~GrphComp();
+    
+    GrphComp operator=(const GrphComp& other);
     
     virtual bool    load(fstream& file);
     virtual int     update();

@@ -25,6 +25,8 @@ public:
     MechComp(const MechComp&);
     ~MechComp();
     
+    MechComp operator=(const MechComp& other);
+    
     virtual bool    load(fstream& file);
     virtual int     update();
 };

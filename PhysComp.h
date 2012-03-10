@@ -25,6 +25,8 @@ public:
     PhysComp(const PhysComp&);
     ~PhysComp();
     
+    PhysComp operator=(const PhysComp& other);
+    
     virtual bool    load(fstream& file);
     virtual int     update();
 };
