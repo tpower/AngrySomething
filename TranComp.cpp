@@ -59,6 +59,15 @@ TranComp TranComp::operator=(const TranComp& other)
 }
 
 /*******************************************************************************
+ ACCESSORS
+ Name:              getPos
+ ******************************************************************************/
+SDL_Rect TranComp::getPos()
+{
+    return pos;
+}
+
+/*******************************************************************************
  Name:              load
  Description:       This method loads the TranComp
  

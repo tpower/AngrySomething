@@ -47,9 +47,9 @@ class Base
     
         void setState(int s);
     
-        int     getID();
-        int     getType();
-        int     getState();
+        int     getID() const;
+        int     getType() const;
+        int     getState() const;
 };
 
 #endif

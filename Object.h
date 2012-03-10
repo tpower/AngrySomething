@@ -43,7 +43,7 @@ class Object : public Base
     
         Object operator=(const Object& other);
     
-        Component&  getComp(int);
+        Component*  getComp(int);
         int         getNumComps();
         
         bool    load(fstream& file);

@@ -29,6 +29,9 @@ public:
     
     GrphComp operator=(const GrphComp& other);
     
+    SDL_Surface*    getImage();
+    SDL_Rect        getFrame();
+    
     virtual bool    load(fstream& file);
     virtual int     update();
 };

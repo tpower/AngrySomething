@@ -65,13 +65,13 @@ Object Object::operator=(const Object& other)
  ACCESSORS
  Name:              getComp, getNumObjects
  ******************************************************************************/
-Component& Object::getComp(int type)
+Component* Object::getComp(int type)
 {
     for(int i = 0; i < numComps; i++)
     {
         if(comp[i]->getType() == type)
         {
-            return *comp[i];
+            return comp[i];
         }
     }
     

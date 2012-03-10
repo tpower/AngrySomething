@@ -64,6 +64,19 @@ GrphComp GrphComp::operator=(const GrphComp& other)
 }
 
 /*******************************************************************************
+ ACCESSORS
+ Name:              getImage, getFrame
+ ******************************************************************************/
+SDL_Surface* GrphComp::getImage()
+{
+    return image;
+}
+SDL_Rect GrphComp::getFrame()
+{
+    return frame;
+}
+
+/*******************************************************************************
  Name:              load
  Description:       This method loads the GrphComp
  

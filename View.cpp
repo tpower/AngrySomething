@@ -100,17 +100,16 @@ void View::update()
  Input:
     obj       const Object&
  ******************************************************************************/
-void View::draw(const Object& obj)
+void View::draw(Object& obj)
 {
-    SDL_Rect f = obj.getComp(GRPHCOMP).getFrame();
-    SDL_Rect l = obj.getComp(TRANCOMP).getLoc();
-    SDL_Surface i = obj.getComp(GRPHCOMP).getImage();
+    GrphComp *grph = static_cast<GrphComp*>(obj.getComp(GRPHCOMP));
+    TranComp *tran = static_cast<TranComp*>(obj.getComp(TRANCOMP));
     
-//    SDL_Surface* optimized = SDL_DisplayFormat(&i);
+    SDL_Rect f      = grph->getFrame();
+    SDL_Rect l      = tran->getPos();
+    SDL_Surface *i  = grph->getImage();
     
-    SDL_BlitSurface(&i, &f, screen, &l);
-    
-//    SDL_FreeSurface(optimized);
+    SDL_BlitSurface(i, &f, screen, &l);
     
     needsUpdate = true;
 }

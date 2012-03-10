@@ -91,7 +91,7 @@ int Base::getID() const
     return id;
 }
 
-int Base::getType()
+int Base::getType() const
 {
     return type;
 }

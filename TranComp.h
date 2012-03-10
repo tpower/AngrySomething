@@ -28,6 +28,8 @@ public:
     
     TranComp operator=(const TranComp& other);
     
+    SDL_Rect    getPos();
+    
     virtual bool    load(fstream& file);
     virtual int     update();
 };
