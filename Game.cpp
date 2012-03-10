@@ -101,12 +101,18 @@ bool Game::getRunning()
 void Game::init(int roomNum)
 {
     //open game file
-    fstream file("GameFile.gel", ios::in | ios::binary);    
+    fstream file("GameFile.gel", ios::in | ios::binary);
     int numRooms, roomLoc;
+    
+    if(!file)
+    {
+        running = false;
+        return;
+    }
     
     //Read number of rooms and check validity of room request
     file.read(reinterpret_cast<char*>(numRooms), sizeof(numRooms));
-    if(roomNum < numRooms)
+    if(roomNum >= numRooms)
     {
         running = false;
         return;
@@ -133,6 +139,7 @@ int Game::run()
     while(running)
     {
         room->update();
+        view->update();
     }
     
     return 0;
