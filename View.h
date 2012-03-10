@@ -24,14 +24,18 @@ using namespace std;
 class View : public Base
 {
     private:
+        SDL_Surface*    screen;
+        bool            needsUpdate;
     
     public:
         View();
         View(const View&);
         ~View();
+    
         View operator=(const View& other);
     
         void update();
+        void draw(const Object& obj);
 };
 
 #endif

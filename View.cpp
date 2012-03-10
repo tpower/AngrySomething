@@ -20,7 +20,21 @@
  ******************************************************************************/
 View::View() : Base("view")
 {
+    if(SDL_Init(SDL_INIT_VIDEO) == -1)
+    {
+        cout << "ERROR: View:View:SDL_Init" << endl;
+        exit(-1);
+    }
     
+    screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+    
+    if(!screen)
+    {
+        cout << "ERROR: View:View:SDL_SetVideoMode" << endl;
+        exit(-1);
+    }
+    
+    needsUpdate = true;
 }
 
 /*******************************************************************************
@@ -32,7 +46,8 @@ View::View() : Base("view")
  ******************************************************************************/
 View::View(const View& other) : Base("view")
 {
-    
+    *screen     = *(other.screen);
+    needsUpdate = other.needsUpdate;
 }
 
 /*******************************************************************************
@@ -41,7 +56,7 @@ View::View(const View& other) : Base("view")
  ******************************************************************************/
 View::~View()
 {
-    
+    SDL_FreeSurface(screen);
 }
 
 /*******************************************************************************
@@ -55,7 +70,8 @@ View View::operator=(const View& other)
 {
     if(&other != this)
     {
-        
+        *screen     = *(other.screen);
+        needsUpdate = other.needsUpdate;
     }
     
     return *this;
@@ -67,5 +83,34 @@ View View::operator=(const View& other)
  ******************************************************************************/
 void View::update()
 {
+    if (needsUpdate)
+    {
+        SDL_Flip(screen); //Render screen
+        
+        //Create new pallete
+        
+        needsUpdate = false;
+    }
+}
+
+/*******************************************************************************
+ Name:              draw
+ Description:       This method draws the given object to the screens buffer
+ 
+ Input:
+    obj       const Object&
+ ******************************************************************************/
+void View::draw(const Object& obj)
+{
+    SDL_Rect f = obj.getComp(GRPHCOMP).getFrame();
+    SDL_Rect l = obj.getComp(TRANCOMP).getLoc();
+    SDL_Surface i = obj.getComp(GRPHCOMP).getImage();
     
+//    SDL_Surface* optimized = SDL_DisplayFormat(&i);
+    
+    SDL_BlitSurface(&i, &f, screen, &l);
+    
+//    SDL_FreeSurface(optimized);
+    
+    needsUpdate = true;
 }

@@ -34,6 +34,7 @@ class Game : public Base
         Game();
         Game(const Game&);
         ~Game();
+    
         Game operator=(const Game& other);
     
         Room*   getRoom();

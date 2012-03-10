@@ -32,6 +32,7 @@ class Room : public Base
         Room();
         Room(const Room&);
         ~Room();
+    
         Room operator=(const Room& other);
     
         Object& getObjectAt(int);
