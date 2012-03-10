@@ -15,7 +15,7 @@
  Name:              PhysComp
  Description:       Default constructor for PhysComp class
  ******************************************************************************/
-PhysComp::PhysComp() : Component()
+PhysComp::PhysComp() : Component(PHYSCOMP)
 {
     
 }
@@ -24,7 +24,7 @@ PhysComp::PhysComp() : Component()
  Name:              PhysComp
  Description:       Copy constructor for PhysComp class
  ******************************************************************************/
-PhysComp::PhysComp(const PhysComp& other)
+PhysComp::PhysComp(const PhysComp& other) : Component(PHYSCOMP)
 {
     
 }

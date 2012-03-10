@@ -20,22 +20,13 @@
 #include <SDL/SDL.h>
 #include <fstream>
 
-enum compType
-{
-    MECHCOMP = 1,
-    TRANCOMP = 2,
-    PHYSCOMP = 3,
-    GRPHCOMP = 4
-};
-
 class Component : public Base
 {
 private:
     
 public:
-    Component();
+    Component(int type);
     Component(const Component&);
-    ~Component();
     
     virtual bool    load(fstream& file) = 0;
     virtual int     update() = 0;

@@ -14,7 +14,6 @@
 
 int Base::idGen = 0;
 
-
 /*******************************************************************************
  Name:              Base
  Description:       Default constructor for Base class
@@ -22,7 +21,7 @@ int Base::idGen = 0;
 Base::Base()
 {
     id = idGen++;
-    type = "base";
+    type = BASE;
 }
 
 /*******************************************************************************
@@ -30,9 +29,9 @@ Base::Base()
  Description:       Secondary constructor for Base class
  
  Input:
-    t               string representing the type of object
+    t               int representing the type of object
  ******************************************************************************/
-Base::Base(string t)
+Base::Base(int t)
 {
     id = idGen++;
     type = t;
@@ -87,17 +86,17 @@ void Base::setState(int s)
  ACCESSSORS
  Name:              getID, getType, getState
  ******************************************************************************/
-int Base::getID()
+int Base::getID() const
 {
     return id;
 }
 
-string Base::getType()
+int Base::getType() const
 {
     return type;
 }
 
-int Base::getState()
+int Base::getState() const
 {
     return state;
 }

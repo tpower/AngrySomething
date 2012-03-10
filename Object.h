@@ -14,12 +14,17 @@
 #ifndef AngrySomething_Object_h
 #define AngrySomething_Object_h
 
+//Parent class
 #include "Base.h"
-#include "Component.h"
+
+//Components
+#include "Component.h"  
 #include "MechComp.h"
 #include "TranComp.h"
 #include "PhysComp.h"
 #include "GrphComp.h"
+
+//Other libraries
 #include <SDL/SDL.h>
 #include <fstream>
 
@@ -38,7 +43,7 @@ class Object : public Base
     
         Object operator=(const Object& other);
     
-        Component&  getCompAt(int);
+        Component*  getComp(int);
         int         getNumComps();
         
         bool    load(fstream& file);

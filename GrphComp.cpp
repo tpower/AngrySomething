@@ -15,7 +15,7 @@
  Name:              GrphComp
  Description:       Default constructor for GrphComp class
  ******************************************************************************/
-GrphComp::GrphComp() : Component()
+GrphComp::GrphComp() : Component(GRPHCOMP)
 {
     
 }
@@ -24,7 +24,7 @@ GrphComp::GrphComp() : Component()
  Name:              GrphComp
  Description:       Copy constructor for GrphComp class
  ******************************************************************************/
-GrphComp::GrphComp(const GrphComp& other)
+GrphComp::GrphComp(const GrphComp& other) : Component(GRPHCOMP)
 {
     
 }
