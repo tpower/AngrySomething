@@ -17,7 +17,10 @@
  ******************************************************************************/
 PhysComp::PhysComp() : Component()
 {
-    
+    vel.x = 0;
+    vel.y = 0;
+    acc.x = 0;
+    acc.y = 0;
 }
 
 /*******************************************************************************
@@ -26,7 +29,8 @@ PhysComp::PhysComp() : Component()
  ******************************************************************************/
 PhysComp::PhysComp(const PhysComp& other)
 {
-    
+    vel = other.vel;
+    acc = other.acc;
 }
 
 /*******************************************************************************
@@ -49,7 +53,8 @@ PhysComp PhysComp::operator=(const PhysComp& other)
 {
     if(&other != this)
     {
-        
+        vel = other.vel;
+        acc = other.acc;
     }
     
     return *this;
@@ -69,6 +74,14 @@ bool PhysComp::load(fstream& file)
 {
     if(!file) return false;
     
+    //load vel
+    file.read(reinterpret_cast<char*>(vel.x), sizeof(vel.x));
+    file.read(reinterpret_cast<char*>(vel.y), sizeof(vel.y));
+    
+    //load acc
+    file.read(reinterpret_cast<char*>(acc.x), sizeof(acc.x));
+    file.read(reinterpret_cast<char*>(acc.y), sizeof(acc.y));
+
     return true;
 }
 

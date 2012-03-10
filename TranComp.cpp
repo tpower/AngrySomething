@@ -17,7 +17,10 @@
  ******************************************************************************/
 TranComp::TranComp() : Component()
 {
-    
+    pos.x = 0;
+    pos.y = 0;
+    pos.w = 0;
+    pos.h = 0;
 }
 
 /*******************************************************************************
@@ -26,7 +29,7 @@ TranComp::TranComp() : Component()
  ******************************************************************************/
 TranComp::TranComp(const TranComp& other)
 {
-    
+    pos = other.pos;
 }
 
 /*******************************************************************************
@@ -49,7 +52,7 @@ TranComp TranComp::operator=(const TranComp& other)
 {
     if(&other != this)
     {
-        
+        pos = other.pos;
     }
     
     return *this;
@@ -68,6 +71,12 @@ TranComp TranComp::operator=(const TranComp& other)
 bool TranComp::load(fstream& file)
 {
     if(!file) return false;
+    
+    //load pos
+    file.read(reinterpret_cast<char*>(pos.x), sizeof(pos.x));
+    file.read(reinterpret_cast<char*>(pos.y), sizeof(pos.y));
+    file.read(reinterpret_cast<char*>(pos.w), sizeof(pos.w));
+    file.read(reinterpret_cast<char*>(pos.h), sizeof(pos.h));
     
     return true;
 }

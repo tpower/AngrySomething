@@ -16,9 +16,17 @@
 #include <SDL/SDL.h>
 #include <fstream>
 
+struct vect
+{
+    int x,
+        y;
+};
+
 class PhysComp : public Component
 {
 private:
+    vect vel;
+    vect acc;
     
 public:
     PhysComp();

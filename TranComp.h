@@ -19,6 +19,7 @@
 class TranComp : public Component
 {
 private:
+    SDL_Rect    pos;    //bounding box
     
 public:
     TranComp();
