@@ -15,7 +15,7 @@
  Name:              PhysComp
  Description:       Default constructor for PhysComp class
  ******************************************************************************/
-PhysComp::PhysComp() : Component()
+PhysComp::PhysComp() : Component(PHYSCOMP)
 {
     vel.x = 0;
     vel.y = 0;
@@ -27,7 +27,7 @@ PhysComp::PhysComp() : Component()
  Name:              PhysComp
  Description:       Copy constructor for PhysComp class
  ******************************************************************************/
-PhysComp::PhysComp(const PhysComp& other)
+PhysComp::PhysComp(const PhysComp& other) : Component(PHYSCOMP)
 {
     vel = other.vel;
     acc = other.acc;

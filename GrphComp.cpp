@@ -17,7 +17,7 @@ using namespace std;
  Name:              GrphComp
  Description:       Default constructor for GrphComp class
  ******************************************************************************/
-GrphComp::GrphComp() : Component()
+GrphComp::GrphComp() : Component(GRPHCOMP)
 {
     image   = new SDL_Surface;
     frame.x = 0;
@@ -30,7 +30,7 @@ GrphComp::GrphComp() : Component()
  Name:              GrphComp
  Description:       Copy constructor for GrphComp class
  ******************************************************************************/
-GrphComp::GrphComp(const GrphComp& other)
+GrphComp::GrphComp(const GrphComp& other) : Component(GRPHCOMP)
 {
     *image  = *(other.image);   //may not have proper assignment capabilities?
     frame   = other.frame;

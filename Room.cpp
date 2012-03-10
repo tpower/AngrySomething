@@ -18,7 +18,7 @@
  Name:              Room
  Description:       Default constructor for Room class
  ******************************************************************************/
-Room::Room() : Base("room")
+Room::Room() : Base(ROOM)
 {
     object = new Object[1];
     numObjects = 1;
@@ -31,7 +31,7 @@ Room::Room() : Base("room")
  Input:
     other           Room object to be copied
  ******************************************************************************/
-Room::Room(const Room& other) : Base("room")
+Room::Room(const Room& other) : Base(ROOM)
 {
     numObjects = other.numObjects;
     

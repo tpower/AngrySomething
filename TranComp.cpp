@@ -15,7 +15,7 @@
  Name:              TranComp
  Description:       Default constructor for TranComp class
  ******************************************************************************/
-TranComp::TranComp() : Component()
+TranComp::TranComp() : Component(TRANCOMP)
 {
     pos.x = 0;
     pos.y = 0;
@@ -27,7 +27,7 @@ TranComp::TranComp() : Component()
  Name:              TranComp
  Description:       Copy constructor for TranComp class
  ******************************************************************************/
-TranComp::TranComp(const TranComp& other)
+TranComp::TranComp(const TranComp& other): Component(TRANCOMP)
 {
     pos = other.pos;
 }

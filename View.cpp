@@ -18,7 +18,7 @@
  Name:              View
  Description:       Default constructor for View class
  ******************************************************************************/
-View::View() : Base("view")
+View::View() : Base(VIEW)
 {
     if(SDL_Init(SDL_INIT_VIDEO) == -1)
     {
@@ -44,7 +44,7 @@ View::View() : Base("view")
  Input:
     other           View to be copied
  ******************************************************************************/
-View::View(const View& other) : Base("view")
+View::View(const View& other) : Base(VIEW)
 {
     *screen     = *(other.screen);
     needsUpdate = other.needsUpdate;
