@@ -16,7 +16,10 @@
 
 #include "Base.h"
 #include "Component.h"
-#include "TempComp.h"
+#include "MechComp.h"
+#include "TranComp.h"
+#include "PhysComp.h"
+#include "GrphComp.h"
 #include <SDL/SDL.h>
 #include <fstream>
 
