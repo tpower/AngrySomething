@@ -86,7 +86,7 @@ void Base::setState(int s)
  ACCESSSORS
  Name:              getID, getType, getState
  ******************************************************************************/
-int Base::getID()
+int Base::getID() const
 {
     return id;
 }
@@ -96,7 +96,7 @@ int Base::getType()
     return type;
 }
 
-int Base::getState()
+int Base::getState() const
 {
     return state;
 }
