@@ -82,10 +82,10 @@ bool TranComp::load(fstream& file)
     if(!file) return false;
     
     //load pos
-    file.read(reinterpret_cast<char*>(pos.x), sizeof(pos.x));
-    file.read(reinterpret_cast<char*>(pos.y), sizeof(pos.y));
-    file.read(reinterpret_cast<char*>(pos.w), sizeof(pos.w));
-    file.read(reinterpret_cast<char*>(pos.h), sizeof(pos.h));
+    file.read(reinterpret_cast<char*>(&pos.x), sizeof(pos.x));
+    file.read(reinterpret_cast<char*>(&pos.y), sizeof(pos.y));
+    file.read(reinterpret_cast<char*>(&pos.w), sizeof(pos.w));
+    file.read(reinterpret_cast<char*>(&pos.h), sizeof(pos.h));
     
     return true;
 }
@@ -102,10 +102,10 @@ bool TranComp::save(fstream& file)
     if(!file) return false;
     
     //write pos
-    file.write(reinterpret_cast<char*>(pos.x), sizeof(pos.x));
-    file.write(reinterpret_cast<char*>(pos.y), sizeof(pos.y));
-    file.write(reinterpret_cast<char*>(pos.w), sizeof(pos.w));
-    file.write(reinterpret_cast<char*>(pos.h), sizeof(pos.h));
+    file.write(reinterpret_cast<char*>(&pos.x), sizeof(pos.x));
+    file.write(reinterpret_cast<char*>(&pos.y), sizeof(pos.y));
+    file.write(reinterpret_cast<char*>(&pos.w), sizeof(pos.w));
+    file.write(reinterpret_cast<char*>(&pos.h), sizeof(pos.h));
     
     return true;
 }

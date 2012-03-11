@@ -75,12 +75,12 @@ bool PhysComp::load(fstream& file)
     if(!file) return false;
     
     //load vel
-    file.read(reinterpret_cast<char*>(vel.x), sizeof(vel.x));
-    file.read(reinterpret_cast<char*>(vel.y), sizeof(vel.y));
+    file.read(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
+    file.read(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
     
     //load acc
-    file.read(reinterpret_cast<char*>(acc.x), sizeof(acc.x));
-    file.read(reinterpret_cast<char*>(acc.y), sizeof(acc.y));
+    file.read(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
+    file.read(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
 
     return true;
 }
@@ -97,12 +97,12 @@ bool PhysComp::save(fstream& file)
     if(!file) return false;
     
     //write vel
-    file.write(reinterpret_cast<char*>(vel.x), sizeof(vel.x));
-    file.write(reinterpret_cast<char*>(vel.y), sizeof(vel.y));
+    file.write(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
+    file.write(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
     
     //write acc
-    file.write(reinterpret_cast<char*>(acc.x), sizeof(acc.x));
-    file.write(reinterpret_cast<char*>(acc.y), sizeof(acc.y));
+    file.write(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
+    file.write(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
     
     return true;
 }

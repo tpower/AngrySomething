@@ -111,7 +111,7 @@ void Game::init(int roomNum)
     }
     
     //Read number of rooms and check validity of room request
-    file.read(reinterpret_cast<char*>(numRooms), sizeof(numRooms));
+    file.read(reinterpret_cast<char*>(&numRooms), sizeof(numRooms));
     if(roomNum >= numRooms)
     {
         running = false;
@@ -120,7 +120,7 @@ void Game::init(int roomNum)
     
     //Move cursor to location of requested room
     file.seekg((sizeof(int) * roomNum), ios::cur);
-    file.read(reinterpret_cast<char*>(roomLoc), sizeof(roomLoc));
+    file.read(reinterpret_cast<char*>(&roomLoc), sizeof(roomLoc));
     file.seekg(roomLoc, ios::beg);
     
     //load room
@@ -138,6 +138,7 @@ bool Game::save()
 {
     //open save file
     fstream file("SavedGame.gel", ios::out | ios::binary);
+    if(!file) return false;
     
     //save room
     return room->save(file);
@@ -157,6 +158,8 @@ int Game::run()
         room->update();
         view->update();
     }
+    
+    save();
     
     return 0;
 }

@@ -107,7 +107,7 @@ bool Room::load(fstream& file)
     if(!file) return false;
     
     //read number of objects in room
-    file.read(reinterpret_cast<char*>(numObjects), sizeof(numObjects));
+    file.read(reinterpret_cast<char*>(&numObjects), sizeof(numObjects));
     
     //create objects
     delete [] object;
@@ -134,7 +134,7 @@ bool Room::save(fstream& file)
     if(!file) return false;
     
     //write number of objects in room
-    file.write(reinterpret_cast<char*>(numObjects), sizeof(numObjects));
+    file.write(reinterpret_cast<char*>(&numObjects), sizeof(numObjects));
     
     //save objects
     for(int i = 0; i < numObjects; i++)
