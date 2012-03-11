@@ -91,6 +91,26 @@ bool TranComp::load(fstream& file)
 }
 
 /*******************************************************************************
+ Name:              save
+ Description:       This method saves the current state of the component
+ 
+ Output:
+    returns         bool representing the success of the save
+ ******************************************************************************/
+bool TranComp::save(fstream& file)
+{
+    if(!file) return false;
+    
+    //write pos
+    file.write(reinterpret_cast<char*>(pos.x), sizeof(pos.x));
+    file.write(reinterpret_cast<char*>(pos.y), sizeof(pos.y));
+    file.write(reinterpret_cast<char*>(pos.w), sizeof(pos.w));
+    file.write(reinterpret_cast<char*>(pos.h), sizeof(pos.h));
+    
+    return true;
+}
+
+/*******************************************************************************
  Name:              update
  Description:       This method updates the TranComp
  ******************************************************************************/

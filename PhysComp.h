@@ -36,6 +36,7 @@ public:
     PhysComp operator=(const PhysComp& other);
     
     virtual bool    load(fstream& file);
+    virtual bool    save(fstream& file);
     virtual int     update();
 };
 

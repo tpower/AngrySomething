@@ -47,6 +47,7 @@ class Object : public Base
         int         getNumComps();
         
         bool    load(fstream& file);
+        bool    save(fstream& file);
         int     update();
 };
 

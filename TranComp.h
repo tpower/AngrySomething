@@ -31,6 +31,7 @@ public:
     SDL_Rect    getPos();
     
     virtual bool    load(fstream& file);
+    virtual bool    save(fstream& file);
     virtual int     update();
 };
 

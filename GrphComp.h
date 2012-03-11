@@ -21,6 +21,7 @@ class GrphComp : public Component
 private:
     SDL_Surface *image;     //sprite sheet
     SDL_Rect    frame;      //current frame within sprite sheet
+    char        *filePath;  //file for sprite sheet
     
 public:
     GrphComp();
@@ -33,6 +34,7 @@ public:
     SDL_Rect        getFrame();
     
     virtual bool    load(fstream& file);
+    virtual bool    save(fstream& file);
     virtual int     update();
 };
 

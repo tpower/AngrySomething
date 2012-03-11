@@ -39,6 +39,7 @@ class Room : public Base
         int     getNumObjects();
     
         bool    load(fstream& file);
+        bool    save(fstream& file);
         int     update();
 };
 

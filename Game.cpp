@@ -128,6 +128,22 @@ void Game::init(int roomNum)
 }
 
 /*******************************************************************************
+ Name:              save
+ Description:       This method saves the current state of the game
+ 
+ Output:
+    returns         bool representing the success of the save
+ ******************************************************************************/
+bool Game::save()
+{
+    //open save file
+    fstream file("SavedGame.gel", ios::out | ios::binary);
+    
+    //save room
+    return room->save(file);
+}
+
+/*******************************************************************************
  Name:              run
  Description:       This method starts the game and controls the game loop
  
