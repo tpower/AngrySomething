@@ -73,6 +73,20 @@ bool MechComp::load(fstream& file)
 }
 
 /*******************************************************************************
+ Name:              save
+ Description:       This method saves the current state of the component
+ 
+ Output:
+    returns         bool representing the success of the save
+ ******************************************************************************/
+bool MechComp::save(fstream& file)
+{
+    if(!file) return false;
+    
+    return true;
+}
+
+/*******************************************************************************
  Name:              update
  Description:       This method updates the MechComp
  ******************************************************************************/

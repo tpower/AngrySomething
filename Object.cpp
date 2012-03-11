@@ -103,10 +103,7 @@ bool Object::load(fstream& file)
     
     //read component types
     int compTypes[numComps];
-    for(int i = 0; i < numComps; i++)
-    {
-        file.read(reinterpret_cast<char*>(compTypes[i]), sizeof(compTypes[i]));
-    }
+    file.read(reinterpret_cast<char*>(compTypes), sizeof(compTypes) * numComps);
     
     //create and load components
     for(int i = 0; i < numComps; i++)
@@ -136,6 +133,35 @@ bool Object::load(fstream& file)
             default:
                 break;
         }
+    }
+    
+    return true;
+}
+
+/*******************************************************************************
+ Name:              save
+ Description:       This method saves the current state of the object
+ 
+ Output:
+    returns         bool representing the success of the save
+ ******************************************************************************/
+bool Object::save(fstream& file)
+{
+    if(!file) return false;
+    
+    //write number of components in object
+    file.write(reinterpret_cast<char*>(numComps), sizeof(numComps));
+    
+    //write component types
+    for(int i = 0; i < numComps; i++)
+    {
+        file.write(reinterpret_cast<char*>(comp[i]->getType()), sizeof(int));
+    }
+    
+    //save components
+    for(int i = 0; i < numComps; i++)
+    {
+        if(!(comp[i])->save(file)) return false;
     }
     
     return true;

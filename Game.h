@@ -42,6 +42,7 @@ class Game : public Base
         bool    getRunning();
     
         void init(int roomNum = 0);
+        bool save();
         int  run();
 };
 

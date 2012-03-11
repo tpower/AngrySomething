@@ -86,6 +86,28 @@ bool PhysComp::load(fstream& file)
 }
 
 /*******************************************************************************
+ Name:              save
+ Description:       This method saves the current state of the component
+ 
+ Output:
+    returns         bool representing the success of the save
+ ******************************************************************************/
+bool PhysComp::save(fstream& file)
+{
+    if(!file) return false;
+    
+    //write vel
+    file.write(reinterpret_cast<char*>(vel.x), sizeof(vel.x));
+    file.write(reinterpret_cast<char*>(vel.y), sizeof(vel.y));
+    
+    //write acc
+    file.write(reinterpret_cast<char*>(acc.x), sizeof(acc.x));
+    file.write(reinterpret_cast<char*>(acc.y), sizeof(acc.y));
+    
+    return true;
+}
+
+/*******************************************************************************
  Name:              update
  Description:       This method updates the PhysComp
  ******************************************************************************/

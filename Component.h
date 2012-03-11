@@ -29,6 +29,7 @@ public:
     Component(const Component&);
     
     virtual bool    load(fstream& file) = 0;
+    virtual bool    save(fstream& file) = 0;
     virtual int     update() = 0;
 };
 

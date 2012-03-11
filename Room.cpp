@@ -123,6 +123,29 @@ bool Room::load(fstream& file)
 }
 
 /*******************************************************************************
+ Name:              save
+ Description:       This method saves the current state of the room
+ 
+ Output:
+    returns         bool representing the success of the save
+ ******************************************************************************/
+bool Room::save(fstream& file)
+{
+    if(!file) return false;
+    
+    //write number of objects in room
+    file.write(reinterpret_cast<char*>(numObjects), sizeof(numObjects));
+    
+    //save objects
+    for(int i = 0; i < numObjects; i++)
+    {
+        if(!object[i].save(file)) return false;
+    }
+    
+    return true;
+}
+
+/*******************************************************************************
  Name:              update
  Description:       This method enumerates through the objects in the room and
                     calls their update methods
