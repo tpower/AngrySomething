@@ -1,12 +1,12 @@
 /*******************************************************************************
  Filename:                  Game.cpp
  Classname:                 Game
- 
+
  Description:               This file defines the Game class. This class will
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
                             between the Room and the View
- 
+
  Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
@@ -27,7 +27,7 @@ Game::Game() : Base(GAME)
 /*******************************************************************************
  Name:              Game
  Description:       Copy constructor for Game class
- 
+
  Input:
     other           Game object to be copied
  ******************************************************************************/
@@ -46,14 +46,14 @@ Game::~Game()
 {
     if(room) delete room;
     if(view) delete view;
-    
+
     SDL_Quit();
 }
 
 /*******************************************************************************
  Name:              operator=
  Description:       Overloaded assignment operator for Game class
- 
+
  Input:
     other           const Game&
  ******************************************************************************/
@@ -65,7 +65,7 @@ Game Game::operator=(const Game& other)
         *room = *(other.room);
         *view = *(other.view);
     }
-    
+
     return *this;
 }
 
@@ -100,13 +100,13 @@ void Game::init(int roomNum)
     //open game file
     fstream file("SavedGame.gel", ios::in | ios::binary);
     int numRooms, roomLoc;
-    
+
     if(!file)
     {
         running = false;
         return;
     }
-    
+
     //Read number of rooms and check validity of room request
     file.read(reinterpret_cast<char*>(&numRooms), sizeof(numRooms));
     if(roomNum >= numRooms)
@@ -114,12 +114,12 @@ void Game::init(int roomNum)
         running = false;
         return;
     }
-    
+
     //Move cursor to location of requested room
     file.seekg((sizeof(roomLoc) * roomNum), ios::cur);
     file.read(reinterpret_cast<char*>(&roomLoc), sizeof(roomLoc));
     file.seekg(roomLoc, ios::beg);
-    
+
     //load room
     running = room->load(file);
 }
@@ -127,7 +127,7 @@ void Game::init(int roomNum)
 /*******************************************************************************
  Name:              save
  Description:       This method saves the current state of the game
- 
+
  Output:
     returns         bool representing the success of the save
  ******************************************************************************/
@@ -151,7 +151,7 @@ bool Game::save()
 /*******************************************************************************
  Name:              run
  Description:       This method starts the game and controls the game loop
- 
+
  Output:
     returns         int value representing the exit state of the game
  ******************************************************************************/
@@ -159,12 +159,19 @@ int Game::run()
 {
     while(running)
     {
-        room->update();
-        view->update();
+        GameState temp = room->update();
+
+        if(temp.roomNum != state.roomNum)
+        {
+            running = room->load(temp.roomNum);
+        }
+
+        else
+        {
+            view->update();
+        }
     }
-    
-    save();
-    
-    return 0;
+
+    return state.eleState;
 }
 
