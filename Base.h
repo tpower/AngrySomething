@@ -1,10 +1,10 @@
 /*******************************************************************************
  Filename:                  Base.h
  Classname:                 Base
- 
+
  Description:               This file declares the Base class. The Base class
                             serves as the template for all classes.
- 
+
  Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
@@ -16,6 +16,12 @@
 #include <string>
 
 using namespace std;
+
+struct GameState
+{
+    int roomNum;
+    int eleState;
+};
 
 enum type
 {
@@ -37,16 +43,16 @@ class Base
         int         id;
         int         type;
         int         state;
-        
+
     public:
         Base();
         Base(int);
         Base(const Base&);
         ~Base();
         Base operator=(const Base& other);
-    
+
         void setState(int s);
-    
+
         int     getID() const;
         int     getType() const;
         int     getState() const;
