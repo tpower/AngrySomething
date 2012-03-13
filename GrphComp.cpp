@@ -32,8 +32,9 @@ GrphComp::GrphComp() : Component(GRPHCOMP)
  ******************************************************************************/
 GrphComp::GrphComp(const GrphComp& other) : Component(GRPHCOMP)
 {
-    *image  = *(other.image);   //may not have proper assignment capabilities?
-    frame   = other.frame;
+    *image      = *(other.image);   //may not have proper assignment capabilities?
+    frame       = other.frame;
+    *filePath   = *(other.filePath);
 }
 
 /*******************************************************************************
@@ -57,8 +58,9 @@ GrphComp GrphComp::operator=(const GrphComp& other)
 {
     if(&other != this)
     {
-        *image  = *(other.image);   //may not have proper assignment capabilities?
-        frame   = other.frame;
+        *image      = *(other.image);   //may not have proper assignment capabilities?
+        frame       = other.frame;
+        *filePath   = *(other.filePath);
     }
     
     return *this;
@@ -96,7 +98,7 @@ bool GrphComp::load(fstream& file)
     file.read(reinterpret_cast<char*>(&pathLen), sizeof(pathLen));
     
     filePath = new char[pathLen];
-    file.read(reinterpret_cast<char*>(&filePath), sizeof(filePath) * pathLen);
+    file.read(reinterpret_cast<char*>(filePath), sizeof(filePath) * pathLen);
     
     //load image
     image = SDL_LoadBMP(filePath);
@@ -129,7 +131,7 @@ bool GrphComp::save(fstream& file)
     //write filePath
     int pathLen = (int)strlen(filePath) + 1;    //1 accounts for '\0'
     file.write(reinterpret_cast<char*>(&pathLen), sizeof(pathLen));
-    file.write(reinterpret_cast<char*>(&filePath), sizeof(filePath) * pathLen);
+    file.write(reinterpret_cast<char*>(filePath), sizeof(filePath) * pathLen);
     
     //write frame
     file.write(reinterpret_cast<char*>(&frame.x), sizeof(frame.x));
