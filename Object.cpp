@@ -195,21 +195,19 @@ bool Object::save(fstream& file)
  ******************************************************************************/
 GameState Object::update()
 {
-    GameState temp;
-    temp.eleState = state.eleState;
-    temp.roomNum
+    GameState compState = state;
 
-    for(int i = 0; i < numComps && temp.roomNum != state.roomNum; i++)
+    for(int i = 0; i < numComps && compState.roomNum == state.roomNum; i++)
     {
-        temp = comp[i]->update();
+        GameState compState = comp[i]->update();
 
-        if(temp.eleState == -1)
+        if(compState.eleState == -1)
         {
             removeCompAt(i);
         }
     }
 
-    state.roomNum = temp.roomNum;
+    state.roomNum = compState.roomNum;
 
     return state;
 }

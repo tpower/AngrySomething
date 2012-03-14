@@ -1,9 +1,9 @@
 /*******************************************************************************
  Filename:                  GrphComp.cpp
  Classname:                 GrphComp
- 
+
  Description:               This file defines the GrphComp class.
- 
+
  Last Modified:            				03.09.12
  By:									Tyler Orr
  - File created
@@ -49,7 +49,7 @@ GrphComp::~GrphComp()
 /*******************************************************************************
  Name:              operator=
  Description:       Overloaded assignment operator for GrphComp class
- 
+
  Input:
     other           const GrphComp&
  ******************************************************************************/
@@ -60,7 +60,7 @@ GrphComp GrphComp::operator=(const GrphComp& other)
         *image  = *(other.image);   //may not have proper assignment capabilities?
         frame   = other.frame;
     }
-    
+
     return *this;
 }
 
@@ -80,24 +80,24 @@ SDL_Rect GrphComp::getFrame()
 /*******************************************************************************
  Name:              load
  Description:       This method loads the GrphComp
- 
+
  Input:
     file            fstream& from which to load the GrphComp
- 
+
  Output:
     returns         bool value of whether the GrphComp loaded correctly
  ******************************************************************************/
 bool GrphComp::load(fstream& file)
 {
     if(!file) return false;
-    
+
     //load filePath
     int pathLen;
     file.read(reinterpret_cast<char*>(&pathLen), sizeof(pathLen));
-    
+
     filePath = new char[pathLen];
     file.read(reinterpret_cast<char*>(&filePath), sizeof(filePath) * pathLen);
-    
+
     //load image
     image = SDL_LoadBMP(filePath);
     if(!image)
@@ -105,38 +105,38 @@ bool GrphComp::load(fstream& file)
         cout << "ERROR: could not load " << filePath << endl;
         return false;
     }
-    
+
     //load frame
     file.read(reinterpret_cast<char*>(&frame.x), sizeof(frame.x));
     file.read(reinterpret_cast<char*>(&frame.y), sizeof(frame.y));
     file.read(reinterpret_cast<char*>(&frame.w), sizeof(frame.w));
     file.read(reinterpret_cast<char*>(&frame.h), sizeof(frame.h));
-    
+
     return true;
 }
 
 /*******************************************************************************
  Name:              save
  Description:       This method saves the current state of the component
- 
+
  Output:
     returns         bool representing the success of the save
  ******************************************************************************/
 bool GrphComp::save(fstream& file)
 {
     if(!file) return false;
-    
+
     //write filePath
     int pathLen = (int)strlen(filePath) + 1;    //1 accounts for '\0'
     file.write(reinterpret_cast<char*>(&pathLen), sizeof(pathLen));
     file.write(reinterpret_cast<char*>(&filePath), sizeof(filePath) * pathLen);
-    
+
     //write frame
     file.write(reinterpret_cast<char*>(&frame.x), sizeof(frame.x));
     file.write(reinterpret_cast<char*>(&frame.y), sizeof(frame.y));
     file.write(reinterpret_cast<char*>(&frame.w), sizeof(frame.w));
     file.write(reinterpret_cast<char*>(&frame.h), sizeof(frame.h));
-    
+
     return true;
 }
 
@@ -144,9 +144,12 @@ bool GrphComp::save(fstream& file)
  Name:              update
  Description:       This method updates the GrphComp
  ******************************************************************************/
-int GrphComp::update()
+GameState GrphComp::update()
 {
-    return 0;
+    GameState temp;
+    temp.eleState = 0;
+    temp.roomNum = -1;
+    return temp;
 }
 
 

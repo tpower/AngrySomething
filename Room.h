@@ -27,7 +27,6 @@ class Room : public Base
     private:
         Object      *object;
         int         numObjects;
-        GameState   state;
 
     public:
         Room();
