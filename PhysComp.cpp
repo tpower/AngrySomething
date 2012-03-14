@@ -1,9 +1,9 @@
 /*******************************************************************************
  Filename:                  PhysComp.cpp
  Classname:                 PhysComp
- 
+
  Description:               This file defines the PhysComp class.
- 
+
  Last Modified:            				03.09.12
  By:									Tyler Orr
  - File created
@@ -39,13 +39,13 @@ PhysComp::PhysComp(const PhysComp& other) : Component(PHYSCOMP)
  ******************************************************************************/
 PhysComp::~PhysComp()
 {
-    
+
 }
 
 /*******************************************************************************
  Name:              operator=
  Description:       Overloaded assignment operator for PhysComp class
- 
+
  Input:
  other           const PhysComp&
  ******************************************************************************/
@@ -56,28 +56,28 @@ PhysComp PhysComp::operator=(const PhysComp& other)
         vel = other.vel;
         acc = other.acc;
     }
-    
+
     return *this;
 }
 
 /*******************************************************************************
  Name:              load
  Description:       This method loads the PhysComp
- 
+
  Input:
     file            fstream& from which to load the PhysComp
- 
+
  Output:
     returns         bool value of whether the PhysComp loaded correctly
  ******************************************************************************/
 bool PhysComp::load(fstream& file)
 {
     if(!file) return false;
-    
+
     //load vel
     file.read(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
     file.read(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
-    
+
     //load acc
     file.read(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
     file.read(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
@@ -88,22 +88,22 @@ bool PhysComp::load(fstream& file)
 /*******************************************************************************
  Name:              save
  Description:       This method saves the current state of the component
- 
+
  Output:
     returns         bool representing the success of the save
  ******************************************************************************/
 bool PhysComp::save(fstream& file)
 {
     if(!file) return false;
-    
+
     //write vel
     file.write(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
     file.write(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
-    
+
     //write acc
     file.write(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
     file.write(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
-    
+
     return true;
 }
 
@@ -111,9 +111,12 @@ bool PhysComp::save(fstream& file)
  Name:              update
  Description:       This method updates the PhysComp
  ******************************************************************************/
-int PhysComp::update()
+GameState PhysComp::update()
 {
-    return 0;
+    GameState temp;
+    temp.eleState = 0;
+    temp.roomNum = -1;
+    return temp;
 }
 
 

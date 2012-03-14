@@ -1,9 +1,9 @@
 /*******************************************************************************
  Filename:                  MechComp.h
  Classname:                 MechComp
- 
+
  Description:               This file declares the MechComp class.
- 
+
  Last Modified:            				03.09.12
  By:									Tyler Orr
  - File created
@@ -19,17 +19,17 @@
 class MechComp : public Component
 {
 private:
-    
+
 public:
     MechComp();
     MechComp(const MechComp&);
     ~MechComp();
-    
+
     MechComp operator=(const MechComp& other);
-    
-    virtual bool    load(fstream& file);
-    virtual bool    save(fstream& file);
-    virtual int     update();
+
+    virtual bool        load(fstream& file);
+    virtual bool        save(fstream& file);
+    virtual GameState   update();
 };
 
 #endif

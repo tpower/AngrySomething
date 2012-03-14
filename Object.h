@@ -35,7 +35,6 @@ class Object : public Base
     private:
         Component   **comp;
         int         numComps;
-        GameState   state;
 
     public:
         Object();

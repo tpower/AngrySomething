@@ -176,21 +176,20 @@ bool Room::save(fstream& file)
 
 GameState Room::update()
 {
-    GameState temp;
-    temp.eleState = state.eleState;
-    temp.roomNum
+    GameState objState = state;
 
-    for(int i = 0; i < numObjects && temp.roomNum != state.roomNum; i++)
+    for(int i = 0; i < numObjects && objState.roomNum != state.roomNum; i++)
     {
-        temp = object[i].update();
+       GameState temp = object[i].update();
+       objState = temp;
 
-        if(temp.eleState == -1)
+        if(objState.eleState == -1)
         {
             removeObjectAt(i);
         }
     }
 
-    state.roomNum = temp.roomNum;
+    state.roomNum = objState.roomNum;
 
     return state;
 }

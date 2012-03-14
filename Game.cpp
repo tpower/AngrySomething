@@ -159,7 +159,7 @@ int Game::run()
 
         if(temp.roomNum != state.roomNum)
         {
-            running = room->load(temp.roomNum);
+            init(temp.roomNum);
         }
 
         else

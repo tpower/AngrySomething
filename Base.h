@@ -21,6 +21,8 @@ struct GameState
 {
     int roomNum;
     int eleState;
+
+    GameState operator=(GameState&);
 };
 
 enum type
@@ -38,11 +40,11 @@ enum type
 
 class Base
 {
-    private:
+    protected:
         static int  idGen;
         int         id;
         int         type;
-        int         state;
+        GameState   state;
 
     public:
         Base();
@@ -51,11 +53,11 @@ class Base
         ~Base();
         Base operator=(const Base& other);
 
-        void setState(int s);
+        void setState(GameState s);
 
         int     getID() const;
         int     getType() const;
-        int     getState() const;
+        GameState     getState() const;
 };
 
 #endif
