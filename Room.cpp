@@ -173,7 +173,6 @@ bool Room::save(fstream& file)
  Description:       This method iterates through the objects in the room and
                     calls their update methods
  ******************************************************************************/
-
 GameState Room::update()
 {
     GameState temp;

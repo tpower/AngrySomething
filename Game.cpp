@@ -134,7 +134,7 @@ void Game::init(int roomNum)
 bool Game::save()
 {
     //open save file
-    fstream file("SavedGame.gel", ios::out | ios::binary);
+    fstream file("SavedGame2.gel", ios::out | ios::binary);
     if(!file) return false;
     
     int numRooms = 1;
