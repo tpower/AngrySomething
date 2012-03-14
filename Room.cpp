@@ -178,7 +178,6 @@ GameState Room::update()
 {
     GameState temp;
     temp.eleState = state.eleState;
-    temp.roomNum
 
     for(int i = 0; i < numObjects && temp.roomNum != state.roomNum; i++)
     {

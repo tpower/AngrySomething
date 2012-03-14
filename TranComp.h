@@ -18,21 +18,21 @@
 
 class TranComp : public Component
 {
-private:
-    SDL_Rect    pos;    //bounding box
-    
-public:
-    TranComp();
-    TranComp(const TranComp&);
-    ~TranComp();
-    
-    TranComp operator=(const TranComp& other);
-    
-    SDL_Rect    getPos();
-    
-    virtual bool    load(fstream& file);
-    virtual bool    save(fstream& file);
-    virtual int     update();
+    private:
+        SDL_Rect    pos;    //bounding box
+        
+    public:
+        TranComp();
+        TranComp(const TranComp&);
+        ~TranComp();
+        
+        TranComp        operator=(const TranComp& other);
+        
+        SDL_Rect        getPos();
+        
+        virtual bool    load(fstream& file);
+        virtual bool    save(fstream& file);
+        virtual int     update();
 };
 
 #endif

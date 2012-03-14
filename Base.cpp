@@ -77,7 +77,7 @@ Base Base::operator=(const Base& other)
  MODIFIERS
  Name:              setState
  ******************************************************************************/
-void Base::setState(int s)
+void Base::setState(GameState s)
 {
     state = s;
 }
@@ -96,7 +96,7 @@ int Base::getType() const
     return type;
 }
 
-int Base::getState() const
+GameState Base::getState() const
 {
     return state;
 }

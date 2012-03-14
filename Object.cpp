@@ -24,11 +24,6 @@ Object::Object() : Base(OBJECT)
 {
     numComps = 0;
     comp = new Component*[numComps];
-    
-//    numComps = 2;
-//    comp = new Component*[numComps];
-//    comp[0] = new TranComp();
-//    comp[1] = new GrphComp();
 }
 
 /*******************************************************************************
@@ -202,7 +197,6 @@ GameState Object::update()
 {
     GameState temp;
     temp.eleState = state.eleState;
-    temp.roomNum
 
     for(int i = 0; i < numComps && temp.roomNum != state.roomNum; i++)
     {
