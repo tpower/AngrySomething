@@ -18,7 +18,7 @@
 #include "Base.h"
 #include "Object.h"
 #include <string>
-
+ 
 using namespace std;
 
 class Room : public Base
