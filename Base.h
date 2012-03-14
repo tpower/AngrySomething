@@ -54,11 +54,11 @@ class Base
     
         Base        operator=(const Base& other);
 
-        void setState(GameState s);
+        void        setState(GameState s);
 
-        int     getID() const;
-        int     getType() const;
-        GameState     getState() const;
+        int         getID() const;
+        int         getType() const;
+        GameState   getState() const;
 };
 
 #endif

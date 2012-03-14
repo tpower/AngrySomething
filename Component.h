@@ -22,15 +22,15 @@
 
 class Component : public Base
 {
-private:
-
-public:
-    Component(int type);
-    Component(const Component&);
-
-    virtual bool        load(fstream& file) = 0;
-    virtual bool        save(fstream& file) = 0;
-    virtual GameState   update() = 0;
+    private:
+        
+    public:
+        Component(int type);
+        Component(const Component&);
+        
+        virtual bool        load(fstream& file) = 0;
+        virtual bool        save(fstream& file) = 0;
+        virtual GameState   update() = 0;
 };
 
 #endif

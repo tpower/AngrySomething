@@ -18,18 +18,18 @@
 
 class MechComp : public Component
 {
-private:
-
-public:
-    MechComp();
-    MechComp(const MechComp&);
-    ~MechComp();
-
-    MechComp operator=(const MechComp& other);
-
-    virtual bool        load(fstream& file);
-    virtual bool        save(fstream& file);
-    virtual GameState   update();
+    private:
+        
+    public:
+        MechComp();
+        MechComp(const MechComp&);
+        ~MechComp();
+        
+        MechComp            operator=(const MechComp& other);
+        
+        virtual bool        load(fstream& file);
+        virtual bool        save(fstream& file);
+        virtual GameState   update();
 };
 
 #endif

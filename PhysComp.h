@@ -24,20 +24,20 @@ struct vect
 
 class PhysComp : public Component
 {
-private:
-    vect vel;
-    vect acc;
-
-public:
-    PhysComp();
-    PhysComp(const PhysComp&);
-    ~PhysComp();
-
-    PhysComp operator=(const PhysComp& other);
-
-    virtual bool        load(fstream& file);
-    virtual bool        save(fstream& file);
-    virtual GameState   update();
+    private:
+        vect vel;
+        vect acc;
+        
+    public:
+        PhysComp();
+        PhysComp(const PhysComp&);
+        ~PhysComp();
+        
+        PhysComp            operator=(const PhysComp& other);
+        
+        virtual bool        load(fstream& file);
+        virtual bool        save(fstream& file);
+        virtual GameState   update();
 };
 
 #endif
