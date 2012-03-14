@@ -178,10 +178,9 @@ GameState Room::update()
 {
     GameState objState = state;
 
-    for(int i = 0; i < numObjects && objState.roomNum != state.roomNum; i++)
+    for(int i = 0; i < numObjects && objState.roomNum == state.roomNum; i++)
     {
-       GameState temp = object[i].update();
-       objState = temp;
+       GameState objState = object[i].update();
 
         if(objState.eleState == -1)
         {

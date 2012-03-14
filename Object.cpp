@@ -197,10 +197,9 @@ GameState Object::update()
 {
     GameState compState = state;
 
-    for(int i = 0; i < numComps && compState.roomNum != state.roomNum; i++)
+    for(int i = 0; i < numComps && compState.roomNum == state.roomNum; i++)
     {
-        GameState temp = comp[i]->update();
-        compState = temp;
+        GameState compState = comp[i]->update();
 
         if(compState.eleState == -1)
         {

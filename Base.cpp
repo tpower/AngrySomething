@@ -14,14 +14,6 @@
 
 int Base::idGen = 0;
 
-GameState GameState::operator=(GameState& other)
-{
-    roomNum = other.roomNum;
-    eleState = other.eleState;
-
-    return *this;
-}
-
 /*******************************************************************************
  Name:              Base
  Description:       Default constructor for Base class
