@@ -1,11 +1,11 @@
 /*******************************************************************************
  Filename:                  Object.cpp
  Classname:                 Object
- 
+
  Description:               This file defines the Object class. The Object
                             class holds the components that define the objects
                             in the game.
- 
+
  Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
@@ -20,26 +20,19 @@ using namespace std;
  Name:              Object
  Description:       Default constructor for Object class
  ******************************************************************************/
-Object::Object() : Base("object")
+Object::Object() : Base(OBJECT)
 {
-    comp = new Component[1];
-    numComps = 1;
+    numComps = 0;
+    comp = new Component*[numComps];
 }
 
 /*******************************************************************************
  Name:              Object
  Description:       Copy constructor for Object class
  ******************************************************************************/
-Object::Object(const Object& other) : Base("object")
+Object::Object(const Object& other) : Base(OBJECT)
 {
-    numComps = other.numComps;
-    
-    comp = new Component[numComps];
-    
-    for(int i = 0; i < numComps; i++)
-    {
-        comp[i] = other.comp[i];
-    }
+
 }
 
 /*******************************************************************************
@@ -48,13 +41,13 @@ Object::Object(const Object& other) : Base("object")
  ******************************************************************************/
 Object::~Object()
 {
-    if(comp) delete [] comp;
+    delete [] comp;
 }
 
 /*******************************************************************************
  Name:              operator=
  Description:       Overloaded assignment operator for Object class
- 
+
  Input:
     other           const Object&
  ******************************************************************************/
@@ -62,27 +55,27 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        numComps = other.numComps;
-        
-        if(comp) delete [] comp;
-        comp = new Component[numComps];
-        
-        for(int i = 0; i < numComps; i++)
-        {
-            comp[i] = other.comp[i];
-        }
+
     }
-    
+
     return *this;
 }
 
 /*******************************************************************************
  ACCESSORS
- Name:              getObjectAt, getNumObjects
+ Name:              getComp, getNumObjects
  ******************************************************************************/
-Component& Object::getCompAt(int i)
+Component* Object::getComp(int type)
 {
-    return comp[i];
+    for(int i = 0; i < numComps; i++)
+    {
+        if(comp[i]->getType() == type)
+        {
+            return comp[i];
+        }
+    }
+
+    return NULL;
 }
 
 int Object::getNumComps()
@@ -91,32 +84,134 @@ int Object::getNumComps()
 }
 
 /*******************************************************************************
+ MUTATORS
+ Name:              removeObjectAt
+ ******************************************************************************/
+void Object::removeCompAt(int index)
+{
+    Component **temp = new Component*[numComps - 1];
+
+     for(int i = 0; i < index; i++)
+     {
+         temp[i] = comp[i];
+     }
+
+     for(int i = index; i < numComps - 1; i++)
+     {
+         temp[i] = comp[i+1];
+     }
+
+     numComps = numComps - 1;
+     comp = temp;
+}
+/*******************************************************************************
  Name:              load
  Description:       This method dynamically allocates and loads components in
                     the room
+
+ Input:
+    file            fstream& from which to load the Object
+
+ Output:
+    returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-void Object::load()
+bool Object::load(fstream& file)
 {
-    
+    if(!file) return false;
+
+    //read number of components in object
+    file.read(reinterpret_cast<char*>(&numComps), sizeof(numComps));
+
+    //read component types
+    int compTypes[numComps];
+    file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes) * numComps);
+
+    //create and load components
+    for(int i = 0; i < numComps; i++)
+    {
+        switch(compTypes[i])
+        {
+            case MECHCOMP:
+                comp[i] = new MechComp();
+                if(!(comp[i])->load(file)) return false;
+                break;
+
+            case TRANCOMP:
+                comp[i] = new TranComp();
+                if(!(comp[i])->load(file)) return false;
+                break;
+
+            case PHYSCOMP:
+                comp[i] = new PhysComp();
+                if(!(comp[i])->load(file)) return false;
+                break;
+
+            case GRPHCOMP:
+                comp[i] = new GrphComp();
+                if(!(comp[i])->load(file)) return false;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    return true;
+}
+
+/*******************************************************************************
+ Name:              save
+ Description:       This method saves the current state of the object
+
+ Output:
+    returns         bool representing the success of the save
+ ******************************************************************************/
+bool Object::save(fstream& file)
+{
+    if(!file) return false;
+
+    //write number of components in object
+    file.write(reinterpret_cast<char*>(&numComps), sizeof(numComps));
+
+    //write component types
+    for(int i = 0; i < numComps; i++)
+    {
+        int tempType = comp[i]->getType();
+        file.write(reinterpret_cast<char*>(&tempType), sizeof(int));
+    }
+
+    //save components
+    for(int i = 0; i < numComps; i++)
+    {
+        if(!(comp[i])->save(file)) return false;
+    }
+
+    return true;
 }
 
 /*******************************************************************************
  Name:              update
  Description:       This method updates the object
  ******************************************************************************/
-int Object::update()
+GameState Object::update()
 {
-    for(int i = 0; i < numComps; i++)
+    GameState temp;
+    temp.eleState = state.eleState;
+    temp.roomNum
+
+    for(int i = 0; i < numComps && temp.roomNum != state.roomNum; i++)
     {
-        int temp = comp[i].update();
-        
-        if(temp)
+        temp = comp[i]->update();
+
+        if(temp.eleState == -1)
         {
-            //implementation reacting to state of object
+            removeCompAt(i);
         }
     }
-    
-    return 0;
+
+    state.roomNum = temp.roomNum;
+
+    return state;
 }
 
 

@@ -18,20 +18,19 @@
 
 #include "Base.h"
 #include <SDL/SDL.h>
+#include <fstream>
 
 class Component : public Base
 {
 private:
     
 public:
-    Component();
+    Component(int type);
     Component(const Component&);
-    ~Component();
     
-    Component operator=(const Component& other);
-    
-    void    load();
-    int     update();
+    virtual bool    load(fstream& file) = 0;
+    virtual bool    save(fstream& file) = 0;
+    virtual int     update() = 0;
 };
 
 #endif

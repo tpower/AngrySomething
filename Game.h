@@ -34,13 +34,15 @@ class Game : public Base
         Game();
         Game(const Game&);
         ~Game();
+    
         Game operator=(const Game& other);
     
         Room*   getRoom();
         View*   getView();
         bool    getRunning();
     
-        void init();
+        void init(int roomNum = 0);
+        bool save();
         int  run();
 };
 

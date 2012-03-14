@@ -18,9 +18,23 @@
  Name:              View
  Description:       Default constructor for View class
  ******************************************************************************/
-View::View() : Base("view")
+View::View() : Base(VIEW)
 {
+    if(SDL_Init(SDL_INIT_VIDEO) == -1)
+    {
+        cout << "ERROR: View:View:SDL_Init" << endl;
+        exit(-1);
+    }
     
+    screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+    
+    if(!screen)
+    {
+        cout << "ERROR: View:View:SDL_SetVideoMode" << endl;
+        exit(-1);
+    }
+    
+    needsUpdate = true;
 }
 
 /*******************************************************************************
@@ -30,9 +44,10 @@ View::View() : Base("view")
  Input:
     other           View to be copied
  ******************************************************************************/
-View::View(const View& other) : Base("view")
+View::View(const View& other) : Base(VIEW)
 {
-    
+    *screen     = *(other.screen);
+    needsUpdate = other.needsUpdate;
 }
 
 /*******************************************************************************
@@ -41,7 +56,7 @@ View::View(const View& other) : Base("view")
  ******************************************************************************/
 View::~View()
 {
-    
+    SDL_FreeSurface(screen);
 }
 
 /*******************************************************************************
@@ -55,7 +70,8 @@ View View::operator=(const View& other)
 {
     if(&other != this)
     {
-        
+        *screen     = *(other.screen);
+        needsUpdate = other.needsUpdate;
     }
     
     return *this;
@@ -67,5 +83,33 @@ View View::operator=(const View& other)
  ******************************************************************************/
 void View::update()
 {
+    if (needsUpdate)
+    {
+        SDL_Flip(screen); //Render screen
+        
+        //Create new pallete
+        
+        needsUpdate = false;
+    }
+}
+
+/*******************************************************************************
+ Name:              draw
+ Description:       This method draws the given object to the screens buffer
+ 
+ Input:
+    obj       const Object&
+ ******************************************************************************/
+void View::draw(Object& obj)
+{
+    GrphComp *grph = static_cast<GrphComp*>(obj.getComp(GRPHCOMP));
+    TranComp *tran = static_cast<TranComp*>(obj.getComp(TRANCOMP));
     
+    SDL_Rect f      = grph->getFrame();
+    SDL_Rect l      = tran->getPos();
+    SDL_Surface *i  = grph->getImage();
+    
+    SDL_BlitSurface(i, &f, screen, &l);
+    
+    needsUpdate = true;
 }
