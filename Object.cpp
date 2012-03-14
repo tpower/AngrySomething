@@ -124,8 +124,8 @@ bool Object::load(fstream& file)
 
     //read component types
     int compTypes[numComps];
-    file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes) * numComps);
-
+    file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes));
+    
     //create and load components
     for(int i = 0; i < numComps; i++)
     {
@@ -177,7 +177,7 @@ bool Object::save(fstream& file)
     for(int i = 0; i < numComps; i++)
     {
         int tempType = comp[i]->getType();
-        file.write(reinterpret_cast<char*>(&tempType), sizeof(int));
+        file.write(reinterpret_cast<char*>(&tempType), sizeof(tempType));
     }
 
     //save components

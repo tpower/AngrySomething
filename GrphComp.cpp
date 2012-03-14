@@ -32,8 +32,9 @@ GrphComp::GrphComp() : Component(GRPHCOMP)
  ******************************************************************************/
 GrphComp::GrphComp(const GrphComp& other) : Component(GRPHCOMP)
 {
-    *image  = *(other.image);   //may not have proper assignment capabilities?
-    frame   = other.frame;
+    *image      = *(other.image);   //may not have proper assignment capabilities?
+    frame       = other.frame;
+    *filePath   = *(other.filePath);
 }
 
 /*******************************************************************************
@@ -57,8 +58,9 @@ GrphComp GrphComp::operator=(const GrphComp& other)
 {
     if(&other != this)
     {
-        *image  = *(other.image);   //may not have proper assignment capabilities?
-        frame   = other.frame;
+        *image      = *(other.image);   //may not have proper assignment capabilities?
+        frame       = other.frame;
+        *filePath   = *(other.filePath);
     }
 
     return *this;

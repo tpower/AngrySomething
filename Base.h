@@ -51,7 +51,8 @@ class Base
         Base(int);
         Base(const Base&);
         ~Base();
-        Base operator=(const Base& other);
+    
+        Base        operator=(const Base& other);
 
         void setState(GameState s);
 

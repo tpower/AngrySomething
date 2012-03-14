@@ -94,14 +94,11 @@ bool Game::getRunning()
                     run loop begins
  Input:
     roomNum         int representing roomNumber to load
-
- Output:
-    returns         boolean value representing if the game initialized correctly
  ******************************************************************************/
 void Game::init(int roomNum)
 {
     //open game file
-    fstream file("GameFile.gel", ios::in | ios::binary);
+    fstream file("SavedGame.gel", ios::in | ios::binary);
     int numRooms, roomLoc;
 
     if(!file)
@@ -119,7 +116,7 @@ void Game::init(int roomNum)
     }
 
     //Move cursor to location of requested room
-    file.seekg((sizeof(int) * roomNum), ios::cur);
+    file.seekg((sizeof(roomLoc) * roomNum), ios::cur);
     file.read(reinterpret_cast<char*>(&roomLoc), sizeof(roomLoc));
     file.seekg(roomLoc, ios::beg);
 
@@ -137,9 +134,16 @@ void Game::init(int roomNum)
 bool Game::save()
 {
     //open save file
-    fstream file("SavedGame.gel", ios::out | ios::binary);
+    fstream file("SavedGame2.gel", ios::out | ios::binary);
     if(!file) return false;
-
+    
+    int numRooms = 1;
+    int roomLoc;
+    file.write(reinterpret_cast<char*>(&numRooms), sizeof(numRooms));
+    roomLoc = (int)file.tellg() + sizeof(roomLoc);
+    file.write(reinterpret_cast<char*>(&roomLoc), sizeof(roomLoc));
+    file.seekg(roomLoc, ios::beg);
+    
     //save room
     return room->save(file);
 }
