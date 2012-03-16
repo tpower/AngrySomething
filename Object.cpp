@@ -124,8 +124,8 @@ bool Object::load(fstream& file)
 
     //read component types
     int compTypes[numComps];
-    file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes) * numComps);
-
+    file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes));
+    
     //create and load components
     for(int i = 0; i < numComps; i++)
     {
@@ -177,7 +177,7 @@ bool Object::save(fstream& file)
     for(int i = 0; i < numComps; i++)
     {
         int tempType = comp[i]->getType();
-        file.write(reinterpret_cast<char*>(&tempType), sizeof(int));
+        file.write(reinterpret_cast<char*>(&tempType), sizeof(tempType));
     }
 
     //save components
@@ -195,21 +195,19 @@ bool Object::save(fstream& file)
  ******************************************************************************/
 GameState Object::update()
 {
-    GameState temp;
-    temp.eleState = state.eleState;
-    temp.roomNum;
+    GameState compState = state;
 
-    for(int i = 0; i < numComps && temp.roomNum != state.roomNum; i++)
+    for(int i = 0; i < numComps && compState.roomNum == state.roomNum; i++)
     {
-        temp = comp[i]->update();
+        GameState compState = comp[i]->update();
 
-        if(temp.eleState == -1)
+        if(compState.eleState == -1)
         {
             removeCompAt(i);
         }
     }
 
-    state.roomNum = temp.roomNum;
+    state.roomNum = compState.roomNum;
 
     return state;
 }

@@ -35,15 +35,15 @@ class Game : public Base
         Game(const Game&);
         ~Game();
     
-        Game operator=(const Game& other);
+        Game    operator=(const Game& other);
     
         Room*   getRoom();
         View*   getView();
         bool    getRunning();
     
-        void init(int roomNum = 0);
-        bool save();
-        int  run();
+        void    init(int roomNum = 0);
+        bool    save();
+        int     run();
 };
 
 #endif

@@ -1,10 +1,10 @@
 /*******************************************************************************
  Filename:                  Base.cpp
  Classname:                 Base
- 
+
  Description:               This file defines the Base class. The Base class
                             serves as the template for all classes.
- 
+
  Last Modified:            				02.28.12
  By:									Tyler Orr
  - File created
@@ -27,7 +27,7 @@ Base::Base()
 /*******************************************************************************
  Name:              Base
  Description:       Secondary constructor for Base class
- 
+
  Input:
     t               int representing the type of object
  ******************************************************************************/
@@ -59,7 +59,7 @@ Base::~Base()
 /*******************************************************************************
  Name:              operator=
  Description:       Overloaded assignment operator for Base class
- 
+
  Input:
     other           const Base&
  ******************************************************************************/
@@ -69,7 +69,7 @@ Base Base::operator=(const Base& other)
     {
         type = other.type;
     }
-    
+
     return *this;
 }
 
@@ -77,7 +77,7 @@ Base Base::operator=(const Base& other)
  MODIFIERS
  Name:              setState
  ******************************************************************************/
-void Base::setState(int s)
+void Base::setState(GameState s)
 {
     state = s;
 }
@@ -96,7 +96,7 @@ int Base::getType() const
     return type;
 }
 
-int Base::getState() const
+GameState Base::getState() const
 {
     return state;
 }

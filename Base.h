@@ -42,20 +42,23 @@ class Base
         static int  idGen;
         int         id;
         int         type;
-        int         state;
+
+    protected:
+        GameState   state;
 
     public:
         Base();
         Base(int);
         Base(const Base&);
         ~Base();
-        Base operator=(const Base& other);
+    
+        Base        operator=(const Base& other);
 
-        void setState(int s);
+        void        setState(GameState s);
 
-        int     getID() const;
-        int     getType() const;
-        int     getState() const;
+        int         getID() const;
+        int         getType() const;
+        GameState   getState() const;
 };
 
 #endif
