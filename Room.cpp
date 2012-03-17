@@ -176,7 +176,10 @@ bool Room::save(fstream& file)
 GameState Room::update()
 {
     GameState objState = state;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 61ed7ec13c4209e4070bea741869c730b0e163ae
 
     for(int i = 0; i < numObjects && objState.roomNum == state.roomNum; i++)
     {
