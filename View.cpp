@@ -11,8 +11,12 @@
  - File created
  ******************************************************************************/
 
-#include "View.h"
 #include <iostream>
+
+#include "View.h"
+#include "Object.h"
+#include "TranComp.h"
+#include "GrphComp.h"
 
 /*******************************************************************************
  Name:              View

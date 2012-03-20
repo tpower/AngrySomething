@@ -12,9 +12,10 @@
 #ifndef AngrySomething_GrphComp_h
 #define AngrySomething_GrphComp_h
 
-#include "Component.h"
 #include <SDL/SDL.h>
 #include <fstream>
+
+#include "Component.h"
 
 class GrphComp : public Component
 {

@@ -12,9 +12,10 @@
 #ifndef AngrySomething_MechComp_h
 #define AngrySomething_MechComp_h
 
-#include "Component.h"
 #include <SDL/SDL.h>
 #include <fstream>
+
+#include "Component.h"
 
 class MechComp : public Component
 {

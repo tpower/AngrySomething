@@ -11,8 +11,13 @@
  - File created
  ******************************************************************************/
 
-#include "Object.h"
 #include <iostream>
+
+#include "Object.h"
+#include "MechComp.h"
+#include "TranComp.h"
+#include "PhysComp.h"
+#include "GrphComp.h"
 
 using namespace std;
 

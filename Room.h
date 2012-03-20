@@ -15,10 +15,12 @@
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
 
-#include "Base.h"
-#include "Object.h"
 #include <string>
 #include <fstream>
+
+#include "Base.h"
+
+class Object;
 
 using namespace std;
 
