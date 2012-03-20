@@ -13,8 +13,9 @@
  - File created
  ******************************************************************************/
 
-#include "Component.h"
 #include <iostream>
+
+#include "Component.h"
 
 using namespace std;
 

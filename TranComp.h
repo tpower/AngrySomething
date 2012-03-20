@@ -12,9 +12,10 @@
 #ifndef AngrySomething_TranComp_h
 #define AngrySomething_TranComp_h
 
-#include "Component.h"
 #include <SDL/SDL.h>
 #include <fstream>
+
+#include "Component.h"
 
 class TranComp : public Component
 {
