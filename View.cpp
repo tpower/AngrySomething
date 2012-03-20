@@ -104,10 +104,10 @@ void View::update()
  Input:
     obj       const Object&
  ******************************************************************************/
-void View::draw(Object& obj)
+void View::draw(Object* obj)
 {
-    GrphComp *grph = static_cast<GrphComp*>(obj.getComp(GRPHCOMP));
-    TranComp *tran = static_cast<TranComp*>(obj.getComp(TRANCOMP));
+    GrphComp *grph = static_cast<GrphComp*>(obj->getComp(GRPHCOMP));
+    TranComp *tran = static_cast<TranComp*>(obj->getComp(TRANCOMP));
     
     SDL_Rect f      = grph->getFrame();
     SDL_Rect l      = tran->getPos();

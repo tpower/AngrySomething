@@ -116,10 +116,10 @@ bool TranComp::save(fstream& file)
  ******************************************************************************/
 GameState TranComp::update()
 {
-    GameState temp;
-    temp.eleState = 0;
-    temp.roomNum = -1;
-    return temp;
+    pos.x++;
+    pos.y++;
+    
+    return getState();
 }
 
 

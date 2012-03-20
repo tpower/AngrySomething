@@ -37,7 +37,7 @@ class View : public Base
         View operator=(const View& other);
     
         void update();
-        void draw(Object& obj);
+        void draw(Object* obj);
 };
 
 #endif

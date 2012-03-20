@@ -123,13 +123,23 @@ void Object::removeCompAt(int index)
 bool Object::load(fstream& file)
 {
     if(!file) return false;
-
+    
+    //delete comp array
+    for(int i = 0; i < numComps; i++)
+    {
+        delete comp[i];
+    }
+    delete [] comp;
+    
     //read number of components in object
     file.read(reinterpret_cast<char*>(&numComps), sizeof(numComps));
 
     //read component types
     int compTypes[numComps];
     file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes));
+    
+    //alloc new comp array
+    comp = new Component*[numComps];
     
     //create and load components
     for(int i = 0; i < numComps; i++)
@@ -159,6 +169,8 @@ bool Object::load(fstream& file)
             default:
                 break;
         }
+        
+        comp[i]->setOwner(this);
     }
 
     return true;

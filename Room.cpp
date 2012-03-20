@@ -141,6 +141,7 @@ bool Room::load(fstream& file)
     for(int i = 0; i < numObjects; i++)
     {
         if(!object[i].load(file)) return false;
+        object[i].setOwner(this);
     }
 
     return true;

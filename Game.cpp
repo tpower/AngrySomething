@@ -124,6 +124,7 @@ void Game::init(int roomNum)
 
     //load room
     running = room->load(file);
+    room->setOwner(this);
 }
 
 /*******************************************************************************
