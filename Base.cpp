@@ -25,6 +25,7 @@ Base::Base()
     type = BASE;
     state.roomNum = 0;
     state.eleState = 0;
+    owner = NULL;
 }
 
 /*******************************************************************************
@@ -40,6 +41,7 @@ Base::Base(int t)
     type = t;
     state.roomNum = 0;
     state.eleState = 0;
+    owner = NULL;
 }
 
 /*******************************************************************************
@@ -50,6 +52,8 @@ Base::Base(const Base& other)
 {
     type = other.type;
     id = idGen++;
+    state = other.state;
+    owner = NULL;
 }
 
 /*******************************************************************************
@@ -58,7 +62,7 @@ Base::Base(const Base& other)
  ******************************************************************************/
 Base::~Base()
 {
-    //No implementation necessary
+    
 }
 
 /*******************************************************************************
@@ -73,6 +77,8 @@ Base Base::operator=(const Base& other)
     if(&other != this)
     {
         type = other.type;
+        id = idGen++;
+        state = other.state;
     }
 
     return *this;

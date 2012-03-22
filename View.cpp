@@ -24,13 +24,13 @@
  ******************************************************************************/
 View::View() : Base(VIEW)
 {
-    if(SDL_Init(SDL_INIT_VIDEO) == -1)
+    if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
     {
         cout << "ERROR: View:View:SDL_Init" << endl;
         exit(-1);
     }
     
-    screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+    screen = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
     
     if(!screen)
     {
@@ -87,12 +87,9 @@ View View::operator=(const View& other)
  ******************************************************************************/
 void View::update()
 {
-    if (needsUpdate)
+    if(needsUpdate)
     {
-        SDL_Flip(screen); //Render screen
-        
-        //Create new pallete
-        
+        SDL_Flip(screen);
         needsUpdate = false;
     }
 }
@@ -111,7 +108,7 @@ void View::draw(Object* obj)
     
     SDL_Rect f      = grph->getFrame();
     SDL_Rect l      = tran->getPos();
-    SDL_Surface *i  = grph->getImage();
+    SDL_Surface *i  = SDL_DisplayFormat(grph->getImage());
     
     SDL_BlitSurface(i, &f, screen, &l);
     

@@ -35,6 +35,9 @@ class PhysComp : public Component
         ~PhysComp();
         
         PhysComp            operator=(const PhysComp& other);
+    
+        vect                getVel();
+        vect                getAcc();
         
         virtual bool        load(fstream& file);
         virtual bool        save(fstream& file);

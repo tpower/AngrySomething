@@ -27,8 +27,13 @@ using namespace std;
  ******************************************************************************/
 Object::Object() : Base(OBJECT)
 {
+    comp = NULL;
     numComps = 0;
-    comp = new Component*[numComps];
+//    numComps = 3;
+//    comp = new Component*[numComps];
+//    comp[0] = new TranComp;
+//    comp[1] = new PhysComp;
+//    comp[2] = new GrphComp;
 }
 
 /*******************************************************************************
@@ -37,7 +42,39 @@ Object::Object() : Base(OBJECT)
  ******************************************************************************/
 Object::Object(const Object& other) : Base(OBJECT)
 {
-
+    numComps = other.numComps;
+    
+    comp = new Component*[numComps];
+    for(int i = 0; i < numComps; i++)
+    {
+        switch(other.comp[i]->getType())
+        {
+            case MECHCOMP:
+                comp[i] = new MechComp();
+                break;
+                
+            case TRANCOMP:
+                comp[i] = new TranComp();
+                break;
+                
+            case PHYSCOMP:
+                comp[i] = new PhysComp();
+                break;
+                
+            case GRPHCOMP:
+                comp[i] = new GrphComp();
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    for(int i = 0; i < numComps; i++)
+    {
+        *comp[i] = *(other.comp[i]);
+        comp[i]->setOwner(this);
+    }
 }
 
 /*******************************************************************************
@@ -46,7 +83,14 @@ Object::Object(const Object& other) : Base(OBJECT)
  ******************************************************************************/
 Object::~Object()
 {
-    delete [] comp;
+    if(comp)
+    {
+        for(int i = 0; i < numComps; i++)
+        {
+            if(comp[i]) delete comp[i];
+        }
+        delete [] comp;
+    }
 }
 
 /*******************************************************************************
@@ -60,7 +104,48 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-
+        if(comp)
+        {
+            for(int i = 0; i < numComps; i++)
+            {
+                if(comp[i]) delete comp[i];
+            }
+            delete [] comp;
+        }
+        
+        numComps = other.numComps;
+        
+        comp = new Component*[numComps];
+        for(int i = 0; i < numComps; i++)
+        {
+            switch(other.comp[i]->getType())
+            {
+                case MECHCOMP:
+                    comp[i] = new MechComp();
+                    break;
+                    
+                case TRANCOMP:
+                    comp[i] = new TranComp();
+                    break;
+                    
+                case PHYSCOMP:
+                    comp[i] = new PhysComp();
+                    break;
+                    
+                case GRPHCOMP:
+                    comp[i] = new GrphComp();
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+        
+        for(int i = 0; i < numComps; i++)
+        {
+            *comp[i] = *(other.comp[i]);
+            comp[i]->setOwner(this);
+        }
     }
 
     return *this;
@@ -95,19 +180,27 @@ int Object::getNumComps()
 void Object::removeCompAt(int index)
 {
     Component **temp = new Component*[numComps - 1];
+    for(int i = 0; i < index; i++)
+    {
+        temp[i] = comp[i];
+    }
 
-     for(int i = 0; i < index; i++)
-     {
-         temp[i] = comp[i];
-     }
-
-     for(int i = index; i < numComps - 1; i++)
-     {
+    for(int i = index; i < numComps - 1; i++)
+    {
          temp[i] = comp[i+1];
-     }
+    }
 
-     numComps = numComps - 1;
-     comp = temp;
+    if(comp)
+    {
+        for(int i = 0; i < numComps; i++)
+        {
+            if(comp[i]) delete comp[i];
+        }
+        delete [] comp;
+    }
+    
+    numComps = numComps - 1;
+    comp = temp;
 }
 /*******************************************************************************
  Name:              load
@@ -124,12 +217,15 @@ bool Object::load(fstream& file)
 {
     if(!file) return false;
     
-    //delete comp array
-    for(int i = 0; i < numComps; i++)
+    //dealloc comp array
+    if(comp)
     {
-        delete comp[i];
+        for(int i = 0; i < numComps; i++)
+        {
+            if(comp[i]) delete comp[i];
+        }
+        delete [] comp;
     }
-    delete [] comp;
     
     //read number of components in object
     file.read(reinterpret_cast<char*>(&numComps), sizeof(numComps));
@@ -216,7 +312,7 @@ GameState Object::update()
 
     for(int i = 0; i < numComps && compState.roomNum == state.roomNum; i++)
     {
-        GameState compState = comp[i]->update();
+        compState = comp[i]->update();
 
         if(compState.eleState == -1)
         {

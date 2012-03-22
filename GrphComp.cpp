@@ -24,11 +24,70 @@ using namespace std;
  ******************************************************************************/
 GrphComp::GrphComp() : Component(GRPHCOMP)
 {
-    image   = new SDL_Surface;
+    image   = NULL;
     frame.x = 0;
     frame.y = 0;
     frame.w = 0;
     frame.h = 0;
+    filePath = new char[10];
+    
+//    static int count = 0;
+//    
+//    switch (count)
+//    {
+//        case 0:
+//            frame.x = 100;
+//            frame.y = 100;
+//            frame.w = 80;
+//            frame.h = 80;
+//            filePath = "Object.bmp";
+//            break;
+//            
+//        case 1:
+//            frame.x = 300;
+//            frame.y = 300;
+//            frame.w = 60;
+//            frame.h = 60;
+//            filePath = "Object2.bmp";
+//            break;
+//            
+//        case 2:
+//            frame.x = 0;
+//            frame.y = 0;
+//            frame.w = 640;
+//            frame.h = 50;
+//            filePath = "Object3.bmp";
+//            break;
+//            
+//        case 3:
+//            frame.x = 0;
+//            frame.y = 50;
+//            frame.w = 50;
+//            frame.h = 380;
+//            filePath = "Object3.bmp";
+//            break;
+//            
+//        case 4:
+//            frame.x = 0;
+//            frame.y = 430;
+//            frame.w = 640;
+//            frame.h = 50;
+//            filePath = "Object3.bmp";
+//            break;
+//            
+//        case 5:
+//            frame.x = 590;
+//            frame.y = 50;
+//            frame.w = 50;
+//            frame.h = 380;
+//            filePath = "Object3.bmp";
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    
+//    count++;
 }
 
 /*******************************************************************************
@@ -37,7 +96,7 @@ GrphComp::GrphComp() : Component(GRPHCOMP)
  ******************************************************************************/
 GrphComp::GrphComp(const GrphComp& other) : Component(GRPHCOMP)
 {
-    *image      = *(other.image);   //may not have proper assignment capabilities?
+    *image      = *(other.image);
     frame       = other.frame;
     *filePath   = *(other.filePath);
 }
@@ -63,7 +122,7 @@ GrphComp GrphComp::operator=(const GrphComp& other)
 {
     if(&other != this)
     {
-        *image      = *(other.image);   //may not have proper assignment capabilities?
+        *image      = *(other.image);
         frame       = other.frame;
         *filePath   = *(other.filePath);
     }
@@ -102,10 +161,12 @@ bool GrphComp::load(fstream& file)
     int pathLen;
     file.read(reinterpret_cast<char*>(&pathLen), sizeof(pathLen));
 
+    delete [] filePath;
     filePath = new char[pathLen];
     file.read(reinterpret_cast<char*>(filePath), sizeof(filePath) * pathLen);
 
     //load image
+    SDL_FreeSurface(image);
     image = SDL_LoadBMP(filePath);
     if(!image)
     {
@@ -154,10 +215,11 @@ bool GrphComp::save(fstream& file)
 GameState GrphComp::update()
 {
     View* v = (((Game*)(getOwner()->getOwner()->getOwner()))->getView());
+    
     v->draw((Object*)getOwner());
     
-    frame.x++;
-    frame.y++;
+//    frame.x++;
+//    frame.y++;
     
     return getState();
 }
