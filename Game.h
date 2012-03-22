@@ -15,11 +15,14 @@
 #ifndef AngrySomething_Game_h
 #define AngrySomething_Game_h
 
-#include "Base.h"
-#include "Room.h"
-#include "View.h"
-#include <SDL/SDL.h> 
+#include <fstream>
+#include <SDL/SDL.h>
 #include <string>
+
+#include "Base.h"
+
+class Room;
+class View;
 
 using namespace std;
 

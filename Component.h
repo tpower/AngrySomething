@@ -16,9 +16,10 @@
 #ifndef AngrySomething_Component_h
 #define AngrySomething_Component_h
 
-#include "Base.h"
 #include <SDL/SDL.h>
 #include <fstream>
+
+#include "Base.h"
 
 class Component : public Base
 {

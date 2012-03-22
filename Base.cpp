@@ -22,6 +22,8 @@ Base::Base()
 {
     id = idGen++;
     type = BASE;
+    state.roomNum = 0;
+    state.eleState = 0;
 }
 
 /*******************************************************************************
@@ -35,6 +37,8 @@ Base::Base(int t)
 {
     id = idGen++;
     type = t;
+    state.roomNum = 0;
+    state.eleState = 0;
 }
 
 /*******************************************************************************
@@ -75,16 +79,21 @@ Base Base::operator=(const Base& other)
 
 /*******************************************************************************
  MODIFIERS
- Name:              setState
+ Name:              setState, setOwner
  ******************************************************************************/
 void Base::setState(GameState s)
 {
     state = s;
 }
 
+void Base::setOwner(Base *o)
+{
+    owner = o;
+}
+
 /*******************************************************************************
  ACCESSSORS
- Name:              getID, getType, getState
+ Name:              getID, getType, getState, getOwner
  ******************************************************************************/
 int Base::getID() const
 {
@@ -99,6 +108,11 @@ int Base::getType() const
 GameState Base::getState() const
 {
     return state;
+}
+
+Base* Base::getOwner()
+{
+    return owner;
 }
 
 

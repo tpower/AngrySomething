@@ -14,19 +14,12 @@
 #ifndef AngrySomething_Object_h
 #define AngrySomething_Object_h
 
-//Parent class
-#include "Base.h"
-
-//Components
-#include "Component.h"
-#include "MechComp.h"
-#include "TranComp.h"
-#include "PhysComp.h"
-#include "GrphComp.h"
-
-//Other libraries
 #include <SDL/SDL.h>
 #include <fstream>
+
+#include "Base.h"
+
+class Component;
 
 using namespace std;
 

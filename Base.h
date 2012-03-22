@@ -42,6 +42,7 @@ class Base
         static int  idGen;
         int         id;
         int         type;
+        Base        *owner;
 
     protected:
         GameState   state;
@@ -55,10 +56,12 @@ class Base
         Base        operator=(const Base& other);
 
         void        setState(GameState s);
+        void        setOwner(Base* o);
 
         int         getID() const;
         int         getType() const;
         GameState   getState() const;
+        Base*       getOwner();
 };
 
 #endif

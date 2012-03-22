@@ -9,8 +9,13 @@
  - File created
  ******************************************************************************/
 
-#include "GrphComp.h"
 #include <iostream>
+
+#include "GrphComp.h"
+#include "Game.h"
+#include "View.h"
+#include "Object.h"
+
 using namespace std;
 
 /*******************************************************************************
@@ -148,10 +153,13 @@ bool GrphComp::save(fstream& file)
  ******************************************************************************/
 GameState GrphComp::update()
 {
-    GameState temp;
-    temp.eleState = 0;
-    temp.roomNum = -1;
-    return temp;
+    View* v = (((Game*)(getOwner()->getOwner()->getOwner()))->getView());
+    v->draw((Object*)getOwner());
+    
+    frame.x++;
+    frame.y++;
+    
+    return getState();
 }
 
 

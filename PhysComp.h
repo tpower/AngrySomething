@@ -12,9 +12,10 @@
 #ifndef AngrySomething_PhysComp_h
 #define AngrySomething_PhysComp_h
 
-#include "Component.h"
 #include <SDL/SDL.h>
 #include <fstream>
+
+#include "Component.h"
 
 struct vect
 {
