@@ -21,8 +21,10 @@
  ******************************************************************************/
 Room::Room() : Base(ROOM)
 {
-    object = new Object[1];
-    numObjects = 1;
+    object = NULL;
+    numObjects = 0;
+//    object = new Object[6];
+//    numObjects = 6;
 }
 
 /*******************************************************************************
@@ -67,8 +69,8 @@ Room Room::operator=(const Room& other)
         numObjects = other.numObjects;
 
         if(object) delete [] object;
+        
         object = new Object[numObjects];
-
         for(int i = 0; i < numObjects; i++)
         {
             object[i] = other.object[i];
@@ -96,7 +98,6 @@ int Room::getNumObjects()
  MUTATORS
  Name:              removeObjectAt
  ******************************************************************************/
-
  void Room::removeObjectAt(int index)
  {
      Object *temp = new Object[numObjects - 1];
@@ -112,6 +113,7 @@ int Room::getNumObjects()
      }
 
      numObjects = numObjects - 1;
+     delete [] object;
      object = temp;
  }
 
@@ -133,8 +135,10 @@ bool Room::load(fstream& file)
     //read number of objects in room
     file.read(reinterpret_cast<char*>(&numObjects), sizeof(numObjects));
 
+    //dealloc object
+    if(object) delete [] object;
+    
     //create objects
-    delete [] object;
     object = new Object[numObjects];
 
     //load objects
@@ -181,7 +185,7 @@ GameState Room::update()
 
     for(int i = 0; i < numObjects && objState.roomNum == state.roomNum; i++)
     {
-       GameState objState = object[i].update();
+       objState = object[i].update();
 
         if(objState.eleState == -1)
         {

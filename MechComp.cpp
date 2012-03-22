@@ -92,10 +92,7 @@ bool MechComp::save(fstream& file)
  ******************************************************************************/
 GameState MechComp::update()
 {
-    GameState temp;
-    temp.eleState = 0;
-    temp.roomNum = -1;
-    return temp;
+    return getState();
 }
 
 

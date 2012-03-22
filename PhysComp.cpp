@@ -21,6 +21,58 @@ PhysComp::PhysComp() : Component(PHYSCOMP)
     vel.y = 0;
     acc.x = 0;
     acc.y = 0;
+    
+//    static int count = 0;
+//    
+//    switch (count)
+//    {
+//        case 0:
+//            vel.x = 1;
+//            vel.y = 1;
+//            acc.x = 0;
+//            acc.y = 0;
+//            break;
+//            
+//        case 1:
+//            vel.x = 1;
+//            vel.y = -1;
+//            acc.x = 0;
+//            acc.y = 0;
+//            break;
+//            
+//        case 2:
+//            vel.x = 0;
+//            vel.y = 0;
+//            acc.x = 0;
+//            acc.y = 0;
+//            break;
+//            
+//        case 3:
+//            vel.x = 0;
+//            vel.y = 0;
+//            acc.x = 0;
+//            acc.y = 0;
+//            break;
+//            
+//        case 4:
+//            vel.x = 0;
+//            vel.y = 0;
+//            acc.x = 0;
+//            acc.y = 0;
+//            break;
+//            
+//        case 5:
+//            vel.x = 0;
+//            vel.y = 0;
+//            acc.x = 0;
+//            acc.y = 0;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    
+//    count++;
 }
 
 /*******************************************************************************
@@ -58,6 +110,20 @@ PhysComp PhysComp::operator=(const PhysComp& other)
     }
 
     return *this;
+}
+
+/*******************************************************************************
+ ACCESSORS
+ Name:              getVel, getAcc
+ ******************************************************************************/
+vect PhysComp::getVel()
+{
+    return vel;
+}
+
+vect PhysComp::getAcc()
+{
+    return acc;
 }
 
 /*******************************************************************************
@@ -112,11 +178,8 @@ bool PhysComp::save(fstream& file)
  Description:       This method updates the PhysComp
  ******************************************************************************/
 GameState PhysComp::update()
-{
-    GameState temp;
-    temp.eleState = 0;
-    temp.roomNum = -1;
-    return temp;
+{    
+    return getState();
 }
 
 

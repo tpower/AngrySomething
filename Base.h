@@ -42,7 +42,7 @@ class Base
         static int  idGen;
         int         id;
         int         type;
-        Base        *owner;
+        Base        *owner;     //soft reference - should not delete
 
     protected:
         GameState   state;
