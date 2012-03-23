@@ -21,8 +21,8 @@
  ******************************************************************************/
 Room::Room() : Base(ROOM)
 {
-    object = NULL;
-    numObjects = 0;
+    numObjects = 1;
+    object = new Object[numObjects];
 //    object = new Object[6];
 //    numObjects = 6;
 }

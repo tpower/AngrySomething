@@ -27,8 +27,8 @@ using namespace std;
  ******************************************************************************/
 Object::Object() : Base(OBJECT)
 {
-    comp = NULL;
     numComps = 0;
+    comp = NULL;
 //    numComps = 3;
 //    comp = new Component*[numComps];
 //    comp[0] = new TranComp;
@@ -234,7 +234,7 @@ bool Object::load(fstream& file)
     int compTypes[numComps];
     file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes));
     
-    //alloc new comp array
+    //alloc comp
     comp = new Component*[numComps];
     
     //create and load components
