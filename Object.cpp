@@ -15,25 +15,35 @@
  ******************************************************************************/
 Object::Object() : Base(OBJECT)
 {
+    //init pos
     pos.x = 0;
     pos.y = 0;
     pos.w = 0;
     pos.h = 0;
     
+    //init vel
     vel.x = 0;
     vel.y = 0;
     
+    //init acc
     acc.x = 0;
     acc.y = 0;
     
+    //init frame
     frame.x = 0;
     frame.y = 0;
-    frame.w = 0;
-    frame.h = 0;
+    frame.w = 320;
+    frame.h = 240;
     
-    filePath = "";
+    //init filePath
+    filePath = "object.bmp";
     
-    image = NULL;
+    //load image from file
+    image = SDL_LoadBMP(filePath.c_str());
+    if(!image)
+    {
+        exit(-1);
+    }
 }
 
 /*******************************************************************************
@@ -112,7 +122,7 @@ void Object::setFilePath(string p)
 
 /*******************************************************************************
  ACCESSORS
- Name:              getPos, getVel, getAcc, getFrame, getFilePath
+ Name:              getPos, getVel, getAcc, getFrame, getFilePath, getImage
  ******************************************************************************/
 SDL_Rect Object::getPos()
 {
@@ -137,6 +147,11 @@ SDL_Rect Object::getFrame()
 string Object::getFilePath()
 {
     return filePath;
+}
+
+SDL_Surface* Object::getImage()
+{
+    return image;
 }
 
 /*******************************************************************************

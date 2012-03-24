@@ -32,7 +32,11 @@ View::View() : Base(VIEW)
     }
     
     //load background image
-    background = SDL_LoadBMP("object.bmp");
+    background = SDL_LoadBMP("background.bmp");
+    if(!background)
+    {
+        exit(-1);
+    }
     
     //apply image to screen
     SDL_BlitSurface(background, NULL, screen, NULL);
@@ -108,9 +112,11 @@ void View::update()
  ******************************************************************************/
 void View::draw(Object* obj)
 {
-    SDL_Surface *i  = NULL;
+    SDL_Surface *i  = obj->getImage();
+    SDL_Rect loc    = obj->getPos();
+    SDL_Rect frame  = obj->getFrame();
     
-    SDL_BlitSurface(i, NULL, screen, NULL);
+    SDL_BlitSurface(i, &frame, screen, &loc);
     
     needsUpdate = true;
 }

@@ -47,11 +47,12 @@ class Object : public Base
         void        setFrame(SDL_Rect f);
         void        setFilePath(string p);
     
-        SDL_Rect    getPos();
-        vect        getVel();
-        vect        getAcc();
-        SDL_Rect    getFrame();
-        string      getFilePath();
+        SDL_Rect        getPos();
+        vect            getVel();
+        vect            getAcc();
+        SDL_Rect        getFrame();
+        string          getFilePath();
+        SDL_Surface*    getImage();
 
         bool        load(fstream& file);
         bool        save(fstream& file);

@@ -167,6 +167,11 @@ int Game::run()
         }
         else
         {
+            for(int i = 0; i < room->getNumObjects(); i++)
+            {
+                view->draw(&(room->getObjectAt(i)));
+            }
+            
             view->update();
         }
     }
