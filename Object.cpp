@@ -18,12 +18,12 @@ Object::Object() : Base(OBJECT)
     //init pos
     pos.x = 0;
     pos.y = 0;
-    pos.w = 0;
-    pos.h = 0;
+    pos.w = 60;
+    pos.h = 60;
     
     //init vel
-    vel.x = 0;
-    vel.y = 0;
+    vel.x = 1;
+    vel.y = 1;
     
     //init acc
     acc.x = 0;
@@ -32,8 +32,8 @@ Object::Object() : Base(OBJECT)
     //init frame
     frame.x = 0;
     frame.y = 0;
-    frame.w = 320;
-    frame.h = 240;
+    frame.w = 60;
+    frame.h = 60;
     
     //init filePath
     filePath = "object.bmp";
@@ -240,6 +240,20 @@ bool Object::save(fstream& file)
  ******************************************************************************/
 GameState Object::update()
 {
+    //temporary solution to bounce off walls of window
+    if(pos.x < 0 || pos.x + pos.w > 640)
+        vel.x *= -1;
+    if(pos.y < 0 || pos.y + pos.h > 480)
+        vel.y *= -1;
+    
+    //move with respect to velocity
+    pos.x += vel.x;
+    pos.y += vel.y;
+    
+    //adjust frame with respect to velocity
+    frame.x += vel.x;
+    frame.y += vel.y;
+    
     return state;
 }
 
