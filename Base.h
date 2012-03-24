@@ -4,18 +4,10 @@
 
  Description:               This file declares the Base class. The Base class
                             serves as the template for all classes.
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
 #ifndef AngrySomething_Base_h
 #define AngrySomething_Base_h
-
-#include <string>
-
-using namespace std;
 
 struct GameState
 {
@@ -29,11 +21,7 @@ enum type
     GAME        = 1,
     VIEW        = 2,
     ROOM        = 3,
-    OBJECT      = 4,
-    MECHCOMP    = 5,
-    GRPHCOMP    = 6,
-    TRANCOMP    = 7,
-    PHYSCOMP    = 8
+    OBJECT      = 4
 };
 
 class Base
@@ -42,7 +30,6 @@ class Base
         static int  idGen;
         int         id;
         int         type;
-        Base        *owner;     //soft reference - should not delete
 
     protected:
         GameState   state;
@@ -56,12 +43,10 @@ class Base
         Base        operator=(const Base& other);
 
         void        setState(GameState s);
-        void        setOwner(Base* o);
 
         int         getID() const;
         int         getType() const;
         GameState   getState() const;
-        Base*       getOwner();
 };
 
 #endif

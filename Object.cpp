@@ -5,21 +5,9 @@
  Description:               This file defines the Object class. The Object
                             class holds the components that define the objects
                             in the game.
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
-#include <iostream>
-
 #include "Object.h"
-#include "MechComp.h"
-#include "TranComp.h"
-#include "PhysComp.h"
-#include "GrphComp.h"
-
-using namespace std;
 
 /*******************************************************************************
  Name:              Object
@@ -27,13 +15,25 @@ using namespace std;
  ******************************************************************************/
 Object::Object() : Base(OBJECT)
 {
-    numComps = 0;
-    comp = NULL;
-//    numComps = 3;
-//    comp = new Component*[numComps];
-//    comp[0] = new TranComp;
-//    comp[1] = new PhysComp;
-//    comp[2] = new GrphComp;
+    pos.x = 0;
+    pos.y = 0;
+    pos.w = 0;
+    pos.h = 0;
+    
+    vel.x = 0;
+    vel.y = 0;
+    
+    acc.x = 0;
+    acc.y = 0;
+    
+    frame.x = 0;
+    frame.y = 0;
+    frame.w = 0;
+    frame.h = 0;
+    
+    filePath = "";
+    
+    image = NULL;
 }
 
 /*******************************************************************************
@@ -42,39 +42,12 @@ Object::Object() : Base(OBJECT)
  ******************************************************************************/
 Object::Object(const Object& other) : Base(OBJECT)
 {
-    numComps = other.numComps;
-    
-    comp = new Component*[numComps];
-    for(int i = 0; i < numComps; i++)
-    {
-        switch(other.comp[i]->getType())
-        {
-            case MECHCOMP:
-                comp[i] = new MechComp();
-                break;
-                
-            case TRANCOMP:
-                comp[i] = new TranComp();
-                break;
-                
-            case PHYSCOMP:
-                comp[i] = new PhysComp();
-                break;
-                
-            case GRPHCOMP:
-                comp[i] = new GrphComp();
-                break;
-                
-            default:
-                break;
-        }
-    }
-    
-    for(int i = 0; i < numComps; i++)
-    {
-        *comp[i] = *(other.comp[i]);
-        comp[i]->setOwner(this);
-    }
+    pos         = other.pos;
+    vel         = other.vel;
+    acc         = other.acc;
+    frame       = other.frame;
+    filePath    = other.filePath;
+    *image      = *(other.image);
 }
 
 /*******************************************************************************
@@ -83,14 +56,7 @@ Object::Object(const Object& other) : Base(OBJECT)
  ******************************************************************************/
 Object::~Object()
 {
-    if(comp)
-    {
-        for(int i = 0; i < numComps; i++)
-        {
-            if(comp[i]) delete comp[i];
-        }
-        delete [] comp;
-    }
+    SDL_FreeSurface(image);
 }
 
 /*******************************************************************************
@@ -104,104 +70,27 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        if(comp)
-        {
-            for(int i = 0; i < numComps; i++)
-            {
-                if(comp[i]) delete comp[i];
-            }
-            delete [] comp;
-        }
-        
-        numComps = other.numComps;
-        
-        comp = new Component*[numComps];
-        for(int i = 0; i < numComps; i++)
-        {
-            switch(other.comp[i]->getType())
-            {
-                case MECHCOMP:
-                    comp[i] = new MechComp();
-                    break;
-                    
-                case TRANCOMP:
-                    comp[i] = new TranComp();
-                    break;
-                    
-                case PHYSCOMP:
-                    comp[i] = new PhysComp();
-                    break;
-                    
-                case GRPHCOMP:
-                    comp[i] = new GrphComp();
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
-        
-        for(int i = 0; i < numComps; i++)
-        {
-            *comp[i] = *(other.comp[i]);
-            comp[i]->setOwner(this);
-        }
+        pos         = other.pos;
+        vel         = other.vel;
+        acc         = other.acc;
+        frame       = other.frame;
+        filePath    = other.filePath;
+        *image      = *(other.image);
     }
-
+    
     return *this;
 }
 
 /*******************************************************************************
  ACCESSORS
- Name:              getComp, getNumObjects
+ Name:              N/A
  ******************************************************************************/
-Component* Object::getComp(int type)
-{
-    for(int i = 0; i < numComps; i++)
-    {
-        if(comp[i]->getType() == type)
-        {
-            return comp[i];
-        }
-    }
-
-    return NULL;
-}
-
-int Object::getNumComps()
-{
-    return numComps;
-}
 
 /*******************************************************************************
  MUTATORS
- Name:              removeObjectAt
+ Name:              N/A
  ******************************************************************************/
-void Object::removeCompAt(int index)
-{
-    Component **temp = new Component*[numComps - 1];
-    for(int i = 0; i < index; i++)
-    {
-        temp[i] = comp[i];
-    }
 
-    for(int i = index; i < numComps - 1; i++)
-    {
-         temp[i] = comp[i+1];
-    }
-
-    if(comp)
-    {
-        for(int i = 0; i < numComps; i++)
-        {
-            if(comp[i]) delete comp[i];
-        }
-        delete [] comp;
-    }
-    
-    numComps = numComps - 1;
-    comp = temp;
-}
 /*******************************************************************************
  Name:              load
  Description:       This method dynamically allocates and loads components in
@@ -217,58 +106,30 @@ bool Object::load(fstream& file)
 {
     if(!file) return false;
     
-    //dealloc comp array
-    if(comp)
-    {
-        for(int i = 0; i < numComps; i++)
-        {
-            if(comp[i]) delete comp[i];
-        }
-        delete [] comp;
-    }
+    //load pos
+    file.read(reinterpret_cast<char*>(&pos.x), sizeof(pos.x));
+    file.read(reinterpret_cast<char*>(&pos.y), sizeof(pos.y));
+    file.read(reinterpret_cast<char*>(&pos.w), sizeof(pos.w));
+    file.read(reinterpret_cast<char*>(&pos.h), sizeof(pos.h));
     
-    //read number of components in object
-    file.read(reinterpret_cast<char*>(&numComps), sizeof(numComps));
-
-    //read component types
-    int compTypes[numComps];
-    file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes));
+    //load vel
+    file.read(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
+    file.read(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
     
-    //alloc comp
-    comp = new Component*[numComps];
+    //load acc
+    file.read(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
+    file.read(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
     
-    //create and load components
-    for(int i = 0; i < numComps; i++)
-    {
-        switch(compTypes[i])
-        {
-            case MECHCOMP:
-                comp[i] = new MechComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            case TRANCOMP:
-                comp[i] = new TranComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            case PHYSCOMP:
-                comp[i] = new PhysComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            case GRPHCOMP:
-                comp[i] = new GrphComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            default:
-                break;
-        }
-        
-        comp[i]->setOwner(this);
-    }
-
+    //load frame
+    file.read(reinterpret_cast<char*>(&frame.x), sizeof(frame.x));
+    file.read(reinterpret_cast<char*>(&frame.y), sizeof(frame.y));
+    file.read(reinterpret_cast<char*>(&frame.w), sizeof(frame.w));
+    file.read(reinterpret_cast<char*>(&frame.h), sizeof(frame.h));
+    
+    //load filePath * NOT IMPLEMENTED
+    
+    //load image * NOT IMPLEMENTED
+    
     return true;
 }
 
@@ -282,23 +143,31 @@ bool Object::load(fstream& file)
 bool Object::save(fstream& file)
 {
     if(!file) return false;
-
-    //write number of components in object
-    file.write(reinterpret_cast<char*>(&numComps), sizeof(numComps));
-
-    //write component types
-    for(int i = 0; i < numComps; i++)
-    {
-        int tempType = comp[i]->getType();
-        file.write(reinterpret_cast<char*>(&tempType), sizeof(tempType));
-    }
-
-    //save components
-    for(int i = 0; i < numComps; i++)
-    {
-        if(!(comp[i])->save(file)) return false;
-    }
-
+    
+    //load pos
+    file.write(reinterpret_cast<char*>(&pos.x), sizeof(pos.x));
+    file.write(reinterpret_cast<char*>(&pos.y), sizeof(pos.y));
+    file.write(reinterpret_cast<char*>(&pos.w), sizeof(pos.w));
+    file.write(reinterpret_cast<char*>(&pos.h), sizeof(pos.h));
+    
+    //load vel
+    file.write(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
+    file.write(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
+    
+    //load acc
+    file.write(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
+    file.write(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
+    
+    //load frame
+    file.write(reinterpret_cast<char*>(&frame.x), sizeof(frame.x));
+    file.write(reinterpret_cast<char*>(&frame.y), sizeof(frame.y));
+    file.write(reinterpret_cast<char*>(&frame.w), sizeof(frame.w));
+    file.write(reinterpret_cast<char*>(&frame.h), sizeof(frame.h));
+    
+    //load filePath * NEEDS IMPLEMENTATION
+    
+    //load image * NEEDS IMPLEMENTATION
+    
     return true;
 }
 
@@ -308,20 +177,6 @@ bool Object::save(fstream& file)
  ******************************************************************************/
 GameState Object::update()
 {
-    GameState compState = state;
-
-    for(int i = 0; i < numComps && compState.roomNum == state.roomNum; i++)
-    {
-        compState = comp[i]->update();
-
-        if(compState.eleState == -1)
-        {
-            removeCompAt(i);
-        }
-    }
-
-    state.roomNum = compState.roomNum;
-
     return state;
 }
 
