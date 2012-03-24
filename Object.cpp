@@ -82,14 +82,62 @@ Object Object::operator=(const Object& other)
 }
 
 /*******************************************************************************
- ACCESSORS
- Name:              N/A
+ MUTATORS
+ Name:              setPos, setVel, setAcc, setFrame, setFilePath
  ******************************************************************************/
+void Object::setPos(SDL_Rect p)
+{
+    pos = p;
+}
+
+void Object::setVel(vect v)
+{
+    vel = v;
+}
+
+void Object::setAcc(vect a)
+{
+    acc = a;
+}
+
+void Object::setFrame(SDL_Rect f)
+{
+    frame = f;
+}
+
+void Object::setFilePath(string p)
+{
+    filePath = p;
+}
 
 /*******************************************************************************
- MUTATORS
- Name:              N/A
+ ACCESSORS
+ Name:              getPos, getVel, getAcc, getFrame, getFilePath
  ******************************************************************************/
+SDL_Rect Object::getPos()
+{
+    return pos;
+}
+
+vect Object::getVel()
+{
+    return vel;
+}
+
+vect Object::getAcc()
+{
+    return acc;
+}
+
+SDL_Rect Object::getFrame()
+{
+    return frame;
+}
+
+string Object::getFilePath()
+{
+    return filePath;
+}
 
 /*******************************************************************************
  Name:              load

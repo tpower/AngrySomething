@@ -40,6 +40,18 @@ class Object : public Base
         ~Object();
 
         Object      operator=(const Object& other);
+    
+        void        setPos(SDL_Rect p);
+        void        setVel(vect v);
+        void        setAcc(vect a);
+        void        setFrame(SDL_Rect f);
+        void        setFilePath(string p);
+    
+        SDL_Rect    getPos();
+        vect        getVel();
+        vect        getAcc();
+        SDL_Rect    getFrame();
+        string      getFilePath();
 
         bool        load(fstream& file);
         bool        save(fstream& file);
