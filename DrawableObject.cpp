@@ -13,7 +13,7 @@ DrawableObject::DrawableObject(const char* file, int x, int y) : Object(x, y)
 
 void DrawableObject::draw(SDL_Surface* screen)
 {
-    SDL_BlitSurface(image, NULL, screen, &position);
+    SDL_BlitSurface(image, &position, screen, &position);
 
-    SDL_Delay(200);
+//    SDL_Delay(200);
 }

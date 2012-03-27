@@ -30,8 +30,8 @@ bool Room::load()
     numObjects = 3;
 
     object.push_back(new DrawableObject("TestA.bmp", 0, 0));
-    object.push_back(new DrawableObject("TestB.bmp", 100, 100));
-    object.push_back(new DrawableObject("TestC.bmp", 200, 200));
+    object.push_back(new DrawableObject("TestB.bmp", 80, 100));
+    object.push_back(new DrawableObject("TestC.bmp", 200, 150));
 
     return true;
 }

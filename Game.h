@@ -15,6 +15,7 @@
 #include "Base.h"
 #include "Room.h"
 #include "GraphicsEngine.h"
+#include "PhysicsEngine.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ class Game : public Base
     private:
         Room room;
         GraphicsEngine graphics;
+        PhysicsEngine physics;
         bool running;
 
     public:

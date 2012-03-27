@@ -17,12 +17,26 @@
 
 using namespace std;
 
+struct vect
+{
+    double x, y;
+};
+
 class Object : public Base
 {
     protected:
-        SDL_Rect position;
+        SDL_Rect    position;
+        vect        vel;
+        
     public:
         Object(int, int);
+    
+        SDL_Rect    getPosition();
+        vect        getVel();
+        void        setPosition(SDL_Rect p);
+        void        setVel(vect v);
+    
+        void run();
 };
 
 #endif

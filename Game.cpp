@@ -26,6 +26,7 @@ int Game::run()
 {
     while(running)
     {
+        physics.run(room);
         graphics.drawAll(room);
     }
 
