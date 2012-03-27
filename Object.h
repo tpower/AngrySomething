@@ -6,6 +6,7 @@
                             class holds the components that define the objects
                             in the game.
  ******************************************************************************/
+
 #ifndef AngrySomething_Object_h
 #define AngrySomething_Object_h
 
@@ -17,12 +18,45 @@
 
 using namespace std;
 
+struct vect
+{
+    int x, y;
+};
+
 class Object : public Base
 {
-    protected:
-        SDL_Rect position;
+    private:
+        SDL_Rect    pos;        //bounding box
+        vect        vel;        //velocity vector
+        vect        acc;        //acceleration vector
+        SDL_Rect    frame;      //current frame within sprite sheet
+        string      filePath;   //file for sprite sheet
+        SDL_Surface *image;     //sprite sheet
+        
+    
     public:
-        Object(int, int);
+        Object();
+        Object(const Object&);
+        ~Object();
+
+        Object      operator=(const Object& other);
+    
+        void        setPos(SDL_Rect p);
+        void        setVel(vect v);
+        void        setAcc(vect a);
+        void        setFrame(SDL_Rect f);
+        void        setFilePath(string p);
+    
+        SDL_Rect        getPos();
+        vect            getVel();
+        vect            getAcc();
+        SDL_Rect        getFrame();
+        string          getFilePath();
+        SDL_Surface*    getImage();
+
+        bool        load(fstream& file);
+        bool        save(fstream& file);
+        GameState   update();
 };
 
 #endif
