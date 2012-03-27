@@ -13,8 +13,9 @@
 
 #include <string>
 #include <fstream>
-
+#include <vector>
 #include "Base.h"
+#include "DrawableObject.h"
 
 class Object;
 
@@ -23,24 +24,16 @@ using namespace std;
 class Room : public Base
 {
     private:
-        Object      *object;
-        int         numObjects;
+        vector<DrawableObject*>      object;
+        int                         numObjects;
 
     public:
         Room();
-        Room(const Room&);
-        ~Room();
 
-        Room        operator=(const Room& other);
-
-        Object&     getObjectAt(int);
+        DrawableObject*     getObjectAt(int);
         int         getNumObjects();
 
-        void        removeObjectAt(int);
-
-        bool        load(fstream& file);
-        bool        save(fstream& file);
-        GameState   update();
+        bool        load();
 };
 
 #endif
