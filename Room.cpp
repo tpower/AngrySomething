@@ -16,16 +16,21 @@ Room::Room()
     
 }
 
-DrawableObject* Room::getObjectAt(int i)
+Object* Room::getObjectAt(int i)
 {
     return object[i];
 }
 
+int Room::getNumObjects()
+{
+    return (int)object.size();
+}
+
 bool Room::load()
 {
-    object.push_back(new DrawableObject("TestA.bmp", 0, 0));
-    object.push_back(new DrawableObject("TestB.bmp", 80, 100));
-    object.push_back(new DrawableObject("TestC.bmp", 200, 150));
+    object.push_back(new Object(0, 0));
+    object.push_back(new Object(80, 100));
+    object.push_back(new Object(200, 150));
 
     return true;
 }

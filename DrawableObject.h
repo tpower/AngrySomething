@@ -2,8 +2,9 @@
 #ifndef DrawableObject_H
 #define DrawableObject_H
 
-#include "Object.h"
 #include <SDL/SDL.h>
+
+#include "Object.h"
 
 class DrawableObject : public Object
 {

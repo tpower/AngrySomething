@@ -1,9 +1,9 @@
 #ifndef GRAPHICSENGINE_H
 #define GRAPHICSENGINE_H
-#include "DrawableObject.h"
-#include <vector>
-#include "Room.h"
+
 #include <SDL/SDL.h>
+
+#include "Room.h"
 
 class GraphicsEngine
 {

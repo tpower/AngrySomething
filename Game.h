@@ -11,13 +11,11 @@
 #ifndef AngrySomething_Game_h
 #define AngrySomething_Game_h
 
-#include <fstream>
 #include <SDL/SDL.h>
+
 #include "Room.h"
 #include "GraphicsEngine.h"
 #include "PhysicsEngine.h"
-
-using namespace std;
 
 class Game
 {

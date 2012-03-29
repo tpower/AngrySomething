@@ -11,20 +11,20 @@
 
 Object::Object(int x, int y)
 {
-    position.x = x;
-    position.y = y;
-    position.w = 60;
-    position.h = 60;
+    pos.x = x;
+    pos.y = y;
+    pos.w = 60;
+    pos.h = 60;
 }
 
-SDL_Rect Object::getPosition()
+SDL_Rect Object::getPos()
 {
-    return position;
+    return pos;
 }
 
-void Object::setPosition(SDL_Rect p)
+void Object::setPos(SDL_Rect p)
 {
-    position = p;
+    pos = p;
 }
 
 void Object::run()

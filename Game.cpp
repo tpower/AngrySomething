@@ -9,8 +9,6 @@
  ******************************************************************************/
 
 #include "Game.h"
-#include "Room.h"
-#include "GraphicsEngine.h"
 
 Game::Game()
 {

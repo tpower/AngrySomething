@@ -11,10 +11,6 @@
 #define AngrySomething_Object_h
 
 #include <SDL/SDL.h>
-#include <string>
-#include <fstream>
-
-using namespace std;
 
 struct vect
 {
@@ -24,13 +20,13 @@ struct vect
 class Object
 {
     protected:
-        SDL_Rect    position;
+        SDL_Rect    pos;
         
     public:
         Object(int, int);
     
-        SDL_Rect    getPosition();
-        void        setPosition(SDL_Rect p);
+        SDL_Rect    getPos();
+        void        setPos(SDL_Rect p);
     
         void        run();
 };

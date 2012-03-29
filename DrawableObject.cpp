@@ -1,6 +1,9 @@
 
-#include "DrawableObject.h"
 #include <iostream>
+
+#include "DrawableObject.h"
+
+using namespace std;
 
 DrawableObject::DrawableObject(const char* file, int x, int y) : Object(x, y)
 {
@@ -14,5 +17,5 @@ DrawableObject::DrawableObject(const char* file, int x, int y) : Object(x, y)
 
 void DrawableObject::draw(SDL_Surface* screen)
 {
-    SDL_BlitSurface(image, &position, screen, &position);
+    SDL_BlitSurface(image, &pos, screen, &pos);
 }

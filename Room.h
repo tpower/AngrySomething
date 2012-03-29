@@ -11,10 +11,7 @@
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
 
-#include <string>
-#include <fstream>
 #include <vector>
-#include "DrawableObject.h"
 
 class Object;
 
@@ -23,12 +20,13 @@ using namespace std;
 class Room
 {
     private:
-        vector<DrawableObject*>      object;
+        vector<Object*>      object;
 
     public:
         Room();
 
-        DrawableObject*     getObjectAt(int);
+        Object*             getObjectAt(int);
+        int                 getNumObjects();
         bool                load();
 };
 
