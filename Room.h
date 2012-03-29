@@ -11,20 +11,16 @@
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
 
-#include <string>
-#include <fstream>
-
-#include "Base.h"
+#include <vector>
 
 class Object;
 
 using namespace std;
 
-class Room : public Base
+class Room
 {
     private:
-        Object      *object;
-        int         numObjects;
+        vector<Object*>      object;
 
     public:
         Room();
@@ -33,14 +29,11 @@ class Room : public Base
 
         Room        operator=(const Room& other);
 
-        Object&     getObjectAt(int);
+        Object*     getObjectAt(int);
         int         getNumObjects();
 
-        void        removeObjectAt(int);
+        bool        load();
 
-        bool        load(fstream& file);
-        bool        save(fstream& file);
-        GameState   update();
 };
 
 #endif
