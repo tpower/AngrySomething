@@ -11,21 +11,16 @@
 #ifndef AngrySomething_Game_h
 #define AngrySomething_Game_h
 
-#include <fstream>
 #include <SDL/SDL.h>
 
-#include "Base.h"
+#include "Room.h"
+#include "GraphicsEngine.h"
 
-class Room;
-class View;
-
-using namespace std;
-
-class Game : public Base
+class Game
 {
     private:
-        Room *room;
-        View *view;
+        Room room;
+        GraphicsEngine grph;
         bool running;
     
     public:
@@ -35,12 +30,7 @@ class Game : public Base
     
         Game    operator=(const Game& other);
     
-        Room*   getRoom();
-        View*   getView();
-        bool    getRunning();
-    
-        void    init(int roomNum = 0);
-        bool    save();
+        void    init();
         int     run();
 };
 
