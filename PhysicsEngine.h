@@ -6,11 +6,12 @@
 
 class PhysicsEngine
 {
-private:
-public:
-    PhysicsEngine();
-    ~PhysicsEngine();
-    void run(Room& room);
+    private:
+    
+    public:
+        PhysicsEngine();
+        ~PhysicsEngine();
+        void run(Room& room);
 };
 
 #endif

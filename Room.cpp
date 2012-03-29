@@ -7,12 +7,13 @@
                             the game, holds the objects currently in the game,
                             and handles saving and loading the game.
  ******************************************************************************/
+
 #include "Room.h"
 #include "Object.h"
 
-Room::Room() : Base(ROOM)
+Room::Room()
 {
-    numObjects = 1;
+    
 }
 
 DrawableObject* Room::getObjectAt(int i)
@@ -20,15 +21,8 @@ DrawableObject* Room::getObjectAt(int i)
     return object[i];
 }
 
-int Room::getNumObjects()
-{
-    return numObjects;
-}
-
 bool Room::load()
 {
-    numObjects = 3;
-
     object.push_back(new DrawableObject("TestA.bmp", 0, 0));
     object.push_back(new DrawableObject("TestB.bmp", 80, 100));
     object.push_back(new DrawableObject("TestC.bmp", 200, 150));

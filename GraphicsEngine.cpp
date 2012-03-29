@@ -16,13 +16,12 @@ GraphicsEngine::~GraphicsEngine()
     SDL_FreeSurface(screen);
 }
 
-void GraphicsEngine::drawAll(Room& room)
+void GraphicsEngine::run(Room& room)
 {
-    for(int i = 0; i < room.getNumObjects(); i++)
+    for(int i = 0; i < ; i++)
     {
         room.getObjectAt(i)->draw(screen);
     }
 
-    // Flip the screen
     SDL_Flip(screen);
 }

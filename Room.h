@@ -14,26 +14,22 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "Base.h"
 #include "DrawableObject.h"
 
 class Object;
 
 using namespace std;
 
-class Room : public Base
+class Room
 {
     private:
         vector<DrawableObject*>      object;
-        int                         numObjects;
 
     public:
         Room();
 
         DrawableObject*     getObjectAt(int);
-        int         getNumObjects();
-
-        bool        load();
+        bool                load();
 };
 
 #endif

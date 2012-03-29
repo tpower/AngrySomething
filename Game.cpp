@@ -7,14 +7,14 @@
                             running the game loop and handling communication
                             between the Room and the View
  ******************************************************************************/
+
 #include "Game.h"
 #include "Room.h"
 #include "GraphicsEngine.h"
 
-Game::Game() : Base(GAME)
+Game::Game()
 {
-    // begin the run loop
-    running = true;
+    running = false;
 }
 
 void Game::init()
@@ -26,8 +26,8 @@ int Game::run()
 {
     while(running)
     {
-        physics.run(room);
-        graphics.drawAll(room);
+        phys.run(room);
+        grph.run(room);
     }
 
     return 0;

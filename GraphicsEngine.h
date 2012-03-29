@@ -9,11 +9,12 @@ class GraphicsEngine
 {
     private:
         SDL_Surface* screen;
+    
     public:
         GraphicsEngine();
         ~GraphicsEngine();
-        virtual void drawAll(Room&);
+        virtual void run(Room&);
 };
 
 
-#endif // GRAPHICSENGINE
+#endif

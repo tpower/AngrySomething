@@ -1,3 +1,4 @@
+
 #include "DrawableObject.h"
 #include <iostream>
 
@@ -14,6 +15,4 @@ DrawableObject::DrawableObject(const char* file, int x, int y) : Object(x, y)
 void DrawableObject::draw(SDL_Surface* screen)
 {
     SDL_BlitSurface(image, &position, screen, &position);
-
-//    SDL_Delay(200);
 }

@@ -10,21 +10,21 @@
 
 #ifndef AngrySomething_Game_h
 #define AngrySomething_Game_h
+
 #include <fstream>
 #include <SDL/SDL.h>
-#include "Base.h"
 #include "Room.h"
 #include "GraphicsEngine.h"
 #include "PhysicsEngine.h"
 
 using namespace std;
 
-class Game : public Base
+class Game
 {
     private:
         Room room;
-        GraphicsEngine graphics;
-        PhysicsEngine physics;
+        GraphicsEngine grph;
+        PhysicsEngine phys;
         bool running;
 
     public:
