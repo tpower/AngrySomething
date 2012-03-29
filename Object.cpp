@@ -5,21 +5,9 @@
  Description:               This file defines the Object class. The Object
                             class holds the components that define the objects
                             in the game.
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
-#include <iostream>
-
 #include "Object.h"
-#include "MechComp.h"
-#include "TranComp.h"
-#include "PhysComp.h"
-#include "GrphComp.h"
-
-using namespace std;
 
 /*******************************************************************************
  Name:              Object
@@ -27,8 +15,35 @@ using namespace std;
  ******************************************************************************/
 Object::Object() : Base(OBJECT)
 {
-    numComps = 0;
-    comp = new Component*[numComps];
+    //init pos
+    pos.x = 0;
+    pos.y = 0;
+    pos.w = 60;
+    pos.h = 60;
+    
+    //init vel
+    vel.x = 1;
+    vel.y = 1;
+    
+    //init acc
+    acc.x = 0;
+    acc.y = 0;
+    
+    //init frame
+    frame.x = 0;
+    frame.y = 0;
+    frame.w = 60;
+    frame.h = 60;
+    
+    //init filePath
+    filePath = "object.bmp";
+    
+    //load image from file
+    image = SDL_LoadBMP(filePath.c_str());
+    if(!image)
+    {
+        exit(-1);
+    }
 }
 
 /*******************************************************************************
@@ -37,7 +52,12 @@ Object::Object() : Base(OBJECT)
  ******************************************************************************/
 Object::Object(const Object& other) : Base(OBJECT)
 {
-
+    pos         = other.pos;
+    vel         = other.vel;
+    acc         = other.acc;
+    frame       = other.frame;
+    filePath    = other.filePath;
+    *image      = *(other.image);
 }
 
 /*******************************************************************************
@@ -46,7 +66,7 @@ Object::Object(const Object& other) : Base(OBJECT)
  ******************************************************************************/
 Object::~Object()
 {
-    delete [] comp;
+    SDL_FreeSurface(image);
 }
 
 /*******************************************************************************
@@ -60,55 +80,80 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-
+        pos         = other.pos;
+        vel         = other.vel;
+        acc         = other.acc;
+        frame       = other.frame;
+        filePath    = other.filePath;
+        *image      = *(other.image);
     }
-
+    
     return *this;
 }
 
 /*******************************************************************************
- ACCESSORS
- Name:              getComp, getNumObjects
+ MUTATORS
+ Name:              setPos, setVel, setAcc, setFrame, setFilePath
  ******************************************************************************/
-Component* Object::getComp(int type)
+void Object::setPos(SDL_Rect p)
 {
-    for(int i = 0; i < numComps; i++)
-    {
-        if(comp[i]->getType() == type)
-        {
-            return comp[i];
-        }
-    }
-
-    return NULL;
+    pos = p;
 }
 
-int Object::getNumComps()
+void Object::setVel(vect v)
 {
-    return numComps;
+    vel = v;
+}
+
+void Object::setAcc(vect a)
+{
+    acc = a;
+}
+
+void Object::setFrame(SDL_Rect f)
+{
+    frame = f;
+}
+
+void Object::setFilePath(string p)
+{
+    filePath = p;
 }
 
 /*******************************************************************************
- MUTATORS
- Name:              removeObjectAt
+ ACCESSORS
+ Name:              getPos, getVel, getAcc, getFrame, getFilePath, getImage
  ******************************************************************************/
-void Object::removeCompAt(int index)
+SDL_Rect Object::getPos()
 {
-    Component **temp = new Component*[numComps - 1];
-
-     for(int i = 0; i < index; i++)
-     {
-         temp[i] = comp[i];
-     }
-
-     for(int i = index; i < numComps - 1; i++)
-     {
-         temp[i] = comp[i+1];
-     }
-
-     numComps = numComps - 1;
-     comp = temp;
+    return pos;
 }
+
+vect Object::getVel()
+{
+    return vel;
+}
+
+vect Object::getAcc()
+{
+    return acc;
+}
+
+SDL_Rect Object::getFrame()
+{
+    return frame;
+}
+
+string Object::getFilePath()
+{
+    return filePath;
+}
+
+SDL_Surface* Object::getImage()
+{
+    return image;
+}
+
 /*******************************************************************************
  Name:              load
  Description:       This method dynamically allocates and loads components in
@@ -124,55 +169,30 @@ bool Object::load(fstream& file)
 {
     if(!file) return false;
     
-    //delete comp array
-    for(int i = 0; i < numComps; i++)
-    {
-        delete comp[i];
-    }
-    delete [] comp;
+    //load pos
+    file.read(reinterpret_cast<char*>(&pos.x), sizeof(pos.x));
+    file.read(reinterpret_cast<char*>(&pos.y), sizeof(pos.y));
+    file.read(reinterpret_cast<char*>(&pos.w), sizeof(pos.w));
+    file.read(reinterpret_cast<char*>(&pos.h), sizeof(pos.h));
     
-    //read number of components in object
-    file.read(reinterpret_cast<char*>(&numComps), sizeof(numComps));
-
-    //read component types
-    int compTypes[numComps];
-    file.read(reinterpret_cast<char*>(&compTypes), sizeof(compTypes));
+    //load vel
+    file.read(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
+    file.read(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
     
-    //alloc new comp array
-    comp = new Component*[numComps];
+    //load acc
+    file.read(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
+    file.read(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
     
-    //create and load components
-    for(int i = 0; i < numComps; i++)
-    {
-        switch(compTypes[i])
-        {
-            case MECHCOMP:
-                comp[i] = new MechComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            case TRANCOMP:
-                comp[i] = new TranComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            case PHYSCOMP:
-                comp[i] = new PhysComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            case GRPHCOMP:
-                comp[i] = new GrphComp();
-                if(!(comp[i])->load(file)) return false;
-                break;
-
-            default:
-                break;
-        }
-        
-        comp[i]->setOwner(this);
-    }
-
+    //load frame
+    file.read(reinterpret_cast<char*>(&frame.x), sizeof(frame.x));
+    file.read(reinterpret_cast<char*>(&frame.y), sizeof(frame.y));
+    file.read(reinterpret_cast<char*>(&frame.w), sizeof(frame.w));
+    file.read(reinterpret_cast<char*>(&frame.h), sizeof(frame.h));
+    
+    //load filePath * NOT IMPLEMENTED
+    
+    //load image * NOT IMPLEMENTED
+    
     return true;
 }
 
@@ -186,23 +206,31 @@ bool Object::load(fstream& file)
 bool Object::save(fstream& file)
 {
     if(!file) return false;
-
-    //write number of components in object
-    file.write(reinterpret_cast<char*>(&numComps), sizeof(numComps));
-
-    //write component types
-    for(int i = 0; i < numComps; i++)
-    {
-        int tempType = comp[i]->getType();
-        file.write(reinterpret_cast<char*>(&tempType), sizeof(tempType));
-    }
-
-    //save components
-    for(int i = 0; i < numComps; i++)
-    {
-        if(!(comp[i])->save(file)) return false;
-    }
-
+    
+    //load pos
+    file.write(reinterpret_cast<char*>(&pos.x), sizeof(pos.x));
+    file.write(reinterpret_cast<char*>(&pos.y), sizeof(pos.y));
+    file.write(reinterpret_cast<char*>(&pos.w), sizeof(pos.w));
+    file.write(reinterpret_cast<char*>(&pos.h), sizeof(pos.h));
+    
+    //load vel
+    file.write(reinterpret_cast<char*>(&vel.x), sizeof(vel.x));
+    file.write(reinterpret_cast<char*>(&vel.y), sizeof(vel.y));
+    
+    //load acc
+    file.write(reinterpret_cast<char*>(&acc.x), sizeof(acc.x));
+    file.write(reinterpret_cast<char*>(&acc.y), sizeof(acc.y));
+    
+    //load frame
+    file.write(reinterpret_cast<char*>(&frame.x), sizeof(frame.x));
+    file.write(reinterpret_cast<char*>(&frame.y), sizeof(frame.y));
+    file.write(reinterpret_cast<char*>(&frame.w), sizeof(frame.w));
+    file.write(reinterpret_cast<char*>(&frame.h), sizeof(frame.h));
+    
+    //load filePath * NEEDS IMPLEMENTATION
+    
+    //load image * NEEDS IMPLEMENTATION
+    
     return true;
 }
 
@@ -212,20 +240,20 @@ bool Object::save(fstream& file)
  ******************************************************************************/
 GameState Object::update()
 {
-    GameState compState = state;
-
-    for(int i = 0; i < numComps && compState.roomNum == state.roomNum; i++)
-    {
-        GameState compState = comp[i]->update();
-
-        if(compState.eleState == -1)
-        {
-            removeCompAt(i);
-        }
-    }
-
-    state.roomNum = compState.roomNum;
-
+    //temporary solution to bounce off walls of window
+    if(pos.x < 0 || pos.x + pos.w > 640)
+        vel.x *= -1;
+    if(pos.y < 0 || pos.y + pos.h > 480)
+        vel.y *= -1;
+    
+    //move with respect to velocity
+    pos.x += vel.x;
+    pos.y += vel.y;
+    
+    //adjust frame with respect to velocity
+    frame.x += vel.x;
+    frame.y += vel.y;
+    
     return state;
 }
 

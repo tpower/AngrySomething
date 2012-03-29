@@ -4,10 +4,6 @@
 
  Description:               This file defines the Base class. The Base class
                             serves as the template for all classes.
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
 #include "Base.h"
@@ -20,10 +16,10 @@ int Base::idGen = 0;
  ******************************************************************************/
 Base::Base()
 {
-    id = idGen++;
-    type = BASE;
-    state.roomNum = 0;
-    state.eleState = 0;
+    id              = idGen++;
+    type            = BASE;
+    state.roomNum   = 0;
+    state.eleState  = 0;
 }
 
 /*******************************************************************************
@@ -35,10 +31,10 @@ Base::Base()
  ******************************************************************************/
 Base::Base(int t)
 {
-    id = idGen++;
-    type = t;
-    state.roomNum = 0;
-    state.eleState = 0;
+    id              = idGen++;
+    type            = t;
+    state.roomNum   = 0;
+    state.eleState  = 0;
 }
 
 /*******************************************************************************
@@ -47,8 +43,9 @@ Base::Base(int t)
  ******************************************************************************/
 Base::Base(const Base& other)
 {
-    type = other.type;
-    id = idGen++;
+    type    = other.type;
+    id      = idGen++;
+    state   = other.state;
 }
 
 /*******************************************************************************
@@ -57,7 +54,7 @@ Base::Base(const Base& other)
  ******************************************************************************/
 Base::~Base()
 {
-    //No implementation necessary
+    
 }
 
 /*******************************************************************************
@@ -71,7 +68,9 @@ Base Base::operator=(const Base& other)
 {
     if(&other != this)
     {
-        type = other.type;
+        type    = other.type;
+        id      = idGen++;
+        state   = other.state;
     }
 
     return *this;
@@ -79,21 +78,16 @@ Base Base::operator=(const Base& other)
 
 /*******************************************************************************
  MODIFIERS
- Name:              setState, setOwner
+ Name:              setState
  ******************************************************************************/
 void Base::setState(GameState s)
 {
     state = s;
 }
 
-void Base::setOwner(Base *o)
-{
-    owner = o;
-}
-
 /*******************************************************************************
  ACCESSSORS
- Name:              getID, getType, getState, getOwner
+ Name:              getID, getType, getState
  ******************************************************************************/
 int Base::getID() const
 {
@@ -109,10 +103,4 @@ GameState Base::getState() const
 {
     return state;
 }
-
-Base* Base::getOwner()
-{
-    return owner;
-}
-
 

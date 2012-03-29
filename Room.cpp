@@ -3,13 +3,9 @@
  Classname:                 Room
  
  Description:               This file defines the Room class. The Room class
- acts as the model for the Game. It holds state for
- the game, holds the objects currently in the game,
- and handles saving and loading the game.
- 
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
+                            acts as the model for the Game. It holds state for
+                            the game, holds the objects currently in the game,
+                            and handles saving and loading the game.
  ******************************************************************************/
 
 #include "Room.h"
@@ -21,8 +17,8 @@
  ******************************************************************************/
 Room::Room() : Base(ROOM)
 {
-    object = new Object[1];
     numObjects = 1;
+    object = new Object[numObjects];
 }
 
 /*******************************************************************************
@@ -67,8 +63,9 @@ Room Room::operator=(const Room& other)
         numObjects = other.numObjects;
         
         if(object) delete [] object;
-        object = new Object[numObjects];
         
+        object = new Object[numObjects];
+
         for(int i = 0; i < numObjects; i++)
         {
             object[i] = other.object[i];
@@ -96,24 +93,24 @@ int Room::getNumObjects()
  MUTATORS
  Name:              removeObjectAt
  ******************************************************************************/
+ void Room::removeObjectAt(int index)
+ {
+     Object *temp = new Object[numObjects - 1];
 
-void Room::removeObjectAt(int index)
-{
-    Object *temp = new Object[numObjects - 1];
-    
-    for(int i = 0; i < index; i++)
-    {
-        temp[i] = object[i];
-    }
-    
-    for(int i = index; i < numObjects - 1; i++)
-    {
-        temp[i] = object[i+1];
-    }
-    
-    numObjects = numObjects - 1;
-    object = temp;
-}
+     for(int i = 0; i < index; i++)
+     {
+         temp[i] = object[i];
+     }
+
+     for(int i = index; i < numObjects - 1; i++)
+     {
+         temp[i] = object[i+1];
+     }
+
+     numObjects = numObjects - 1;
+     delete [] object;
+     object = temp;
+ }
 
 /*******************************************************************************
  Name:              load
@@ -132,16 +129,18 @@ bool Room::load(fstream& file)
     
     //read number of objects in room
     file.read(reinterpret_cast<char*>(&numObjects), sizeof(numObjects));
+
+    //dealloc object
+    if(object) delete [] object;
+
     
     //create objects
-    delete [] object;
     object = new Object[numObjects];
     
     //load objects
     for(int i = 0; i < numObjects; i++)
     {
         if(!object[i].load(file)) return false;
-        object[i].setOwner(this);
     }
     
     return true;
@@ -182,8 +181,9 @@ GameState Room::update()
     
     for(int i = 0; i < numObjects && objState.roomNum == state.roomNum; i++)
     {
-        GameState objState = object[i].update();
-        
+
+       objState = object[i].update();
+
         if(objState.eleState == -1)
         {
             removeObjectAt(i);

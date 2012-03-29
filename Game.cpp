@@ -6,10 +6,6 @@
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
                             between the Room and the View
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
 #include "Game.h"
@@ -24,6 +20,7 @@ Game::Game() : Base(GAME)
 {
     room = new Room;
     view = new View;
+    running = true;
 }
 
 /*******************************************************************************
@@ -35,9 +32,9 @@ Game::Game() : Base(GAME)
  ******************************************************************************/
 Game::Game(const Game& other) : Base(GAME)
 {
-    running = other.running;
     *room = *(other.room);
     *view = *(other.view);
+    running = other.running;
 }
 
 /*******************************************************************************
@@ -63,9 +60,9 @@ Game Game::operator=(const Game& other)
 {
     if(&other != this)
     {
-        running = other.running;
         *room = *(other.room);
         *view = *(other.view);
+        running = other.running;
     }
 
     return *this;
@@ -100,7 +97,7 @@ bool Game::getRunning()
 void Game::init(int roomNum)
 {
     //open game file
-    fstream file("GameFile.gel", ios::in | ios::binary);
+    fstream file("SavedGame_032112.gel", ios::in | ios::binary);
     int numRooms, roomLoc;
 
     if(!file)
@@ -124,7 +121,7 @@ void Game::init(int roomNum)
 
     //load room
     running = room->load(file);
-    room->setOwner(this);
+    file.close();
 }
 
 /*******************************************************************************
@@ -137,7 +134,7 @@ void Game::init(int roomNum)
 bool Game::save()
 {
     //open save file
-    fstream file("SavedGame.gel", ios::out | ios::binary);
+    fstream file("SavedGame_032112.gel", ios::out | ios::binary);
     if(!file) return false;
     
     int numRooms = 1;
@@ -168,9 +165,13 @@ int Game::run()
         {
             init(temp.roomNum);
         }
-
         else
         {
+            for(int i = 0; i < room->getNumObjects(); i++)
+            {
+                view->draw(&(room->getObjectAt(i)));
+            }
+            
             view->update();
         }
     }
