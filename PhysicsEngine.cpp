@@ -10,7 +10,7 @@
 #include <iostream>
 
 #include "PhysicsEngine.h"
-#include "DrawableObject.h"
+#include "PhysicalObject.h"
 
 /*******************************************************************************
  Name:              PhysicsEngine
@@ -43,19 +43,22 @@ void PhysicsEngine::run(Room& room)
     {
         Object* obj = room.getObjectAt(i);
         
-        obj->run();
-        
-        if(obj->getPos().x <= 0 || obj->getPos().x + obj->getPos().w >= 640)
+        if(obj->getType() == PHYSICAL_OBJECT)
         {
-//            vect temp = obj->getVel();
-//            temp.x *= -1;
-//            obj->setVel(temp);
-        }
-        if(obj->getPos().y <= 0 || obj->getPos().y + obj->getPos().h >= 480)
-        {
-//            vect temp = obj->getVel();
-//            temp.y *= -1;
-//            obj->setVel(temp);
+            ((PhysicalObject*)obj)->run();
+            
+            if(obj->getPos().x <= 0 || obj->getPos().x + obj->getPos().w >= 640)
+            {
+//                vect temp = obj->getVel();
+//                temp.x *= -1;
+//                obj->setVel(temp);
+            }
+            if(obj->getPos().y <= 0 || obj->getPos().y + obj->getPos().h >= 480)
+            {
+//                vect temp = obj->getVel();
+//                temp.y *= -1;
+//                obj->setVel(temp);
+            }
         }
     }
 }

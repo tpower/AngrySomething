@@ -10,14 +10,14 @@
 
 #include <vector>
 
-class DrawableObject;
+class Object;
 
 using namespace std;
 
 class Room
 {
     private:
-        vector<DrawableObject*> object;
+        vector<Object*> object;
 
     public:
         Room();
@@ -26,7 +26,7 @@ class Room
 
         Room                operator=(const Room& other);
 
-        DrawableObject*     getObjectAt(int);
+        Object*     getObjectAt(int);
         int                 getNumObjects();
 
         bool                load();

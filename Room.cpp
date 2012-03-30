@@ -6,7 +6,9 @@
  ******************************************************************************/
 
 #include "Room.h"
+#include "Object.h"
 #include "DrawableObject.h"
+#include "PhysicalObject.h"
 
 /*******************************************************************************
  Name:              Room
@@ -59,7 +61,7 @@ Room Room::operator=(const Room& other)
  ACCESSORS
  Name:              getObjectAt, getNumObjects
  ******************************************************************************/
-DrawableObject* Room::getObjectAt(int i)
+Object* Room::getObjectAt(int i)
 {
     return object[i];
 }

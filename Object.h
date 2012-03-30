@@ -10,11 +10,6 @@
 
 #include <SDL/SDL.h>
 
-struct vect
-{
-    double x, y;
-};
-
 enum ObjType
 {
     OBJECT              = 1,
@@ -41,8 +36,6 @@ class Object
     
         ObjType     getType();
         SDL_Rect    getPos();
-    
-        void        run();
 };
 
 #endif

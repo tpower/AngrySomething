@@ -25,7 +25,6 @@ class DrawableObject : public Object
         DrawableObject& operator=(const DrawableObject& other);
     
         void            draw(SDL_Surface*);
-
 };
 
 #endif
