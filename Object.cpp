@@ -2,9 +2,7 @@
  Filename:                  Object.cpp
  Classname:                 Object
 
- Description:               This file defines the Object class. The Object
-                            class holds the components that define the objects
-                            in the game.
+ Description:               This file defines the Object class.
  ******************************************************************************/
 
 #include "Object.h"
@@ -73,4 +71,13 @@ void Object::setPos(SDL_Rect p)
 SDL_Rect Object::getPos()
 {
     return pos;
+}
+
+/*******************************************************************************
+ Name:              run
+ Description:       this method runs the object
+ ******************************************************************************/
+void Object::run()
+{
+    
 }

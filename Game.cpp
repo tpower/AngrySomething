@@ -5,7 +5,7 @@
  Description:               This file defines the Game class. This class will
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
-                            between the Room and the View
+                            between the the Physics and Graphics Engines.
  ******************************************************************************/
 
 #include "Game.h"
@@ -78,6 +78,7 @@ int Game::run()
 {
     while(running)
     {
+        phys.run(room);
         grph.run(room);
     }
 

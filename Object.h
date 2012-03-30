@@ -2,9 +2,7 @@
  Filename:                  Object.h
  Classname:                 Object
 
- Description:               This file declares the Object class. The Object
-                            class holds the components that define the objects
-                            in the game.
+ Description:               This file declares the Object class.
  ******************************************************************************/
 
 #ifndef AngrySomething_Object_h
@@ -14,12 +12,12 @@
 
 struct vect
 {
-    int x, y;
+    double x, y;
 };
 
 class Object
 {
-    private:
+    protected:
         SDL_Rect    pos;
         
     public:
@@ -28,10 +26,12 @@ class Object
         ~Object();
 
         Object      operator=(const Object& other);
-    
+        
         void        setPos(SDL_Rect p);
     
         SDL_Rect    getPos();
+    
+        void        run();
 };
 
 #endif

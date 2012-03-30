@@ -4,12 +4,11 @@
  
  Description:               This file defines the GraphicsEngine class. The 
                             GraphicsEngine class is responsible for output to 
-                            the screen. Most of the SDL implementation will 
-                            belong in this class.
+                            the screen.
  ******************************************************************************/
 
 #include "GraphicsEngine.h"
-#include "Object.h"
+#include "DrawableObject.h"
 #include "Room.h"
 
 /*******************************************************************************

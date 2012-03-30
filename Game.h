@@ -5,7 +5,7 @@
  Description:               This file declares the Game class. This class will
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
-                            between the Room and the View
+                            between the Physics and Graphics Engines.
  ******************************************************************************/
 
 #ifndef AngrySomething_Game_h
@@ -15,12 +15,14 @@
 
 #include "Room.h"
 #include "GraphicsEngine.h"
+#include "PhysicsEngine.h"
 
 class Game
 {
     private:
         Room room;
         GraphicsEngine grph;
+        PhysicsEngine phys;
         bool running;
     
     public:
