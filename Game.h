@@ -20,10 +20,10 @@
 class Game
 {
     private:
-        Room room;
-        GraphicsEngine grph;
-        PhysicsEngine phys;
-        bool running;
+        Room            room;
+        GraphicsEngine  grph;
+        PhysicsEngine   phys;
+        bool            running;
     
     public:
         Game();

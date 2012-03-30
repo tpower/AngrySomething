@@ -24,9 +24,9 @@ class GraphicsEngine
         GraphicsEngine(const GraphicsEngine&);
         ~GraphicsEngine();
     
-        GraphicsEngine operator=(const GraphicsEngine& other);
+        GraphicsEngine  operator=(const GraphicsEngine& other);
     
-        void run(Room&);
+        void            run(Room&);
 };
 
 #endif

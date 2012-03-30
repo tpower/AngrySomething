@@ -12,38 +12,50 @@
 #include "PhysicsEngine.h"
 #include "DrawableObject.h"
 
+/*******************************************************************************
+ Name:              PhysicsEngine
+ Description:       Default constructor
+ ******************************************************************************/
 PhysicsEngine::PhysicsEngine()
 {
     
 }
 
+/*******************************************************************************
+ Name:              ~PhysicsEngine
+ Description:       Destructor
+ ******************************************************************************/
 PhysicsEngine::~PhysicsEngine()
 {
     
 }
 
+/*******************************************************************************
+ Name:              run
+ Description:       Runs all objects in the room and tests for collisions
+ 
+ Input:
+    room            Room& containing objects
+ ******************************************************************************/
 void PhysicsEngine::run(Room& room)
 {
     for(int i = 0; i < room.getNumObjects(); i++)
     {
-        room.getObjectAt(i)->run();
+        Object* obj = room.getObjectAt(i);
         
-//        if(room.getObjectAt(i)->getPosition().x <= 0 || room.getObjectAt(i)->getPosition().x + room.getObjectAt(i)->getPosition().w >= 640)
-//        {
-//            vect temp = room.getObjectAt(i)->getVel();
+        obj->run();
+        
+        if(obj->getPos().x <= 0 || obj->getPos().x + obj->getPos().w >= 640)
+        {
+//            vect temp = obj->getVel();
 //            temp.x *= -1;
-//            room.getObjectAt(i)->setVel(temp);
-//        }
-//        if(room.getObjectAt(i)->getPosition().y <= 0 || room.getObjectAt(i)->getPosition().y + room.getObjectAt(i)->getPosition().h >= 480)
-//        {
-//            vect temp = room.getObjectAt(i)->getVel();
+//            obj->setVel(temp);
+        }
+        if(obj->getPos().y <= 0 || obj->getPos().y + obj->getPos().h >= 480)
+        {
+//            vect temp = obj->getVel();
 //            temp.y *= -1;
-//            room.getObjectAt(i)->setVel(temp);
-//        }
+//            obj->setVel(temp);
+        }
     }
-    
-    //wall collision (temporary)
-    
-    
-    //check for collisions
 }

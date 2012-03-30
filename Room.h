@@ -17,7 +17,7 @@ using namespace std;
 class Room
 {
     private:
-        vector<DrawableObject*>      object;
+        vector<DrawableObject*> object;
 
     public:
         Room();

@@ -13,11 +13,12 @@
  ******************************************************************************/
 Object::Object(int x, int y)
 {
+    type = OBJECT;
+    
     pos.x = x;
     pos.y = y;
     pos.w = 60;
     pos.h = 60;
-   
 }
 
 /*******************************************************************************
@@ -26,7 +27,8 @@ Object::Object(int x, int y)
  ******************************************************************************/
 Object::Object(const Object& other)
 {
-    pos = other.pos;
+    type    = other.type;
+    pos     = other.pos;
 }
 
 /*******************************************************************************
@@ -49,7 +51,8 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        pos = other.pos;
+        type    = other.type;
+        pos     = other.pos;
     }
     
     return *this;
@@ -57,8 +60,13 @@ Object Object::operator=(const Object& other)
 
 /*******************************************************************************
  MUTATORS
- Name:              setPos
+ Name:              setType, setPos
  ******************************************************************************/
+void Object::setType(ObjType t)
+{
+    type = t;
+}
+
 void Object::setPos(SDL_Rect p)
 {
     pos = p;
@@ -66,8 +74,13 @@ void Object::setPos(SDL_Rect p)
 
 /*******************************************************************************
  ACCESSORS
- Name:              getPos
+ Name:              getType, getPos
  ******************************************************************************/
+ObjType Object::getType()
+{
+    return type;
+}
+
 SDL_Rect Object::getPos()
 {
     return pos;

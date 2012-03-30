@@ -18,8 +18,13 @@ class DrawableObject : public Object
         SDL_Surface* image;
     
     public:
-        DrawableObject(const char* file, int , int);
-        void draw(SDL_Surface*);
+        DrawableObject(const char* file, int x, int y);
+        DrawableObject(const DrawableObject& other);
+        ~DrawableObject();
+    
+        DrawableObject& operator=(const DrawableObject& other);
+    
+        void            draw(SDL_Surface*);
 
 };
 
