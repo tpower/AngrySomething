@@ -6,10 +6,6 @@
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
                             between the Room and the View
- 
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
 #ifndef AngrySomething_Game_h
@@ -17,7 +13,6 @@
 
 #include <fstream>
 #include <SDL/SDL.h>
-#include <string>
 
 #include "Base.h"
 

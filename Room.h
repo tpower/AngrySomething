@@ -6,10 +6,6 @@
                             acts as the model for the Game. It holds state for
                             the game, holds the objects currently in the game,
                             and handles saving and loading the game.
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
 #ifndef AngrySomething_Room_h

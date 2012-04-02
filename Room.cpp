@@ -6,10 +6,6 @@
                             acts as the model for the Game. It holds state for
                             the game, holds the objects currently in the game,
                             and handles saving and loading the game.
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
 #include "Room.h"
@@ -21,10 +17,8 @@
  ******************************************************************************/
 Room::Room() : Base(ROOM)
 {
-    object = NULL;
-    numObjects = 0;
-//    object = new Object[6];
-//    numObjects = 6;
+    numObjects = 1;
+    object = new Object[numObjects];
 }
 
 /*******************************************************************************
@@ -145,7 +139,6 @@ bool Room::load(fstream& file)
     for(int i = 0; i < numObjects; i++)
     {
         if(!object[i].load(file)) return false;
-        object[i].setOwner(this);
     }
 
     return true;

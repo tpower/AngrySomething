@@ -6,10 +6,6 @@
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
                             between the Room and the View
-
- Last Modified:            				02.28.12
- By:									Tyler Orr
- - File created
  ******************************************************************************/
 
 #include "Game.h"
@@ -24,7 +20,7 @@ Game::Game() : Base(GAME)
 {
     room = new Room;
     view = new View;
-    running = false;
+    running = true;
 }
 
 /*******************************************************************************
@@ -125,7 +121,6 @@ void Game::init(int roomNum)
 
     //load room
     running = room->load(file);
-    room->setOwner(this);
     file.close();
 }
 
@@ -172,6 +167,11 @@ int Game::run()
         }
         else
         {
+            for(int i = 0; i < room->getNumObjects(); i++)
+            {
+                view->draw(&(room->getObjectAt(i)));
+            }
+            
             view->update();
         }
     }
