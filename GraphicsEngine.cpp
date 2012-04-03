@@ -23,6 +23,8 @@ GraphicsEngine::GraphicsEngine()
     {
         exit(-1);
     }
+    
+    background = SDL_DisplayFormat(screen);
 }
 
 /*******************************************************************************
@@ -44,6 +46,7 @@ GraphicsEngine::GraphicsEngine(const GraphicsEngine& other)
 GraphicsEngine::~GraphicsEngine()
 {
     SDL_FreeSurface(screen);
+    SDL_FreeSurface(background);
 }
 
 /*******************************************************************************
@@ -78,4 +81,5 @@ void GraphicsEngine::run(Room& room)
     }
     
     SDL_Flip(screen);
+    SDL_BlitSurface(background, NULL, screen, NULL);
 }
