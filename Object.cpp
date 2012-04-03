@@ -11,12 +11,12 @@
  Name:              Object
  Description:       Default constructor for Object class
  ******************************************************************************/
-Object::Object(int x, int y)
+Object::Object(int x, int y, int w, int h)
 {
     pos.x = x;
     pos.y = y;
-    pos.w = 120;
-    pos.h = 120;
+    pos.w = w;
+    pos.h = w;
     
     drawable = physical = mechanical = false;
 }
@@ -27,7 +27,7 @@ Object::Object(int x, int y)
  ******************************************************************************/
 Object::Object(const Object& other)
 {
-    pos     = other.pos;
+    pos = other.pos;
 }
 
 /*******************************************************************************
@@ -50,7 +50,7 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        pos     = other.pos;
+        pos = other.pos;
     }
     
     return *this;
