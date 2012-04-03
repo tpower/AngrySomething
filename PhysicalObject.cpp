@@ -83,9 +83,9 @@ void PhysicalObject::setAcc(vect a)
 void PhysicalObject::applyForce(int m, vect v)
 {
     if(v.x)
-        acc.x = (m * (v.x - vel.x)) / mass;
+        acc.x = ((m * (v.x - vel.x)) / mass);
     if(v.y)
-        acc.y = (m * (v.y - vel.y)) / mass;
+        acc.y = ((m * (v.y - vel.y)) / mass);
 }
 
 /*******************************************************************************
