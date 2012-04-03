@@ -72,7 +72,7 @@ void GraphicsEngine::run(Room& room)
 {
     for(int i = 0; i < room.getNumObjects(); i++)
     {
-        room.getObjectAt(i)->draw(screen);
+//        room.getObjectAt(i)->draw(screen);
     }
     
     SDL_Flip(screen);
