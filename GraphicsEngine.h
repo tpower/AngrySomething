@@ -4,8 +4,7 @@
  
  Description:               This file declares the GraphicsEngine class. The 
                             GraphicsEngine class is responsible for output to 
-                            the screen. Most of the SDL implementation will 
-                            belong in this class.
+                            the screen.
  ******************************************************************************/
 
 #ifndef AngrySomething_GraphicsEngine_h
@@ -19,15 +18,16 @@ class GraphicsEngine
 {
     private:
         SDL_Surface*    screen;
+        SDL_Surface*    background;
             
     public:
         GraphicsEngine();
         GraphicsEngine(const GraphicsEngine&);
         ~GraphicsEngine();
     
-        GraphicsEngine operator=(const GraphicsEngine& other);
+        GraphicsEngine  operator=(const GraphicsEngine& other);
     
-        void run(Room&);
+        void            run(Room&);
 };
 
 #endif

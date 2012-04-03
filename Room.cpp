@@ -2,14 +2,14 @@
  Filename:                  Room.cpp
  Classname:                 Room
  
- Description:               This file defines the Room class. The Room class
-                            acts as the model for the Game. It holds state for
-                            the game, holds the objects currently in the game,
-                            and handles saving and loading the game.
+ Description:               This file defines the Room class.
  ******************************************************************************/
 
 #include "Room.h"
 #include "Object.h"
+#include "DrawableObject.h"
+#include "PhysicalObject.h"
+#include "MultiObject.h"
 
 /*******************************************************************************
  Name:              Room
@@ -82,6 +82,10 @@ int Room::getNumObjects()
  ******************************************************************************/
 bool Room::load()
 {
-    
+    object.push_back(new MultiObject("TestA.bmp", 0, 0));
+    object.push_back(new MultiObject("TestB.bmp", 80, 200));
+    object.push_back(new MultiObject("TestC.bmp", 280, 150));
+
     return true;
 }
+

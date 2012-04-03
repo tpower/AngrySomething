@@ -4,12 +4,11 @@
  
  Description:               This file defines the GraphicsEngine class. The 
                             GraphicsEngine class is responsible for output to 
-                            the screen. Most of the SDL implementation will 
-                            belong in this class.
+                            the screen.
  ******************************************************************************/
 
 #include "GraphicsEngine.h"
-#include "Object.h"
+#include "DrawableObject.h"
 #include "Room.h"
 
 /*******************************************************************************
@@ -24,6 +23,8 @@ GraphicsEngine::GraphicsEngine()
     {
         exit(-1);
     }
+    
+    background = SDL_DisplayFormat(screen);
 }
 
 /*******************************************************************************
@@ -45,6 +46,7 @@ GraphicsEngine::GraphicsEngine(const GraphicsEngine& other)
 GraphicsEngine::~GraphicsEngine()
 {
     SDL_FreeSurface(screen);
+    SDL_FreeSurface(background);
 }
 
 /*******************************************************************************
@@ -72,8 +74,12 @@ void GraphicsEngine::run(Room& room)
 {
     for(int i = 0; i < room.getNumObjects(); i++)
     {
-//        room.getObjectAt(i)->draw(screen);
+        Object* obj = room.getObjectAt(i);
+        
+        if(obj->getType() == DRAWABLE_OBJECT || obj->getType() == MULTI_OBJECT)
+            (dynamic_cast<DrawableObject*>(obj))->draw(screen);
     }
     
     SDL_Flip(screen);
+    SDL_BlitSurface(background, NULL, screen, NULL);
 }

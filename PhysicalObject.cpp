@@ -1,97 +1,106 @@
 /*******************************************************************************
- Filename:                  Object.cpp
- Classname:                 Object
-
- Description:               This file defines the Object class.
+ Filename:                  PhysicalObject.cpp
+ Classname:                 PhysicalObject
+ 
+ Description:               This file defines the PhysicalObject class.
  ******************************************************************************/
 
-#include "Object.h"
+#include <cstdlib>
+
+#include "PhysicalObject.h"
 
 /*******************************************************************************
- Name:              Object
- Description:       Default constructor for Object class
+ Name:              PhysicalObject
+ Description:       Primary constructor
  ******************************************************************************/
-Object::Object(int x, int y)
+PhysicalObject::PhysicalObject(int x, int y) : Object(x, y)
 {
-    type = OBJECT;
+    type = PHYSICAL_OBJECT;
     
-    pos.x = x;
-    pos.y = y;
-
-    pos.w = 120;
-    pos.h = 120;
+    vel.x = rand() % 2;
+    vel.y = rand() % 2;
+    
+    acc.x = 0;
+    acc.y = 0;
 }
 
 /*******************************************************************************
- Name:              Object
- Description:       Copy constructor for Object class
+ Name:              PhysicalObject
+ Description:       Copy constructor
+ 
+ Input:
+ other           PhysicalObject& to be copied
  ******************************************************************************/
-Object::Object(const Object& other)
+PhysicalObject::PhysicalObject(const PhysicalObject& other) : Object(other.pos.x, other.pos.y)
 {
-    type    = other.type;
-    pos     = other.pos;
+    vel = other.vel;
+    acc = other.acc;
 }
 
 /*******************************************************************************
- Name:              ~Object
- Description:       Destructor for Object class
+ Name:              ~PhysicalObject
+ Description:       Destructor
  ******************************************************************************/
-Object::~Object()
+PhysicalObject::~PhysicalObject()
 {
     
 }
 
 /*******************************************************************************
  Name:              operator=
- Description:       Overloaded assignment operator for Object class
-
+ Description:       Overloaded assignment operator
+ 
  Input:
-    other           const Object&
+ other           PhysicalObject& to be copied
  ******************************************************************************/
-Object Object::operator=(const Object& other)
+PhysicalObject& PhysicalObject::operator=(const PhysicalObject& other)
 {
     if(&other != this)
     {
-        type    = other.type;
-        pos     = other.pos;
+        vel = other.vel;
+        acc = other.acc;
     }
     
     return *this;
 }
 
 /*******************************************************************************
- MUTATORS
- Name:              setType, setPos
+ MODIFIERS
+ Name:              setVel, setAcc
  ******************************************************************************/
-void Object::setType(ObjType t)
+void PhysicalObject::setVel(vect v)
 {
-    type = t;
+    vel = v;
 }
 
-void Object::setPos(SDL_Rect p)
+void PhysicalObject::setAcc(vect a)
 {
-    pos = p;
+    acc = a;
 }
 
 /*******************************************************************************
- ACCESSORS
- Name:              getType, getPos
+ MODIFIERS
+ Name:              setVel, setAcc
  ******************************************************************************/
-ObjType Object::getType()
+vect PhysicalObject::getVel()
 {
-    return type;
+    return vel;
 }
 
-SDL_Rect Object::getPos()
+vect PhysicalObject::getAcc()
 {
-    return pos;
+    return acc;
 }
 
 /*******************************************************************************
  Name:              run
- Description:       ??????
+ Description:       ????????
  ******************************************************************************/
-void Object::run()
+void PhysicalObject::run()
 {
+    vel.x += acc.x;
+    vel.y += acc.y;
     
+    pos.x += vel.x;
+    pos.y += vel.y;
 }
