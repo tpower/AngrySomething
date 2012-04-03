@@ -1,16 +1,12 @@
 /*******************************************************************************
  Filename:                  PhysicsEngine.cpp
  Classname:                 PhysicsEngine
- 
- Description:               This file declares the PhysicsEngine class. The 
+
+ Description:               This file declares the PhysicsEngine class. The
                             PhysicsEngine class is responsible for moving
                             objects and detecting collisions within the room.
  ******************************************************************************/
-
-#include <iostream>
-
-#include "PhysicsEngine.h"
-#include "PhysicalObject.h"
+#include "Game.h"
 
 /*******************************************************************************
  Name:              PhysicsEngine
@@ -18,7 +14,7 @@
  ******************************************************************************/
 PhysicsEngine::PhysicsEngine()
 {
-    
+
 }
 
 /*******************************************************************************
@@ -27,13 +23,13 @@ PhysicsEngine::PhysicsEngine()
  ******************************************************************************/
 PhysicsEngine::~PhysicsEngine()
 {
-    
+
 }
 
 /*******************************************************************************
  Name:              run
  Description:       Runs all objects in the room and tests for collisions
- 
+
  Input:
     room            Room& containing objects
  ******************************************************************************/
@@ -42,23 +38,20 @@ void PhysicsEngine::run(Room& room)
     for(int i = 0; i < room.getNumObjects(); i++)
     {
         Object* obj = room.getObjectAt(i);
-        
-        if(obj->getType() == PHYSICAL_OBJECT)
+        obj->move();
+
+        if(obj->getPos().x <= 0 || obj->getPos().x + obj->getPos().w >= 640)
         {
-            ((PhysicalObject*)obj)->run();
-            
-            if(obj->getPos().x <= 0 || obj->getPos().x + obj->getPos().w >= 640)
-            {
-//                vect temp = obj->getVel();
-//                temp.x *= -1;
-//                obj->setVel(temp);
-            }
-            if(obj->getPos().y <= 0 || obj->getPos().y + obj->getPos().h >= 480)
-            {
-//                vect temp = obj->getVel();
-//                temp.y *= -1;
-//                obj->setVel(temp);
-            }
+            vect temp = obj->getVect();
+            temp.xvel *= -1;
+            obj->setVect(temp);
+        }
+
+        if(obj->getPos().y <= 0 || obj->getPos().y + obj->getPos().h >= 480)
+        {
+            vect temp = obj->getVect();
+            temp.yvel *= -1;
+            obj->setVect(temp);
         }
     }
 }
