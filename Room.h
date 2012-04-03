@@ -23,7 +23,7 @@ class Room
 
         Room                operator=(const Room& other);
 
-        Object*     getObjectAt(int);
+        Object*             getObjectAt(int);
         int                 getNumObjects();
 
         bool                load();

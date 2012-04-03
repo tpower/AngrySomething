@@ -22,6 +22,8 @@ GraphicsEngine::GraphicsEngine()
     {
         exit(-1);
     }
+    
+    background = SDL_DisplayFormat(screen);
 }
 
 /*******************************************************************************
@@ -43,6 +45,7 @@ GraphicsEngine::GraphicsEngine(const GraphicsEngine& other)
 GraphicsEngine::~GraphicsEngine()
 {
     SDL_FreeSurface(screen);
+    SDL_FreeSurface(background);
 }
 
 /*******************************************************************************
@@ -79,8 +82,15 @@ void GraphicsEngine::run(Room& room)
     for(int i = 0; i < room.getNumObjects(); i++)
     {
         Object* obj = room.getObjectAt(i);
+<<<<<<< HEAD
         obj->draw(screen);
+=======
+        
+        if(obj->getType() == DRAWABLE_OBJECT || obj->getType() == MULTI_OBJECT)
+            (dynamic_cast<DrawableObject*>(obj))->draw(screen);
+>>>>>>> upstream/TylerBranch
     }
 
     SDL_Flip(screen);
+    SDL_BlitSurface(background, NULL, screen, NULL);
 }

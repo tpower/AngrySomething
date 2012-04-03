@@ -19,7 +19,11 @@ class GraphicsEngine
     private:
         SDL_Surface*    screen;
         SDL_Surface*    background;
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> upstream/TylerBranch
     public:
         GraphicsEngine();
         GraphicsEngine(const GraphicsEngine&);

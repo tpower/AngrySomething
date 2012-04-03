@@ -16,6 +16,7 @@ Object::Object(const char* file, int x, int y)
 
     pos.x = x;
     pos.y = y;
+<<<<<<< HEAD
     pos.w = 60;
     pos.h = 60;
 
@@ -30,6 +31,10 @@ Object::Object(const char* file, int x, int y)
     {
         cout << SDL_GetError() << endl;
     }
+=======
+    pos.w = 120;
+    pos.h = 120;
+>>>>>>> upstream/TylerBranch
 }
 
 /*******************************************************************************
@@ -108,6 +113,7 @@ SDL_Rect Object::getPos()
 }
 
 /*******************************************************************************
+<<<<<<< HEAD
  Name:              draw
  Description:       Draws the Object to the given SDL_Surface*
 
@@ -162,4 +168,12 @@ void Object::move()
 {
     pos.x += vec.xvel;
     pos.y += vec.yvel;
+=======
+ Name:              run
+ Description:       ??????
+ ******************************************************************************/
+void Object::run()
+{
+    
+>>>>>>> upstream/TylerBranch
 }
