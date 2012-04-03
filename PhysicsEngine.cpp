@@ -104,13 +104,9 @@ void PhysicsEngine::detectCollisions(Room& room)
                         else
                             sideB = sideA - 4;
                         
-                        //get velocity vectors
-                        vect velA = pObj->getVel();
-                        vect velB = pObj2->getVel();
-                        
                         //react to collision
-                        handleCollision(pObj, velB, sideA);
-                        handleCollision(pObj2, velA, sideB);
+                        handleCollision(pObj, pObj2, sideA);
+                        handleCollision(pObj2, pObj, sideB);
                     }
                 }
             }
@@ -282,21 +278,27 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 /*******************************************************************************
  Name:              handleCollision
  ******************************************************************************/
-void PhysicsEngine::handleCollision(PhysicalObject* obj, vect vel, int side)
+void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, int side)
 {
     //react to horizontal collision
-    if(side != TOP && side != BOTTOM)
+    if(side == TOP || side == BOTTOM)
     {
-        vect temp = obj->getVel();
-        temp.x = vel.x;
-        obj->setVel(temp);
+        vect v = obj2->getVel();
+        v.x = 0;
+        obj->applyForce(obj2->getMass(), v);
     }
     
     //react to vertical collision
-    if(side != LEFT && side != RIGHT)
+    else if(side == LEFT || side == RIGHT)
     {
-        vect temp = obj->getVel();
-        temp.y = vel.y;
-        obj->setVel(temp);
+        vect v = obj2->getVel();
+        v.y = 0;
+        obj->applyForce(obj2->getMass(), v);
+    }
+    
+    else
+    {
+        vect v = obj2->getVel();
+        obj->applyForce(obj2->getMass(), v);
     }
 }

@@ -22,6 +22,7 @@ class PhysicalObject : virtual public Object
     protected:
         vect vel;
         vect acc;
+        int  mass;
     
     public:
         PhysicalObject(int x = 0, int y = 0);
@@ -32,9 +33,11 @@ class PhysicalObject : virtual public Object
     
         void    setVel(vect v);
         void    setAcc(vect a);
+        void    applyForce(int m, vect v);
         
         vect    getVel();
         vect    getAcc();
+        int     getMass();
     
         virtual void    run();
 };

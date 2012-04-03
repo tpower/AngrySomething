@@ -43,7 +43,7 @@ class PhysicsEngine
         bool doIntersect(SDL_Rect a, SDL_Rect b);
         bool doCollide(PhysicalObject* a, PhysicalObject* b);
         int  sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2);
-        void handleCollision(PhysicalObject* obj, vect vel, int side);
+        void handleCollision(PhysicalObject* obj, PhysicalObject* obj2, int side);
 };
 
 #endif
