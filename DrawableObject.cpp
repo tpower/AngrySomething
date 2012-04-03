@@ -74,5 +74,8 @@ DrawableObject& DrawableObject::operator=(const DrawableObject& other)
  ******************************************************************************/
 void DrawableObject::draw(SDL_Surface* s)
 {
-    SDL_BlitSurface(image, &pos, s, &pos);
+    static SDL_Rect loc;
+    loc = pos;
+    
+    SDL_BlitSurface(image, &pos, s, &loc);
 }

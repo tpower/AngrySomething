@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 #include <cstdlib>
+#include <ctime>
 
 #include "PhysicalObject.h"
 
@@ -17,11 +18,12 @@ PhysicalObject::PhysicalObject(int x, int y) : Object(x, y)
 {
     type = PHYSICAL_OBJECT;
     
-    vel.x = rand() % 5;
-    vel.y = rand() % 5;
+    srand((int)clock());
+    vel.x = rand() % 8;
+    vel.y = rand() % 8;
     
     acc.x = 0;
-    acc.y = 0;
+    acc.y = .3;     //gravity
 }
 
 /*******************************************************************************
@@ -100,6 +102,7 @@ void PhysicalObject::run()
 {
     vel.x += acc.x;
     vel.y += acc.y;
+    if(vel.y > 10) vel.y = 10;
     
     pos.x += vel.x;
     pos.y += vel.y;
