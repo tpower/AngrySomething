@@ -5,6 +5,8 @@
  Description:               This file defines the PhysicalObject class.
  ******************************************************************************/
 
+#include <cstdlib>
+
 #include "PhysicalObject.h"
 
 /*******************************************************************************
@@ -15,8 +17,8 @@ PhysicalObject::PhysicalObject(int x, int y) : Object(x, y)
 {
     type = PHYSICAL_OBJECT;
     
-    vel.x = 1;
-    vel.y = 1;
+    vel.x = rand() % 2;
+    vel.y = rand() % 2;
     
     acc.x = 0;
     acc.y = 0;

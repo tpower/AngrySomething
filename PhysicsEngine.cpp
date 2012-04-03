@@ -213,8 +213,15 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         else
             wDiff = (a.x + a.w - b.x);
         
-        hDiff /= abs(velA.y) + abs(velB.y);
-        wDiff /= abs(velA.x) + abs(velB.x);
+        if(abs(velA.y) + abs(velB.y))
+            hDiff /= abs(velA.y) + abs(velB.y);
+        else
+            hDiff = 0;
+        
+        if(abs(velA.x) + abs(velB.x))
+            wDiff /= abs(velA.x) + abs(velB.x);
+        else
+            wDiff = 0;
         
         if(hDiff < wDiff)
             aTop = aBottom = false;
