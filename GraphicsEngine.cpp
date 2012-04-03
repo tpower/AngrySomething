@@ -73,8 +73,8 @@ void GraphicsEngine::run(Room& room)
     {
         Object* obj = room.getObjectAt(i);
         
-        if(obj->getType() == DRAWABLE_OBJECT)
-            ((DrawableObject*)obj)->draw(screen);
+        if(obj->getType() == DRAWABLE_OBJECT || obj->getType() == MULTI_OBJECT)
+            (dynamic_cast<DrawableObject*>(obj))->draw(screen);
     }
     
     SDL_Flip(screen);

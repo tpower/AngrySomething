@@ -12,19 +12,19 @@
 
 #include "Object.h"
 
-class DrawableObject : public Object
+class DrawableObject : virtual public Object
 {
     protected:
         SDL_Surface* image;
     
     public:
-        DrawableObject(const char* file, int x, int y);
+        DrawableObject(const char* file, int x = 0, int y = 0);
         DrawableObject(const DrawableObject& other);
         ~DrawableObject();
     
         DrawableObject& operator=(const DrawableObject& other);
     
-        void            draw(SDL_Surface*);
+        virtual void    draw(SDL_Surface*);
 };
 
 #endif

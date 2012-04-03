@@ -34,9 +34,9 @@ DrawableObject::DrawableObject(const char* file, int x, int y) : Object(x, y)
  Input:
     other           DrawableObject& to be copied
  ******************************************************************************/
-DrawableObject::DrawableObject(const DrawableObject& other)
+DrawableObject::DrawableObject(const DrawableObject& other) : Object(other.pos.x, other.pos.y)
 {
-    
+    *image = *(other.image);
 }
 
 /*******************************************************************************
@@ -59,7 +59,7 @@ DrawableObject& DrawableObject::operator=(const DrawableObject& other)
 {
     if(&other != this)
     {
-        
+        *image = *(other.image);
     }
     
     return *this;

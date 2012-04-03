@@ -15,7 +15,8 @@ enum ObjType
     OBJECT              = 1,
     DRAWABLE_OBJECT     = 2,
     PHYSICAL_OBJECT     = 3,
-    CONTROLLABLE_OBJECT = 4
+    CONTROLLABLE_OBJECT = 4,
+    MULTI_OBJECT        = 5
 };
 
 class Object
@@ -29,13 +30,15 @@ class Object
         Object(const Object&);
         ~Object();
 
-        Object      operator=(const Object& other);
+        Object          operator=(const Object& other);
         
-        void        setType(ObjType type);
-        void        setPos(SDL_Rect p);
+        void            setType(ObjType type);
+        void            setPos(SDL_Rect p);
     
-        ObjType     getType();
-        SDL_Rect    getPos();
+        ObjType         getType();
+        SDL_Rect        getPos();
+    
+        virtual void    run();
 };
 
 #endif

@@ -9,6 +9,7 @@
 #include "Object.h"
 #include "DrawableObject.h"
 #include "PhysicalObject.h"
+#include "MultiObject.h"
 
 /*******************************************************************************
  Name:              Room
@@ -81,9 +82,9 @@ int Room::getNumObjects()
  ******************************************************************************/
 bool Room::load()
 {
-    object.push_back(new DrawableObject("TestA.bmp", 0, 0));
-    object.push_back(new DrawableObject("TestB.bmp", 80, 100));
-    object.push_back(new DrawableObject("TestC.bmp", 200, 150));
+    object.push_back(new MultiObject("TestA.bmp", 0, 0));
+    object.push_back(new MultiObject("TestB.bmp", 80, 200));
+    object.push_back(new MultiObject("TestC.bmp", 280, 150));
 
     return true;
 }

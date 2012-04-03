@@ -5,17 +5,13 @@
  Description:               This file defines the PhysicalObject class.
  ******************************************************************************/
 
-#include <iostream>
-
 #include "PhysicalObject.h"
-
-using namespace std;
 
 /*******************************************************************************
  Name:              PhysicalObject
  Description:       Primary constructor
  ******************************************************************************/
-PhysicalObject::PhysicalObject() : Object()
+PhysicalObject::PhysicalObject(int x, int y) : Object(x, y)
 {
     type = PHYSICAL_OBJECT;
     
@@ -33,9 +29,10 @@ PhysicalObject::PhysicalObject() : Object()
  Input:
  other           PhysicalObject& to be copied
  ******************************************************************************/
-PhysicalObject::PhysicalObject(const PhysicalObject& other)
+PhysicalObject::PhysicalObject(const PhysicalObject& other) : Object(other.pos.x, other.pos.y)
 {
-    
+    vel = other.vel;
+    acc = other.acc;
 }
 
 /*******************************************************************************
@@ -58,10 +55,39 @@ PhysicalObject& PhysicalObject::operator=(const PhysicalObject& other)
 {
     if(&other != this)
     {
-        
+        vel = other.vel;
+        acc = other.acc;
     }
     
     return *this;
+}
+
+/*******************************************************************************
+ MODIFIERS
+ Name:              setVel, setAcc
+ ******************************************************************************/
+void PhysicalObject::setVel(vect v)
+{
+    vel = v;
+}
+
+void PhysicalObject::setAcc(vect a)
+{
+    acc = a;
+}
+
+/*******************************************************************************
+ MODIFIERS
+ Name:              setVel, setAcc
+ ******************************************************************************/
+vect PhysicalObject::getVel()
+{
+    return vel;
+}
+
+vect PhysicalObject::getAcc()
+{
+    return acc;
 }
 
 /*******************************************************************************
