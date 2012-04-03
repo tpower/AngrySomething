@@ -11,7 +11,6 @@
 #include <cmath>
 
 #include "PhysicsEngine.h"
-#include "PhysicalObject.h"
 
 /*******************************************************************************
  Name:              PhysicsEngine
@@ -105,8 +104,11 @@ void PhysicsEngine::detectCollisions(Room& room)
                         else
                             sideB = sideA - 4;
                         
-                        handleCollision(pObj, sideA);
-                        handleCollision(pObj2, sideB);
+                        vect velA = pObj->getVel();
+                        vect velB = pObj2->getVel();
+                        
+                        handleCollision(pObj, velB, sideA);
+                        handleCollision(pObj2, velA, sideB);
                     }
                 }
             }
@@ -309,19 +311,19 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 /*******************************************************************************
  Name:              handleCollision
  ******************************************************************************/
-void PhysicsEngine::handleCollision(PhysicalObject* obj, int side)
+void PhysicsEngine::handleCollision(PhysicalObject* obj, vect vel, int side)
 {
     if(side != TOP && side != BOTTOM)
     {
         vect temp = obj->getVel();
-        temp.x *= -1;
+        temp.x = vel.x;
         obj->setVel(temp);
     }
     
     if(side != LEFT && side != RIGHT)
     {
         vect temp = obj->getVel();
-        temp.y *= -1;
+        temp.y = vel.y;
         obj->setVel(temp);
     }
 }
