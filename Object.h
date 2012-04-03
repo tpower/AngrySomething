@@ -15,7 +15,7 @@ enum ObjType
     OBJECT              = 1,
     DRAWABLE_OBJECT     = 2,
     PHYSICAL_OBJECT     = 3,
-    CONTROLLABLE_OBJECT = 4,
+    MECHANICS_OBJECT    = 4,
     MULTI_OBJECT        = 5
 };
 

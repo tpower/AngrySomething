@@ -16,6 +16,7 @@
 #include "Room.h"
 #include "GraphicsEngine.h"
 #include "PhysicsEngine.h"
+#include "MechanicsEngine.h"
 
 class Game
 {
@@ -23,6 +24,7 @@ class Game
         Room            room;
         GraphicsEngine  grph;
         PhysicsEngine   phys;
+        MechanicsEngine mech;
         bool            running;
     
     public:

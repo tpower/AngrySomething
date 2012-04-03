@@ -78,6 +78,7 @@ int Game::run()
 {
     while(running)
     {
+        mech.run(room);
         phys.run(room);
         grph.run(room);
     }
