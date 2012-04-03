@@ -17,8 +17,8 @@ PhysicalObject::PhysicalObject(int x, int y) : Object(x, y)
 {
     type = PHYSICAL_OBJECT;
     
-    vel.x = rand() % 2;
-    vel.y = rand() % 2;
+    vel.x = rand() % 5;
+    vel.y = rand() % 5;
     
     acc.x = 0;
     acc.y = 0;

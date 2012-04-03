@@ -188,16 +188,76 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     bool aBottom = true;
     bool aLeft   = true;
     
-    if(a.y > b.y) aTop  = false;
-    if(a.x > b.x) aLeft = false;
+//    if(a.y > b.y) aTop  = false;
+//    if(a.x > b.x) aLeft = false;
+//    
+//    if(aTop)
+//        if(a.y + a.h < b.y + b.h) aBottom = false;
+//    
+//    if(aLeft)
+//        if(a.x + a.w < b.x + b.w) aRight  = false;
     
-    if(aTop)
-        if(a.y + a.h < b.y + b.h) aBottom = false;
+    if(a.y > b.y) aBottom  = false;
+    if(a.x > b.x) aRight = false;
     
-    if(aLeft)
-        if(a.x + a.w < b.x + b.w) aRight  = false;
+    if(aBottom)
+        if(a.y + a.h < b.y + b.h) aTop = false;
     
-    if(aTop + aBottom + aRight + aLeft > 1)
+    if(aRight)
+        if(a.x + a.w < b.x + b.w) aLeft  = false;
+    
+//    if(aTop + aBottom + aRight + aLeft > 1)
+//    {
+//        double hDiff, wDiff;
+//        vect velA = obj->getVel();
+//        vect velB = obj2->getVel();
+//        
+//        if(aTop)
+//            hDiff = (b.y + b.h - a.y);
+//        else
+//            hDiff = (a.y + a.h - b.y);
+//        
+//        if(aLeft)
+//            wDiff = (b.x + b.w - a.x);
+//        else
+//            wDiff = (a.x + a.w - b.x);
+//        
+//        if(abs(velA.y) + abs(velB.y))
+//            hDiff /= abs(velA.y) + abs(velB.y);
+//        else
+//            hDiff = 0;
+//        
+//        if(abs(velA.x) + abs(velB.x))
+//            wDiff /= abs(velA.x) + abs(velB.x);
+//        else
+//            wDiff = 0;
+//        
+//        if(hDiff < wDiff)
+//            aTop = aBottom = false;
+//        else if(hDiff > wDiff)
+//            aLeft = aRight = false;
+//    }
+    
+    if(aTop + aBottom + aRight + aLeft == 3)
+    {
+        if(aTop && aBottom)
+            aTop = aBottom = false;
+        else
+            aLeft = aRight = false;
+    }
+    
+    if(aTop + aBottom + aRight + aLeft == 2)
+    {
+        vect velA = obj->getVel();
+        vect velB = obj2->getVel();
+        
+        if(velA.y <= velB.y) aBottom    = false;
+        if(velA.y >= velB.y) aTop       = false;
+        if(velA.x <= velB.x) aRight     = false;
+        if(velA.x >= velB.x) aLeft      = false;
+    }
+    
+    if(aTop + aBottom + aRight + aLeft == 2)
     {
         double hDiff, wDiff;
         vect velA = obj->getVel();
@@ -223,12 +283,13 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         else
             wDiff = 0;
         
-        if(hDiff < wDiff)
+        if(hDiff > wDiff)
             aTop = aBottom = false;
-        else if(hDiff > wDiff)
+        else if(hDiff < wDiff)
             aLeft = aRight = false;
     }
     
+    //return stuff
     if(aTop)
     {
         if(aLeft)   return TOP_LEFT;
