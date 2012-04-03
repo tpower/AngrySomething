@@ -56,7 +56,7 @@ void PhysicsEngine::runObjects(Room& room)
     {
         Object* obj = room.getObjectAt(i);
         
-        if(obj->getType() == PHYSICAL_OBJECT || obj->getType() == MULTI_OBJECT)
+        if(obj->isPhysical())
         {
             PhysicalObject *pObj = dynamic_cast<PhysicalObject*>(obj);
             
@@ -81,7 +81,7 @@ void PhysicsEngine::detectCollisions(Room& room)
     {
         Object* obj = room.getObjectAt(i);
         
-        if(obj->getType() == PHYSICAL_OBJECT || obj->getType() == MULTI_OBJECT)
+        if(obj->isPhysical())
         {
             PhysicalObject *pObj = dynamic_cast<PhysicalObject*>(obj);
             
@@ -89,7 +89,7 @@ void PhysicsEngine::detectCollisions(Room& room)
             {
                 Object* obj2 = room.getObjectAt(j);
                 
-                if(obj->getType() == PHYSICAL_OBJECT || obj->getType() == MULTI_OBJECT)
+                if(obj->isPhysical())
                 {
                     PhysicalObject *pObj2 = dynamic_cast<PhysicalObject*>(obj2);
                     

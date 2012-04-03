@@ -1,6 +1,12 @@
 
 #include "MechanicsObject.h"
 
+MechanicsObject::MechanicsObject()
+{
+    mechanical = true;
+    grabbed = false;
+}
+
 void MechanicsObject::handle(SDL_Event e)
 {
     if(e.type == SDL_MOUSEMOTION && grabbed)

@@ -11,7 +11,7 @@ void MechanicsEngine::run(Room& room)
         {
             Object* obj = room.getObjectAt(i);
             
-            if(obj->getType() == MECHANICS_OBJECT || obj->getType() == MULTI_OBJECT)
+            if(obj->isMechanical())
                 dynamic_cast<MechanicsObject*>(obj)->handle(event);
         }
     }

@@ -17,7 +17,7 @@
 class MultiObject : public DrawableObject, public PhysicalObject, public MechanicsObject
 {
     public:
-        MultiObject(const char* file, int x, int y);
+        MultiObject(const char* file, int x, int y, int vx, int vy);
         MultiObject(const MultiObject& other);
         ~MultiObject();
         

@@ -5,9 +5,6 @@
  Description:               This file defines the PhysicalObject class.
  ******************************************************************************/
 
-#include <cstdlib>
-#include <ctime>
-
 #include "PhysicalObject.h"
 
 const double GRAV = .3;
@@ -16,13 +13,12 @@ const double GRAV = .3;
  Name:              PhysicalObject
  Description:       Primary constructor
  ******************************************************************************/
-PhysicalObject::PhysicalObject(int x, int y) : Object(x, y)
+PhysicalObject::PhysicalObject(int x, int y)
 {
-    type = PHYSICAL_OBJECT;
+    physical = true;
     
-    srand((int)clock());
-    vel.x = rand() % 8;
-    vel.y = rand() % 8;
+    vel.x = x;
+    vel.y = y;
     
     acc.x = 0;
     acc.y = GRAV;     //gravity
@@ -119,7 +115,7 @@ void PhysicalObject::run()
 {
     vel.x += acc.x;
     vel.y += acc.y;
-    if(vel.y > 10) vel.y = 10;
+    if(vel.y > 10) vel.y = 10;  //terminal velocity
     
     acc.x = 0;
     acc.y = GRAV;

@@ -76,7 +76,7 @@ void GraphicsEngine::run(Room& room)
     {
         Object* obj = room.getObjectAt(i);
         
-        if(obj->getType() == DRAWABLE_OBJECT || obj->getType() == MULTI_OBJECT)
+        if(obj->isDrawable())
             (dynamic_cast<DrawableObject*>(obj))->draw(screen);
     }
     

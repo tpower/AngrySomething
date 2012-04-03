@@ -12,6 +12,7 @@ class MechanicsObject : virtual public Object
         bool grabbed;
     
     public:
+        MechanicsObject();
         virtual void handle(SDL_Event e);
 };
 

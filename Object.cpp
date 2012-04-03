@@ -13,12 +13,12 @@
  ******************************************************************************/
 Object::Object(int x, int y)
 {
-    type = OBJECT;
-    
     pos.x = x;
     pos.y = y;
     pos.w = 120;
     pos.h = 120;
+    
+    drawable = physical = mechanical = false;
 }
 
 /*******************************************************************************
@@ -27,7 +27,6 @@ Object::Object(int x, int y)
  ******************************************************************************/
 Object::Object(const Object& other)
 {
-    type    = other.type;
     pos     = other.pos;
 }
 
@@ -51,7 +50,6 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        type    = other.type;
         pos     = other.pos;
     }
     
@@ -62,11 +60,6 @@ Object Object::operator=(const Object& other)
  MUTATORS
  Name:              setType, setPos
  ******************************************************************************/
-void Object::setType(ObjType t)
-{
-    type = t;
-}
-
 void Object::setPos(SDL_Rect p)
 {
     pos = p;
@@ -76,14 +69,24 @@ void Object::setPos(SDL_Rect p)
  ACCESSORS
  Name:              getType, getPos
  ******************************************************************************/
-ObjType Object::getType()
-{
-    return type;
-}
-
 SDL_Rect Object::getPos()
 {
     return pos;
+}
+
+bool Object::isDrawable()
+{
+    return drawable;
+}
+
+bool Object::isPhysical()
+{
+    return physical;
+}
+
+bool Object::isMechanical()
+{
+    return mechanical;
 }
 
 /*******************************************************************************

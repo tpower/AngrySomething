@@ -33,13 +33,13 @@ class PhysicalObject : virtual public Object
     
         void    setVel(vect v);
         void    setAcc(vect a);
-        void    applyForce(int m, vect v);
         
         vect    getVel();
         vect    getAcc();
         int     getMass();
     
         virtual void    run();
+        virtual void    applyForce(int m, vect v);
 };
 
 #endif

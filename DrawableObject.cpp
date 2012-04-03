@@ -15,9 +15,9 @@ using namespace std;
  Name:              DrawableObject
  Description:       Primary constructor
  ******************************************************************************/
-DrawableObject::DrawableObject(const char* file, int x, int y) : Object(x, y)
+DrawableObject::DrawableObject(const char* file)
 {
-    type = DRAWABLE_OBJECT;
+    drawable = true;
     
     image = SDL_LoadBMP(file);
 
@@ -34,7 +34,7 @@ DrawableObject::DrawableObject(const char* file, int x, int y) : Object(x, y)
  Input:
     other           DrawableObject& to be copied
  ******************************************************************************/
-DrawableObject::DrawableObject(const DrawableObject& other) : Object(other.pos.x, other.pos.y)
+DrawableObject::DrawableObject(const DrawableObject& other)
 {
     *image = *(other.image);
 }
