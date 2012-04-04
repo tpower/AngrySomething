@@ -164,6 +164,15 @@ bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
     return true;
 }
 
+bool PhysicsEngine::doIntersect(circle a, circle b)
+{
+    int dist = sqrt(pow(a.cent.x + b.cent.x, 2) + pow(a.cent.y + b.cent.y, 2));
+    
+    if(dist <= a.rad + b.rad)
+        return true;
+    return false;
+}
+
 /*******************************************************************************
  Name:              doCollide
  Description:       Determines if two PhysicalObjects collided
@@ -301,4 +310,16 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         vect v = obj2->getVel();
         obj->applyForce(obj2->getMass(), v);
     }
+}
+
+void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2)
+{
+//    circle a, b;
+//    vect velB;
+//    double vf;
+//    
+//    double theta = 1 / tan((b.cent.x - a.cent.x) / (b.cent.y - a.cent.y));
+//    double lamda = 1 / tan(velB.x / velB.y);
+//    
+//    vf = obj2->getVel() * cos(theta - lamda);
 }
