@@ -5,13 +5,10 @@
  Description:               This file defines the Room class.
  ******************************************************************************/
 #include "Room.h"
-<<<<<<< HEAD
-=======
 #include "Object.h"
 #include "DrawableObject.h"
 #include "PhysicalObject.h"
 #include "MultiObject.h"
->>>>>>> upstream/TylerBranch
 
 /*******************************************************************************
  Name:              Room
@@ -84,15 +81,9 @@ int Room::getNumObjects()
  ******************************************************************************/
 bool Room::load()
 {
-<<<<<<< HEAD
-    object.push_back(new Object("TestA.bmp", 0, 0));
-    object.push_back(new Object("TestB.bmp", 80, 100));
-    object.push_back(new Object("TestC.bmp", 200, 150));
-=======
-    object.push_back(new MultiObject("TestA.bmp", 0, 0));
-    object.push_back(new MultiObject("TestB.bmp", 80, 200));
-    object.push_back(new MultiObject("TestC.bmp", 280, 150));
->>>>>>> upstream/TylerBranch
+    object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
+    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
+    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
 
     return true;
 }

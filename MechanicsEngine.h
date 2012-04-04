@@ -1,6 +1,6 @@
 #ifndef MECHANICSENGINE_H
 #define MECHANICSENGINE_H
-#include "Object.h"
+#include <SDL/SDL.h>
 #include "Room.h"
 
 class MechanicsEngine
@@ -11,4 +11,4 @@ class MechanicsEngine
         void run(Room& room);
 };
 
-#endif // MECHANICSENGINE
+#endif

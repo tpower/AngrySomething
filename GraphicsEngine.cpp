@@ -86,7 +86,7 @@ void GraphicsEngine::run(Room& room)
         obj->draw(screen);
 =======
         
-        if(obj->getType() == DRAWABLE_OBJECT || obj->getType() == MULTI_OBJECT)
+        if(obj->isDrawable())
             (dynamic_cast<DrawableObject*>(obj))->draw(screen);
 >>>>>>> upstream/TylerBranch
     }

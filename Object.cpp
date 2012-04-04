@@ -10,31 +10,15 @@
  Name:              Object
  Description:       Default constructor for Object class
  ******************************************************************************/
-Object::Object(const char* file, int x, int y)
-{
-    type = OBJECT;
 
+Object::Object(int x, int y, int w, int h)
+{
     pos.x = x;
     pos.y = y;
-<<<<<<< HEAD
-    pos.w = 60;
-    pos.h = 60;
+    pos.w = w;
+    pos.h = h;
 
-    vec.xvel = 1;
-    vec.yvel = 1;
-
-    grabbed = false;
-
-    image = SDL_LoadBMP(file);
-
-    if(!image)
-    {
-        cout << SDL_GetError() << endl;
-    }
-=======
-    pos.w = 120;
-    pos.h = 120;
->>>>>>> upstream/TylerBranch
+    drawable = physical = mechanical = false;
 }
 
 /*******************************************************************************
@@ -43,8 +27,7 @@ Object::Object(const char* file, int x, int y)
  ******************************************************************************/
 Object::Object(const Object& other)
 {
-    type    = other.type;
-    pos     = other.pos;
+    pos = other.pos;
 }
 
 /*******************************************************************************
@@ -67,8 +50,7 @@ Object Object::operator=(const Object& other)
 {
     if(&other != this)
     {
-        type    = other.type;
-        pos     = other.pos;
+        pos = other.pos;
     }
 
     return *this;
@@ -83,11 +65,6 @@ vect Object::getVect()
  MUTATORS
  Name:              setType, setPos
  ******************************************************************************/
-void Object::setType(ObjType t)
-{
-    type = t;
-}
-
 void Object::setPos(SDL_Rect p)
 {
     pos = p;
@@ -102,14 +79,24 @@ void Object::setVect(vect v)
  ACCESSORS
  Name:              getType, getPos
  ******************************************************************************/
-ObjType Object::getType()
-{
-    return type;
-}
-
 SDL_Rect Object::getPos()
 {
     return pos;
+}
+
+bool Object::isDrawable()
+{
+    return drawable;
+}
+
+bool Object::isPhysical()
+{
+    return physical;
+}
+
+bool Object::isMechanical()
+{
+    return mechanical;
 }
 
 /*******************************************************************************
@@ -162,18 +149,4 @@ void Object::update(SDL_Event event)
         }
     }
 
-}
-
-void Object::move()
-{
-    pos.x += vec.xvel;
-    pos.y += vec.yvel;
-=======
- Name:              run
- Description:       ??????
- ******************************************************************************/
-void Object::run()
-{
-    
->>>>>>> upstream/TylerBranch
 }

@@ -1,4 +1,6 @@
 #include "MechanicsEngine.h"
+#include "Object.h"
+#include "MechanicsObject.h"
 
 void MechanicsEngine::run(Room& room)
 {
@@ -7,7 +9,9 @@ void MechanicsEngine::run(Room& room)
         for(int i = 0; i < room.getNumObjects(); i++)
         {
             Object* obj = room.getObjectAt(i);
-            obj->update(event);
+
+            if(obj->isMechanical())
+                dynamic_cast<MechanicsObject*>(obj)->handle(event);
         }
     }
 }
