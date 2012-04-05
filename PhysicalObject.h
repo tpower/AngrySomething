@@ -40,6 +40,8 @@ class PhysicalObject : virtual public Object
     
         virtual void    run();
         virtual void    applyForce(int m, vect v);
+    
+        void            move();
 };
 
 #endif

@@ -83,9 +83,9 @@ void PhysicalObject::setAcc(vect a)
 void PhysicalObject::applyForce(int m, vect v)
 {
     if(v.x)
-        acc.x = ((m * (v.x - vel.x)) / mass);
+        acc.x = ((m * (v.x - vel.x)) / mass) * .8;
     if(v.y)
-        acc.y = ((m * (v.y - vel.y)) / mass);
+        acc.y = ((m * (v.y - vel.y)) / mass) * .8;
 }
 
 /*******************************************************************************
@@ -113,12 +113,19 @@ int PhysicalObject::getMass()
  ******************************************************************************/
 void PhysicalObject::run()
 {
+    move();
+}
+
+void PhysicalObject::move()
+{
     vel.x += acc.x;
     vel.y += acc.y;
-    if(vel.y > 10) vel.y = 10;  //terminal velocity
+//    if(vel.y > 10) vel.y = 10;  //terminal velocity
+    if(abs(vel.x) < .3) vel.x = 0;
     
     acc.x = 0;
     acc.y = GRAV;
+    acc.x = 0;
     
     pos.x += vel.x;
     pos.y += vel.y;

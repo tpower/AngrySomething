@@ -124,19 +124,27 @@ void PhysicsEngine::detectCollisions(Room& room)
  ******************************************************************************/
 void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 {
-    //bounce off left/right wall
-    if(pObj->getPos().x <= 0 || pObj->getPos().x + pObj->getPos().w >= 640)
+    SDL_Rect pos = pObj->getPos();          //get position
+    
+    if(pos.x <= 0 || pos.x + pos.w >= 640)  //bounce off left/right wall
     {
+        if(pos.x <= 0) pos.x = 1;
+        else pos.x = 640 - pos.w - 1;           //adjust position
+        pObj->setPos(pos);
+        
         vect temp = pObj->getVel();
-        temp.x *= -1;
+        temp.x *= -.8;                           //adjust velocity
         pObj->setVel(temp);
     }
     
-    //bounce off top/bottom wall
-    if(pObj->getPos().y <= 0 || pObj->getPos().y + pObj->getPos().h >= 480)
+    if(pos.y <= 0 || pos.y + pos.h >= 480)  //bounce off top/bottom wall
     {
+        if(pos.y <= 0) pos.y = 1;
+        else pos.y = 480 - pos.h - 1;           //adjust position
+        pObj->setPos(pos);
+        
         vect temp = pObj->getVel();
-        temp.y *= -1;
+        temp.y *= -.8;                           //adjust velocity
         pObj->setVel(temp);
     }
 }
@@ -166,11 +174,11 @@ bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
 
 bool PhysicsEngine::doIntersect(circle a, circle b)
 {
-    int dist = sqrt(pow(a.cent.x + b.cent.x, 2) + pow(a.cent.y + b.cent.y, 2));
-    
-    if(dist <= a.rad + b.rad)
-        return true;
-    return false;
+//    int dist = sqrt(pow(a.cent.x + b.cent.x, 2) + pow(a.cent.y + b.cent.y, 2));
+//    
+//    if(dist <= a.rad + b.rad)
+//        return true;
+//    return false;
 }
 
 /*******************************************************************************
@@ -205,15 +213,13 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     bool aBottom = true;
     bool aLeft   = true;
     
-    //evaluate initial collision sides
-    if(a.y > b.y) aBottom  = false;                 //aTop  = false;
-    if(a.x > b.x) aRight = false;                   //aLeft = false;
-    if(aBottom)
-        if(a.y + a.h < b.y + b.h) aTop = false;     //aBottom = false;
-    if(aRight)
-        if(a.x + a.w < b.x + b.w) aLeft  = false;   //aRight  = false;
+    //evaluate initial collision sides  -- DONT CHANGE
+    if(a.y > b.y) aBottom  = false;
+    if(a.x > b.x) aRight = false;
+    if(a.y + a.h < b.y + b.h) aTop = false;
+    if(a.x + a.w < b.x + b.w) aLeft  = false;
     
-    //evaluate impossible 3-side collision case
+    //evaluate impossible 3-side collision case -- DONT CHANGE
     if(aTop + aBottom + aRight + aLeft == 3)
     {
         if(aTop && aBottom)
@@ -228,10 +234,37 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         vect velA = obj->getVel();
         vect velB = obj2->getVel();
         
-        if(velA.y <= velB.y) aBottom    = false;
-        if(velA.y >= velB.y) aTop       = false;
-        if(velA.x <= velB.x) aRight     = false;
-        if(velA.x >= velB.x) aLeft      = false;
+        if(velA.y && velB.y)
+        {
+            if(velA.y <= velB.y) aBottom    = false;
+            if(velA.y >= velB.y) aTop       = false;
+        }
+        else
+        {
+            if(velA.y - velB.y > 0) aTop    = false;
+            if(velA.y - velB.y < 0) aBottom = false;
+            
+            if(velA.y - velB.y == 0) aTop = aBottom = false;
+        }
+        
+        if(velA.x && velB.x)
+        {
+            if(velA.x <= velB.x) aRight     = false;
+            if(velA.x >= velB.x) aLeft      = false;
+        }
+        else
+        {
+            if(velA.x - velB.x > 0) aLeft   = false;
+            if(velA.x - velB.x < 0) aRight  = false;
+            
+            if(velA.x - velB.x == 0) aLeft = aRight = false;
+        }
+        
+//        if(velA.y <= velB.y) aBottom    = false;
+//        if(velA.y >= velB.y) aTop       = false;
+//        
+//        if(velA.x <= velB.x) aRight     = false;
+//        if(velA.x >= velB.x) aLeft      = false;
     }
     
     //evaluate outstanding corner case

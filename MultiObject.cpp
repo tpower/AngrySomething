@@ -2,7 +2,7 @@
  Filename:                  MultiObject.h
  Classname:                 MultiObject
  
- Description:               This file declares the MultiObject class. This class
+ Description:               This file defines the MultiObject class. This class
                             is a simple object used to test multiple inheritance
                             between different object types.
  ******************************************************************************/
