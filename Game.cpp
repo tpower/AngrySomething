@@ -5,22 +5,17 @@
  Description:               This file defines the Game class. This class will
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
-                            between the Room and the View
+                            between the Physics and Graphics Engines.
  ******************************************************************************/
-
 #include "Game.h"
-#include "Room.h"
-#include "View.h"
 
 /*******************************************************************************
  Name:              Game
  Description:       Default constructor for Game class
  ******************************************************************************/
-Game::Game() : Base(GAME)
+Game::Game()
 {
-    room = new Room;
-    view = new View;
-    running = true;
+    running = false;
 }
 
 /*******************************************************************************
@@ -30,11 +25,9 @@ Game::Game() : Base(GAME)
  Input:
     other           Game object to be copied
  ******************************************************************************/
-Game::Game(const Game& other) : Base(GAME)
+Game::Game(const Game& other)
 {
-    *room = *(other.room);
-    *view = *(other.view);
-    running = other.running;
+
 }
 
 /*******************************************************************************
@@ -43,10 +36,7 @@ Game::Game(const Game& other) : Base(GAME)
  ******************************************************************************/
 Game::~Game()
 {
-    if(room) delete room;
-    if(view) delete view;
 
-    SDL_Quit();
 }
 
 /*******************************************************************************
@@ -60,92 +50,20 @@ Game Game::operator=(const Game& other)
 {
     if(&other != this)
     {
-        *room = *(other.room);
-        *view = *(other.view);
-        running = other.running;
+
     }
 
     return *this;
 }
 
 /*******************************************************************************
- ACCESSORS
- Name:              getRoom, getView, getRunning
- ******************************************************************************/
-Room* Game::getRoom()
-{
-    return room;
-}
-
-View* Game::getView()
-{
-    return view;
-}
-
-bool Game::getRunning()
-{
-    return running;
-}
-
-/*******************************************************************************
  Name:              init
  Description:       This method handles any initialization involved before the
                     run loop begins
- Input:
-    roomNum         int representing roomNumber to load
  ******************************************************************************/
-void Game::init(int roomNum)
+void Game::init()
 {
-    //open game file
-    fstream file("SavedGame_032112.gel", ios::in | ios::binary);
-    int numRooms, roomLoc;
-
-    if(!file)
-    {
-        running = false;
-        return;
-    }
-
-    //Read number of rooms and check validity of room request
-    file.read(reinterpret_cast<char*>(&numRooms), sizeof(numRooms));
-    if(roomNum >= numRooms)
-    {
-        running = false;
-        return;
-    }
-
-    //Move cursor to location of requested room
-    file.seekg((sizeof(roomLoc) * roomNum), ios::cur);
-    file.read(reinterpret_cast<char*>(&roomLoc), sizeof(roomLoc));
-    file.seekg(roomLoc, ios::beg);
-
-    //load room
-    running = room->load(file);
-    file.close();
-}
-
-/*******************************************************************************
- Name:              save
- Description:       This method saves the current state of the game
-
- Output:
-    returns         bool representing the success of the save
- ******************************************************************************/
-bool Game::save()
-{
-    //open save file
-    fstream file("SavedGame_032112.gel", ios::out | ios::binary);
-    if(!file) return false;
-    
-    int numRooms = 1;
-    int roomLoc;
-    file.write(reinterpret_cast<char*>(&numRooms), sizeof(numRooms));
-    roomLoc = (int)file.tellg() + sizeof(roomLoc);
-    file.write(reinterpret_cast<char*>(&roomLoc), sizeof(roomLoc));
-    file.seekg(roomLoc, ios::beg);
-    
-    //save room
-    return room->save(file);
+    running = room.load();
 }
 
 /*******************************************************************************
@@ -159,23 +77,12 @@ int Game::run()
 {
     while(running)
     {
-        GameState temp = room->update();
-
-        if(temp.roomNum != state.roomNum)
-        {
-            init(temp.roomNum);
-        }
-        else
-        {
-            for(int i = 0; i < room->getNumObjects(); i++)
-            {
-                view->draw(&(room->getObjectAt(i)));
-            }
-            
-            view->update();
-        }
+        mech.run(room);
+        phys.run(room);
+        grph.run(room);
+        SDL_Delay(20);
     }
 
-    return state.eleState;
+    return 0;
 }
 

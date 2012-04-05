@@ -5,28 +5,27 @@
  Description:               This file declares the Game class. This class will
                             be the controller for the game. It is in charge of
                             running the game loop and handling communication
-                            between the Room and the View
+                            between the Physics and Graphics Engines.
  ******************************************************************************/
 
 #ifndef AngrySomething_Game_h
 #define AngrySomething_Game_h
 
-#include <fstream>
 #include <SDL/SDL.h>
 
-#include "Base.h"
+#include "Room.h"
+#include "GraphicsEngine.h"
+#include "PhysicsEngine.h"
+#include "MechanicsEngine.h"
 
-class Room;
-class View;
-
-using namespace std;
-
-class Game : public Base
+class Game
 {
     private:
-        Room *room;
-        View *view;
-        bool running;
+        Room            room;
+        GraphicsEngine  grph;
+        PhysicsEngine   phys;
+        MechanicsEngine mech;
+        bool            running;
     
     public:
         Game();
@@ -35,12 +34,7 @@ class Game : public Base
     
         Game    operator=(const Game& other);
     
-        Room*   getRoom();
-        View*   getView();
-        bool    getRunning();
-    
-        void    init(int roomNum = 0);
-        bool    save();
+        void    init();
         int     run();
 };
 

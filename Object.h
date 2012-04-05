@@ -2,61 +2,37 @@
  Filename:                  Object.h
  Classname:                 Object
 
- Description:               This file declares the Object class. The Object
-                            class holds the components that define the objects
-                            in the game.
+ Description:               This file declares the Object class.
  ******************************************************************************/
 
 #ifndef AngrySomething_Object_h
 #define AngrySomething_Object_h
 
 #include <SDL/SDL.h>
-#include <string>
-#include <fstream>
 
-#include "Base.h"
-
-using namespace std;
-
-struct vect
+class Object
 {
-    int x, y;
-};
-
-class Object : public Base
-{
-    private:
-        SDL_Rect    pos;        //bounding box
-        vect        vel;        //velocity vector
-        vect        acc;        //acceleration vector
-        SDL_Rect    frame;      //current frame within sprite sheet
-        string      filePath;   //file for sprite sheet
-        SDL_Surface *image;     //sprite sheet
+    protected:
+        SDL_Rect    pos;
+        bool        drawable;
+        bool        physical;
+        bool        mechanical;
         
-    
     public:
-        Object();
+        Object(int x = 0, int y = 0, int w = 0, int h = 0);
         Object(const Object&);
         ~Object();
 
-        Object      operator=(const Object& other);
-    
-        void        setPos(SDL_Rect p);
-        void        setVel(vect v);
-        void        setAcc(vect a);
-        void        setFrame(SDL_Rect f);
-        void        setFilePath(string p);
+        Object          operator=(const Object& other);
+        
+        void            setPos(SDL_Rect p);
     
         SDL_Rect        getPos();
-        vect            getVel();
-        vect            getAcc();
-        SDL_Rect        getFrame();
-        string          getFilePath();
-        SDL_Surface*    getImage();
-
-        bool        load(fstream& file);
-        bool        save(fstream& file);
-        GameState   update();
+        bool            isDrawable();
+        bool            isPhysical();
+        bool            isMechanical();
+    
+        virtual void    run();
 };
 
 #endif

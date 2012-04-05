@@ -2,45 +2,36 @@
  Filename:                  Room.h
  Classname:                 Room
 
- Description:               This file declares the Room class. The Room class
-                            acts as the model for the Game. It holds state for
-                            the game, holds the objects currently in the game,
-                            and handles saving and loading the game.
+ Description:               This file declares the Room class.
  ******************************************************************************/
 
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
 
-#include <string>
-#include <fstream>
-
-#include "Base.h"
+#include <vector>
 
 class Object;
 
 using namespace std;
 
-class Room : public Base
+class Room
 {
     private:
-        Object      *object;
-        int         numObjects;
+        vector<Object*> object;
 
     public:
         Room();
         Room(const Room&);
         ~Room();
 
-        Room        operator=(const Room& other);
+        Room                operator=(const Room& other);
 
-        Object&     getObjectAt(int);
-        int         getNumObjects();
+        Object*             getObjectAt(int);
+        int                 getNumObjects();
 
-        void        removeObjectAt(int);
+        bool                load();
+        void                add(Object*);
 
-        bool        load(fstream& file);
-        bool        save(fstream& file);
-        GameState   update();
 };
 
 #endif
