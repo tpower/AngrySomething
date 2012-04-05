@@ -14,8 +14,9 @@
  Description:       constructor
 ******************************************************************************/
 Slingshot::Slingshot(const char* file, int x, int y)
-    :   DrawableObject(file),
-        Object(x, y, 180, 150)
+    :   Object(x, y, 180, 150),
+        DrawableObject(file)
+
 {
 
 }

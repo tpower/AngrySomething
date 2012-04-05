@@ -23,9 +23,10 @@ class Sling : public DrawableObject, public MechanicsObject
         SDL_Rect bounds;
         bool checkBounds(SDL_Event);
         MultiObject* createMonkey(int, int, int, int);
+        SDL_Rect Slingshot;
 
     public:
-        Sling(const char* file, int x, int y);
+        Sling(const char* file1, int x, int y);
         ~Sling();
 
         Object* handle(SDL_Event);

@@ -19,10 +19,13 @@
     x, y            The x and y coordinates of the object
  ******************************************************************************/
 Sling::Sling(const char* file, int x, int y)
-    :   DrawableObject(file),
-        MechanicsObject(),
-        Object(x, y, 180, 150)
+    :   Object(x, y, 180, 150),
+        DrawableObject(file),
+        MechanicsObject()
+
 {
+    Slingshot.x = x - 25;
+    Slingshot.y = y;
     bounds.x = x - 75;
     bounds.w = x + 75;
     bounds.y = y - 75;
@@ -110,7 +113,7 @@ Object* Sling::handle(SDL_Event e)
         {
             if(e.button.button == SDL_BUTTON_LEFT)
             {
-                monk = createMonkey(pos.x, pos.y, 1, 1);
+                monk = createMonkey(pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
                 pos.x = centerX;
                 pos.y = centerY;
 
@@ -130,8 +133,11 @@ Object* Sling::handle(SDL_Event e)
  ******************************************************************************/
 void Sling::draw(SDL_Surface* s)
 {
+    SDL_Surface* SlingshotIMG;
+    SlingshotIMG = SDL_LoadBMP("Slingshot.bmp");
     static SDL_Rect loc;
     loc = pos;
 
+    SDL_BlitSurface(SlingshotIMG, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);
 }
