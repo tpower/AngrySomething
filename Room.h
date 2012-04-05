@@ -4,10 +4,13 @@
 
  Description:               This file declares the Room class.
  ******************************************************************************/
+
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
+
 #include <vector>
-#include "Object.h"
+
+class Object;
 
 using namespace std;
 
@@ -27,6 +30,7 @@ class Room
         int                 getNumObjects();
 
         bool                load();
+        void                add(Object*);
 
 };
 

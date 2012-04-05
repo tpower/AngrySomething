@@ -1,7 +1,7 @@
 /*******************************************************************************
  Filename:                  DrawableObject.cpp
  Classname:                 DrawableObject
- 
+
  Description:               This file defines the DrawableObject class.
  ******************************************************************************/
 
@@ -18,7 +18,7 @@ using namespace std;
 DrawableObject::DrawableObject(const char* file)
 {
     drawable = true;
-    
+
     image = SDL_LoadBMP(file);
 
     if(!image)
@@ -30,7 +30,7 @@ DrawableObject::DrawableObject(const char* file)
 /*******************************************************************************
  Name:              DrawableObject
  Description:       Copy constructor
- 
+
  Input:
     other           DrawableObject& to be copied
  ******************************************************************************/
@@ -51,7 +51,7 @@ DrawableObject::~DrawableObject()
 /*******************************************************************************
  Name:              operator=
  Description:       Overloaded assignment operator
- 
+
  Input:
     other           DrawableObject& to be copied
  ******************************************************************************/
@@ -61,14 +61,14 @@ DrawableObject& DrawableObject::operator=(const DrawableObject& other)
     {
         *image = *(other.image);
     }
-    
+
     return *this;
 }
 
 /*******************************************************************************
  Name:              draw
  Description:       Draws the Object to the given SDL_Surface*
- 
+
  Input:
     s               SDL_Surface* to be drawn onto
  ******************************************************************************/
@@ -76,6 +76,6 @@ void DrawableObject::draw(SDL_Surface* s)
 {
     static SDL_Rect loc;
     loc = pos;
-    
+
     SDL_BlitSurface(image, &pos, s, &loc);
 }

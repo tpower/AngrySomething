@@ -7,7 +7,6 @@
                             running the game loop and handling communication
                             between the Physics and Graphics Engines.
  ******************************************************************************/
-
 #include "Game.h"
 
 /*******************************************************************************
@@ -81,8 +80,7 @@ int Game::run()
         mech.run(room);
         phys.run(room);
         grph.run(room);
-        mech.run(room);
-        SDL_Delay(2);
+        SDL_Delay(20);
     }
 
     return 0;
