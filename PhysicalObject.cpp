@@ -5,23 +5,25 @@
  Description:               This file defines the PhysicalObject class.
  ******************************************************************************/
 
-#include <cstdlib>
-
 #include "PhysicalObject.h"
+
+const double GRAV = .3;
 
 /*******************************************************************************
  Name:              PhysicalObject
  Description:       Primary constructor
  ******************************************************************************/
-PhysicalObject::PhysicalObject(int x, int y) : Object(x, y)
+PhysicalObject::PhysicalObject(int x, int y)
 {
-    type = PHYSICAL_OBJECT;
+    physical = true;
     
-    vel.x = rand() % 2;
-    vel.y = rand() % 2;
+    vel.x = x;
+    vel.y = y;
     
     acc.x = 0;
-    acc.y = 0;
+    acc.y = GRAV;     //gravity
+    
+    mass = pos.w * pos.h;
 }
 
 /*******************************************************************************
@@ -78,6 +80,14 @@ void PhysicalObject::setAcc(vect a)
     acc = a;
 }
 
+void PhysicalObject::applyForce(int m, vect v)
+{
+    if(v.x)
+        acc.x = ((m * (v.x - vel.x)) / mass);
+    if(v.y)
+        acc.y = ((m * (v.y - vel.y)) / mass);
+}
+
 /*******************************************************************************
  MODIFIERS
  Name:              setVel, setAcc
@@ -92,6 +102,11 @@ vect PhysicalObject::getAcc()
     return acc;
 }
 
+int PhysicalObject::getMass()
+{
+    return mass;
+}
+
 /*******************************************************************************
  Name:              run
  Description:       ????????
@@ -100,6 +115,10 @@ void PhysicalObject::run()
 {
     vel.x += acc.x;
     vel.y += acc.y;
+    if(vel.y > 10) vel.y = 10;  //terminal velocity
+    
+    acc.x = 0;
+    acc.y = GRAV;
     
     pos.x += vel.x;
     pos.y += vel.y;

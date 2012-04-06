@@ -18,7 +18,7 @@ class DrawableObject : virtual public Object
         SDL_Surface* image;
     
     public:
-        DrawableObject(const char* file, int x = 0, int y = 0);
+        DrawableObject(const char* file);
         DrawableObject(const DrawableObject& other);
         ~DrawableObject();
     

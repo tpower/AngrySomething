@@ -10,33 +10,27 @@
 
 #include <SDL/SDL.h>
 
-enum ObjType
-{
-    OBJECT              = 1,
-    DRAWABLE_OBJECT     = 2,
-    PHYSICAL_OBJECT     = 3,
-    CONTROLLABLE_OBJECT = 4,
-    MULTI_OBJECT        = 5
-};
-
 class Object
 {
     protected:
-        ObjType     type;
         SDL_Rect    pos;
+        bool        drawable;
+        bool        physical;
+        bool        mechanical;
         
     public:
-        Object(int x = 0, int y = 0);
+        Object(int x = 0, int y = 0, int w = 0, int h = 0);
         Object(const Object&);
         ~Object();
 
         Object          operator=(const Object& other);
         
-        void            setType(ObjType type);
         void            setPos(SDL_Rect p);
     
-        ObjType         getType();
         SDL_Rect        getPos();
+        bool            isDrawable();
+        bool            isPhysical();
+        bool            isMechanical();
     
         virtual void    run();
 };
