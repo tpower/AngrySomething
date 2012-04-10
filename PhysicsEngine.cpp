@@ -99,14 +99,17 @@ void PhysicsEngine::detectCollisions(Room& room)
                         
                         //evaluate side of collision for both objects
                         sideA = sideOfCollision(pObj, pObj2);
-                        if(sideA - 4 <= 0)
-                            sideB = sideA + 4;
-                        else
-                            sideB = sideA - 4;
-                        
-                        //react to collision
-                        handleCollision(pObj, pObj2, sideA);
-                        handleCollision(pObj2, pObj, sideB);
+                        if(sideA)
+                        {
+                            if(sideA - 4 <= 0)
+                                sideB = sideA + 4;
+                            else
+                                sideB = sideA - 4;
+                            
+                            //react to collision
+                            handleCollision(pObj, pObj2, sideA);
+                            handleCollision(pObj2, pObj, sideB);
+                        }
                     }
                 }
             }
@@ -178,7 +181,7 @@ bool PhysicsEngine::doIntersect(circle a, circle b)
 //    
 //    if(dist <= a.rad + b.rad)
 //        return true;
-//    return false;
+    return false;
 }
 
 /*******************************************************************************
@@ -228,77 +231,133 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
             aLeft = aRight = false;
     }
     
+    if(aTop + aBottom + aRight + aLeft == 2)
+    {
+        vect velA = obj->getVel();
+        vect velB = obj2->getVel();
+        
+        //avoid getting trapped within objects
+        if(velA.x > 0 && velB.x < 0) aLeft      = false;
+        if(velA.x < 0 && velB.x > 0) aRight     = false;
+        if(velA.y > 0 && velB.y < 0) aTop       = false;
+        if(velA.y < 0 && velB.y > 0) aBottom    = false;
+        
+        if(velA.x == velB.x) aLeft = aRight = false;
+        if(velA.y == velB.y) aTop = aBottom = false;
+        
+        if(!velA.x && !velB.x && (a.x == b.x + b.w || a.x == b.x - a.w))
+            aLeft = aRight = aTop = aBottom = false;
+        if(!velA.y && !velB.y && (a.y == b.y + b.h || a.y == b.y - a.h))
+            aLeft = aRight = aTop = aBottom = false;
+    }
+    
     //evaluate corner case
     if(aTop + aBottom + aRight + aLeft == 2)
     {
         vect velA = obj->getVel();
         vect velB = obj2->getVel();
         
-        if(velA.y && velB.y)
+        double tx, ty;
+        
+        if(aTop)
         {
-            if(velA.y <= velB.y) aBottom    = false;
-            if(velA.y >= velB.y) aTop       = false;
+            ty = abs(a.y - (b.y + b.h)) / abs(velA.y - velB.y);
         }
-        else
+        else if(aBottom)
         {
-            if(velA.y - velB.y > 0) aTop    = false;
-            if(velA.y - velB.y < 0) aBottom = false;
-            
-            if(velA.y - velB.y == 0) aTop = aBottom = false;
+            ty = abs((a.y + a.h) - b.y) / abs(velA.y - velB.y);
         }
         
-        if(velA.x && velB.x)
+        if(aLeft)
         {
-            if(velA.x <= velB.x) aRight     = false;
-            if(velA.x >= velB.x) aLeft      = false;
+            tx = abs(a.x - (b.x + b.w)) / abs(velA.x - velB.x);
         }
-        else
+        else if(aRight)
         {
-            if(velA.x - velB.x > 0) aLeft   = false;
-            if(velA.x - velB.x < 0) aRight  = false;
-            
-            if(velA.x - velB.x == 0) aLeft = aRight = false;
+            tx = abs((a.x + a.w) - b.x) / abs(velA.x - velB.x);
         }
+        
+        if(ty > tx)
+        {
+            aTop = aBottom = false;
+        }
+        else if(ty < tx)
+        {
+            aLeft = aRight = false;
+        }
+    }
+//        if(velA.y < velB.y)     aBottom         = false;
+//        if(velA.y > velB.y)     aTop            = false;
+//        if(velA.y == velB.y)    aBottom = aTop  = false;
+//        
+//        if(velA.x < velB.x)     aRight          = false;
+//        if(velA.x > velB.x)     aLeft           = false;
+//        if(velA.x == velB.x)    aRight = aLeft  = false;
+        
+//        if(velA.y && velB.y)
+//        {
+//            if(velA.y <= velB.y) aBottom    = false;
+//            if(velA.y >= velB.y) aTop       = false;
+//        }
+//        else
+//        {
+//            if(velA.y - velB.y > 0) aTop    = false;
+//            if(velA.y - velB.y < 0) aBottom = false;
+//            
+//            if(velA.y - velB.y == 0) aTop = aBottom = false;
+//        }
+//        
+//        if(velA.x && velB.x)
+//        {
+//            if(velA.x <= velB.x) aRight     = false;
+//            if(velA.x >= velB.x) aLeft      = false;
+//        }
+//        else
+//        {
+//            if(velA.x - velB.x > 0) aLeft   = false;
+//            if(velA.x - velB.x < 0) aRight  = false;
+//            
+//            if(velA.x - velB.x == 0) aLeft = aRight = false;
+//        }
         
 //        if(velA.y <= velB.y) aBottom    = false;
 //        if(velA.y >= velB.y) aTop       = false;
 //        
 //        if(velA.x <= velB.x) aRight     = false;
 //        if(velA.x >= velB.x) aLeft      = false;
-    }
     
-    //evaluate outstanding corner case
-    if(aTop + aBottom + aRight + aLeft == 2)
-    {
-        double hDiff, wDiff;
-        vect velA = obj->getVel();
-        vect velB = obj2->getVel();
-        
-        if(aTop)
-            hDiff = (b.y + b.h - a.y);
-        else
-            hDiff = (a.y + a.h - b.y);
-        
-        if(aLeft)
-            wDiff = (b.x + b.w - a.x);
-        else
-            wDiff = (a.x + a.w - b.x);
-        
-        if(abs(velA.y) + abs(velB.y))
-            hDiff /= abs(velA.y) + abs(velB.y);
-        else
-            hDiff = 0;
-        
-        if(abs(velA.x) + abs(velB.x))
-            wDiff /= abs(velA.x) + abs(velB.x);
-        else
-            wDiff = 0;
-        
-        if(hDiff > wDiff)
-            aTop = aBottom = false;
-        else if(hDiff < wDiff)
-            aLeft = aRight = false;
-    }
+//    //evaluate outstanding corner case
+//    if(aTop + aBottom + aRight + aLeft == 2)
+//    {
+//        double hDiff, wDiff;
+//        vect velA = obj->getVel();
+//        vect velB = obj2->getVel();
+//        
+//        if(aTop)
+//            hDiff = (b.y + b.h - a.y);
+//        else
+//            hDiff = (a.y + a.h - b.y);
+//        
+//        if(aLeft)
+//            wDiff = (b.x + b.w - a.x);
+//        else
+//            wDiff = (a.x + a.w - b.x);
+//        
+//        if(abs(velA.y) + abs(velB.y))
+//            hDiff /= abs(velA.y) + abs(velB.y);
+//        else
+//            hDiff = 0;
+//        
+//        if(abs(velA.x) + abs(velB.x))
+//            wDiff /= abs(velA.x) + abs(velB.x);
+//        else
+//            wDiff = 0;
+//        
+//        if(hDiff > wDiff)
+//            aTop = aBottom = false;
+//        else if(hDiff < wDiff)
+//            aLeft = aRight = false;
+//    }
     
     //return collision code
     if(aTop)
@@ -313,8 +372,9 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         if(aRight)  return BOTTOM_RIGHT;
         return BOTTOM;
     }
-    if(aLeft) return LEFT;
-    return RIGHT;
+    if(aLeft)   return LEFT;
+    if(aRight)  return RIGHT;
+    return NO_COLLISION;
 }
 
 /*******************************************************************************
@@ -322,26 +382,32 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
  ******************************************************************************/
 void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, int side)
 {
-    //react to horizontal collision
     if(side == TOP || side == BOTTOM)
     {
+        SDL_Rect a = obj->getPos();
+        if(side == TOP) a.y++;
+        else a.y--;
+        obj->setPos(a);
+        
         vect v = obj2->getVel();
         v.x = 0;
-        obj->applyForce(obj2->getMass(), v);
+        obj->applyForce(obj2->getMass(), v, 1);
     }
-    
-    //react to vertical collision
     else if(side == LEFT || side == RIGHT)
     {
+        SDL_Rect a = obj->getPos();
+        if(side == LEFT) a.x++;
+        else a.x--;
+        obj->setPos(a);
+        
         vect v = obj2->getVel();
         v.y = 0;
-        obj->applyForce(obj2->getMass(), v);
+        obj->applyForce(obj2->getMass(), v, 0);
     }
-    
     else
     {
         vect v = obj2->getVel();
-        obj->applyForce(obj2->getMass(), v);
+        obj->applyForce(obj2->getMass(), v, 2);
     }
 }
 

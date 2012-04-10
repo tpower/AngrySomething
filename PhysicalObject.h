@@ -39,7 +39,7 @@ class PhysicalObject : virtual public Object
         int     getMass();
     
         virtual void    run();
-        virtual void    applyForce(int m, vect v);
+        virtual void    applyForce(int m, vect v, int dir);
     
         void            move();
 };

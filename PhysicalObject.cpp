@@ -80,12 +80,21 @@ void PhysicalObject::setAcc(vect a)
     acc = a;
 }
 
-void PhysicalObject::applyForce(int m, vect v)
+void PhysicalObject::applyForce(int m, vect v, int dir)
 {
-    if(v.x)
-        acc.x = ((m * (v.x - vel.x)) / mass) * .8;
-    if(v.y)
-        acc.y = ((m * (v.y - vel.y)) / mass) * .8;
+    if(dir == 0)
+    {
+        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
+    }
+    else if(dir == 1)
+    {
+        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
+    }
+    else
+    {
+        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
+        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
+    }
 }
 
 /*******************************************************************************

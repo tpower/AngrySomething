@@ -17,6 +17,7 @@
 
 enum side
 {
+    NO_COLLISION    = 0,
     TOP             = 1,
     TOP_RIGHT       = 2,
     RIGHT           = 3,
