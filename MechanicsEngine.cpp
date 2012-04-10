@@ -10,9 +10,17 @@ void MechanicsEngine::run(Room& room)
         for(int i = 0; i < room.getNumObjects(); i++)
         {
             Object* obj = room.getObjectAt(i);
-            
+            Object* temp = NULL;
+
             if(obj->isMechanical())
-                dynamic_cast<MechanicsObject*>(obj)->handle(event);
+            {
+                temp = dynamic_cast<MechanicsObject*>(obj)->handle(event);
+                if(temp)
+                {
+                    room.add(temp);
+                }
+            }
+
         }
     }
 }

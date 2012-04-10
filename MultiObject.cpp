@@ -13,9 +13,9 @@ MultiObject::MultiObject(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
         MechanicsObject(),
-        Object(x, y, 180, 150)
+        Object(x, y, 18, 15)
 {
-    
+
 }
 
 MultiObject::MultiObject(const MultiObject& other)
@@ -24,20 +24,20 @@ MultiObject::MultiObject(const MultiObject& other)
         MechanicsObject(),
         Object(other.pos.x, other.pos.y)
 {
-    
+
 }
 
 MultiObject::~MultiObject()
 {
-    
+
 }
 
 MultiObject& MultiObject::operator=(const MultiObject& other)
 {
     if(&other != this)
     {
-        
+
     }
-    
+
     return *this;
 }

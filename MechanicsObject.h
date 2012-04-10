@@ -10,10 +10,10 @@ class MechanicsObject : virtual public Object
 {
     private:
         bool grabbed;
-    
+
     public:
         MechanicsObject();
-        virtual void handle(SDL_Event e);
+        virtual Object* handle(SDL_Event e);
 };
 
 #endif

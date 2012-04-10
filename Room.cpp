@@ -1,7 +1,7 @@
 /*******************************************************************************
  Filename:                  Room.cpp
  Classname:                 Room
- 
+
  Description:               This file defines the Room class.
  ******************************************************************************/
 
@@ -10,6 +10,8 @@
 #include "DrawableObject.h"
 #include "PhysicalObject.h"
 #include "MultiObject.h"
+#include "Sling.h"
+#include "Slingshot.h"
 
 /*******************************************************************************
  Name:              Room
@@ -17,19 +19,19 @@
  ******************************************************************************/
 Room::Room()
 {
-    
+
 }
 
 /*******************************************************************************
  Name:              Room
  Description:       Copy constructor for Room class
- 
+
  Input:
     other           Room object to be copied
  ******************************************************************************/
 Room::Room(const Room& other)
 {
-    
+
 }
 
 /*******************************************************************************
@@ -38,13 +40,13 @@ Room::Room(const Room& other)
  ******************************************************************************/
 Room::~Room()
 {
-    
+
 }
 
 /*******************************************************************************
  Name:              operator=
  Description:       Overloaded assignment operator for Room class
- 
+
  Input:
     other           const Room&
  ******************************************************************************/
@@ -52,9 +54,9 @@ Room Room::operator=(const Room& other)
 {
     if(&other != this)
     {
-        
+
     }
-    
+
     return *this;
 }
 
@@ -76,16 +78,22 @@ int Room::getNumObjects()
  Name:              load
  Description:       This method dynamically allocates and loads objects in the
                     room
- 
+
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
 bool Room::load()
 {
-    object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
-    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
-    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
+    //object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
+    //object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
+    //object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
+    object.push_back(new Slingshot("Slingshot.bmp", 75, 350));
+    object.push_back(new Sling("Stretchy.bmp", 100, 350));
 
     return true;
 }
 
+void Room::add(Object* obj)
+{
+    object.push_back(obj);
+}
