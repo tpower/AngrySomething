@@ -10,7 +10,7 @@
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
-        Object(x, y, 50, 50)
+        Object(x, y, 30, 30)
 {
     
 }

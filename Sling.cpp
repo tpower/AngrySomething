@@ -22,7 +22,6 @@ Sling::Sling(const char* file, int x, int y)
     :   Object(x, y, 180, 150),
         DrawableObject(file),
         MechanicsObject()
-
 {
     Slingshot.x = x - 25;
     Slingshot.y = y;
@@ -69,9 +68,9 @@ bool Sling::checkBounds(SDL_Event e)
  Input:
     xVel, yVel      The x and y velocities of the object
  ******************************************************************************/
-MultiObject* Sling::createMonkey(int xPos, int yPos, int xVel, int yVel)
+Projectile* Sling::createMonkey(int xPos, int yPos, int xVel, int yVel)
 {
-    return new MultiObject("TestA.bmp", xPos, yPos, xVel, yVel);
+    return new Projectile("TestA.bmp", xPos, yPos, xVel, yVel);
 }
 
 
@@ -83,7 +82,7 @@ MultiObject* Sling::createMonkey(int xPos, int yPos, int xVel, int yVel)
  ******************************************************************************/
 Object* Sling::handle(SDL_Event e)
 {
-    MultiObject* monk = NULL;
+    Projectile* monk = NULL;
     static bool grabbed = false;;
 
     if(checkBounds(e))
