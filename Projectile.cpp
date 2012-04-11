@@ -47,7 +47,10 @@ void Projectile::run()
 {
     move();
 
-    //TODO: destroy object when vel drops below certain threshold
+    if(abs(vel.x) < .5 && abs(vel.y) < .5)
+    {
+        state = -1;
+    }
 }
 
 void Projectile::applyForce(int m, vect v, int dir)
@@ -64,11 +67,6 @@ void Projectile::applyForce(int m, vect v, int dir)
     {
         acc.x += ((m * (v.x - vel.x)) / mass) * .8;
         acc.y += ((m * (v.y - vel.y)) / mass) * .8;
-    }
-
-    if(vel.x < 40 || vel.y < 40)
-    {
-        state = -1;
     }
 }
 
