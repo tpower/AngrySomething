@@ -24,6 +24,8 @@ PhysicalObject::PhysicalObject(int x, int y)
     acc.y = GRAV;     //gravity
     
     mass = pos.w * pos.h;
+    
+    collisionSide = NO_COLLISION;
 }
 
 /*******************************************************************************
@@ -80,12 +82,26 @@ void PhysicalObject::setAcc(vect a)
     acc = a;
 }
 
-void PhysicalObject::applyForce(int m, vect v)
+void PhysicalObject::applyForce(int m, vect v, int dir)
 {
-    if(v.x)
-        acc.x = ((m * (v.x - vel.x)) / mass);
-    if(v.y)
-        acc.y = ((m * (v.y - vel.y)) / mass);
+    if(dir == 0)
+    {
+        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
+    }
+    else if(dir == 1)
+    {
+        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
+    }
+    else
+    {
+        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
+        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
+    }
+}
+
+void PhysicalObject::setCollisionSide(int s)
+{
+    collisionSide = s;
 }
 
 /*******************************************************************************
@@ -107,19 +123,38 @@ int PhysicalObject::getMass()
     return mass;
 }
 
+int PhysicalObject::getCollisionSide()
+{
+    return collisionSide;
+}
+
 /*******************************************************************************
  Name:              run
  Description:       ????????
  ******************************************************************************/
 void PhysicalObject::run()
 {
+    move();
+}
+
+void PhysicalObject::move()
+{
     vel.x += acc.x;
     vel.y += acc.y;
-    if(vel.y > 10) vel.y = 10;  //terminal velocity
+    
+    if(vel.y > 10)  vel.y = 10;         //terminal velocity
+    if(vel.y < -10) vel.y = -10;        //terminal velocity
+    if(vel.x > 10)  vel.x = 10;         //terminal velocity
+    if(vel.x < -10) vel.x = -10;        //terminal velocity
+    
+    if(abs(vel.x) < .3) vel.x = 0;
+    if(abs(vel.y) < 1.5 && collisionSide == BOTTOM) vel.y = 0;
     
     acc.x = 0;
     acc.y = GRAV;
     
     pos.x += vel.x;
     pos.y += vel.y;
+    
+    collisionSide = NO_COLLISION;
 }

@@ -18,7 +18,7 @@
     file            The image filename
     x, y            The x and y coordinates of the object
  ******************************************************************************/
-Sling::Sling(const char* file, int x, int y)
+Sling::Sling(const char* file, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
         DrawableObject(file),
         MechanicsObject()
@@ -26,10 +26,17 @@ Sling::Sling(const char* file, int x, int y)
 {
     Slingshot.x = x - 25;
     Slingshot.y = y;
+
+    /******************
     bounds.x = x - 75;
     bounds.w = x + 75;
     bounds.y = y - 75;
     bounds.h = y + 75;
+    ******************/
+    radius = 125;
+
+    projectiles = ammo;
+    projectileCount = projectiles.length();
 }
 
 /*******************************************************************************
@@ -52,12 +59,11 @@ Sling::~Sling()
 bool Sling::checkBounds(SDL_Event e)
 {
     bool inBounds = false;
-    if(e.motion.x > bounds.x && e.motion.x < bounds.x + bounds.w)
+
+    //if(e.motion.x > bounds.x && e.motion.x < bounds.x + bounds.w)
+    if(sqrt(pow(e.motion.x-Slingshot.x,2) + pow(e.motion.y-Slingshot.y,2)) < radius)
     {
-        if(e.motion.y > bounds.y && e.motion.y < bounds.y + bounds.h)
-        {
             inBounds = true;
-        }
     }
     return inBounds;
 }
@@ -69,9 +75,16 @@ bool Sling::checkBounds(SDL_Event e)
  Input:
     xVel, yVel      The x and y velocities of the object
  ******************************************************************************/
-MultiObject* Sling::createMonkey(int xPos, int yPos, int xVel, int yVel)
+MultiObject* Sling::createMonkey(char monkeyType, int xPos, int yPos, int xVel, int yVel)
 {
-    return new MultiObject("TestA.bmp", xPos, yPos, xVel, yVel);
+    MultiObject* p;
+    switch (monkeyType)
+    {
+        case 'N':       p = new MultiObject("TestA.bmp", xPos, yPos, xVel, yVel);
+                        break;
+
+    }
+    return p;
 }
 
 
@@ -88,7 +101,6 @@ Object* Sling::handle(SDL_Event e)
 
     if(checkBounds(e))
     {
-        //MechanicsObject::handle(e);
         int static centerX = pos.x;
         int static centerY = pos.y;
 
@@ -113,7 +125,11 @@ Object* Sling::handle(SDL_Event e)
         {
             if(e.button.button == SDL_BUTTON_LEFT)
             {
-                monk = createMonkey(pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                if(projectileCount > 0)
+                {
+                    monk = createMonkey(projectiles[projectileCount-1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                    projectileCount--;
+                }
                 pos.x = centerX;
                 pos.y = centerY;
 

@@ -51,13 +51,13 @@
 		<Unit filename="PhysicalObject.h" />
 		<Unit filename="PhysicsEngine.cpp" />
 		<Unit filename="PhysicsEngine.h" />
+		<Unit filename="Projectile.cpp" />
+		<Unit filename="Projectile.h" />
 		<Unit filename="Room.cpp" />
 		<Unit filename="Room.h" />
 		<Unit filename="SDLMain.h" />
 		<Unit filename="Sling.cpp" />
 		<Unit filename="Sling.h" />
-		<Unit filename="Slingshot.cpp" />
-		<Unit filename="Slingshot.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
