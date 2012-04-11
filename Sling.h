@@ -13,7 +13,6 @@
 
 #include "Object.h"
 #include "DrawableObject.h"
-//#include "PhysicalObject.h"
 #include "MechanicsObject.h"
 #include "MultiObject.h"
 

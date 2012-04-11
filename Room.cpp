@@ -11,7 +11,6 @@
 #include "PhysicalObject.h"
 #include "MultiObject.h"
 #include "Sling.h"
-#include "Slingshot.h"
 
 /*******************************************************************************
  Name:              Room
@@ -87,7 +86,6 @@ bool Room::load()
 //    object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
 //    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
 //    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
-    object.push_back(new Slingshot("Slingshot.bmp", 75, 350));
     object.push_back(new Sling("Stretchy.bmp", 100, 350));
 
     return true;

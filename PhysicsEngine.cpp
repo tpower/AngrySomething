@@ -131,24 +131,50 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
     
     if(pos.x <= 0 || pos.x + pos.w >= 640)  //bounce off left/right wall
     {
-        if(pos.x <= 0) pos.x = 1;
-        else pos.x = 640 - pos.w - 1;           //adjust position
+        if(pos.x <= 0)
+        {
+            pos.x = 1;
+            pObj->setCollisionSide(LEFT);
+        }
+        else
+        {
+            pos.x = 640 - pos.w - 1;           //adjust position
+            pObj->setCollisionSide(RIGHT);
+        }
         pObj->setPos(pos);
         
-        vect temp = pObj->getVel();
-        temp.x *= -.8;                           //adjust velocity
-        pObj->setVel(temp);
+//        vect temp = pObj->getVel();
+//        temp.x *= -.8;                           //adjust velocity
+//        pObj->setVel(temp);
+        
+        vect v = pObj->getVel();
+        v.x *= -1;
+        v.y = 0;
+        pObj->applyForce(pObj->getMass(), v, 0);
     }
     
     if(pos.y <= 0 || pos.y + pos.h >= 480)  //bounce off top/bottom wall
     {
-        if(pos.y <= 0) pos.y = 1;
-        else pos.y = 480 - pos.h - 1;           //adjust position
+        if(pos.y <= 0)
+        {
+            pos.y = 1;
+            pObj->setCollisionSide(TOP);
+        }
+        else
+        {
+            pos.y = 480 - pos.h - 1;           //adjust position
+            pObj->setCollisionSide(BOTTOM);
+        }
         pObj->setPos(pos);
         
-        vect temp = pObj->getVel();
-        temp.y *= -.8;                           //adjust velocity
-        pObj->setVel(temp);
+//        vect temp = pObj->getVel();
+//        temp.y *= -.4;                           //adjust velocity
+//        pObj->setVel(temp);
+        
+        vect v = pObj->getVel();
+        v.y *= -1;
+        v.x = 0;
+        pObj->applyForce(pObj->getMass(), v, 1);
     }
 }
 
@@ -409,6 +435,8 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         vect v = obj2->getVel();
         obj->applyForce(obj2->getMass(), v, 2);
     }
+    
+    obj->setCollisionSide(side);
 }
 
 void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2)

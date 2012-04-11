@@ -24,6 +24,8 @@ PhysicalObject::PhysicalObject(int x, int y)
     acc.y = GRAV;     //gravity
     
     mass = pos.w * pos.h;
+    
+    collisionSide = NO_COLLISION;
 }
 
 /*******************************************************************************
@@ -97,6 +99,11 @@ void PhysicalObject::applyForce(int m, vect v, int dir)
     }
 }
 
+void PhysicalObject::setCollisionSide(int s)
+{
+    collisionSide = s;
+}
+
 /*******************************************************************************
  MODIFIERS
  Name:              setVel, setAcc
@@ -116,6 +123,11 @@ int PhysicalObject::getMass()
     return mass;
 }
 
+int PhysicalObject::getCollisionSide()
+{
+    return collisionSide;
+}
+
 /*******************************************************************************
  Name:              run
  Description:       ????????
@@ -129,13 +141,20 @@ void PhysicalObject::move()
 {
     vel.x += acc.x;
     vel.y += acc.y;
-//    if(vel.y > 10) vel.y = 10;  //terminal velocity
+    
+    if(vel.y > 10)  vel.y = 10;         //terminal velocity
+    if(vel.y < -10) vel.y = -10;        //terminal velocity
+    if(vel.x > 10)  vel.x = 10;         //terminal velocity
+    if(vel.x < -10) vel.x = -10;        //terminal velocity
+    
     if(abs(vel.x) < .3) vel.x = 0;
+    if(abs(vel.y) < 1.5 && collisionSide == BOTTOM) vel.y = 0;
     
     acc.x = 0;
     acc.y = GRAV;
-    acc.x = 0;
     
     pos.x += vel.x;
     pos.y += vel.y;
+    
+    collisionSide = NO_COLLISION;
 }
