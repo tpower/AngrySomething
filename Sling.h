@@ -23,6 +23,7 @@ class Sling : public DrawableObject, public MechanicsObject
         bool checkBounds(SDL_Event);
         Projectile* createMonkey(int, int, int, int);
         SDL_Rect Slingshot;
+        SDL_Surface* launcherImg;
 
     public:
         Sling(const char* file1, int x, int y);

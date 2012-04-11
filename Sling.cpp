@@ -23,6 +23,8 @@ Sling::Sling(const char* file, int x, int y)
         DrawableObject(file),
         MechanicsObject()
 {
+    launcherImg = SDL_LoadBMP("Slingshot.bmp");
+    
     Slingshot.x = x - 25;
     Slingshot.y = y;
     bounds.x = x - 75;
@@ -132,11 +134,9 @@ Object* Sling::handle(SDL_Event e)
  ******************************************************************************/
 void Sling::draw(SDL_Surface* s)
 {
-    SDL_Surface* SlingshotIMG;
-    SlingshotIMG = SDL_LoadBMP("Slingshot.bmp");
     static SDL_Rect loc;
     loc = pos;
 
-    SDL_BlitSurface(SlingshotIMG, NULL, s, &Slingshot);
+    SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);
 }
