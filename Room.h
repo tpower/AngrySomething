@@ -31,6 +31,7 @@ class Room
 
         bool                load();
         void                add(Object*);
+        void                remove(int i);
 
 };
 

@@ -15,13 +15,14 @@
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
 #include "MultiObject.h"
+#include "Projectile.h"
 
 class Sling : public DrawableObject, public MechanicsObject
 {
     private:
         SDL_Rect bounds;
         bool checkBounds(SDL_Event);
-        MultiObject* createMonkey(int, int, int, int);
+        Projectile* createMonkey(int, int, int, int);
         SDL_Rect Slingshot;
 
     public:

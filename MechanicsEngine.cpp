@@ -7,6 +7,11 @@ void MechanicsEngine::run(Room& room)
 {
     if(SDL_PollEvent(&event))
     {
+        if( event.type == SDL_QUIT )
+        {
+            exit(0);
+        }
+
         for(int i = 0; i < room.getNumObjects(); i++)
         {
             Object* obj = room.getObjectAt(i);
@@ -18,6 +23,11 @@ void MechanicsEngine::run(Room& room)
                 if(temp)
                 {
                     room.add(temp);
+                }
+
+                if(obj->getState() == -1)
+                {
+                    room.remove(i);
                 }
             }
 
