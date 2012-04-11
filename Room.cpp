@@ -73,6 +73,10 @@ int Room::getNumObjects()
     return (int)object.size();
 }
 
+void Room::remove(int i)
+{
+    object.erase(object.begin()+i);
+}
 /*******************************************************************************
  Name:              load
  Description:       This method dynamically allocates and loads objects in the
