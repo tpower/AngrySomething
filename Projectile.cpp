@@ -47,26 +47,9 @@ void Projectile::run()
 {
     move();
 
-    if(abs(vel.x) < .5 && abs(vel.y) < .5)
-    {
-        state = -1;
-    }
-}
-
-void Projectile::applyForce(int m, vect v, int dir)
-{
-    if(dir == 0)
-    {
-        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
-    }
-    else if(dir == 1)
-    {
-        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
-    }
-    else
-    {
-        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
-        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
-    }
+//    if(abs(vel.x) < .5 && abs(vel.y) < .5)
+//    {
+//        state = -1;
+//    }
 }
 

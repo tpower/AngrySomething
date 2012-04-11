@@ -23,20 +23,20 @@ using namespace std;
 class Sling : public DrawableObject, public MechanicsObject
 {
     private:
-        double radius;
-        bool checkBounds(SDL_Event);
-        Projectile* createMonkey(char type, int, int, int, int);
-        SDL_Rect Slingshot;
-        string projectiles;
-        int projectileCount;
-        SDL_Surface* launcherImg;
+        double          radius;
+        bool            checkBounds(SDL_Event);
+        Projectile*     createMonkey(char type, int, int, int, int);
+        SDL_Rect        Slingshot;
+        string          projectiles;
+        int             projectileCount;
+        SDL_Surface*    launcherImg;
 
     public:
         Sling(const char* file1, int x, int y, string ammo);
         ~Sling();
 
-        Object* handle(SDL_Event);
-        void draw(SDL_Surface*);
+        Object*     handle(SDL_Event);
+        void        draw(SDL_Surface*);
 };
 
 #endif // SLING_H

@@ -243,13 +243,13 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     bool aBottom = true;
     bool aLeft   = true;
     
-    //evaluate initial collision sides  -- DONT CHANGE
+    //evaluate initial collision sides
     if(a.y > b.y) aBottom  = false;
     if(a.x > b.x) aRight = false;
     if(a.y + a.h < b.y + b.h) aTop = false;
     if(a.x + a.w < b.x + b.w) aLeft  = false;
     
-    //evaluate impossible 3-side collision case -- DONT CHANGE
+    //evaluate impossible 3-side collision case
     if(aTop + aBottom + aRight + aLeft == 3)
     {
         if(aTop && aBottom)
