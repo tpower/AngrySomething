@@ -10,7 +10,7 @@
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
-        Object(x, y, 30, 30)
+        Object(x, y, 20, 20)
 {
 
 }
@@ -47,10 +47,10 @@ void Projectile::run()
 {
     move();
 
-    if(abs(vel.x) < .5 && abs(vel.y) < .5)
+    /*if(vel.x < 40 || vel.y < 40)
     {
         state = -1;
-    }
+    }*/
 }
 
 void Projectile::applyForce(int m, vect v, int dir)
