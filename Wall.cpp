@@ -1,10 +1,10 @@
 #include "Wall.h"
 #include <cmath>
 
-Wall::Wall(const char* file, int x, int y, int vx, int vy)
+Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
-        Object(x, y, 50, 50)
+        Object(x, y, w, h)
 {
     health = 100;
 }
@@ -58,7 +58,11 @@ void Wall::applyForce(int m, vect v, int dir)
         acc.y += ((m * (v.y - vel.y)) / mass) * .8;
     }
 
-    if(v.y > 1 || v.y < -1)
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 7)
+    {
+        health -= 50;
+    }
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 8)
     {
         health -= 101;
     }
