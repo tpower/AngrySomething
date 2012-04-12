@@ -42,7 +42,7 @@ void Pig::run()
     move();
 }
 
-void Pig::applyForce(int m, vect v, int dir)
+void Pig::applyForce(int m, Vect v, int dir)
 {
     if(dir == 0)
     {

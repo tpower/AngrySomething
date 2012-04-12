@@ -138,7 +138,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         pObj->setPos(pos);
         
         //adjust velocity
-        vect v = pObj->getVel();
+        Vect v = pObj->getVel();
         v.x *= -1;
         v.y = 0;
         pObj->applyForce(pObj->getMass(), v, 0);
@@ -161,7 +161,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         pObj->setPos(pos);
         
         //adjust velocity
-        vect v = pObj->getVel();
+        Vect v = pObj->getVel();
         v.y *= -1;
         v.x = 0;
         pObj->applyForce(pObj->getMass(), v, 1);
@@ -257,8 +257,8 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     //eliminate impossible corner cases
     if(aTop + aBottom + aRight + aLeft == 2)
     {
-        vect velA = obj->getVel();
-        vect velB = obj2->getVel();
+        Vect velA = obj->getVel();
+        Vect velB = obj2->getVel();
 
         //avoid getting trapped within objects
         if(velA.x > 0 && velB.x < 0) aLeft      = false;
@@ -280,8 +280,8 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     //evaluate corner case
     if(aTop + aBottom + aRight + aLeft == 2)
     {
-        vect velA = obj->getVel();
-        vect velB = obj2->getVel();
+        Vect velA = obj->getVel();
+        Vect velB = obj2->getVel();
 
         double tx, ty;
 
@@ -345,7 +345,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         obj->setPos(a);
         
         //adjust velocity based on force of collision
-        vect v = obj2->getVel();
+        Vect v = obj2->getVel();
         v.x = 0;
         obj->applyForce(obj2->getMass(), v, 1);
     }
@@ -358,14 +358,14 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         obj->setPos(a);
         
         //adjust velocity based on force of collision
-        vect v = obj2->getVel();
+        Vect v = obj2->getVel();
         v.y = 0;
         obj->applyForce(obj2->getMass(), v, 0);
     }
     else
     {
         //adjust velocity based on force of collision
-        vect v = obj2->getVel();
+        Vect v = obj2->getVel();
         obj->applyForce(obj2->getMass(), v, 2);
     }
     

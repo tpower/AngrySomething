@@ -23,7 +23,7 @@ class Projectile : public DrawableObject, public PhysicalObject, public Mechanic
 
         virtual void    draw(SDL_Surface* screen);
         virtual void    run();
-        void            applyForce(int m, vect v, int dir);
+        void            applyForce(int m, Vect v, int dir);
 };
 
 #endif

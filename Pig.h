@@ -16,7 +16,7 @@ class Pig : public DrawableObject, public PhysicalObject, public MechanicsObject
         Pig&     operator=(const Pig& other);
 
         virtual void    run();
-        void            applyForce(int m, vect v, int dir);
+        void            applyForce(int m, Vect v, int dir);
 
 };
 

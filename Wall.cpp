@@ -42,7 +42,7 @@ void Wall::run()
     move();
 }
 
-void Wall::applyForce(int m, vect v, int dir)
+void Wall::applyForce(int m, Vect v, int dir)
 {
     if(dir == 0)
     {

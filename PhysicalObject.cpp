@@ -72,17 +72,17 @@ PhysicalObject& PhysicalObject::operator=(const PhysicalObject& other)
  MODIFIERS
  Name:              setVel, setAcc
  ******************************************************************************/
-void PhysicalObject::setVel(vect v)
+void PhysicalObject::setVel(Vect v)
 {
     vel = v;
 }
 
-void PhysicalObject::setAcc(vect a)
+void PhysicalObject::setAcc(Vect a)
 {
     acc = a;
 }
 
-void PhysicalObject::applyForce(int m, vect v, int dir)
+void PhysicalObject::applyForce(int m, Vect v, int dir)
 {
     if(dir == 0)
     {
@@ -112,12 +112,12 @@ void PhysicalObject::setCollisionSide(int s)
  MODIFIERS
  Name:              setVel, setAcc
  ******************************************************************************/
-vect PhysicalObject::getVel()
+Vect PhysicalObject::getVel()
 {
     return vel;
 }
 
-vect PhysicalObject::getAcc()
+Vect PhysicalObject::getAcc()
 {
     return acc;
 }

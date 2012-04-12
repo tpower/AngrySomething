@@ -56,7 +56,7 @@ void Projectile::run()
     }*/
 }
 
-void Projectile::applyForce(int m, vect v, int dir)
+void Projectile::applyForce(int m, Vect v, int dir)
 {
     if(dir == 0)
     {

@@ -11,11 +11,7 @@
 #include <SDL/SDL.h>
 
 #include "Object.h"
-
-struct vect
-{
-    double x, y;
-};
+#include "Geometry.h"
 
 enum side
 {
@@ -33,8 +29,8 @@ enum side
 class PhysicalObject : virtual public Object
 {
     protected:
-        vect vel;
-        vect acc;
+        Vect vel;
+        Vect acc;
         int  mass;
         int  collisionSide;
     
@@ -45,17 +41,17 @@ class PhysicalObject : virtual public Object
         
         PhysicalObject& operator=(const PhysicalObject& other);
     
-        void    setVel(vect v);
-        void    setAcc(vect a);
+        void    setVel(Vect v);
+        void    setAcc(Vect a);
         void    setCollisionSide(int s);
         
-        vect    getVel();
-        vect    getAcc();
+        Vect    getVel();
+        Vect    getAcc();
         int     getMass();
         int     getCollisionSide();
     
         virtual void    run();
-        virtual void    applyForce(int m, vect v, int dir = 2);
+        virtual void    applyForce(int m, Vect v, int dir = 2);
     
         void            move();
 };
