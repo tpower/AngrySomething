@@ -11,28 +11,32 @@
 #ifndef SLING_H
 #define SLING_H
 
+#include <string>
+
 #include "Object.h"
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
-#include "MultiObject.h"
 #include "Projectile.h"
+
+using namespace std;
 
 class Sling : public DrawableObject, public MechanicsObject
 {
     private:
-        SDL_Rect bounds;
-        bool checkBounds(SDL_Event);
-        Projectile* createMonkey(int, int, int, int);
-        SDL_Rect Slingshot;
+        double          radius;
+        bool            checkBounds(SDL_Event);
+        Projectile*     createMonkey(char type, int, int, int, int);
+        SDL_Rect        Slingshot;
+        string          projectiles;
+        int             projectileCount;
+        SDL_Surface*    launcherImg;
 
     public:
-        Sling(const char* file1, int x, int y);
+        Sling(const char* file1, int x, int y, string ammo);
         ~Sling();
 
-        Object* handle(SDL_Event);
-        void draw(SDL_Surface*);
-
-
+        Object*     handle(SDL_Event);
+        void        draw(SDL_Surface*);
 };
 
 #endif // SLING_H

@@ -8,6 +8,8 @@
                             velocity and position.
  ******************************************************************************/
 
+#include <cmath>
+
 #include "Sling.h"
 
 /*******************************************************************************
@@ -18,18 +20,20 @@
     file            The image filename
     x, y            The x and y coordinates of the object
  ******************************************************************************/
-Sling::Sling(const char* file, int x, int y)
+Sling::Sling(const char* file, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
         DrawableObject(file),
         MechanicsObject()
-
 {
+    launcherImg = SDL_LoadBMP("Slingshot.bmp");
+    
     Slingshot.x = x - 25;
     Slingshot.y = y;
-    bounds.x = x - 75;
-    bounds.w = x + 75;
-    bounds.y = y - 75;
-    bounds.h = y + 75;
+    
+    radius = 125;
+    
+    projectiles = ammo;
+    projectileCount = (int)projectiles.length();
 }
 
 /*******************************************************************************
@@ -39,7 +43,7 @@ Sling::Sling(const char* file, int x, int y)
  ******************************************************************************/
 Sling::~Sling()
 {
-
+    SDL_FreeSurface(launcherImg);
 }
 
 /*******************************************************************************
@@ -52,12 +56,9 @@ Sling::~Sling()
 bool Sling::checkBounds(SDL_Event e)
 {
     bool inBounds = false;
-    if(e.motion.x > bounds.x && e.motion.x < bounds.x + bounds.w)
+    if(sqrt(pow(e.motion.x - Slingshot.x, 2.0) + pow(e.motion.y - Slingshot.y, 2.0)) < radius)
     {
-        if(e.motion.y > bounds.y && e.motion.y < bounds.y + bounds.h)
-        {
-            inBounds = true;
-        }
+        inBounds = true;
     }
     return inBounds;
 }
@@ -69,9 +70,18 @@ bool Sling::checkBounds(SDL_Event e)
  Input:
     xVel, yVel      The x and y velocities of the object
  ******************************************************************************/
-Projectile* Sling::createMonkey(int xPos, int yPos, int xVel, int yVel)
+Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVel)
 {
-    return new Projectile("TestA.bmp", xPos, yPos, xVel, yVel);
+    Projectile* p;
+    
+    switch (type)
+    {
+        case 'N':
+            p = new Projectile("TestA.bmp", xPos, yPos, xVel, yVel);
+            break;
+    }
+    
+    return p;
 }
 
 
@@ -86,12 +96,11 @@ Object* Sling::handle(SDL_Event e)
     Projectile* monk = NULL;
     static bool grabbed = false;;
 
+    int static centerX = pos.x;
+    int static centerY = pos.y;
+    
     if(checkBounds(e))
     {
-        //MechanicsObject::handle(e);
-        int static centerX = pos.x;
-        int static centerY = pos.y;
-
         if(e.type == SDL_MOUSEMOTION && grabbed)
         {
             pos.x = e.motion.x;
@@ -113,7 +122,12 @@ Object* Sling::handle(SDL_Event e)
         {
             if(e.button.button == SDL_BUTTON_LEFT)
             {
-                monk = createMonkey(pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                if(projectileCount > 0)
+                {
+                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                    projectileCount--;
+                }
+                
                 pos.x = centerX;
                 pos.y = centerY;
 
@@ -121,6 +135,40 @@ Object* Sling::handle(SDL_Event e)
             }
         }
     }
+    else
+    {
+        if(e.type == SDL_MOUSEMOTION && grabbed)
+        {
+            int tx = e.motion.x - centerX;
+            int ty = e.motion.y - centerY;
+            int c = sqrt(pow(tx, 2.0) + pow(ty, 2.0));
+            
+            int xDist = tx * radius / c;
+            int yDist = ty * radius / c;
+            
+            pos.x = centerX + xDist;
+            pos.y = centerY + yDist;
+        }
+        
+        if(e.type == SDL_MOUSEBUTTONUP && grabbed)
+        {
+            if(e.button.button == SDL_BUTTON_LEFT)
+            {
+                if(projectileCount > 0)
+                {
+                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                    projectileCount--;
+                }
+                
+                pos.x = centerX;
+                pos.y = centerY;
+                
+                grabbed = false;
+            }
+        }
+    }
+
+    
     return monk;
 }
 
@@ -133,11 +181,9 @@ Object* Sling::handle(SDL_Event e)
  ******************************************************************************/
 void Sling::draw(SDL_Surface* s)
 {
-    SDL_Surface* SlingshotIMG;
-    SlingshotIMG = SDL_LoadBMP("Slingshot.bmp");
     static SDL_Rect loc;
     loc = pos;
 
-    SDL_BlitSurface(SlingshotIMG, NULL, s, &Slingshot);
+    SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);
 }

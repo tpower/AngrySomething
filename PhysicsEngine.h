@@ -15,7 +15,8 @@
 #include "Room.h"
 #include "PhysicalObject.h"     //included in .h for vect
 
-struct circle {
+struct circle
+{
     vect cent;
     int  rad;
 };

@@ -55,7 +55,7 @@ class PhysicalObject : virtual public Object
         int     getCollisionSide();
     
         virtual void    run();
-        virtual void    applyForce(int m, vect v, int dir);
+        virtual void    applyForce(int m, vect v, int dir = 2);
     
         void            move();
 };

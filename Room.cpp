@@ -92,7 +92,7 @@ bool Room::load()
 //    object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
 //    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
 //    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
-    object.push_back(new Sling("Stretchy.bmp", 100, 350));
+    object.push_back(new Sling("Stretchy.bmp", 100, 350, "NNNNNNNNNN"));
     object.push_back(new Pig("TestB.bmp",  425, 440, 0, 0));
     object.push_back(new Pig("TestB.bmp",  495, 440, 0, 0));
     object.push_back(new Pig("TestB.bmp",  460, 340, 0, 0));
