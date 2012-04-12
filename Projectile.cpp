@@ -6,7 +6,7 @@
  ******************************************************************************/
 
 #include "Projectile.h"
-
+#include <cmath>
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
@@ -47,10 +47,10 @@ void Projectile::run()
 {
     move();
 
-    /*if(vel.x < 40 || vel.y < 40)
+    if(pow((pow(vel.y,2) + pow(vel.x, 2)), .5) < 1)
     {
         state = -1;
-    }*/
+    }
 
     //TODO: destroy object when vel drops below certain threshold
 }
