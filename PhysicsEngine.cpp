@@ -204,10 +204,11 @@ bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
 
 bool PhysicsEngine::doIntersect(circle a, circle b)
 {
-//    int dist = sqrt(pow(a.cent.x + b.cent.x, 2) + pow(a.cent.y + b.cent.y, 2));
-//    
-//    if(dist <= a.rad + b.rad)
-//        return true;
+    int dist = sqrt(pow(a.cent.x - b.cent.x, 2) + pow(a.cent.y - b.cent.y, 2));
+    
+    if(dist <= a.rad + b.rad)
+        return true;
+    
     return false;
 }
 
@@ -379,12 +380,6 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
 
 void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2)
 {
-//    circle a, b;
-//    vect velB;
-//    double vf;
-//    
-//    double theta = 1 / tan((b.cent.x - a.cent.x) / (b.cent.y - a.cent.y));
-//    double lamda = 1 / tan(velB.x / velB.y);
-//    
-//    vf = obj2->getVel() * cos(theta - lamda);
+    obj->applyForce(obj2->getMass(), obj2->getVel());
+    obj2->applyForce(obj->getMass(), obj->getVel());
 }
