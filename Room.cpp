@@ -11,6 +11,8 @@
 #include "PhysicalObject.h"
 #include "MultiObject.h"
 #include "Sling.h"
+#include "Wall.h"
+#include "Pig.h"
 
 /*******************************************************************************
  Name:              Room
@@ -91,6 +93,8 @@ bool Room::load()
 //    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
 //    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
     object.push_back(new Sling("Stretchy.bmp", 100, 350));
+    object.push_back(new Pig("TestA.bmp", 400, 100, 0, 0));
+    // object.push_back(new MultiObject("TestC.bmp", 400, 430, 0, 0));
 
     return true;
 }

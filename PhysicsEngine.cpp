@@ -1,8 +1,8 @@
 /*******************************************************************************
  Filename:                  PhysicsEngine.cpp
  Classname:                 PhysicsEngine
- 
- Description:               This file declares the PhysicsEngine class. The 
+
+ Description:               This file declares the PhysicsEngine class. The
                             PhysicsEngine class is responsible for moving
                             objects and detecting collisions within the room.
  ******************************************************************************/
@@ -18,7 +18,7 @@
  ******************************************************************************/
 PhysicsEngine::PhysicsEngine()
 {
-    
+
 }
 
 /*******************************************************************************
@@ -27,13 +27,13 @@ PhysicsEngine::PhysicsEngine()
  ******************************************************************************/
 PhysicsEngine::~PhysicsEngine()
 {
-    
+
 }
 
 /*******************************************************************************
  Name:              run
  Description:       Runs all objects in the room and tests for collisions
- 
+
  Input:
     room            Room& containing objects
  ******************************************************************************/
@@ -46,7 +46,7 @@ void PhysicsEngine::run(Room& room)
 /*******************************************************************************
  Name:              runObjects
  Description:       This method runs every physical object in a given room.
- 
+
  Input:
     room            Room&
  ******************************************************************************/
@@ -55,14 +55,19 @@ void PhysicsEngine::runObjects(Room& room)
     for(int i = 0; i < room.getNumObjects(); i++)
     {
         Object* obj = room.getObjectAt(i);
-        
+
         if(obj->isPhysical())
         {
             PhysicalObject *pObj = dynamic_cast<PhysicalObject*>(obj);
-            
+
             pObj->run();
-            
+
             handleWallCollision(pObj);
+
+            if(obj->getState() == -1)
+            {
+                room.remove(i);
+            }
         }
     }
 }
@@ -71,7 +76,7 @@ void PhysicsEngine::runObjects(Room& room)
  Name:              detectCollisions
  Description:       This method detects collisions between all PhysicalObjects
                     in a given room.
- 
+
  Input:
     room            Room&
  ******************************************************************************/
@@ -80,23 +85,23 @@ void PhysicsEngine::detectCollisions(Room& room)
     for(int i = 0; i < room.getNumObjects() - 1; i++)
     {
         Object* obj = room.getObjectAt(i);
-        
+
         if(obj->isPhysical())
         {
             PhysicalObject *pObj = dynamic_cast<PhysicalObject*>(obj);
-            
+
             for(int j = i + 1; j < room.getNumObjects(); j++)
             {
                 Object* obj2 = room.getObjectAt(j);
-                
+
                 if(obj->isPhysical())
                 {
                     PhysicalObject *pObj2 = dynamic_cast<PhysicalObject*>(obj2);
-                    
+
                     if(doCollide(pObj, pObj2))
                     {
                         int sideA, sideB;
-                        
+
                         //evaluate side of collision for both objects
                         sideA = sideOfCollision(pObj, pObj2);
                         if(sideA)
@@ -105,7 +110,7 @@ void PhysicsEngine::detectCollisions(Room& room)
                                 sideB = sideA + 4;
                             else
                                 sideB = sideA - 4;
-                            
+
                             //react to collision
                             handleCollision(pObj, pObj2, sideA);
                             handleCollision(pObj2, pObj, sideB);
@@ -121,14 +126,14 @@ void PhysicsEngine::detectCollisions(Room& room)
  Name:              handleWallCollision
  Description:       This method keeps a PhysicalObject from leaving the
                     boundaries of the screen.
- 
+
  Input:
-    pObj            PhysicalObject* 
+    pObj            PhysicalObject*
  ******************************************************************************/
 void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 {
     SDL_Rect pos = pObj->getPos();          //get position
-    
+
     if(pos.x <= 0 || pos.x + pos.w >= 640)  //bounce off left/right wall
     {
         if(pos.x <= 0)
@@ -142,17 +147,17 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
             pObj->setCollisionSide(RIGHT);
         }
         pObj->setPos(pos);
-        
+
 //        vect temp = pObj->getVel();
 //        temp.x *= -.8;                           //adjust velocity
 //        pObj->setVel(temp);
-        
+
         vect v = pObj->getVel();
         v.x *= -1;
         v.y = 0;
         pObj->applyForce(pObj->getMass(), v, 0);
     }
-    
+
     if(pos.y <= 0 || pos.y + pos.h >= 480)  //bounce off top/bottom wall
     {
         if(pos.y <= 0)
@@ -166,11 +171,11 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
             pObj->setCollisionSide(BOTTOM);
         }
         pObj->setPos(pos);
-        
+
 //        vect temp = pObj->getVel();
 //        temp.y *= -.4;                           //adjust velocity
 //        pObj->setVel(temp);
-        
+
         vect v = pObj->getVel();
         v.y *= -1;
         v.x = 0;
@@ -181,11 +186,11 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 /*******************************************************************************
  Name:              doIntersect
  Description:       Determines if two SDL_Rects intersect
- 
+
  Input:
     a               SDL_Rect
     b               SDL_Rect
- 
+
  Output:
     returns         bool TRUE if SDL_Rects intersect
  ******************************************************************************/
@@ -196,7 +201,7 @@ bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
     if(a.x          > b.x + b.w)    return false;
     if(a.y + a.h    < b.y)          return false;
     if(a.y          > b.y + b.h)    return false;
-    
+
     //return true collision
     return true;
 }
@@ -204,7 +209,7 @@ bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
 bool PhysicsEngine::doIntersect(circle a, circle b)
 {
 //    int dist = sqrt(pow(a.cent.x + b.cent.x, 2) + pow(a.cent.y + b.cent.y, 2));
-//    
+//
 //    if(dist <= a.rad + b.rad)
 //        return true;
     return false;
@@ -213,11 +218,11 @@ bool PhysicsEngine::doIntersect(circle a, circle b)
 /*******************************************************************************
  Name:              doCollide
  Description:       Determines if two PhysicalObjects collided
- 
+
  Input:
     a               PhysicalObject*
     b               PhysicalObject*
- 
+
  Output:
     returns         bool TRUE if PhysicalObjects collided
  ******************************************************************************/
@@ -235,19 +240,19 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     //get bounding boxes
     SDL_Rect a = obj->getPos();
     SDL_Rect b = obj2->getPos();
-    
+
     //assume 4-sided collision
     bool aTop    = true;
     bool aRight  = true;
     bool aBottom = true;
     bool aLeft   = true;
-    
+
     //evaluate initial collision sides  -- DONT CHANGE
     if(a.y > b.y) aBottom  = false;
     if(a.x > b.x) aRight = false;
     if(a.y + a.h < b.y + b.h) aTop = false;
     if(a.x + a.w < b.x + b.w) aLeft  = false;
-    
+
     //evaluate impossible 3-side collision case -- DONT CHANGE
     if(aTop + aBottom + aRight + aLeft == 3)
     {
@@ -256,35 +261,35 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         else
             aLeft = aRight = false;
     }
-    
+
     if(aTop + aBottom + aRight + aLeft == 2)
     {
         vect velA = obj->getVel();
         vect velB = obj2->getVel();
-        
+
         //avoid getting trapped within objects
         if(velA.x > 0 && velB.x < 0) aLeft      = false;
         if(velA.x < 0 && velB.x > 0) aRight     = false;
         if(velA.y > 0 && velB.y < 0) aTop       = false;
         if(velA.y < 0 && velB.y > 0) aBottom    = false;
-        
+
         if(velA.x == velB.x) aLeft = aRight = false;
         if(velA.y == velB.y) aTop = aBottom = false;
-        
+
         if(!velA.x && !velB.x && (a.x == b.x + b.w || a.x == b.x - a.w))
             aLeft = aRight = aTop = aBottom = false;
         if(!velA.y && !velB.y && (a.y == b.y + b.h || a.y == b.y - a.h))
             aLeft = aRight = aTop = aBottom = false;
     }
-    
+
     //evaluate corner case
     if(aTop + aBottom + aRight + aLeft == 2)
     {
         vect velA = obj->getVel();
         vect velB = obj2->getVel();
-        
+
         double tx, ty;
-        
+
         if(aTop)
         {
             ty = abs(a.y - (b.y + b.h)) / abs(velA.y - velB.y);
@@ -293,7 +298,7 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         {
             ty = abs((a.y + a.h) - b.y) / abs(velA.y - velB.y);
         }
-        
+
         if(aLeft)
         {
             tx = abs(a.x - (b.x + b.w)) / abs(velA.x - velB.x);
@@ -302,7 +307,7 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         {
             tx = abs((a.x + a.w) - b.x) / abs(velA.x - velB.x);
         }
-        
+
         if(ty > tx)
         {
             aTop = aBottom = false;
@@ -315,11 +320,11 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 //        if(velA.y < velB.y)     aBottom         = false;
 //        if(velA.y > velB.y)     aTop            = false;
 //        if(velA.y == velB.y)    aBottom = aTop  = false;
-//        
+//
 //        if(velA.x < velB.x)     aRight          = false;
 //        if(velA.x > velB.x)     aLeft           = false;
 //        if(velA.x == velB.x)    aRight = aLeft  = false;
-        
+
 //        if(velA.y && velB.y)
 //        {
 //            if(velA.y <= velB.y) aBottom    = false;
@@ -329,10 +334,10 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 //        {
 //            if(velA.y - velB.y > 0) aTop    = false;
 //            if(velA.y - velB.y < 0) aBottom = false;
-//            
+//
 //            if(velA.y - velB.y == 0) aTop = aBottom = false;
 //        }
-//        
+//
 //        if(velA.x && velB.x)
 //        {
 //            if(velA.x <= velB.x) aRight     = false;
@@ -342,49 +347,49 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 //        {
 //            if(velA.x - velB.x > 0) aLeft   = false;
 //            if(velA.x - velB.x < 0) aRight  = false;
-//            
+//
 //            if(velA.x - velB.x == 0) aLeft = aRight = false;
 //        }
-        
+
 //        if(velA.y <= velB.y) aBottom    = false;
 //        if(velA.y >= velB.y) aTop       = false;
-//        
+//
 //        if(velA.x <= velB.x) aRight     = false;
 //        if(velA.x >= velB.x) aLeft      = false;
-    
+
 //    //evaluate outstanding corner case
 //    if(aTop + aBottom + aRight + aLeft == 2)
 //    {
 //        double hDiff, wDiff;
 //        vect velA = obj->getVel();
 //        vect velB = obj2->getVel();
-//        
+//
 //        if(aTop)
 //            hDiff = (b.y + b.h - a.y);
 //        else
 //            hDiff = (a.y + a.h - b.y);
-//        
+//
 //        if(aLeft)
 //            wDiff = (b.x + b.w - a.x);
 //        else
 //            wDiff = (a.x + a.w - b.x);
-//        
+//
 //        if(abs(velA.y) + abs(velB.y))
 //            hDiff /= abs(velA.y) + abs(velB.y);
 //        else
 //            hDiff = 0;
-//        
+//
 //        if(abs(velA.x) + abs(velB.x))
 //            wDiff /= abs(velA.x) + abs(velB.x);
 //        else
 //            wDiff = 0;
-//        
+//
 //        if(hDiff > wDiff)
 //            aTop = aBottom = false;
 //        else if(hDiff < wDiff)
 //            aLeft = aRight = false;
 //    }
-    
+
     //return collision code
     if(aTop)
     {
@@ -414,7 +419,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         if(side == TOP) a.y++;
         else a.y--;
         obj->setPos(a);
-        
+
         vect v = obj2->getVel();
         v.x = 0;
         obj->applyForce(obj2->getMass(), v, 1);
@@ -425,7 +430,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         if(side == LEFT) a.x++;
         else a.x--;
         obj->setPos(a);
-        
+
         vect v = obj2->getVel();
         v.y = 0;
         obj->applyForce(obj2->getMass(), v, 0);
@@ -435,7 +440,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         vect v = obj2->getVel();
         obj->applyForce(obj2->getMass(), v, 2);
     }
-    
+
     obj->setCollisionSide(side);
 }
 
@@ -444,9 +449,9 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2)
 //    circle a, b;
 //    vect velB;
 //    double vf;
-//    
+//
 //    double theta = 1 / tan((b.cent.x - a.cent.x) / (b.cent.y - a.cent.y));
 //    double lamda = 1 / tan(velB.x / velB.y);
-//    
+//
 //    vf = obj2->getVel() * cos(theta - lamda);
 }
