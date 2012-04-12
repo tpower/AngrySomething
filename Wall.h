@@ -9,7 +9,7 @@ class Wall : public DrawableObject, public PhysicalObject, public MechanicsObjec
     private:
         int health;
     public:
-        Wall(const char* file, int x, int y, int vx, int vy);
+        Wall(const char* file, int x, int y, int vx, int vy, int w, int h);
         Wall(const Wall& other);
         ~Wall();
 
