@@ -160,5 +160,8 @@ void PhysicalObject::move()
     pos.x += vel.x;
     pos.y += vel.y;
     
+//    circ.x = pos.x + circ.rad;
+//    circ.y = pos.y + circ.rad;
+    
     collisionSide = NO_COLLISION;
 }

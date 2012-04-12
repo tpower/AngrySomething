@@ -10,9 +10,9 @@
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
-        Object(x, y, 30, 30)
+        Object(x, y, 60, 60)
 {
-
+    
 }
 
 Projectile::Projectile(const Projectile& other)
@@ -20,12 +20,12 @@ Projectile::Projectile(const Projectile& other)
         PhysicalObject(other.pos.x, other.pos.y),
         Object(other.pos.x, other.pos.y)
 {
-
+    
 }
 
 Projectile::~Projectile()
 {
-
+    
 }
 
 Projectile& Projectile::operator=(const Projectile& other)
@@ -38,10 +38,13 @@ Projectile& Projectile::operator=(const Projectile& other)
     return *this;
 }
 
-//void Projectile::draw(SDL_Surface* screen)
-//{
-//
-//}
+void Projectile::draw(SDL_Surface* screen)
+{
+    static SDL_Rect loc;
+    loc = pos;
+    
+    SDL_BlitSurface(image, NULL, screen, &loc);
+}
 
 void Projectile::run()
 {

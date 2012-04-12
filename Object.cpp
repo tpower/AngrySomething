@@ -17,6 +17,11 @@ Object::Object(int x, int y, int w, int h)
     pos.y = y;
     pos.w = w;
     pos.h = h;
+    
+    circ.rad = pos.w / 2;
+    circ.x = pos.x + circ.rad;
+    circ.y = pos.y + circ.rad;
+    
 
     drawable = physical = mechanical = false;
 
@@ -74,6 +79,11 @@ void Object::setPos(SDL_Rect p)
 SDL_Rect Object::getPos()
 {
     return pos;
+}
+
+circle Object::getCircle()
+{
+    return circ;
 }
 
 bool Object::isDrawable()

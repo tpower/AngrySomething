@@ -21,7 +21,7 @@ class Projectile : public DrawableObject, public PhysicalObject, public Mechanic
 
         Projectile&     operator=(const Projectile& other);
 
-//        virtual void    draw(SDL_Surface* screen);
+        virtual void    draw(SDL_Surface* screen);
         virtual void    run();
 //        void            applyForce(int m, vect v, int dir);
 };

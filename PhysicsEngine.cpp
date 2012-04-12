@@ -95,23 +95,26 @@ void PhysicsEngine::detectCollisions(Room& room)
                     
                     if(doCollide(pObj, pObj2))
                     {
-                        int sideA, sideB;
+//                        int sideA, sideB;
                         
                         //evaluate side of collision for both objects
-                        sideA = sideOfCollision(pObj, pObj2);
+//                        sideA = sideOfCollision(pObj, pObj2);
+//                        
+//                        if(sideA)
+//                        {
+//                            //determine side of obj2 
+//                            if(sideA - 4 <= 0)
+//                                sideB = sideA + 4;
+//                            else
+//                                sideB = sideA - 4;
+//                            
+//                            //react to collision
+//                            handleCollision(pObj, pObj2, sideA);
+//                            handleCollision(pObj2, pObj, sideB);
+//                        }
                         
-                        if(sideA)
-                        {
-                            //determine side of obj2 
-                            if(sideA - 4 <= 0)
-                                sideB = sideA + 4;
-                            else
-                                sideB = sideA - 4;
-                            
-                            //react to collision
-                            handleCollision(pObj, pObj2, sideA);
-                            handleCollision(pObj2, pObj, sideB);
-                        }
+                        handleCollision(pObj, pObj2);
+                        handleCollision(pObj2, pObj);
                     }
                 }
             }
@@ -204,7 +207,9 @@ bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
 
 bool PhysicsEngine::doIntersect(circle a, circle b)
 {
-    int dist = sqrt(pow(a.cent.x - b.cent.x, 2) + pow(a.cent.y - b.cent.y, 2));
+    int difX = a.x - b.x;
+    int difY = a.y - b.y;
+    int dist = sqrt(pow(difX, 2.0) + pow(difY, 2.0));
     
     if(dist <= a.rad + b.rad)
         return true;
@@ -226,7 +231,11 @@ bool PhysicsEngine::doIntersect(circle a, circle b)
 bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
 {
     //check bounding box collision
-    return doIntersect(a->getPos(), b->getPos());
+//    return doIntersect(a->getPos(), b->getPos());
+    
+    if(doIntersect(a->getPos(), b->getPos()))
+        return doIntersect(a->getCircle(), b->getCircle());
+    return false;
 }
 
 /*******************************************************************************
@@ -380,6 +389,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
 
 void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2)
 {
+    //applyforce
     obj->applyForce(obj2->getMass(), obj2->getVel());
     obj2->applyForce(obj->getMass(), obj->getVel());
 }

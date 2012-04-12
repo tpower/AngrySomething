@@ -15,12 +15,6 @@
 #include "Room.h"
 #include "PhysicalObject.h"     //included in .h for vect
 
-struct circle
-{
-    vect cent;
-    int  rad;
-};
-
 class PhysicsEngine
 {
     public:
