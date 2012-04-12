@@ -96,12 +96,11 @@ Object* Sling::handle(SDL_Event e)
     Projectile* monk = NULL;
     static bool grabbed = false;;
 
+    int static centerX = pos.x;
+    int static centerY = pos.y;
+    
     if(checkBounds(e))
     {
-        //MechanicsObject::handle(e);
-        int static centerX = pos.x;
-        int static centerY = pos.y;
-
         if(e.type == SDL_MOUSEMOTION && grabbed)
         {
             pos.x = e.motion.x;
@@ -136,6 +135,39 @@ Object* Sling::handle(SDL_Event e)
             }
         }
     }
+    else
+    {
+        if(e.type == SDL_MOUSEMOTION && grabbed)
+        {
+            int tx = e.motion.x - centerX;
+            int ty = e.motion.y - centerY;
+            int c = sqrt(pow(tx, 2.0) + pow(ty, 2.0));
+            
+            int xDist = tx * radius / c;
+            int yDist = ty * radius / c;
+            
+            pos.x = centerX + xDist;
+            pos.y = centerY + yDist;
+        }
+        
+        if(e.type == SDL_MOUSEBUTTONUP && grabbed)
+        {
+            if(e.button.button == SDL_BUTTON_LEFT)
+            {
+                if(projectileCount > 0)
+                {
+                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                    projectileCount--;
+                }
+                
+                pos.x = centerX;
+                pos.y = centerY;
+                
+                grabbed = false;
+            }
+        }
+    }
+
     
     return monk;
 }
