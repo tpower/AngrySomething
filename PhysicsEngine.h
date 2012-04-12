@@ -34,6 +34,7 @@ class PhysicsEngine
         int  sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2);
         void handleCollision(PhysicalObject* obj, PhysicalObject* obj2);
         void handleCollision(PhysicalObject* obj, PhysicalObject* obj2, int side);
+        void resolveCollision(PhysicalObject* obj, PhysicalObject* obj2);
 };
 
 #endif

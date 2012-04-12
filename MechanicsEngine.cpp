@@ -24,11 +24,6 @@ void MechanicsEngine::run(Room& room)
                 {
                     room.add(temp);
                 }
-
-                if(obj->getState() == -1)
-                {
-                    room.remove(i);
-                }
             }
 
         }
