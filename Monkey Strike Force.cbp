@@ -51,6 +51,8 @@
 		<Unit filename="PhysicalObject.h" />
 		<Unit filename="PhysicsEngine.cpp" />
 		<Unit filename="PhysicsEngine.h" />
+		<Unit filename="Pig.cpp" />
+		<Unit filename="Pig.h" />
 		<Unit filename="Projectile.cpp" />
 		<Unit filename="Projectile.h" />
 		<Unit filename="Room.cpp" />
@@ -58,6 +60,8 @@
 		<Unit filename="SDLMain.h" />
 		<Unit filename="Sling.cpp" />
 		<Unit filename="Sling.h" />
+		<Unit filename="Wall.cpp" />
+		<Unit filename="Wall.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

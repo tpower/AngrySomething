@@ -25,6 +25,9 @@ DrawableObject::DrawableObject(const char* file)
     {
         cout << SDL_GetError() << endl;
     }
+
+    Uint32 colorkey = SDL_MapRGB( image->format, 0xFF, 0xFF, 0xFF );
+    SDL_SetColorKey( image, SDL_SRCCOLORKEY, colorkey );
 }
 
 /*******************************************************************************

@@ -27,12 +27,6 @@ Sling::Sling(const char* file, int x, int y, string ammo)
     Slingshot.x = x - 25;
     Slingshot.y = y;
 
-    /******************
-    bounds.x = x - 75;
-    bounds.w = x + 75;
-    bounds.y = y - 75;
-    bounds.h = y + 75;
-    ******************/
     radius = 75;
 
     projectiles = ammo;
