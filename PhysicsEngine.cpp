@@ -100,26 +100,7 @@ void PhysicsEngine::detectCollisions(Room& room)
 
                     if(doCollide(pObj, pObj2))
                     {
-//                        int sideA, sideB;
-                        
-                        //evaluate side of collision for both objects
-//                        sideA = sideOfCollision(pObj, pObj2);
-//                        
-//                        if(sideA)
-//                        {
-//                            //determine side of obj2 
-//                            if(sideA - 4 <= 0)
-//                                sideB = sideA + 4;
-//                            else
-//                                sideB = sideA - 4;
-//                            
-//                            //react to collision
-//                            handleCollision(pObj, pObj2, sideA);
-//                            handleCollision(pObj2, pObj, sideB);
-//                        }
-                        
-                        handleCollision(pObj, pObj2);
-                        handleCollision(pObj2, pObj);
+                        resolveCollision(pObj, pObj2);
                     }
                 }
             }
@@ -236,10 +217,10 @@ bool PhysicsEngine::doIntersect(circle a, circle b)
 bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
 {
     //check bounding box collision
-//    return doIntersect(a->getPos(), b->getPos());
+    return doIntersect(a->getPos(), b->getPos());
     
-    if(doIntersect(a->getPos(), b->getPos()))
-        return doIntersect(a->getCircle(), b->getCircle());
+//    if(doIntersect(a->getPos(), b->getPos()))
+//        return doIntersect(a->getCircle(), b->getCircle());
     return false;
 }
 
