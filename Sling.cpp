@@ -33,7 +33,7 @@ Sling::Sling(const char* file, int x, int y, string ammo)
     bounds.y = y - 75;
     bounds.h = y + 75;
     ******************/
-    radius = 125;
+    radius = 75;
 
     projectiles = ammo;
     projectileCount = projectiles.length();
@@ -99,10 +99,12 @@ Object* Sling::handle(SDL_Event e)
     MultiObject* monk = NULL;
     static bool grabbed = false;;
 
+    int static centerX = pos.x;
+    int static centerY = pos.y;
+
     if(checkBounds(e))
     {
-        int static centerX = pos.x;
-        int static centerY = pos.y;
+
 
         if(e.type == SDL_MOUSEMOTION && grabbed)
         {
@@ -136,6 +138,41 @@ Object* Sling::handle(SDL_Event e)
                 grabbed = false;
             }
         }
+    }
+    else
+    {
+        //int static centerX = pos.x;
+        //int static centerY = pos.y;
+
+        if(e.type == SDL_MOUSEMOTION && grabbed)
+        {
+            int tx = e.motion.x - centerX;
+            int ty = e.motion.y - centerY;
+            int c = sqrt(pow(tx,2) + pow(ty,2));
+
+            int xDist = (tx*radius / c);
+            int yDist = (ty*radius / c);
+
+            pos.x = centerX + xDist;
+            pos.y = centerY + yDist;
+        }
+
+        if(e.type == SDL_MOUSEBUTTONUP && grabbed)
+        {
+            if(e.button.button == SDL_BUTTON_LEFT)
+            {
+                if(projectileCount > 0)
+                {
+                    monk = createMonkey(projectiles[projectileCount-1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                    projectileCount--;
+                }
+                pos.x = centerX;
+                pos.y = centerY;
+
+                grabbed = false;
+            }
+        }
+
     }
     return monk;
 }
