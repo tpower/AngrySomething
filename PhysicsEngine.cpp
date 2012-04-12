@@ -100,23 +100,7 @@ void PhysicsEngine::detectCollisions(Room& room)
 
                     if(doCollide(pObj, pObj2))
                     {
-                        int sideA, sideB;
-
-                        //evaluate side of collision for both objects
-                        sideA = sideOfCollision(pObj, pObj2);
-                        
-                        if(sideA)
-                        {
-                            //determine side of obj2 
-                            if(sideA - 4 <= 0)
-                                sideB = sideA + 4;
-                            else
-                                sideB = sideA - 4;
-
-                            //react to collision
-                            handleCollision(pObj, pObj2, sideA);
-                            handleCollision(pObj2, pObj, sideB);
-                        }
+                        resolveCollision(pObj, pObj2);
                     }
                 }
             }
@@ -388,3 +372,27 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2)
     obj->applyForce(obj2->getMass(), obj2->getVel());
     obj2->applyForce(obj->getMass(), obj->getVel());
 }
+
+void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
+{
+    
+    int sideA, sideB;
+    
+    //evaluate side of collision for both objects
+    sideA = sideOfCollision(obj, obj2);
+    
+    if(sideA)
+    {
+        //determine side of obj2 
+        if(sideA - 4 <= 0)
+            sideB = sideA + 4;
+        else
+            sideB = sideA - 4;
+        
+        //react to collision
+        handleCollision(obj, obj2, sideA);
+        handleCollision(obj2, obj, sideB);
+    }
+
+}
+    
