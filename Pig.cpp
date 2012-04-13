@@ -1,12 +1,15 @@
 #include "Pig.h"
 #include <cmath>
 
+int Pig::numPigs = 0;
+
 Pig::Pig(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
         Object(x, y, 40, 40)
 {
     health = 100;
+    numPigs++;
 }
 
 Pig::Pig(const Pig& other)
@@ -14,12 +17,12 @@ Pig::Pig(const Pig& other)
         PhysicalObject(other.pos.x, other.pos.y),
         Object(other.pos.x, other.pos.y)
 {
-
+    numPigs++;
 }
 
 Pig::~Pig()
 {
-
+    numPigs--;
 }
 
 Pig& Pig::operator=(const Pig& other)

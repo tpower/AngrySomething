@@ -75,11 +75,23 @@ void Game::init()
  ******************************************************************************/
 int Game::run()
 {
+    int mechState;
     while(running)
     {
-        mech.run(room);
+        mechState = mech.run(room);
         phys.run(room);
         grph.run(room);
+        switch(mechState)
+        {
+            // Lose
+            case -1:
+                running = false;
+                break;
+            // Win
+            case 1:
+                running = room.load();
+                break;
+        }
         SDL_Delay(20);
     }
 

@@ -8,12 +8,14 @@
 #include "Projectile.h"
 #include <cmath>
 
+int Projectile::numBirds = 0;
+
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
-        Object(x, y, 20, 20)
+        Object(x, y, 50, 50)
 {
-
+    numBirds++;
 }
 
 Projectile::Projectile(const Projectile& other)
@@ -21,12 +23,12 @@ Projectile::Projectile(const Projectile& other)
         PhysicalObject(other.pos.x, other.pos.y),
         Object(other.pos.x, other.pos.y)
 {
-
+    numBirds++;
 }
 
 Projectile::~Projectile()
 {
-
+    numBirds--;
 }
 
 Projectile& Projectile::operator=(const Projectile& other)
@@ -73,5 +75,13 @@ void Projectile::applyForce(int m, vect v, int dir)
         acc.x += ((m * (v.x - vel.x)) / mass) * .8;
         acc.y += ((m * (v.y - vel.y)) / mass) * .8;
     }
+}
+
+void Projectile::draw(SDL_Surface* s)
+{
+    static SDL_Rect loc;
+    loc = pos;
+
+    SDL_BlitSurface(image, NULL, s, &loc);
 }
 
