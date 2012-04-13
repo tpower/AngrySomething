@@ -30,6 +30,8 @@ class Room
         int                 getNumObjects();
 
         bool                load();
+        void                add(Object*);
+        void                remove(int i);
 
 };
 

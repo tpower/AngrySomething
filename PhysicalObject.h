@@ -17,12 +17,26 @@ struct vect
     double x, y;
 };
 
+enum side
+{
+    NO_COLLISION    = 0,
+    TOP             = 1,
+    TOP_RIGHT       = 2,
+    RIGHT           = 3,
+    BOTTOM_RIGHT    = 4,
+    BOTTOM          = 5,
+    BOTTOM_LEFT     = 6,
+    LEFT            = 7,
+    TOP_LEFT        = 8
+};
+
 class PhysicalObject : virtual public Object
 {
     protected:
         vect vel;
         vect acc;
         int  mass;
+        int  collisionSide;
     
     public:
         PhysicalObject(int x = 0, int y = 0);
@@ -33,13 +47,17 @@ class PhysicalObject : virtual public Object
     
         void    setVel(vect v);
         void    setAcc(vect a);
+        void    setCollisionSide(int s);
         
         vect    getVel();
         vect    getAcc();
         int     getMass();
+        int     getCollisionSide();
     
         virtual void    run();
-        virtual void    applyForce(int m, vect v);
+        virtual void    applyForce(int m, vect v, int dir = 2);
+    
+        void            move();
 };
 
 #endif

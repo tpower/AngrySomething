@@ -18,8 +18,10 @@ Object::Object(int x, int y, int w, int h)
 
     pos.w = w;
     pos.h = h;
-    
+
     drawable = physical = mechanical = false;
+
+    state = 0;
 }
 
 /*******************************************************************************
@@ -37,7 +39,7 @@ Object::Object(const Object& other)
  ******************************************************************************/
 Object::~Object()
 {
-    
+
 }
 
 /*******************************************************************************
@@ -53,7 +55,7 @@ Object Object::operator=(const Object& other)
     {
         pos = other.pos;
     }
-    
+
     return *this;
 }
 
@@ -96,5 +98,10 @@ bool Object::isMechanical()
  ******************************************************************************/
 void Object::run()
 {
-    
+
+}
+
+int Object::getState()
+{
+    return state;
 }
