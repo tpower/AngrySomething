@@ -12,6 +12,7 @@
 #define SLING_H
 
 #include <string>
+#include <cmath>
 
 #include "Object.h"
 #include "DrawableObject.h"
@@ -28,7 +29,7 @@ class Sling : public DrawableObject, public MechanicsObject
         Projectile*     createMonkey(char type, int, int, int, int);
         SDL_Rect        Slingshot;
         string          projectiles;
-        int             projectileCount;
+        static int      projectileCount;
         SDL_Surface*    launcherImg;
 
     public:
@@ -37,6 +38,7 @@ class Sling : public DrawableObject, public MechanicsObject
 
         Object*     handle(SDL_Event);
         void        draw(SDL_Surface*);
+        static int  getProjectileCount(){ return projectileCount;}
 };
 
 #endif // SLING_H

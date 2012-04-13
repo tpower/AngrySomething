@@ -77,8 +77,19 @@ int Room::getNumObjects()
 
 void Room::remove(int i)
 {
+    delete object[i];
     object.erase(object.begin()+i);
 }
+
+void Room::erase()
+{
+    while(!object.empty())
+    {
+        delete object[0];
+        object.erase(object.begin());
+    }
+}
+
 /*******************************************************************************
  Name:              load
  Description:       This method dynamically allocates and loads objects in the
@@ -92,10 +103,12 @@ bool Room::load()
 //    object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
 //    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
 //    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
+
+    erase();
     object.push_back(new Sling("Stretchy.bmp", 100, 350, "NNNNNNNNNN"));
-    object.push_back(new Pig("TestB.bmp",  425, 440, 0, 0));
-    object.push_back(new Pig("TestB.bmp",  495, 440, 0, 0));
-    object.push_back(new Pig("TestB.bmp",  460, 340, 0, 0));
+    object.push_back(new Pig("TestA.bmp",  425, 440, 0, 0));
+    object.push_back(new Pig("TestA.bmp",  495, 440, 0, 0));
+    object.push_back(new Pig("TestA.bmp",  460, 340, 0, 0));
     object.push_back(new Wall("TestC.bmp", 400, 400, 0, 0, 20, 80));
     object.push_back(new Wall("TestC.bmp", 470, 400, 0, 0, 20, 80));
     object.push_back(new Wall("TestC.bmp", 540, 400, 0, 0, 20, 80));

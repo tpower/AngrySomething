@@ -17,14 +17,14 @@
  ******************************************************************************/
 GraphicsEngine::GraphicsEngine()
 {
-    screen = SDL_SetVideoMode(1280, 960, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+    screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
 
     if(!screen)
     {
         exit(-1);
     }
 
-    background = SDL_DisplayFormat(screen);
+    background = SDL_LoadBMP("background.bmp");
 }
 
 /*******************************************************************************
