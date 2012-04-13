@@ -65,7 +65,7 @@ void Pig::applyForce(int m, vect v, int dir)
         acc.y += ((m * (v.y - vel.y)) / mass) * .8;
     }
 
-    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 8)
+    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 7)
     {
         health -= 50;
     }

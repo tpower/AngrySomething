@@ -1,0 +1,13 @@
+12
+1 Stretchy.bmp 100 350 NNNNNNNNNN
+2 TestA.bmp 425 440 0 0
+2 TestA.bmp 495 440 0 0
+2 TestA.bmp 460 340 0 0
+3 TestC.bmp 400 400 0 0 20 80
+3 TestC.bmp 470 400 0 0 20 80
+3 TestC.bmp 540 400 0 0 20 80
+3 TestC.bmp 400 380 0 0 80 20
+3 TestC.bmp 480 380 0 0 80 20
+3 TestC.bmp 430 300 0 0 20 80
+3 TestC.bmp 510 300 0 0 20 80
+3 TestC.bmp 440 270 0 0 80 20

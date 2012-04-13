@@ -7,8 +7,9 @@
 
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
-
 #include <vector>
+#include <fstream>
+#include <string>
 
 class Object;
 
@@ -29,7 +30,7 @@ class Room
         Object*             getObjectAt(int);
         int                 getNumObjects();
 
-        bool                load();
+        bool                load(const char* f);
         void                add(Object*);
         void                remove(int i);
         void                erase();

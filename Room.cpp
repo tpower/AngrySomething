@@ -98,27 +98,61 @@ void Room::erase()
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-bool Room::load()
+bool Room::load(const char* f)
 {
-//    object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
-//    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
-//    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
+    ifstream inFile(f);
+    bool loaded;
 
-    erase();
-    object.push_back(new Sling("Stretchy.bmp", 100, 350, "NNNNNNNNNN"));
-    object.push_back(new Pig("TestA.bmp",  425, 440, 0, 0));
-    object.push_back(new Pig("TestA.bmp",  495, 440, 0, 0));
-    object.push_back(new Pig("TestA.bmp",  460, 340, 0, 0));
-    object.push_back(new Wall("TestC.bmp", 400, 400, 0, 0, 20, 80));
-    object.push_back(new Wall("TestC.bmp", 470, 400, 0, 0, 20, 80));
-    object.push_back(new Wall("TestC.bmp", 540, 400, 0, 0, 20, 80));
-    object.push_back(new Wall("TestC.bmp", 400, 380, 0, 0, 80, 20));
-    object.push_back(new Wall("TestC.bmp", 480, 380, 0, 0, 80, 20));
-    object.push_back(new Wall("TestC.bmp", 430, 300, 0, 0, 20, 80));
-    object.push_back(new Wall("TestC.bmp", 510, 300, 0, 0, 20, 80));
-    object.push_back(new Wall("TestC.bmp", 440, 270, 0, 0, 80, 20));
+    if(!inFile)
+    {
+        loaded = false;
+    }
 
-    return true;
+    else
+    {
+        if(!object.empty())
+        {
+            erase();
+        }
+
+        int type;
+        int numObjects;
+        inFile >> numObjects;
+        for(int i = 0; i < numObjects; i++)
+        {
+            inFile >> type;
+            switch(type)
+            {
+                case 1:
+                {
+                    string file, birds;
+                    int x, y;
+                    inFile >> file >> x >> y >> birds;
+                    object.push_back(new Sling(file.c_str(), x, y, birds.c_str()));
+                    break;
+                }
+                case 2:
+                {
+                    string file;
+                    int x, y, xvel, yvel;
+                    inFile >> file >> x >> y >> xvel >> yvel;
+                    object.push_back(new Pig(file.c_str(),  x, y, xvel, yvel));
+                    break;
+                }
+                case 3:
+                {
+                    string file;
+                    int x, y, xvel, yvel, w, h;
+                    inFile >> file >> x >> y >> xvel >> yvel >> w >> h;
+                    object.push_back(new Wall(file.c_str(), x, y, xvel, yvel, w, h));
+                    break;
+                }
+            }
+        }
+
+        loaded = true;
+    }
+    return loaded;
 }
 
 void Room::add(Object* obj)
