@@ -52,8 +52,6 @@ void Projectile::run()
     {
         state = -1;
     }
-
-    //TODO: destroy object when vel drops below certain threshold
 }
 
 void Projectile::applyForce(int m, vect v, int dir)
