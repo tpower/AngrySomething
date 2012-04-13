@@ -33,7 +33,7 @@ Sling::Sling(const char* file, int x, int y, string ammo)
     Slingshot.x = x - 25;
     Slingshot.y = y;
 
-    radius = 125;
+    radius = 75;
 
     projectiles = ammo;
     projectileCount = (int)projectiles.length();

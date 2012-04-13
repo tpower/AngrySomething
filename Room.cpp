@@ -80,6 +80,16 @@ void Room::remove(int i)
     delete object[i];
     object.erase(object.begin()+i);
 }
+
+void Room::erase()
+{
+    while(!object.empty())
+    {
+        delete object[0];
+        object.erase(object.begin());
+    }
+}
+
 /*******************************************************************************
  Name:              load
  Description:       This method dynamically allocates and loads objects in the
@@ -94,7 +104,7 @@ bool Room::load()
 //    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
 //    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
 
-    object.erase(object.begin(), object.end());
+    erase();
     object.push_back(new Sling("Stretchy.bmp", 100, 350, "NNNNNNNNNN"));
     object.push_back(new Pig("TestA.bmp",  425, 440, 0, 0));
     object.push_back(new Pig("TestA.bmp",  495, 440, 0, 0));
