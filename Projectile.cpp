@@ -8,6 +8,8 @@
 #include "Projectile.h"
 #include <cmath>
 
+int Projectile::numBirds = 0;
+
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
