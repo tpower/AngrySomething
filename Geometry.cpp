@@ -20,7 +20,8 @@ Vect::Vect(double a, double b)
 
 Vect::Vect(Point a, Point b)
 {
-    x = b.x - a.x; y = b.y - a.y;
+    x = b.x - a.x;
+    y = b.y - a.y;
 }
 
 Vect Vect::operator+(Vect v)
@@ -47,12 +48,12 @@ double Vect::slope()
 
 double Vect::len()
 {
-    return sqrt(pow(x, 2.0) + pow(x, 2.0));
+    return sqrt(pow(x, 2.0) + pow(y, 2.0));
 }
 
 double Vect::angle()
 {
-    return 1 / tan(slope());
+    return atan(slope());
 }
 
 /*******************************************************************************
@@ -60,17 +61,20 @@ double Vect::angle()
  ******************************************************************************/
 Line::Line(Point one, Point two)
 {
-    a = one; b = two;
+    a = one;
+    b = two;
 }
 
 Line::Line(int ax, int ay, int bx, int by)
 {
-    a = Point(ax, ay); b = Point(bx, by);
+    a = Point(ax, ay);
+    b = Point(bx, by);
 }
 
 Line::Line(Point p, Vect v)
 {
-    a = p; b = a + v;
+    a = p;
+    b = a + v;
 }
 
 Line Line::operator+(Vect v)
@@ -80,17 +84,28 @@ Line Line::operator+(Vect v)
 
 double Line::slope()
 {
-    Vect v(a, b); return v.slope();
+    Vect v(a, b);
+    return v.slope();
 }
 
 double Line::len()
 {
-    Vect v(a, b); return v.len();
+    Vect v(a, b); 
+    return v.len();
+}
+
+double Line::angle()
+{
+    Vect v(a, b);
+    return v.angle();
 }
 
 Point Line::midpoint()
 {
-    Point p; p.x = (a.x + b.x) / 2; p.y = (a.y + b.y) / 2; return p;
+    Point p;
+    p.x = (a.x + b.x) / 2;
+    p.y = (a.y + b.y) / 2;
+    return p;
 }
 
 bool Line::containsPoint(Point p)
@@ -209,10 +224,14 @@ Circle::Circle(Point c, double r)
 
 Circle::Circle(Box b)
 {
-    if(!b.isSquare());  //THROW AN ERROR??
-    
     rad = b.w / 2; 
     cent = Point(b.x + rad, b.y + rad);
+}
+
+Circle::Circle(SDL_Rect r)
+{
+    rad = r.w / 2; 
+    cent = Point(r.x + rad, r.y + rad);
 }
 
 Circle Circle::operator+(Vect v)
@@ -386,5 +405,18 @@ bool doIntersect(Circle a, Circle b)
         return true;
     
     return false;
+}
+
+Point pointOfIntersection(Circle a, Circle b)
+{
+    Vect v(a.cent, b.cent);
+    Vect w(b.cent, a.cent);
+    
+    v = v * (a.rad / (a.rad + b.rad));
+    w = w * (b.rad / (a.rad + b.rad));
+    
+    Line l(a.cent + v, b.cent + w);
+    
+    return l.midpoint();
 }
 

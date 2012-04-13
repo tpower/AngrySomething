@@ -70,6 +70,7 @@ struct Line
     Line    operator+(Vect v);
     double  slope();
     double  len();
+    double  angle();
     Point   midpoint();
     bool    containsPoint(Point p);
 };
@@ -106,8 +107,9 @@ struct Circle
     Point cent;
     double rad;
     
-    Circle(Point c, double r);
+    Circle(Point c = 0, double r = 0);
     Circle(Box b);
+    Circle(SDL_Rect r);
     
     Circle  operator+(Vect v);
     int     top();
@@ -145,5 +147,6 @@ struct Rect
 Point   operator+(const Point& p, const Vect& v);
 bool    doIntersect(SDL_Rect a, SDL_Rect b);
 bool    doIntersect(Circle a, Circle b);
+Point   pointOfIntersection(Circle a, Circle b);
 
 #endif

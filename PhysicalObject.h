@@ -21,7 +21,7 @@ class PhysicalObject : virtual public Object
         int     shape;
     
     public:
-        PhysicalObject(int x = 0, int y = 0);
+        PhysicalObject(int vx = 0, int vy = 0);
     
         void    setVel(Vect v);
         void    setAcc(Vect a);

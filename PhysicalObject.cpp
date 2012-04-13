@@ -12,12 +12,12 @@ const double GRAV = .3;
 /*******************************************************************************
  PhysicalObject()
  ******************************************************************************/
-PhysicalObject::PhysicalObject(int x, int y)
+PhysicalObject::PhysicalObject(int vx, int vy)
 {
     physical = true;
     
-    vel.x = x;
-    vel.y = y;
+    vel.x = vx;
+    vel.y = vy;
     
     acc.x = 0;
     acc.y = GRAV;     //gravity

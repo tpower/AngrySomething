@@ -77,7 +77,7 @@ Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVe
     switch (type)
     {
         case 'N':
-            p = new Projectile("TestA.bmp", xPos, yPos, xVel, yVel);
+            p = new Projectile("Proj.bmp", xPos, yPos, xVel, yVel);
             break;
     }
     

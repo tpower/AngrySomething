@@ -70,10 +70,20 @@ void PhysicsEngine::detectCollisions(Room& room)
                 if(obj->isPhysical())
                 {
                     PhysicalObject *pObj2 = dynamic_cast<PhysicalObject*>(obj2);
-
-                    if(doCollide(pObj, pObj2))
+                    
+                    if(pObj->getShape() == CIRCLE && pObj2->getShape() == CIRCLE)
                     {
-                        resolveCollision(pObj, pObj2);
+                        if(doCollide((CircleObject*)pObj, (CircleObject*)pObj2))
+                        {
+                            resolveCollision((CircleObject*)pObj, (CircleObject*)pObj2);
+                        }
+                    }
+                    else
+                    {
+                        if(doCollide(pObj, pObj2))
+                        {
+                            resolveCollision(pObj, pObj2);
+                        }
                     }
                 }
             }
@@ -146,10 +156,12 @@ bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
 {
     //check bounding box collision
     return doIntersect(a->getPos(), b->getPos());
-    
-//    if(doIntersect(a->getPos(), b->getPos()))
-//        return doIntersect(a->getCircle(), b->getCircle());
-    return false;
+}
+
+bool PhysicsEngine::doCollide(CircleObject *a, CircleObject *b)
+{
+    return doIntersect(((CircleObject*)a)->getCircle(),
+                       ((CircleObject*)b)->getCircle());
 }
 
 /*******************************************************************************
@@ -158,10 +170,10 @@ bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
 void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
 {
     int sideA, sideB;
-    
+
     //evaluate side of collision for both objects
     sideA = sideOfCollision(obj, obj2);
-    
+
     if(sideA)
     {
         //determine side of obj2 
@@ -172,6 +184,12 @@ void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
         handleCollision_Box(obj, obj2, sideA);
         handleCollision_Box(obj2, obj, sideB);
     }
+}
+
+void PhysicsEngine::resolveCollision(CircleObject* obj, CircleObject* obj2)
+{
+    handleCollision(obj, obj2);
+    handleCollision(obj2, obj);
 }
 
 /*******************************************************************************
@@ -306,10 +324,26 @@ void PhysicsEngine::handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj
 /*******************************************************************************
  Name:              handleCollision_Circle
  ******************************************************************************/
-void PhysicsEngine::handleCollision_Circle(PhysicalObject* obj, PhysicalObject* obj2)
+void PhysicsEngine::handleCollision(CircleObject* obj, CircleObject* obj2)
 {
+    Circle a = obj->getCircle();
+    Circle b = obj2->getCircle();
+    
+    Point i = pointOfIntersection(a, b);
+    Vect l = Vect(b.cent, i);
+    
+    double ang1 = l.angle();
+    double ang2 = M_PI - obj->getVel().angle();
+    double ang3 = ang2 - ang1;
+    
+    double fa = obj->getVel().len();
+    double fm = fa * cos(ang3);
+    double fr = fa * sin(ang3);
+    
+    Vect m = Vect(fm * cos(ang1), fm * sin(ang1));
+    Vect r = Vect(fr * sin(ang1), fr * cos(ang1));  //USED FOR SPIN
+    
     //applyforce
-    obj->applyForce(obj2->getMass(), obj2->getVel());
-    obj2->applyForce(obj->getMass(), obj->getVel());
+    obj2->applyForce(obj->getMass(), fm);
 }
     

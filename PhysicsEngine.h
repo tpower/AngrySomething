@@ -14,6 +14,7 @@
 
 #include "Room.h"
 #include "PhysicalObject.h"
+#include "CircleObject.h"
 
 class PhysicsEngine
 {
@@ -27,11 +28,15 @@ class PhysicsEngine
         void handleWallCollision(PhysicalObject* pObj);
     
         bool doCollide(PhysicalObject* a, PhysicalObject* b);
+        bool doCollide(CircleObject* a, CircleObject* b);
+    
         void resolveCollision(PhysicalObject* obj, PhysicalObject* obj2);
+        void resolveCollision(CircleObject* obj, CircleObject* obj2);
     
         int  sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2);
+    
         void handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj2, int side);
-        void handleCollision_Circle(PhysicalObject* obj, PhysicalObject* obj2);
+        void handleCollision(CircleObject* obj, CircleObject* obj2);
 };
 
 #endif
