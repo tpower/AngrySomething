@@ -169,41 +169,6 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 }
 
 /*******************************************************************************
- Name:              doIntersect
- Description:       Determines if two SDL_Rects intersect
-
- Input:
-    a               SDL_Rect
-    b               SDL_Rect
-
- Output:
-    returns         bool TRUE if SDL_Rects intersect
- ******************************************************************************/
-bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
-{
-    //check for cases that make collision impossible
-    if(a.x + a.w    < b.x)          return false;
-    if(a.x          > b.x + b.w)    return false;
-    if(a.y + a.h    < b.y)          return false;
-    if(a.y          > b.y + b.h)    return false;
-
-    //return true collision
-    return true;
-}
-
-bool PhysicsEngine::doIntersect(circle a, circle b)
-{
-    int difX = a.x - b.x;
-    int difY = a.y - b.y;
-    int dist = sqrt(pow(difX, 2.0) + pow(difY, 2.0));
-    
-    if(dist <= a.rad + b.rad)
-        return true;
-    
-    return false;
-}
-
-/*******************************************************************************
  Name:              doCollide
  Description:       Determines if two PhysicalObjects collided
 

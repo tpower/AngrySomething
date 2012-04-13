@@ -38,13 +38,13 @@ Projectile& Projectile::operator=(const Projectile& other)
     return *this;
 }
 
-void Projectile::draw(SDL_Surface* screen)
-{
-    static SDL_Rect loc;
-    loc = pos;
-    
-    SDL_BlitSurface(image, NULL, screen, &loc);
-}
+//void Projectile::draw(SDL_Surface* screen)
+//{
+//    static SDL_Rect loc;
+//    loc = pos;
+//    
+//    SDL_BlitSurface(image, NULL, screen, &loc);
+//}
 
 void Projectile::run()
 {

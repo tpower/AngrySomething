@@ -28,8 +28,6 @@ class PhysicsEngine
         void detectCollisions(Room& room);
     
         void handleWallCollision(PhysicalObject* pObj);
-        bool doIntersect(SDL_Rect a, SDL_Rect b);
-        bool doIntersect(circle a, circle b);
         bool doCollide(PhysicalObject* a, PhysicalObject* b);
         int  sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2);
         void handleCollision(PhysicalObject* obj, PhysicalObject* obj2);
