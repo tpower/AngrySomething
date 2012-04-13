@@ -12,7 +12,7 @@ Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
         PhysicalObject(vx, vy),
         Object(x, y, 20, 20)
 {
-    
+    shape = CIRCLE;
 }
 
 Projectile::Projectile(const Projectile& other)
