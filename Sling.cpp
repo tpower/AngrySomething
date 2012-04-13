@@ -26,12 +26,12 @@ Sling::Sling(const char* file, int x, int y, string ammo)
         MechanicsObject()
 {
     launcherImg = SDL_LoadBMP("Slingshot.bmp");
-    
+
     Slingshot.x = x - 25;
     Slingshot.y = y;
-    
+
     radius = 125;
-    
+
     projectiles = ammo;
     projectileCount = (int)projectiles.length();
 }
@@ -73,14 +73,14 @@ bool Sling::checkBounds(SDL_Event e)
 Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVel)
 {
     Projectile* p;
-    
+
     switch (type)
     {
         case 'N':
-            p = new Projectile("TestA.bmp", xPos, yPos, xVel, yVel);
+            p = new Projectile("Monkey.bmp", xPos, yPos, xVel, yVel);
             break;
     }
-    
+
     return p;
 }
 
@@ -98,7 +98,7 @@ Object* Sling::handle(SDL_Event e)
 
     int static centerX = pos.x;
     int static centerY = pos.y;
-    
+
     if(checkBounds(e))
     {
         if(e.type == SDL_MOUSEMOTION && grabbed)
@@ -127,7 +127,7 @@ Object* Sling::handle(SDL_Event e)
                     monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
                     projectileCount--;
                 }
-                
+
                 pos.x = centerX;
                 pos.y = centerY;
 
@@ -142,14 +142,14 @@ Object* Sling::handle(SDL_Event e)
             int tx = e.motion.x - centerX;
             int ty = e.motion.y - centerY;
             int c = sqrt(pow(tx, 2.0) + pow(ty, 2.0));
-            
+
             int xDist = tx * radius / c;
             int yDist = ty * radius / c;
-            
+
             pos.x = centerX + xDist;
             pos.y = centerY + yDist;
         }
-        
+
         if(e.type == SDL_MOUSEBUTTONUP && grabbed)
         {
             if(e.button.button == SDL_BUTTON_LEFT)
@@ -159,16 +159,16 @@ Object* Sling::handle(SDL_Event e)
                     monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
                     projectileCount--;
                 }
-                
+
                 pos.x = centerX;
                 pos.y = centerY;
-                
+
                 grabbed = false;
             }
         }
     }
 
-    
+
     return monk;
 }
 
