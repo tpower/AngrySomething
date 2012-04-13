@@ -77,6 +77,7 @@ int Room::getNumObjects()
 
 void Room::remove(int i)
 {
+    delete object[i];
     object.erase(object.begin()+i);
 }
 /*******************************************************************************
@@ -92,6 +93,8 @@ bool Room::load()
 //    object.push_back(new MultiObject("TestA.bmp", 0, 0, 5, 4));
 //    object.push_back(new MultiObject("TestB.bmp", 80, 200, -1, 3));
 //    object.push_back(new MultiObject("TestC.bmp", 280, 150, 2, 7));
+
+    object.erase(object.begin(), object.end());
     object.push_back(new Sling("Stretchy.bmp", 100, 350, "NNNNNNNNNN"));
     object.push_back(new Pig("TestA.bmp",  425, 440, 0, 0));
     object.push_back(new Pig("TestA.bmp",  495, 440, 0, 0));

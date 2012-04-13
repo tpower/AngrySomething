@@ -22,7 +22,7 @@ class Object
     public:
         Object(int x = 0, int y = 0, int w = 0, int h = 0);
         Object(const Object&);
-        ~Object();
+        virtual ~Object();
 
         Object          operator=(const Object& other);
 

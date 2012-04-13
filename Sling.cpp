@@ -20,6 +20,9 @@
     file            The image filename
     x, y            The x and y coordinates of the object
  ******************************************************************************/
+
+int Sling::projectileCount = 0;
+
 Sling::Sling(const char* file, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
         DrawableObject(file),
@@ -157,8 +160,10 @@ Object* Sling::handle(SDL_Event e)
                 if(projectileCount > 0)
                 {
                     monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
-                    projectileCount--;
+
                 }
+
+                projectileCount--;
 
                 pos.x = centerX;
                 pos.y = centerY;

@@ -7,12 +7,15 @@
 
 #include "Projectile.h"
 #include <cmath>
+
+int Projectile::numBirds = 0;
+
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
         Object(x, y, 50, 50)
 {
-
+    numBirds++;
 }
 
 Projectile::Projectile(const Projectile& other)
@@ -20,12 +23,12 @@ Projectile::Projectile(const Projectile& other)
         PhysicalObject(other.pos.x, other.pos.y),
         Object(other.pos.x, other.pos.y)
 {
-
+    numBirds++;
 }
 
 Projectile::~Projectile()
 {
-
+    numBirds--;
 }
 
 Projectile& Projectile::operator=(const Projectile& other)
