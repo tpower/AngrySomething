@@ -120,7 +120,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 {
     //get position
     SDL_Rect pos = pObj->getPos();
-    
+
     //bounce off left/right wall
     if(pos.x <= 0 || pos.x + pos.w >= 640)
     {
@@ -136,14 +136,14 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
             pObj->setCollisionSide(RIGHT);
         }
         pObj->setPos(pos);
-        
+
         //adjust velocity
         vect v = pObj->getVel();
         v.x *= -1;
         v.y = 0;
         pObj->applyForce(pObj->getMass(), v, 0);
     }
-    
+
     //bounce off top/bottom wall
     if(pos.y <= 0 || pos.y + pos.h >= 480)
     {
@@ -159,7 +159,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
             pObj->setCollisionSide(BOTTOM);
         }
         pObj->setPos(pos);
-        
+
         //adjust velocity
         vect v = pObj->getVel();
         v.y *= -1;
@@ -194,10 +194,10 @@ bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
 bool PhysicsEngine::doIntersect(circle a, circle b)
 {
     int dist = sqrt(pow(a.cent.x - b.cent.x, 2) + pow(a.cent.y - b.cent.y, 2));
-    
+
     if(dist <= a.rad + b.rad)
         return true;
-    
+
     return false;
 }
 
@@ -232,13 +232,13 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     bool aRight  = true;
     bool aBottom = true;
     bool aLeft   = true;
-    
+
     //evaluate initial collision sides
     if(a.y > b.y) aBottom  = false;
     if(a.x > b.x) aRight = false;
     if(a.y + a.h < b.y + b.h) aTop = false;
     if(a.x + a.w < b.x + b.w) aLeft  = false;
-    
+
     //evaluate impossible 3-side collision case
     if(aTop + aBottom + aRight + aLeft == 3)
     {
@@ -247,7 +247,7 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         else
             aLeft = aRight = false;
     }
-    
+
     //eliminate impossible corner cases
     if(aTop + aBottom + aRight + aLeft == 2)
     {
@@ -259,11 +259,11 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
         if(velA.x < 0 && velB.x > 0) aRight     = false;
         if(velA.y > 0 && velB.y < 0) aTop       = false;
         if(velA.y < 0 && velB.y > 0) aBottom    = false;
-        
+
         //impossible collision case
         if(velA.x == velB.x) aLeft = aRight = false;
         if(velA.y == velB.y) aTop = aBottom = false;
-        
+
         //avoid side-by-side motionless collisions
         if(!velA.x && !velB.x && (a.x == b.x + b.w || a.x == b.x - a.w))
             aLeft = aRight = aTop = aBottom = false;
@@ -306,7 +306,7 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
             aLeft = aRight = false;
         }
     }
-    
+
     //return collision code
     if(aTop)
     {
@@ -337,7 +337,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         if(side == TOP) a.y++;
         else a.y--;
         obj->setPos(a);
-        
+
         //adjust velocity based on force of collision
         vect v = obj2->getVel();
         v.x = 0;
@@ -350,7 +350,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         if(side == LEFT) a.x++;
         else a.x--;
         obj->setPos(a);
-        
+
         //adjust velocity based on force of collision
         vect v = obj2->getVel();
         v.y = 0;
@@ -362,7 +362,7 @@ void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, i
         vect v = obj2->getVel();
         obj->applyForce(obj2->getMass(), v, 2);
     }
-    
+
     //record collision side
     obj->setCollisionSide(side);
 }

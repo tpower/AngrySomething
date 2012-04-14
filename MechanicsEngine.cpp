@@ -2,9 +2,13 @@
 #include "MechanicsEngine.h"
 #include "Object.h"
 #include "MechanicsObject.h"
+#include "Pig.h"
+#include "Projectile.h"
+#include "Sling.h"
 
-void MechanicsEngine::run(Room& room)
+int MechanicsEngine::run(Room& room)
 {
+    int state = 0;
     if(SDL_PollEvent(&event))
     {
         if( event.type == SDL_QUIT )
@@ -28,4 +32,16 @@ void MechanicsEngine::run(Room& room)
 
         }
     }
+
+    if(Pig::getNumPigs() <= 0)
+    {
+        state = 1;
+    }
+
+    if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <= 0)
+    {
+        state = -1;
+    }
+
+    return state;
 }
