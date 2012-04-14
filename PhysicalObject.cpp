@@ -21,7 +21,6 @@ PhysicalObject::PhysicalObject(int vx, int vy)
     
     acc.x = 0;
     acc.y = GRAV;     //gravity
-//    acc.y = 0;
     
     mass = pos.w * pos.h;
     
@@ -117,13 +116,13 @@ void PhysicalObject::applyForce(int m, Vect v, int dir)
 {
     if(dir == 0)
     {
-        v.y = vel.y;// .8;   //friction
+        v.y = vel.y * .8;   //friction
         acc.x += ((m * (v.x/* - vel.x*/)) / mass) * .8;
         acc.y += (v.y - vel.y) * .8;
     }
     else if(dir == 1)
     {
-        v.x = vel.x;// * .8;   //friction
+        v.x = vel.x * .8;   //friction
         acc.x += (v.x - vel.x) * .8;
         acc.y += ((m * (v.y/* - vel.x*/)) / mass) * .8;
     }
