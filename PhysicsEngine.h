@@ -39,4 +39,6 @@ class PhysicsEngine
         void handleCollision(CircleObject* obj, CircleObject* obj2);
 };
 
+//void printStuff();
+
 #endif

@@ -44,23 +44,7 @@ void Wall::run()
 
 void Wall::applyForce(int m, Vect v, int dir)
 {
-    if(dir == 0)
-    {
-        v.y = vel.y * .8;   //friction
-        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
-        acc.y += (v.y - vel.y) * .8;
-    }
-    else if(dir == 1)
-    {
-        v.x = vel.x * .8;   //friction
-        acc.x += (v.x - vel.x) * .8;
-        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
-    }
-    else
-    {
-        acc.x += ((m * (v.x - vel.x)) / mass) * .8;
-        acc.y += ((m * (v.y - vel.y)) / mass) * .8;
-    }
+    PhysicalObject::applyForce(m, v, dir);
 
     if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 7)
     {

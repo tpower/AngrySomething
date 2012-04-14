@@ -53,6 +53,10 @@ double Vect::len()
 
 double Vect::angle()
 {
+    if(x < 0 || (y < 0 && x == 0))
+       return M_PI + atan(slope());
+    if(y < 0)
+       return (2 * M_PI) + atan(slope()); 
     return atan(slope());
 }
 

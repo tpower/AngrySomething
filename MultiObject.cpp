@@ -26,18 +26,3 @@ MultiObject::MultiObject(const MultiObject& other)
 {
 
 }
-
-MultiObject::~MultiObject()
-{
-
-}
-
-MultiObject& MultiObject::operator=(const MultiObject& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
-}

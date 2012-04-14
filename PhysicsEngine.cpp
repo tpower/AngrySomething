@@ -6,7 +6,8 @@
                             PhysicsEngine class is responsible for moving
                             objects and detecting collisions within the room.
  ******************************************************************************/
-
+#include <iostream>
+using namespace std;
 #include <cmath>
 
 #include "PhysicsEngine.h"
@@ -119,7 +120,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         
         //adjust velocity
         Vect v = pObj->getVel();
-        v.x *= -1;
+        v.x *= -2;
         v.y = 0;
         pObj->applyForce(pObj->getMass(), v, 0);
     }
@@ -142,7 +143,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         
         //adjust velocity
         Vect v = pObj->getVel();
-        v.y *= -1;
+        v.y *= -2;
         v.x = 0;
         pObj->applyForce(pObj->getMass(), v, 1);
     }
@@ -330,20 +331,27 @@ void PhysicsEngine::handleCollision(CircleObject* obj, CircleObject* obj2)
     Circle b = obj2->getCircle();
     
     Point i = pointOfIntersection(a, b);
-    Vect l = Vect(b.cent, i);
+    Vect  l = Vect(i, b.cent);
     
     double ang1 = l.angle();
-    double ang2 = M_PI - obj->getVel().angle();
+    double ang2 = obj->getVel().angle();
     double ang3 = ang2 - ang1;
     
-    double fa = obj->getVel().len();
-    double fm = fa * cos(ang3);
-    double fr = fa * sin(ang3);
-    
-    Vect m = Vect(fm * cos(ang1), fm * sin(ang1));
-    Vect r = Vect(fr * sin(ang1), fr * cos(ang1));  //USED FOR SPIN
-    
-    //applyforce
-    obj2->applyForce(obj->getMass(), fm);
+    if(abs(ang3) <= (M_PI / 2) - .1 && obj->getVel().len())
+    {
+        double fa = obj->getVel().len();
+        double fm = fa * cos(ang3);
+        double fs = fa * sin(ang3);
+        
+        Vect m = Vect(fm * cos(ang1), fm * sin(ang1));
+        Vect s = Vect(fs * sin(ang1), fs * cos(ang1));  //USED FOR SPIN MAYBE
+        
+        //applyforce
+        obj2->applyForce(obj->getMass(), m);
+        
+        Vect acc = obj->getAcc();
+        acc = acc + (m * -1);
+        obj->setAcc(acc);
+    }
 }
     

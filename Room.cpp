@@ -90,8 +90,9 @@ void Room::remove(int i)
 bool Room::load()
 {
     object.push_back(new Sling("Stretchy.bmp", 100, 350, "NNNNNNNNNN"));
-    object.push_back(new Projectile("Proj.bmp", 425, 440, 0, 0));
-    object.push_back(new Projectile("Proj.bmp", 460, 340, 0, 0));
+    object.push_back(new Projectile("Proj.bmp", 100, 415, 0, 0));
+    object.push_back(new Projectile("Proj.bmp", 400, 415, -7, 0));
+    object.push_back(new Projectile("Proj.bmp", 230, 415, 8, 0));
 //    object.push_back(new Pig("TestB.bmp",  425, 440, 0, 0));
 //    object.push_back(new Pig("TestB.bmp",  495, 440, 0, 0));
 //    object.push_back(new Pig("TestB.bmp",  460, 340, 0, 0));
