@@ -98,7 +98,7 @@ void Room::erase()
  Output:
     returns         bool value of whether the component loaded correctly
  ******************************************************************************/
-bool Room::load()
+bool Room::load(const char* f)
 {
     erase();
     object.push_back(new Sling("Stretchy.bmp", 100, 350, "NNNNNNNNNNNNNNNN"));

@@ -63,7 +63,7 @@ Game Game::operator=(const Game& other)
  ******************************************************************************/
 void Game::init()
 {
-    running = room.load();
+    running = room.load("Level1.gel");
 }
 
 /*******************************************************************************
@@ -89,7 +89,7 @@ int Game::run()
                 break;
             // Win
             case 1:
-                running = room.load();
+                running = room.load("Level1.gel");
                 break;
         }
         SDL_Delay(20);
