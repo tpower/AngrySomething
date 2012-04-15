@@ -17,12 +17,3 @@ MultiObject::MultiObject(const char* file, int x, int y, int vx, int vy)
 {
 
 }
-
-MultiObject::MultiObject(const MultiObject& other)
-    :   DrawableObject("TestA.bmp"),
-        PhysicalObject(other.pos.x, other.pos.y),
-        MechanicsObject(),
-        Object(other.pos.x, other.pos.y)
-{
-
-}

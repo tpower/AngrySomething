@@ -25,16 +25,6 @@ Pig::~Pig()
     numPigs--;
 }
 
-Pig& Pig::operator=(const Pig& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
-}
-
 void Pig::run()
 {
     if(health <= 0)

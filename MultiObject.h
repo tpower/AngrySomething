@@ -18,10 +18,6 @@ class MultiObject : public DrawableObject, public PhysicalObject, public Mechani
 {
     public:
         MultiObject(const char* file, int x, int y, int vx, int vy);
-        MultiObject(const MultiObject& other);
-        ~MultiObject();
-        
-        MultiObject&    operator=(const MultiObject& other);
 };
 
 #endif

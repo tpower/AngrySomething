@@ -19,15 +19,14 @@ class Projectile : public DrawableObject, public CircleObject, public MechanicsO
         static int numBirds;
     public:
         Projectile(const char* file, int x, int y, int vx, int vy);
-
-        Projectile&     operator=(const Projectile& other);
-
-//        virtual void    draw(SDL_Surface* screen);
-        virtual void    run();
-        void            draw(SDL_Surface* s);
-        void            applyForce(int m, vect v, int dir);
+        ~Projectile();
 
         static int      getNumBirds(){return numBirds;}
+
+        virtual void    run();
+        void            draw(SDL_Surface* s);
+
+        
 };
 
 #endif

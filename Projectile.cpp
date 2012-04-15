@@ -12,16 +12,8 @@ int Projectile::numBirds = 0;
 
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
-        PhysicalObject(vx, vy),
-        Object(x, y, 50, 50)
-{
-    numBirds++;
-}
-
-Projectile::Projectile(const Projectile& other)
-    :   DrawableObject("TestA.bmp"),
-        PhysicalObject(other.pos.x, other.pos.y),
-        Object(other.pos.x, other.pos.y)
+        CircleObject(vx, vy),
+        Object(x, y, 60, 60)
 {
     numBirds++;
 }
@@ -31,21 +23,6 @@ Projectile::~Projectile()
     numBirds--;
 }
 
-Projectile& Projectile::operator=(const Projectile& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
-}
-
-//void Projectile::draw(SDL_Surface* screen)
-//{
-//
-//}
-
 void Projectile::run()
 {
     move();
@@ -54,8 +31,6 @@ void Projectile::run()
     {
         state = -1;
     }
-
-    //TODO: destroy object when vel drops below certain threshold
 }
 
 void Projectile::draw(SDL_Surface* screen)
@@ -65,12 +40,3 @@ void Projectile::draw(SDL_Surface* screen)
     
     SDL_BlitSurface(image, NULL, screen, &loc);
 }
-
-void Projectile::draw(SDL_Surface* s)
-{
-    static SDL_Rect loc;
-    loc = pos;
-
-    SDL_BlitSurface(image, NULL, s, &loc);
-}
-

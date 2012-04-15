@@ -10,10 +10,6 @@ class Wall : public DrawableObject, public PhysicalObject, public MechanicsObjec
         int health;
     public:
         Wall(const char* file, int x, int y, int vx, int vy, int w, int h);
-        Wall(const Wall& other);
-        ~Wall();
-
-        Wall&     operator=(const Wall& other);
 
         virtual void    run();
         void            applyForce(int m, Vect v, int dir);

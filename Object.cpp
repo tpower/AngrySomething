@@ -17,50 +17,15 @@ Object::Object(int x, int y, int w, int h)
     pos.y = y;
     pos.w = w;
     pos.h = h;
-    
-    circ.rad = pos.w / 2;
-    circ.x = pos.x + circ.rad;
-    circ.y = pos.y + circ.rad;
-    
 
     drawable = physical = mechanical = false;
 
     state = 0;
 }
 
-/*******************************************************************************
- Name:              Object
- Description:       Copy constructor for Object class
- ******************************************************************************/
-Object::Object(const Object& other)
-{
-    pos = other.pos;
-}
-
-/*******************************************************************************
- Name:              ~Object
- Description:       Destructor for Object class
- ******************************************************************************/
 Object::~Object()
 {
-
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Object class
-
- Input:
-    other           const Object&
- ******************************************************************************/
-Object Object::operator=(const Object& other)
-{
-    if(&other != this)
-    {
-        pos = other.pos;
-    }
-
-    return *this;
+    
 }
 
 /*******************************************************************************
@@ -81,9 +46,9 @@ SDL_Rect Object::getPos()
     return pos;
 }
 
-circle Object::getCircle()
+int Object::getState()
 {
-    return circ;
+    return state;
 }
 
 bool Object::isDrawable()
@@ -110,7 +75,4 @@ void Object::run()
 
 }
 
-int Object::getState()
-{
-    return state;
-}
+

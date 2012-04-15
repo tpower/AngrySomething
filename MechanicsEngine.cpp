@@ -29,7 +29,6 @@ int MechanicsEngine::run(Room& room)
                     room.add(temp);
                 }
             }
-
         }
     }
 

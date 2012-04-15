@@ -42,7 +42,7 @@ void PhysicsEngine::runObjects(Room& room)
 
             if(obj->getState() == -1)
             {
-                room.remove(i);
+                room.remove(i--);
             }
         }
     }
@@ -160,12 +160,8 @@ bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
 
 bool PhysicsEngine::doCollide(CircleObject *a, CircleObject *b)
 {
-    int dist = sqrt(pow(a.cent.x - b.cent.x, 2) + pow(a.cent.y - b.cent.y, 2));
-
-    if(dist <= a.rad + b.rad)
-        return true;
-
-    return false;
+    return doIntersect(((CircleObject*)a)->getCircle(),
+                       ((CircleObject*)b)->getCircle());
 }
 
 /*******************************************************************************
@@ -212,11 +208,11 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     bool aLeft   = true;
 
     //evaluate initial collision sides
-    if(a.y > b.y) aBottom  = false;
-    if(a.x > b.x) aRight = false;
-    if(a.y + a.h < b.y + b.h) aTop = false;
-    if(a.x + a.w < b.x + b.w) aLeft  = false;
-
+    if(a.y > b.y)               aBottom = false;
+    if(a.x > b.x)               aRight  = false;
+    if(a.y + a.h < b.y + b.h)   aTop    = false;
+    if(a.x + a.w < b.x + b.w)   aLeft   = false;
+    
     //evaluate impossible 3-side collision case
     if(aTop + aBottom + aRight + aLeft == 3)
     {
@@ -294,8 +290,8 @@ void PhysicsEngine::handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj
         SDL_Rect a = obj2->getPos();
         if(side == TOP) a.y++;
         else a.y--;
-        obj->setPos(a);
-
+        obj2->setPos(a);
+        
         //adjust velocity based on force of collision
         Vect v = obj->getVel();
         v.x = 0;
@@ -307,8 +303,8 @@ void PhysicsEngine::handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj
         SDL_Rect a = obj2->getPos();
         if(side == LEFT) a.x++;
         else a.x--;
-        obj->setPos(a);
-
+        obj2->setPos(a);
+        
         //adjust velocity based on force of collision
         Vect v = obj->getVel();
         v.y = 0;
