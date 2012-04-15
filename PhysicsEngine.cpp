@@ -7,35 +7,14 @@
                             objects and detecting collisions within the room.
  ******************************************************************************/
 
-#include <iostream>
 #include <cmath>
 
 #include "PhysicsEngine.h"
-
-/*******************************************************************************
- Name:              PhysicsEngine
- Description:       Default constructor
- ******************************************************************************/
-PhysicsEngine::PhysicsEngine()
-{
-
-}
-
-/*******************************************************************************
- Name:              ~PhysicsEngine
- Description:       Destructor
- ******************************************************************************/
-PhysicsEngine::~PhysicsEngine()
-{
-
-}
+#include "Geometry.h"
 
 /*******************************************************************************
  Name:              run
  Description:       Runs all objects in the room and tests for collisions
-
- Input:
-    room            Room& containing objects
  ******************************************************************************/
 void PhysicsEngine::run(Room& room)
 {
@@ -46,9 +25,6 @@ void PhysicsEngine::run(Room& room)
 /*******************************************************************************
  Name:              runObjects
  Description:       This method runs every physical object in a given room.
-
- Input:
-    room            Room&
  ******************************************************************************/
 void PhysicsEngine::runObjects(Room& room)
 {
@@ -76,9 +52,6 @@ void PhysicsEngine::runObjects(Room& room)
  Name:              detectCollisions
  Description:       This method detects collisions between all PhysicalObjects
                     in a given room.
-
- Input:
-    room            Room&
  ******************************************************************************/
 void PhysicsEngine::detectCollisions(Room& room)
 {
@@ -97,10 +70,20 @@ void PhysicsEngine::detectCollisions(Room& room)
                 if(obj->isPhysical())
                 {
                     PhysicalObject *pObj2 = dynamic_cast<PhysicalObject*>(obj2);
-
-                    if(doCollide(pObj, pObj2))
+                    
+                    if(pObj->getShape() == CIRCLE && pObj2->getShape() == CIRCLE)
                     {
-                        resolveCollision(pObj, pObj2);
+                        if(doCollide((CircleObject*)pObj, (CircleObject*)pObj2))
+                        {
+                            resolveCollision((CircleObject*)pObj, (CircleObject*)pObj2);
+                        }
+                    }
+                    else
+                    {
+                        if(doCollide(pObj, pObj2))
+                        {
+                            resolveCollision(pObj, pObj2);
+                        }
                     }
                 }
             }
@@ -112,9 +95,6 @@ void PhysicsEngine::detectCollisions(Room& room)
  Name:              handleWallCollision
  Description:       This method keeps a PhysicalObject from leaving the
                     boundaries of the screen.
-
- Input:
-    pObj            PhysicalObject*
  ******************************************************************************/
 void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 {
@@ -138,7 +118,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         pObj->setPos(pos);
 
         //adjust velocity
-        vect v = pObj->getVel();
+        Vect v = pObj->getVel();
         v.x *= -1;
         v.y = 0;
         pObj->applyForce(pObj->getMass(), v, 0);
@@ -161,7 +141,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         pObj->setPos(pos);
 
         //adjust velocity
-        vect v = pObj->getVel();
+        Vect v = pObj->getVel();
         v.y *= -1;
         v.x = 0;
         pObj->applyForce(pObj->getMass(), v, 1);
@@ -169,29 +149,16 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 }
 
 /*******************************************************************************
- Name:              doIntersect
- Description:       Determines if two SDL_Rects intersect
-
- Input:
-    a               SDL_Rect
-    b               SDL_Rect
-
- Output:
-    returns         bool TRUE if SDL_Rects intersect
+ Name:              doCollide
+ Description:       Determines if two PhysicalObjects collided
  ******************************************************************************/
-bool PhysicsEngine::doIntersect(SDL_Rect a, SDL_Rect b)
+bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
 {
-    //check for cases that make collision impossible
-    if(a.x + a.w    < b.x)          return false;
-    if(a.x          > b.x + b.w)    return false;
-    if(a.y + a.h    < b.y)          return false;
-    if(a.y          > b.y + b.h)    return false;
-
-    //return true collision
-    return true;
+    //check bounding box collision
+    return doIntersect(a->getPos(), b->getPos());
 }
 
-bool PhysicsEngine::doIntersect(circle a, circle b)
+bool PhysicsEngine::doCollide(CircleObject *a, CircleObject *b)
 {
     int dist = sqrt(pow(a.cent.x - b.cent.x, 2) + pow(a.cent.y - b.cent.y, 2));
 
@@ -202,20 +169,31 @@ bool PhysicsEngine::doIntersect(circle a, circle b)
 }
 
 /*******************************************************************************
- Name:              doCollide
- Description:       Determines if two PhysicalObjects collided
-
- Input:
-    a               PhysicalObject*
-    b               PhysicalObject*
-
- Output:
-    returns         bool TRUE if PhysicalObjects collided
+ Name:               resolveCollision
  ******************************************************************************/
-bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
+void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
 {
-    //check bounding box collision
-    return doIntersect(a->getPos(), b->getPos());
+    int sideA, sideB;
+
+    //evaluate side of collision for both objects
+    sideA = sideOfCollision(obj, obj2);
+
+    if(sideA)
+    {
+        //determine side of obj2 
+        if(sideA - 4 <= 0)  sideB = sideA + 4;
+        else                sideB = sideA - 4;
+        
+        //react to collision
+        handleCollision_Box(obj, obj2, sideB);
+        handleCollision_Box(obj2, obj, sideA);
+    }
+}
+
+void PhysicsEngine::resolveCollision(CircleObject* obj, CircleObject* obj2)
+{
+    handleCollision(obj, obj2);
+    handleCollision(obj2, obj);
 }
 
 /*******************************************************************************
@@ -242,17 +220,15 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     //evaluate impossible 3-side collision case
     if(aTop + aBottom + aRight + aLeft == 3)
     {
-        if(aTop && aBottom)
-            aTop = aBottom = false;
-        else
-            aLeft = aRight = false;
+        if(aTop && aBottom)     aTop = aBottom = false;
+        else                    aLeft = aRight = false;
     }
 
     //eliminate impossible corner cases
     if(aTop + aBottom + aRight + aLeft == 2)
     {
-        vect velA = obj->getVel();
-        vect velB = obj2->getVel();
+        Vect velA = obj->getVel();
+        Vect velB = obj2->getVel();
 
         //avoid getting trapped within objects
         if(velA.x > 0 && velB.x < 0) aLeft      = false;
@@ -274,37 +250,19 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
     //evaluate corner case
     if(aTop + aBottom + aRight + aLeft == 2)
     {
-        vect velA = obj->getVel();
-        vect velB = obj2->getVel();
+        Vect velA = obj->getVel();
+        Vect velB = obj2->getVel();
 
         double tx, ty;
 
-        if(aTop)
-        {
-            ty = abs(a.y - (b.y + b.h)) / abs(velA.y - velB.y);
-        }
-        else if(aBottom)
-        {
-            ty = abs((a.y + a.h) - b.y) / abs(velA.y - velB.y);
-        }
+        if(aTop)            ty = abs(a.y - (b.y + b.h)) / abs(velA.y - velB.y);
+        else if(aBottom)    ty = abs((a.y + a.h) - b.y) / abs(velA.y - velB.y);
 
-        if(aLeft)
-        {
-            tx = abs(a.x - (b.x + b.w)) / abs(velA.x - velB.x);
-        }
-        else if(aRight)
-        {
-            tx = abs((a.x + a.w) - b.x) / abs(velA.x - velB.x);
-        }
+        if(aLeft)           tx = abs(a.x - (b.x + b.w)) / abs(velA.x - velB.x);
+        else if(aRight)     tx = abs((a.x + a.w) - b.x) / abs(velA.x - velB.x);
 
-        if(ty > tx)
-        {
-            aTop = aBottom = false;
-        }
-        else if(ty < tx)
-        {
-            aLeft = aRight = false;
-        }
+        if(ty > tx)         aTop = aBottom = false;
+        else if(ty < tx)    aLeft = aRight = false;
     }
 
     //return collision code
@@ -326,73 +284,77 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 }
 
 /*******************************************************************************
- Name:              handleCollision
+ Name:              handleCollision_Box
  ******************************************************************************/
-void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2, int side)
+void PhysicsEngine::handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj2, int side)
 {
     if(side == TOP || side == BOTTOM)
     {
         //adjust position to avoid post-collision problem
-        SDL_Rect a = obj->getPos();
+        SDL_Rect a = obj2->getPos();
         if(side == TOP) a.y++;
         else a.y--;
         obj->setPos(a);
 
         //adjust velocity based on force of collision
-        vect v = obj2->getVel();
+        Vect v = obj->getVel();
         v.x = 0;
-        obj->applyForce(obj2->getMass(), v, 1);
+        obj2->applyForce(obj->getMass(), v, 1);
     }
     else if(side == LEFT || side == RIGHT)
     {
         //adjust position to avoid post-collision problem
-        SDL_Rect a = obj->getPos();
+        SDL_Rect a = obj2->getPos();
         if(side == LEFT) a.x++;
         else a.x--;
         obj->setPos(a);
 
         //adjust velocity based on force of collision
-        vect v = obj2->getVel();
+        Vect v = obj->getVel();
         v.y = 0;
-        obj->applyForce(obj2->getMass(), v, 0);
+        obj2->applyForce(obj->getMass(), v, 0);
     }
     else
     {
         //adjust velocity based on force of collision
-        vect v = obj2->getVel();
-        obj->applyForce(obj2->getMass(), v, 2);
+        Vect v = obj->getVel();
+        obj2->applyForce(obj->getMass(), v, 2);
     }
 
     //record collision side
-    obj->setCollisionSide(side);
+    obj2->setCollisionSide(side);
 }
 
-void PhysicsEngine::handleCollision(PhysicalObject* obj, PhysicalObject* obj2)
+/*******************************************************************************
+ Name:              handleCollision_Circle
+ ******************************************************************************/
+void PhysicsEngine::handleCollision(CircleObject* obj, CircleObject* obj2)
 {
-    obj->applyForce(obj2->getMass(), obj2->getVel());
-    obj2->applyForce(obj->getMass(), obj->getVel());
-}
-
-void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
-{
+    Circle a = obj->getCircle();
+    Circle b = obj2->getCircle();
     
-    int sideA, sideB;
+    Point i = pointOfIntersection(a, b);
+    Vect  l = Vect(i, b.cent);
     
-    //evaluate side of collision for both objects
-    sideA = sideOfCollision(obj, obj2);
+    double ang1 = l.angle();
+    double ang2 = obj->getVel().angle();
+    double ang3 = ang2 - ang1;
     
-    if(sideA)
+    if(abs(ang3) <= (M_PI / 2) - .1 && obj->getVel().len())
     {
-        //determine side of obj2 
-        if(sideA - 4 <= 0)
-            sideB = sideA + 4;
-        else
-            sideB = sideA - 4;
+        double fa = obj->getVel().len();
+        double fm = fa * cos(ang3);
+        double fs = fa * sin(ang3);
         
-        //react to collision
-        handleCollision(obj, obj2, sideA);
-        handleCollision(obj2, obj, sideB);
+        Vect m = Vect(fm * cos(ang1), fm * sin(ang1));
+        Vect s = Vect(fs * sin(ang1), fs * cos(ang1));  //USED FOR SPIN MAYBE
+        
+        //applyforce
+        obj2->applyForce(obj->getMass(), m);
+        
+        Vect acc = obj->getAcc();
+        acc = acc + (m * -1);
+        obj->setAcc(acc);
     }
-
 }
     

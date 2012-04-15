@@ -16,7 +16,7 @@ class Wall : public DrawableObject, public PhysicalObject, public MechanicsObjec
         Wall&     operator=(const Wall& other);
 
         virtual void    run();
-        void            applyForce(int m, vect v, int dir);
+        void            applyForce(int m, Vect v, int dir);
 
 };
 

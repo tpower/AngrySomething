@@ -10,10 +10,17 @@
 
 #include <SDL/SDL.h>
 
+struct circle
+{
+    int  x, y;
+    int  rad;
+};
+
 class Object
 {
     protected:
         SDL_Rect    pos;
+        circle      circ;
         int         state;
         bool        drawable;
         bool        physical;
@@ -29,6 +36,7 @@ class Object
         void            setPos(SDL_Rect p);
 
         SDL_Rect        getPos();
+        circle          getCircle();
         int             getState();
         bool            isDrawable();
         bool            isPhysical();
