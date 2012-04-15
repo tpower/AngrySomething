@@ -44,7 +44,8 @@ void PhysicalObject::setAcc(Vect a)
 
 void PhysicalObject::setCollisionSide(int s)
 {
-    collisionSide = s;
+    if(s == BOTTOM)
+       collisionSide = s;
 }
 
 /*******************************************************************************

@@ -181,8 +181,8 @@ void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
         else                sideB = sideA - 4;
         
         //react to collision
-        handleCollision_Box(obj, obj2, sideA);
-        handleCollision_Box(obj2, obj, sideB);
+        handleCollision_Box(obj, obj2, sideB);
+        handleCollision_Box(obj2, obj, sideA);
     }
 }
 
@@ -287,38 +287,38 @@ void PhysicsEngine::handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj
     if(side == TOP || side == BOTTOM)
     {
         //adjust position to avoid post-collision problem
-        SDL_Rect a = obj->getPos();
+        SDL_Rect a = obj2->getPos();
         if(side == TOP) a.y++;
         else a.y--;
-        obj->setPos(a);
+        obj2->setPos(a);
         
         //adjust velocity based on force of collision
-        Vect v = obj2->getVel();
+        Vect v = obj->getVel();
         v.x = 0;
-        obj->applyForce(obj2->getMass(), v, 1);
+        obj2->applyForce(obj->getMass(), v, 1);
     }
     else if(side == LEFT || side == RIGHT)
     {
         //adjust position to avoid post-collision problem
-        SDL_Rect a = obj->getPos();
+        SDL_Rect a = obj2->getPos();
         if(side == LEFT) a.x++;
         else a.x--;
-        obj->setPos(a);
+        obj2->setPos(a);
         
         //adjust velocity based on force of collision
-        Vect v = obj2->getVel();
+        Vect v = obj->getVel();
         v.y = 0;
-        obj->applyForce(obj2->getMass(), v, 0);
+        obj2->applyForce(obj->getMass(), v, 0);
     }
     else
     {
         //adjust velocity based on force of collision
-        Vect v = obj2->getVel();
-        obj->applyForce(obj2->getMass(), v, 2);
+        Vect v = obj->getVel();
+        obj2->applyForce(obj->getMass(), v, 2);
     }
     
     //record collision side
-    obj->setCollisionSide(side);
+    obj2->setCollisionSide(side);
 }
 
 /*******************************************************************************
