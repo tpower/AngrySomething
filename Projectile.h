@@ -11,9 +11,9 @@
 #include "DrawableObject.h"
 #include "PhysicalObject.h"
 #include "MechanicsObject.h"
-#include "CircleObject.h"
+#include "PhysicalObject.h"
 
-class Projectile : public DrawableObject, public CircleObject, public MechanicsObject
+class Projectile : public DrawableObject, public PhysicalObject, public MechanicsObject
 {
     private:
         static int numBirds;
