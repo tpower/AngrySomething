@@ -16,6 +16,7 @@ public:
     Circle getCircle();
     
     virtual void    run();
+    virtual void    applyForce(int m, Vect v);
 };
 
 #endif

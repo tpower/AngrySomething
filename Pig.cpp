@@ -17,21 +17,6 @@ Pig::Pig(const Pig& other)
 
 }
 
-Pig::~Pig()
-{
-
-}
-
-Pig& Pig::operator=(const Pig& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
-}
-
 void Pig::run()
 {
     if(health <= 0)
@@ -46,7 +31,7 @@ void Pig::applyForce(int m, Vect v, int dir)
 {
     PhysicalObject::applyForce(m, v, dir);
 
-    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 8)
+    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 6)
     {
         health -= 50;
     }

@@ -17,21 +17,6 @@ Wall::Wall(const Wall& other)
 
 }
 
-Wall::~Wall()
-{
-
-}
-
-Wall& Wall::operator=(const Wall& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
-}
-
 void Wall::run()
 {
     if(health <= 0)
@@ -50,8 +35,8 @@ void Wall::applyForce(int m, Vect v, int dir)
     {
         health -= 50;
     }
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 8)
-    {
-        health -= 101;
-    }
+//    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 8)
+//    {
+//        health -= 101;
+//    }
 }

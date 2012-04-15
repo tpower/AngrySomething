@@ -23,8 +23,3 @@ void Projectile::draw(SDL_Surface* screen)
     SDL_BlitSurface(image, NULL, screen, &loc);
 }
 
-void Projectile::applyForce(int m, Vect v, int dir)
-{
-    CircleObject::applyForce(m, v, dir);
-}
-

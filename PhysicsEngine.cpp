@@ -6,8 +6,7 @@
                             PhysicsEngine class is responsible for moving
                             objects and detecting collisions within the room.
  ******************************************************************************/
-#include <iostream>
-using namespace std;
+
 #include <cmath>
 
 #include "PhysicsEngine.h"
@@ -120,7 +119,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         
         //adjust velocity
         Vect v = pObj->getVel();
-        v.x *= -2;
+        v.x *= -1;
         v.y = 0;
         pObj->applyForce(pObj->getMass(), v, 0);
     }
@@ -143,7 +142,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         
         //adjust velocity
         Vect v = pObj->getVel();
-        v.y *= -2;
+        v.y *= -1;
         v.x = 0;
         pObj->applyForce(pObj->getMass(), v, 1);
     }
