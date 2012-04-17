@@ -16,11 +16,12 @@ class Projectile : public DrawableObject, public CircleObject, public MechanicsO
 {
     private:
         static int numBirds;
+    
     public:
         Projectile(const char* file, int x, int y, int vx, int vy);
         ~Projectile();
 
-        static int      getNumBirds(){return numBirds;}
+        static int      getNumBirds() {return numBirds;}
 
         virtual void    run();
         void            draw(SDL_Surface* s);

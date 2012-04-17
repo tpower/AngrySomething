@@ -12,7 +12,6 @@
 #define SLING_H
 
 #include <string>
-#include <cmath>
 
 #include "Object.h"
 #include "DrawableObject.h"

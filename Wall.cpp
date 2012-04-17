@@ -25,7 +25,6 @@ void Wall::applyForce(int m, Vect v, int dir)
     {
         PhysicalObject::applyForce(m, v, dir);
     }
-    
     if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 7)
     {
         health -= 50;

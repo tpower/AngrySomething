@@ -21,15 +21,14 @@ class Room
     private:
         vector<Object*> object;
 
-public:
-        Object*             getObjectAt(int);
-        int                 getNumObjects();
+    public:
+            Object*             getObjectAt(int);
+            int                 getNumObjects();
 
-        bool                load(const char* f);
-        void                add(Object*);
-        void                remove(int i);
-        void                erase();
-
+            bool                load(const char* f);
+            void                add(Object*);
+            void                remove(int i);
+            void                erase();
 };
 
 #endif

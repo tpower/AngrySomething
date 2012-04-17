@@ -12,6 +12,9 @@
 #include "PhysicsEngine.h"
 #include "Geometry.h"
 
+#define FIELD_W 640
+#define FIELD_H 480
+
 /*******************************************************************************
  Name:              run
  Description:       Runs all objects in the room and tests for collisions
@@ -37,13 +40,10 @@ void PhysicsEngine::runObjects(Room& room)
             PhysicalObject *pObj = dynamic_cast<PhysicalObject*>(obj);
 
             pObj->run();
-
             handleWallCollision(pObj);
 
             if(obj->getState() == -1)
-            {
                 room.remove(i--);
-            }
         }
     }
 }
@@ -74,16 +74,12 @@ void PhysicsEngine::detectCollisions(Room& room)
                     if(pObj->getShape() == CIRCLE && pObj2->getShape() == CIRCLE)
                     {
                         if(doCollide((CircleObject*)pObj, (CircleObject*)pObj2))
-                        {
                             resolveCollision((CircleObject*)pObj, (CircleObject*)pObj2);
-                        }
                     }
                     else
                     {
                         if(doCollide(pObj, pObj2))
-                        {
                             resolveCollision(pObj, pObj2);
-                        }
                     }
                 }
             }
@@ -102,7 +98,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
     SDL_Rect pos = pObj->getPos();
 
     //bounce off left/right wall
-    if(pos.x <= 0 || pos.x + pos.w >= 640)
+    if(pos.x <= 0 || pos.x + pos.w >= FIELD_W)
     {
         //adjust position to avoid post-collision issues
         if(pos.x <= 0)
@@ -112,7 +108,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         }
         else
         {
-            pos.x = 640 - pos.w - 1;
+            pos.x = FIELD_W - pos.w - 1;
             pObj->setCollisionSide(RIGHT);
         }
         pObj->setPos(pos);
@@ -125,7 +121,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
     }
 
     //bounce off top/bottom wall
-    if(pos.y <= 0 || pos.y + pos.h >= 480)
+    if(pos.y <= 0 || pos.y + pos.h >= FIELD_H)
     {
         //adjust position to avoid post-collision issues
         if(pos.y <= 0)
@@ -135,7 +131,7 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
         }
         else
         {
-            pos.y = 480 - pos.h - 1;
+            pos.y = FIELD_H - pos.h - 1;
             pObj->setCollisionSide(BOTTOM);
         }
         pObj->setPos(pos);
@@ -336,16 +332,15 @@ void PhysicsEngine::handleCollision(CircleObject* obj, CircleObject* obj2)
     double ang2 = obj->getVel().angle();
     double ang3 = ang2 - ang1;
     
-    if(abs(ang3) <= (M_PI / 2) - .1 && obj->getVel().len())
+    if(abs(ang3) <= (M_PI / 2) - .1 && obj->getVel().len()) //.1 accounts for rounding error
     {
         double fa = obj->getVel().len();
         double fm = fa * cos(ang3);
         double fs = fa * sin(ang3);
         
         Vect m = Vect(fm * cos(ang1), fm * sin(ang1));
-        Vect s = Vect(fs * sin(ang1), fs * cos(ang1));  //USED FOR SPIN MAYBE
+        Vect s = Vect(fs * sin(ang1), fs * cos(ang1));  //USED FOR SPIN MAYBE?
         
-        //applyforce
         obj2->applyForce(obj->getMass(), m);
         
         Vect acc = obj->getAcc();
