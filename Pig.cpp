@@ -27,12 +27,12 @@ Pig::~Pig()
 
 void Pig::run()
 {
+    move();
+    
     if(health <= 0)
     {
         state = -1;
     }
-
-    move();
 }
 
 void Pig::applyForce(int m, Vect v, int dir)

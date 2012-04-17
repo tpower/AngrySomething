@@ -21,13 +21,7 @@ class Room
     private:
         vector<Object*> object;
 
-    public:
-        Room();
-        Room(const Room&);
-        ~Room();
-
-        Room                operator=(const Room& other);
-
+public:
         Object*             getObjectAt(int);
         int                 getNumObjects();
 

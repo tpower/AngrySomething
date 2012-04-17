@@ -22,10 +22,7 @@ class GraphicsEngine
             
     public:
         GraphicsEngine();
-        GraphicsEngine(const GraphicsEngine&);
         ~GraphicsEngine();
-    
-        GraphicsEngine  operator=(const GraphicsEngine& other);
     
         void            run(Room&);
 };

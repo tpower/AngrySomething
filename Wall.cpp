@@ -11,12 +11,12 @@ Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
 
 void Wall::run()
 {
+    move();
+    
     if(health <= 0)
     {
         state = -1;
     }
-
-    move();
 }
 
 void Wall::applyForce(int m, Vect v, int dir)

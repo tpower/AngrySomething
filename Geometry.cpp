@@ -15,7 +15,8 @@ Point::Point(int a, int b)
  ******************************************************************************/
 Vect::Vect(double a, double b) 
 {
-    x = a; y = b;
+    x = a;
+    y = b;
 }
 
 Vect::Vect(Point a, Point b)

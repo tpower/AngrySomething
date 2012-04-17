@@ -9,11 +9,10 @@
 #define AngrySomething_Projectile_h
 
 #include "DrawableObject.h"
-#include "PhysicalObject.h"
+#include "CircleObject.h"
 #include "MechanicsObject.h"
-#include "PhysicalObject.h"
 
-class Projectile : public DrawableObject, public PhysicalObject, public MechanicsObject
+class Projectile : public DrawableObject, public CircleObject, public MechanicsObject
 {
     private:
         static int numBirds;

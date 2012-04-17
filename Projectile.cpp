@@ -12,7 +12,7 @@ int Projectile::numBirds = 0;
 
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
-        PhysicalObject(vx, vy),
+        CircleObject(vx, vy),
         Object(x, y, 50, 50)
 {
     numBirds++;
@@ -25,7 +25,7 @@ Projectile::~Projectile()
 
 void Projectile::run()
 {
-    move();
+    CircleObject::run();
     
     if(pow((pow(vel.y,2) + pow(vel.x, 2)), .5) < 1)
     {

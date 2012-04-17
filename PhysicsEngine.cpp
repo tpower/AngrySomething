@@ -67,7 +67,7 @@ void PhysicsEngine::detectCollisions(Room& room)
             {
                 Object* obj2 = room.getObjectAt(j);
 
-                if(obj->isPhysical())
+                if(obj2->isPhysical())
                 {
                     PhysicalObject *pObj2 = dynamic_cast<PhysicalObject*>(obj2);
                     

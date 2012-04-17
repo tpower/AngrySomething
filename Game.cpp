@@ -19,44 +19,6 @@ Game::Game()
 }
 
 /*******************************************************************************
- Name:              Game
- Description:       Copy constructor for Game class
-
- Input:
-    other           Game object to be copied
- ******************************************************************************/
-Game::Game(const Game& other)
-{
-
-}
-
-/*******************************************************************************
- Name:              ~Game
- Description:       Destructor for Game class
- ******************************************************************************/
-Game::~Game()
-{
-
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Game class
-
- Input:
-    other           const Game&
- ******************************************************************************/
-Game Game::operator=(const Game& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
-}
-
-/*******************************************************************************
  Name:              init
  Description:       This method handles any initialization involved before the
                     run loop begins
