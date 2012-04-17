@@ -13,7 +13,7 @@ MultiObject::MultiObject(const char* file, int x, int y, int vx, int vy)
     :   DrawableObject(file),
         PhysicalObject(vx, vy),
         MechanicsObject(),
-        Object(x, y, 18, 15)
+        Object(x, y, 50, 50)
 {
 
 }

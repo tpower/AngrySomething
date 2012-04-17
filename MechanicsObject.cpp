@@ -35,3 +35,8 @@ Object* MechanicsObject::handle(SDL_Event e)
 
     return NULL;
 }
+
+int MechanicsObject::handleU(SDL_Event e)
+{
+    return NULL;
+}

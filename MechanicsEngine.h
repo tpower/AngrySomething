@@ -9,9 +9,9 @@ class MechanicsEngine
 {
     private:
         SDL_Event event;
-    
+
     public:
-        void run(Room& room);
+        int run(Room& room);
 };
 
 #endif

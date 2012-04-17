@@ -15,7 +15,8 @@
 #include "Room.h"
 #include "PhysicalObject.h"     //included in .h for vect
 
-struct circle {
+struct circle
+{
     vect cent;
     int  rad;
 };
@@ -39,6 +40,7 @@ class PhysicsEngine
         int  sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2);
         void handleCollision(PhysicalObject* obj, PhysicalObject* obj2);
         void handleCollision(PhysicalObject* obj, PhysicalObject* obj2, int side);
+        void resolveCollision(PhysicalObject* obj, PhysicalObject* obj2);
 };
 
 #endif

@@ -1,66 +1,66 @@
 # depslib dependency file v1.0
-1334254132 source:c:\users\tucker\documents\codeblocks\monkey strike force\drawableobject.cpp
+1334276470 source:c:\users\tucker\documents\codeblocks\monkey strike force\drawableobject.cpp
 	<iostream>
 	"DrawableObject.h"
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\drawableobject.h
+1333637708 c:\users\tucker\documents\codeblocks\monkey strike force\drawableobject.h
 	<SDL/SDL.h>
 	"Object.h"
 
-1334268370 c:\users\tucker\documents\codeblocks\monkey strike force\object.h
+1334694792 c:\users\tucker\documents\codeblocks\monkey strike force\object.h
 	<SDL/SDL.h>
 
-1334270724 source:c:\users\tucker\documents\codeblocks\monkey strike force\game.cpp
+1334702551 source:c:\users\tucker\documents\codeblocks\monkey strike force\game.cpp
 	"Game.h"
 
-1334265254 c:\users\tucker\documents\codeblocks\monkey strike force\game.h
+1334558908 c:\users\tucker\documents\codeblocks\monkey strike force\game.h
 	<SDL/SDL.h>
 	"Room.h"
 	"GraphicsEngine.h"
 	"PhysicsEngine.h"
 	"MechanicsEngine.h"
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\room.h
+1334553933 c:\users\tucker\documents\codeblocks\monkey strike force\room.h
 	<vector>
+	<fstream>
+	<string>
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\graphicsengine.h
+1333482304 c:\users\tucker\documents\codeblocks\monkey strike force\graphicsengine.h
 	<SDL/SDL.h>
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\physicsengine.h
+1334300976 c:\users\tucker\documents\codeblocks\monkey strike force\physicsengine.h
 	<SDL/SDL.h>
 	"Room.h"
 	"PhysicalObject.h"
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\physicalobject.h
+1334264326 c:\users\tucker\documents\codeblocks\monkey strike force\physicalobject.h
 	<SDL/SDL.h>
 	"Object.h"
 
-1334269535 c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsengine.h
+1334284612 c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsengine.h
 	<SDL/SDL.h>
 	"Room.h"
-	"Pig.h"
-	"Sling.h"
 
-1334254132 source:c:\users\tucker\documents\codeblocks\monkey strike force\graphicsengine.cpp
+1334696614 source:c:\users\tucker\documents\codeblocks\monkey strike force\graphicsengine.cpp
 	"GraphicsEngine.h"
 	"DrawableObject.h"
 	"Room.h"
 
-1334254132 source:c:\users\tucker\documents\codeblocks\monkey strike force\main.cpp
+1333482304 source:c:\users\tucker\documents\codeblocks\monkey strike force\main.cpp
 	"Game.h"
 
-1334267065 source:c:\users\tucker\documents\codeblocks\monkey strike force\object.cpp
+1334694896 source:c:\users\tucker\documents\codeblocks\monkey strike force\object.cpp
 	"Object.h"
 
-1334254132 source:c:\users\tucker\documents\codeblocks\monkey strike force\physicalobject.cpp
+1334264326 source:c:\users\tucker\documents\codeblocks\monkey strike force\physicalobject.cpp
 	"PhysicalObject.h"
 
-1334268060 source:c:\users\tucker\documents\codeblocks\monkey strike force\physicsengine.cpp
+1334682887 source:c:\users\tucker\documents\codeblocks\monkey strike force\physicsengine.cpp
 	<iostream>
 	<cmath>
 	"PhysicsEngine.h"
 
-1334270478 source:c:\users\tucker\documents\codeblocks\monkey strike force\room.cpp
+1334701098 source:c:\users\tucker\documents\codeblocks\monkey strike force\room.cpp
 	"Room.h"
 	"Object.h"
 	"DrawableObject.h"
@@ -69,20 +69,22 @@
 	"Sling.h"
 	"Wall.h"
 	"Pig.h"
+	"ClickableObject.h"
+	"PauseButton.h"
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\multiobject.h
+1333482304 c:\users\tucker\documents\codeblocks\monkey strike force\multiobject.h
 	"DrawableObject.h"
 	"PhysicalObject.h"
 	"MechanicsObject.h"
 
-1334265239 c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsobject.h
+1334553603 c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsobject.h
 	<SDL/SDL.h>
 	"Object.h"
 
-1334265239 source:c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsobject.cpp
+1334553949 source:c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsobject.cpp
 	"MechanicsObject.h"
 
-1334254132 source:c:\users\tucker\documents\codeblocks\monkey strike force\multiobject.cpp
+1334202080 source:c:\users\tucker\documents\codeblocks\monkey strike force\multiobject.cpp
 	"MultiObject.h"
 
 1333637813 source:c:\users\tucker\documents\codeblocks\monkey strike force\slingshot.cpp
@@ -91,45 +93,79 @@
 1333526014 c:\users\tucker\documents\codeblocks\monkey strike force\slingshot.h
 	"DrawableObject.h"
 
-1334271292 source:c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsengine.cpp
+1334694814 source:c:\users\tucker\documents\codeblocks\monkey strike force\mechanicsengine.cpp
 	"MechanicsEngine.h"
 	"Object.h"
 	"MechanicsObject.h"
+	"Pig.h"
+	"Projectile.h"
+	"Sling.h"
 
-1334268937 c:\users\tucker\documents\codeblocks\monkey strike force\sling.h
+1334285888 c:\users\tucker\documents\codeblocks\monkey strike force\sling.h
 	<string>
+	<cmath>
 	"Object.h"
 	"DrawableObject.h"
 	"MechanicsObject.h"
 	"Projectile.h"
 
-1334271434 source:c:\users\tucker\documents\codeblocks\monkey strike force\sling.cpp
+1334694792 source:c:\users\tucker\documents\codeblocks\monkey strike force\sling.cpp
 	<cmath>
 	"Sling.h"
 
-1334254132 source:c:\users\tucker\documents\codeblocks\monkey strike force\projectile.cpp
+1334694792 source:c:\users\tucker\documents\codeblocks\monkey strike force\projectile.cpp
 	"Projectile.h"
+	<cmath>
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\projectile.h
+1334285004 c:\users\tucker\documents\codeblocks\monkey strike force\projectile.h
 	"DrawableObject.h"
 	"PhysicalObject.h"
 	"MechanicsObject.h"
 
-1334254132 c:\users\tucker\documents\codeblocks\monkey strike force\wall.h
+1334249118 c:\users\tucker\documents\codeblocks\monkey strike force\wall.h
 	"DrawableObject.h"
 	"PhysicalObject.h"
 	"MechanicsObject.h"
 
-1334267146 c:\users\tucker\documents\codeblocks\monkey strike force\pig.h
+1334285644 c:\users\tucker\documents\codeblocks\monkey strike force\pig.h
 	"DrawableObject.h"
 	"PhysicalObject.h"
 	"MechanicsObject.h"
 
-1334267983 source:c:\users\tucker\documents\codeblocks\monkey strike force\wall.cpp
+1334694792 source:c:\users\tucker\documents\codeblocks\monkey strike force\wall.cpp
 	"Wall.h"
 	<cmath>
 
-1334264066 source:c:\users\tucker\documents\codeblocks\monkey strike force\pig.cpp
+1334694792 source:c:\users\tucker\documents\codeblocks\monkey strike force\pig.cpp
 	"Pig.h"
 	<cmath>
+
+1334694792 source:c:\users\tucker\documents\codeblocks\monkey strike force\ground.cpp
+	"Ground.h"
+
+1334283262 c:\users\tucker\documents\codeblocks\monkey strike force\ground.h
+	"DrawableObject.h"
+	"PhysicalObject.h"
+	"MechanicsObject.h"
+
+1334694792 source:c:\users\tucker\documents\codeblocks\monkey strike force\clickableobject.cpp
+	"ClickableObject.h"
+
+1334553562 c:\users\tucker\documents\codeblocks\monkey strike force\clickableobject.h
+	<SDL/SDL.h>
+	"DrawableObject.h"
+	"MechanicsObject.h"
+	<string>
+
+1334702511 source:c:\users\tucker\documents\codeblocks\monkey strike force\pausebutton.cpp
+	"PauseButton.h"
+	"GraphicsEngine.h"
+	"Room.h"
+
+1334700092 c:\users\tucker\documents\codeblocks\monkey strike force\pausebutton.h
+	<SDL/SDL.h>
+	"DrawableObject.h"
+	"MechanicsObject.h"
+	"ClickableObject.h"
+	<string>
 

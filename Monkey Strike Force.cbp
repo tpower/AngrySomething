@@ -32,12 +32,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ClickableObject.cpp" />
+		<Unit filename="ClickableObject.h" />
 		<Unit filename="DrawableObject.cpp" />
 		<Unit filename="DrawableObject.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
 		<Unit filename="GraphicsEngine.cpp" />
 		<Unit filename="GraphicsEngine.h" />
+		<Unit filename="Ground.cpp" />
+		<Unit filename="Ground.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="MechanicsEngine.cpp" />
 		<Unit filename="MechanicsEngine.h" />
@@ -47,6 +51,8 @@
 		<Unit filename="MultiObject.h" />
 		<Unit filename="Object.cpp" />
 		<Unit filename="Object.h" />
+		<Unit filename="PauseButton.cpp" />
+		<Unit filename="PauseButton.h" />
 		<Unit filename="PhysicalObject.cpp" />
 		<Unit filename="PhysicalObject.h" />
 		<Unit filename="PhysicsEngine.cpp" />

@@ -14,6 +14,7 @@ class MechanicsObject : virtual public Object
     public:
         MechanicsObject();
         virtual Object* handle(SDL_Event e);
+        virtual int handleU(SDL_Event e);
 };
 
 #endif
