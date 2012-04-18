@@ -3,8 +3,8 @@
 
 MechanicsObject::MechanicsObject()
 {
-    mechanical = true;
-    grabbed = false;
+    mechanical  = true;
+    grabbed     = false;
 }
 
 Object* MechanicsObject::handle(SDL_Event e)

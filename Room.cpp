@@ -17,50 +17,12 @@
 #include "PauseButton.h"
 
 /*******************************************************************************
- Name:              Room
- Description:       Default constructor for Room class
+ ACCESSORS
+ Name:              getObjectAt, getNumObjects
  ******************************************************************************/
 Room::Room()
 {
     roomType = Level;
-}
-
-/*******************************************************************************
- Name:              Room
- Description:       Copy constructor for Room class
-
- Input:
-    other           Room object to be copied
- ******************************************************************************/
-Room::Room(const Room& other)
-{
-
-}
-
-/*******************************************************************************
- Name:              ~Room
- Description:       Destructor for Room class
- ******************************************************************************/
-Room::~Room()
-{
-
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Room class
-
- Input:
-    other           const Room&
- ******************************************************************************/
-Room Room::operator=(const Room& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
 }
 
 /*******************************************************************************

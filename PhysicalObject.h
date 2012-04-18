@@ -8,56 +8,36 @@
 #ifndef PhysicalObject_H
 #define PhysicalObject_H
 
-#include <SDL/SDL.h>
 
 #include "Object.h"
-
-struct vect
-{
-    double x, y;
-};
-
-enum side
-{
-    NO_COLLISION    = 0,
-    TOP             = 1,
-    TOP_RIGHT       = 2,
-    RIGHT           = 3,
-    BOTTOM_RIGHT    = 4,
-    BOTTOM          = 5,
-    BOTTOM_LEFT     = 6,
-    LEFT            = 7,
-    TOP_LEFT        = 8
-};
+#include "Geometry.h"
 
 class PhysicalObject : virtual public Object
 {
     protected:
-        vect vel;
-        vect acc;
-        int  mass;
-        int  collisionSide;
+        Vect    vel;
+        Vect    acc;
+        int     mass;
+        int     collisionSide;
+        int     shape;
     
     public:
-        PhysicalObject(int x = 0, int y = 0);
-        PhysicalObject(const PhysicalObject& other);
-        ~PhysicalObject();
-        
-        PhysicalObject& operator=(const PhysicalObject& other);
+        PhysicalObject(int vx = 0, int vy = 0);
     
-        void    setVel(vect v);
-        void    setAcc(vect a);
+        void    setVel(Vect v);
+        void    setAcc(Vect a);
         void    setCollisionSide(int s);
         
-        vect    getVel();
-        vect    getAcc();
+        Vect    getVel();
+        Vect    getAcc();
         int     getMass();
         int     getCollisionSide();
+        int     getShape();
+    
+        void    move();
     
         virtual void    run();
-        virtual void    applyForce(int m, vect v, int dir = 2);
-    
-        void            move();
+        virtual void    applyForce(int m, Vect v, int dir = 2);
 };
 
 #endif

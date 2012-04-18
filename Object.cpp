@@ -24,39 +24,9 @@ Object::Object(int x, int y, int w, int h)
     type = 0;
 }
 
-/*******************************************************************************
- Name:              Object
- Description:       Copy constructor for Object class
- ******************************************************************************/
-Object::Object(const Object& other)
-{
-    pos = other.pos;
-}
-
-/*******************************************************************************
- Name:              ~Object
- Description:       Destructor for Object class
- ******************************************************************************/
 Object::~Object()
 {
-
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Object class
-
- Input:
-    other           const Object&
- ******************************************************************************/
-Object Object::operator=(const Object& other)
-{
-    if(&other != this)
-    {
-        pos = other.pos;
-    }
-
-    return *this;
+    
 }
 
 /*******************************************************************************
@@ -75,6 +45,16 @@ void Object::setPos(SDL_Rect p)
 SDL_Rect Object::getPos()
 {
     return pos;
+}
+
+int Object::getState()
+{
+    return state;
+}
+
+int Object::getType()
+{
+    return type;
 }
 
 bool Object::isDrawable()
@@ -99,14 +79,4 @@ bool Object::isMechanical()
 void Object::run()
 {
 
-}
-
-int Object::getState()
-{
-    return state;
-}
-
-int Object::getType()
-{
-    return type;
 }

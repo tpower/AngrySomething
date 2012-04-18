@@ -11,6 +11,7 @@ int MechanicsEngine::run(Room& room)
     int state = 0;
     Object* obj;
     Object* objTemp;
+    
     if(SDL_PollEvent(&event))
     {
         if( event.type == SDL_QUIT )
@@ -40,6 +41,7 @@ int MechanicsEngine::run(Room& room)
             }
         }
     }
+    
     //If the room is a level
     if(room.getRoomType() == 1)
     {

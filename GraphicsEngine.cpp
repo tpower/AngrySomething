@@ -28,18 +28,6 @@ GraphicsEngine::GraphicsEngine()
 }
 
 /*******************************************************************************
- Name:              GraphicsEngine
- Description:       Copy constructor for GraphicsEngine class
-
- Input:
-    other           GraphicsEngine to be copied
- ******************************************************************************/
-GraphicsEngine::GraphicsEngine(const GraphicsEngine& other)
-{
-
-}
-
-/*******************************************************************************
  Name:              ~GraphicsEngine
  Description:       Deconstructor for GraphicsEngine class
  ******************************************************************************/
@@ -47,23 +35,6 @@ GraphicsEngine::~GraphicsEngine()
 {
     SDL_FreeSurface(screen);
     SDL_FreeSurface(background);
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for GraphicsEngine class
-
- Input:
-    other           const GraphicsEngine&
- ******************************************************************************/
-GraphicsEngine GraphicsEngine::operator=(const GraphicsEngine& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
 }
 
 /*******************************************************************************

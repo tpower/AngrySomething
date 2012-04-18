@@ -18,15 +18,13 @@ class Object
         bool        drawable;
         bool        physical;
         bool        mechanical;
-        int type;   //1 = level, 2 = Utility
+        int         type;   //1 = level, 2 = Utility
 
     public:
         Object(int x = 0, int y = 0, int w = 0, int h = 0);
-        Object(const Object&);
         virtual ~Object();
 
         Object          operator=(const Object& other);
-
         void            setPos(SDL_Rect p);
 
         SDL_Rect        getPos();

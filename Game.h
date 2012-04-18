@@ -26,14 +26,10 @@ class Game
         PhysicsEngine   phys;
         MechanicsEngine mech;
         bool            running;
-
+    
     public:
         Game();
-        Game(const Game&);
-        ~Game();
-
-        Game    operator=(const Game& other);
-
+    
         void    init();
         int     run();
         string  decideLevel(int i);

@@ -7,6 +7,7 @@
 
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
+
 #include <vector>
 #include <fstream>
 #include <string>
@@ -25,8 +26,6 @@ class Room
 
     public:
         Room();
-        Room(const Room&);
-        ~Room();
 
         Room                operator=(const Room& other);
 
@@ -39,7 +38,6 @@ class Room
         void                erase();
         void                setRoomType(int r) {roomType = r;}
         int                 getRoomType() {return roomType;}
-
 };
 
 #endif

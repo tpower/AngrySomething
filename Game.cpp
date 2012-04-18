@@ -7,7 +7,10 @@
                             running the game loop and handling communication
                             between the Physics and Graphics Engines.
  ******************************************************************************/
+
+#include <cstdlib>
 #include "Game.h"
+using namespace std;
 
 /*******************************************************************************
  Name:              Game
@@ -16,44 +19,6 @@
 Game::Game()
 {
     running = false;
-}
-
-/*******************************************************************************
- Name:              Game
- Description:       Copy constructor for Game class
-
- Input:
-    other           Game object to be copied
- ******************************************************************************/
-Game::Game(const Game& other)
-{
-
-}
-
-/*******************************************************************************
- Name:              ~Game
- Description:       Destructor for Game class
- ******************************************************************************/
-Game::~Game()
-{
-
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Game class
-
- Input:
-    other           const Game&
- ******************************************************************************/
-Game Game::operator=(const Game& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
 }
 
 /*******************************************************************************
@@ -133,7 +98,7 @@ string Game::decideLevel(int i)
 {
     char buffer[1];
     string s = "Level";
-    s += itoa(i,buffer,10);
+    s += sprintf(buffer,"%d",i);
     s += ".gel";
     return s;
 }

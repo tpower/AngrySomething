@@ -13,20 +13,12 @@
 #include <SDL/SDL.h>
 
 #include "Room.h"
-#include "PhysicalObject.h"     //included in .h for vect
-
-struct circle
-{
-    vect cent;
-    int  rad;
-};
+#include "PhysicalObject.h"
+#include "CircleObject.h"
 
 class PhysicsEngine
 {
     public:
-        PhysicsEngine();
-        ~PhysicsEngine();
-    
         void run(Room& room);
     
     private:
@@ -34,13 +26,17 @@ class PhysicsEngine
         void detectCollisions(Room& room);
     
         void handleWallCollision(PhysicalObject* pObj);
-        bool doIntersect(SDL_Rect a, SDL_Rect b);
-        bool doIntersect(circle a, circle b);
+    
         bool doCollide(PhysicalObject* a, PhysicalObject* b);
-        int  sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2);
-        void handleCollision(PhysicalObject* obj, PhysicalObject* obj2);
-        void handleCollision(PhysicalObject* obj, PhysicalObject* obj2, int side);
+        bool doCollide(CircleObject* a, CircleObject* b);
+    
         void resolveCollision(PhysicalObject* obj, PhysicalObject* obj2);
+        void resolveCollision(CircleObject* obj, CircleObject* obj2);
+    
+        int  sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2);
+    
+        void handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj2, int side);
+        void handleCollision(CircleObject* obj, CircleObject* obj2);
 };
 
 #endif

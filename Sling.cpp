@@ -162,7 +162,6 @@ Object* Sling::handle(SDL_Event e)
                 if(projectileCount > 0)
                 {
                     monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
-
                 }
 
                 projectileCount--;
@@ -174,8 +173,7 @@ Object* Sling::handle(SDL_Event e)
             }
         }
     }
-
-
+    
     return monk;
 }
 
