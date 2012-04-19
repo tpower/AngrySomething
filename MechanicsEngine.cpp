@@ -11,37 +11,39 @@ int MechanicsEngine::run(Room& room)
     int state = 0;
     Object* obj;
     Object* objTemp;
-    
-    if(SDL_PollEvent(&event))
+
+    if(!SDL_PollEvent(&event))
     {
-        if( event.type == SDL_QUIT )
-        {
-            exit(0);
-        }
+        event.type = SDL_KEYDOWN;   //Temporary Solution
+        SDL_PollEvent(&event);
+    }
+    if( event.type == SDL_QUIT )
+    {
+        exit(0);
+    }
 
-        for(int i = 0; i < room.getNumObjects() && !state; i++)
-        {
-            obj = room.getObjectAt(i);
-            objTemp = NULL;
+    for(int i = 0; i < room.getNumObjects() && !state; i++)
+    {
+        obj = room.getObjectAt(i);
+        objTemp = NULL;
 
-            if(obj->isMechanical())
+        if(obj->isMechanical())
+        {
+            if(obj->getType() == 1)
             {
-                if(obj->getType() == 1)
+                objTemp = dynamic_cast<MechanicsObject*>(obj)->handle(event);
+                if(objTemp)
                 {
-                    objTemp = dynamic_cast<MechanicsObject*>(obj)->handle(event);
-                    if(objTemp)
-                    {
-                        room.add(objTemp);
-                    }
+                    room.add(objTemp);
                 }
-                else if(obj->getType() == 2)
-                {
-                    state = dynamic_cast<MechanicsObject*>(obj)->handleU(event);
-                }
+            }
+            else if(obj->getType() == 2)
+            {
+                state = dynamic_cast<MechanicsObject*>(obj)->handleU(event);
             }
         }
     }
-    
+
     //If the room is a level
     if(room.getRoomType() == 1)
     {

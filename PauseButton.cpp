@@ -63,22 +63,22 @@ int PauseButton::handleU(SDL_Event e)
                         for(int i = 0; i < 4; i++)
                         {
                             if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 4)
-                            {
+                            {   //Continue Running
                                 MenuOpen = false;
                                 state = 0;
                             }
                             if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 1)
-                            {
+                            {   //Continue Running
                                 MenuOpen = false;
                                 state = 0;
                             }
                             if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 2)
-                            {
+                            {   //Restart the level
                                 MenuOpen = false;
                                 state = -5;
                             }
                             if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 3)
-                            {
+                            {   //Exit to title screen
                                 MenuOpen = false;
                                 state = -4;
                             }

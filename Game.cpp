@@ -98,7 +98,9 @@ string Game::decideLevel(int i)
 {
     char buffer[1];
     string s = "Level";
-    s += sprintf(buffer,"%d",i);
+    //s += sprintf(buffer,"%d",i);
+    itoa(i, buffer, 10);
+    s += buffer;
     s += ".gel";
     return s;
 }

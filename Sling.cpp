@@ -84,6 +84,9 @@ Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVe
         case 'N':
             p = new Projectile("Monkey.bmp", xPos, yPos, xVel, yVel);
             break;
+        case 'U':
+            p = new UFObird("AngryBird.bmp", "UFO.bmp", xPos, yPos, xVel, yVel);
+            break;
     }
 
     return p;
@@ -173,7 +176,7 @@ Object* Sling::handle(SDL_Event e)
             }
         }
     }
-    
+
     return monk;
 }
 

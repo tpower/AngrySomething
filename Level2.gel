@@ -1,5 +1,5 @@
 1
-12
+13
 1 Stretchy.bmp 100 350 NNNNNNNNNN
 2 TestA.bmp 325 440 0 0
 2 TestA.bmp 395 440 0 0
@@ -12,3 +12,4 @@
 3 TestC.bmp 330 300 0 0 20 80
 3 TestC.bmp 410 300 0 0 20 80
 3 TestC.bmp 340 270 0 0 80 20
+5 Menu.bmp 10 10 50 50

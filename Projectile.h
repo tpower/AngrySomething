@@ -14,9 +14,9 @@
 
 class Projectile : public DrawableObject, public CircleObject, public MechanicsObject
 {
-    private:
+    protected:
         static int numBirds;
-    
+
     public:
         Projectile(const char* file, int x, int y, int vx, int vy);
         ~Projectile();
