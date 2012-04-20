@@ -25,7 +25,7 @@ int Sling::projectileCount = 0;
 
 Sling::Sling(const char* file, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
-        DrawableObject(file),
+        DrawableObject(file, 2),
         MechanicsObject()
 {
     grabbed = false;

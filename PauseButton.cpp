@@ -4,7 +4,7 @@
 
 PauseButton::PauseButton(const char* file, int x, int y, int w, int h)
     :   Object(x, y, w, h),
-        DrawableObject(file)
+        DrawableObject(file, 3)
 
 {
     type = 2;

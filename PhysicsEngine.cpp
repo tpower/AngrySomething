@@ -12,8 +12,8 @@
 #include "PhysicsEngine.h"
 #include "Geometry.h"
 
-#define FIELD_W 640
-#define FIELD_H 480
+const int FIELD_W = 1280;
+const int FIELD_H = 720;
 
 /*******************************************************************************
  Name:              run

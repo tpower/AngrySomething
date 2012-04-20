@@ -17,7 +17,7 @@
  ******************************************************************************/
 GraphicsEngine::GraphicsEngine()
 {
-    screen = SDL_SetVideoMode(640, 480, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
+    screen = SDL_SetVideoMode(1280, 720, 32, SDL_SWSURFACE | SDL_DOUBLEBUF);
 
     if(!screen)
     {
@@ -43,14 +43,39 @@ GraphicsEngine::~GraphicsEngine()
  ******************************************************************************/
 void GraphicsEngine::run(Room& room)
 {
+    vector<DrawableObject*> temp;
     for(int i = 0; i < room.getNumObjects(); i++)
     {
         Object* obj = room.getObjectAt(i);
 
         if(obj->isDrawable())
-            (dynamic_cast<DrawableObject*>(obj))->draw(screen);
+            temp.push_back(dynamic_cast<DrawableObject*>(obj));
+    }
+
+    sortByLayer(temp);
+
+    SDL_BlitSurface(background, NULL, screen, NULL);
+    for(int i = 0; i < temp.size(); i++)
+    {
+        temp[i]->draw(screen);
     }
 
     SDL_Flip(screen);
     SDL_BlitSurface(background, NULL, screen, NULL);
+}
+
+void GraphicsEngine::sortByLayer(vector<DrawableObject*>& list)
+{
+    for(int i = 0; i < list.size(); i++)
+    {
+        for(int j = 0; j < list.size() - 1; j++)
+        {
+            if(list[j]->getLayer() >  list[j+1]->getLayer())
+            {
+                DrawableObject* temp = list[j];
+                list[j] = list[j+1];
+                list[j+1] = temp;
+            }
+        }
+    }
 }

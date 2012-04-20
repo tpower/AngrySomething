@@ -2,7 +2,7 @@
 #include <cmath>
 
 Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
-    :   DrawableObject(file),
+    :   DrawableObject(file, 2),
         PhysicalObject(vx, vy),
         Object(x, y, w, h)
 {
@@ -13,7 +13,7 @@ Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
 void Wall::run()
 {
     move();
-    
+
     if(health <= 0)
     {
         state = -1;
@@ -34,4 +34,12 @@ void Wall::applyForce(int m, Vect v, int dir)
     {
         health -= 101;
     }
+}
+
+void Wall::draw(SDL_Surface* screen)
+{
+    static SDL_Rect loc;
+    loc = pos;
+
+    SDL_BlitSurface(image, NULL, screen, &loc);
 }

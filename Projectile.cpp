@@ -12,7 +12,7 @@ int Projectile::numBirds = 0;
 
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   Object(x, y, 50, 50),
-        DrawableObject(file),
+        DrawableObject(file, 2),
         CircleObject(vx, vy)
 
 {

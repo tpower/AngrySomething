@@ -2,7 +2,7 @@
 
 ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, int v)
     :   Object(x, y, w, h),
-        DrawableObject(file)
+        DrawableObject(file, 3)
 
 {
     value = v;
