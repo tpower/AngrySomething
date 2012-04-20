@@ -16,16 +16,20 @@
 #include "Object.h"
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
+#include "ControllableObject.h"
 #include "Projectile.h"
 #include "UFObird.h"
 
 using namespace std;
 
-class Sling : public DrawableObject, public MechanicsObject
+class Sling : public DrawableObject, public MechanicsObject, public ControllableObject
 {
     private:
         double          radius;
         bool            checkBounds(SDL_Event);
+        bool            grabbed;
+        bool            fired;
+        Projectile*     monk;
         Projectile*     createMonkey(char type, int, int, int, int);
         SDL_Rect        Slingshot;
         string          projectiles;
@@ -36,8 +40,10 @@ class Sling : public DrawableObject, public MechanicsObject
         Sling(const char* file1, int x, int y, string ammo);
         ~Sling();
 
-        Object*     handle(SDL_Event);
+        void        handle(SDL_Event);
+        Object*     process();
         void        draw(SDL_Surface*);
+
         static int  getProjectileCount(){ return projectileCount;}
 };
 

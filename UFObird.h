@@ -13,9 +13,9 @@ class UFObird : public Projectile
         UFObird(const char* file,const char* file2, int x, int y, int vx, int vy);
         ~UFObird();
 
-        virtual void    run();
-        virtual void    draw(SDL_Surface* s);
-        Object*         handle(SDL_Event);
+        void            run();
+        void            draw(SDL_Surface* s);
+        Object*         process();
 
         static int      getNumBirds(){return numBirds;}
 };

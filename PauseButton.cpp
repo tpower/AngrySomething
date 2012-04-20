@@ -21,11 +21,10 @@ PauseButton::~PauseButton()
  Input:
     e               SDL_Event
  ******************************************************************************/
-int PauseButton::handleU(SDL_Event e)
+void PauseButton::handle(SDL_Event e)
 {
     int mouseX, mouseY;
     bool MenuOpen = false;
-    int state;
 
     if(e.type == SDL_MOUSEMOTION)
     {
@@ -62,33 +61,33 @@ int PauseButton::handleU(SDL_Event e)
                         }
                         for(int i = 0; i < 4; i++)
                         {
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 4)
+                            /*
+                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->process() == 4)
                             {   //Continue Running
                                 MenuOpen = false;
                                 state = 0;
                             }
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 1)
+                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->process() == 1)
                             {   //Continue Running
                                 MenuOpen = false;
                                 state = 0;
                             }
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 2)
+                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handle(event) == 2)
                             {   //Restart the level
                                 MenuOpen = false;
                                 state = -5;
                             }
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handleU(event) == 3)
+                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handle(event) == 3)
                             {   //Exit to title screen
                                 MenuOpen = false;
                                 state = -4;
-                            }
+                            }*/
                         }
                     }
                 }
             }
         }
     }
-    return state;
 }
 
 /*******************************************************************************

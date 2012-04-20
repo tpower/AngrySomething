@@ -17,22 +17,26 @@
 #include "GraphicsEngine.h"
 #include "PhysicsEngine.h"
 #include "MechanicsEngine.h"
+#include "StateEngine.h"
+#include "ControlEngine.h"
 
 class Game
 {
     private:
         Room            room;
+        StateEngine     state;
         GraphicsEngine  grph;
         PhysicsEngine   phys;
         MechanicsEngine mech;
+        ControlEngine   control;
         bool            running;
-    
+
     public:
         Game();
-    
+
         void    init();
         int     run();
-        string  decideLevel(int i);
+
 };
 
 #endif

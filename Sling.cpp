@@ -28,12 +28,16 @@ Sling::Sling(const char* file, int x, int y, string ammo)
         DrawableObject(file),
         MechanicsObject()
 {
+    grabbed = false;
+
     launcherImg = SDL_LoadBMP("Slingshot.bmp");
 
     Slingshot.x = x - 25;
     Slingshot.y = y;
 
     radius = 75;
+
+    monk = NULL;
 
     projectiles = ammo;
     projectileCount = (int)projectiles.length();
@@ -99,9 +103,9 @@ Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVe
  Input:
     e               SDL_Event
  ******************************************************************************/
-Object* Sling::handle(SDL_Event e)
+void Sling::handle(SDL_Event e)
 {
-    Projectile* monk = NULL;
+    monk = NULL;
     static bool grabbed = false;
 
     int static centerX = pos.x;
@@ -176,8 +180,6 @@ Object* Sling::handle(SDL_Event e)
             }
         }
     }
-
-    return monk;
 }
 
 /*******************************************************************************
@@ -194,4 +196,9 @@ void Sling::draw(SDL_Surface* s)
 
     SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);
+}
+
+Object* Sling::process()
+{
+    return monk;
 }

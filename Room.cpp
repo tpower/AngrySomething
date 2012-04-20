@@ -9,7 +9,6 @@
 #include "Object.h"
 #include "DrawableObject.h"
 #include "PhysicalObject.h"
-#include "MultiObject.h"
 #include "Sling.h"
 #include "Wall.h"
 #include "Pig.h"

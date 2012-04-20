@@ -18,6 +18,7 @@ class Object
         bool        drawable;
         bool        physical;
         bool        mechanical;
+        bool        controllable;
         int         type;   //1 = level, 2 = Utility
 
     public:
@@ -27,12 +28,15 @@ class Object
         Object          operator=(const Object& other);
         void            setPos(SDL_Rect p);
 
+        virtual int     check();
+
         SDL_Rect        getPos();
         int             getState();
         int             getType();
         bool            isDrawable();
         bool            isPhysical();
         bool            isMechanical();
+        bool            isControllable();
 
         virtual void    run();
 };

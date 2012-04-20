@@ -8,7 +8,6 @@ Pig::Pig(const char* file, int x, int y, int vx, int vy)
         PhysicalObject(vx, vy),
         Object(x, y, 40, 40)
 {
-    type = 1;
     health = 100;
     numPigs++;
 }
@@ -18,7 +17,6 @@ Pig::Pig(const Pig& other)
         PhysicalObject(other.pos.x, other.pos.y),
         Object(other.pos.x, other.pos.y)
 {
-    type = 1;
     numPigs++;
 }
 
@@ -30,7 +28,7 @@ Pig::~Pig()
 void Pig::run()
 {
     move();
-    
+
     if(health <= 0)
     {
         state = -1;

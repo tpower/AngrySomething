@@ -5,21 +5,24 @@
 
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
+#include "ControllableObject.h"
 
 #include <string>
 
 using namespace std;
 
-class ClickableObject : public DrawableObject, public MechanicsObject
+class ClickableObject : public DrawableObject, public ControllableObject, public MechanicsObject
 {
     private:
         int value;
+        bool clicked;
     public:
         ClickableObject(const char* file, int x, int y, int w, int h, int v);
         ~ClickableObject();
 
         void        draw(SDL_Surface*);
-        int     handleU(SDL_Event);
+        int         check();
+        void        handle(SDL_Event);
 };
 
 #endif // CLICKABLEOBJECT_H_INCLUDED

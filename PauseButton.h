@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class PauseButton : public DrawableObject, public MechanicsObject
+class PauseButton : public DrawableObject, public MechanicsObject, public ControllableObject
 {
     private:
         ClickableObject* button1;
@@ -25,7 +25,7 @@ class PauseButton : public DrawableObject, public MechanicsObject
         ~PauseButton();
 
         void        draw(SDL_Surface*);
-        int     handleU(SDL_Event);
+        void        handle(SDL_Event);
 };
 
 #endif // PAUSEBUTTON_H_INCLUDED

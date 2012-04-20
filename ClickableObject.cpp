@@ -6,7 +6,7 @@ ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, i
 
 {
     value = v;
-    type = 2;
+    clicked = false;
 }
 
 ClickableObject::~ClickableObject()
@@ -20,9 +20,8 @@ ClickableObject::~ClickableObject()
  Input:
     e               SDL_Event
  ******************************************************************************/
-int ClickableObject::handleU(SDL_Event e)
+void ClickableObject::handle(SDL_Event e)
 {
-    int v = 0;
     int mouseX, mouseY;
 
     if(e.type == SDL_MOUSEMOTION)
@@ -40,11 +39,22 @@ int ClickableObject::handleU(SDL_Event e)
 
             if(mouseX >= pos.x && mouseX <= pos.x + pos.w && mouseY >= pos.y && mouseY <= pos.y + pos.h)
             {
-                v = value;
+                clicked = true;
             }
         }
     }
-    return v;
+}
+
+int ClickableObject::check()
+{
+    int temp = 0;
+    if(clicked)
+    {
+        temp = value;
+        clicked = false;
+    }
+
+    return temp;
 }
 
 /*******************************************************************************

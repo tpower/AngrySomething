@@ -40,7 +40,7 @@ void UFObird::run()
  Input:
     e               SDL_Event
  ******************************************************************************/
-Object* UFObird::handle(SDL_Event e)
+Object* UFObird::process()
 {
     if(pos.x >= 350 and pos.y >= 25)
     {
@@ -51,6 +51,7 @@ Object* UFObird::handle(SDL_Event e)
         acc.y = -1;
         pos.x = 350;
     }
+
     return NULL;
 }
 

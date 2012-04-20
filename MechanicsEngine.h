@@ -11,7 +11,7 @@ class MechanicsEngine
         SDL_Event event;
 
     public:
-        int run(Room& room);
+        void run(Room& room);
 };
 
 #endif
