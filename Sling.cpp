@@ -200,5 +200,7 @@ void Sling::draw(SDL_Surface* s)
 
 Object* Sling::process()
 {
-    return monk;
+    Projectile* m = monk;
+    monk = NULL;
+    return m;
 }
