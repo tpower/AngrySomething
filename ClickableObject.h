@@ -23,6 +23,8 @@ class ClickableObject : public DrawableObject, public ControllableObject, public
         void        draw(SDL_Surface*);
         int         check();
         void        handle(SDL_Event);
+        void        pause();
+        void        unpause();
 };
 
 #endif // CLICKABLEOBJECT_H_INCLUDED

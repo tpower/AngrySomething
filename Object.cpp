@@ -90,3 +90,13 @@ void Object::run()
 {
 
 }
+
+void Object::pause()
+{
+
+}
+
+void Object::unpause()
+{
+
+}

@@ -18,6 +18,8 @@ class UFObird : public Projectile
         Object*         process();
 
         static int      getNumBirds(){return numBirds;}
+        void            pause();
+        void            unpause();
 };
 
 #endif // UFOBIRD_H_INCLUDED

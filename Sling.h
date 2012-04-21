@@ -45,6 +45,8 @@ class Sling : public DrawableObject, public MechanicsObject, public Controllable
         void        draw(SDL_Surface*);
 
         static int  getProjectileCount(){ return projectileCount;}
+        void        pause();
+        void        unpause();
 };
 
 #endif // SLING_H

@@ -44,7 +44,10 @@ Sling::Sling(const char* file, int x, int y, string ammo)
 
     type = 1;
 
-    active = true;
+    activeDraw = true;
+    activePhys = false;
+    activeMech = true;
+    activeCont = true;
 }
 
 /*******************************************************************************
@@ -170,7 +173,7 @@ void Sling::handle(SDL_Event e)
             {
                 if(projectileCount > 0)
                 {
-                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
+                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*10, (centerY - pos.y)*10);
                 }
 
                 projectileCount--;
@@ -205,4 +208,20 @@ Object* Sling::process()
     Projectile* m = monk;
     monk = NULL;
     return m;
+}
+
+void Sling::pause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = false;
+    activeCont = false;
+}
+
+void Sling::unpause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = true;
+    activeCont = true;
 }

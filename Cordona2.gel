@@ -1,0 +1,19 @@
+1
+17
+1 Stretchy.bmp 100 350 NNNNNNNNUN
+2 Enemy.bmp 1225 680 0 0
+2 Enemy.bmp 1135 680 0 0
+2 Enemy.bmp 1100 340 0 0
+3 PlankV.bmp 1020 650 0 0 20 80
+3 PlankV.bmp 1100 650 0 0 20 80
+3 PlankV.bmp 1180 650 0 0 20 80
+3 PlankH.bmp 1030 630 0 0 80 20
+3 PlankH.bmp 1110 630 0 0 80 20
+3 PlankV.bmp 1060 550 0 0 20 80
+3 PlankV.bmp 1140 550 0 0 20 80
+3 PlankH.bmp 1070 530 0 0 80 20
+4 Menu.bmp 10 10 50 50 -6
+5 Resume.bmp 70 30 25 25 -6
+5 Reset.bmp 120 30 25 25 -5
+5 Exit.bmp 160 30 25 25 -3
+5 Unpause.bmp 200 15 25 25 -6

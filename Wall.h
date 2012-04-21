@@ -16,6 +16,8 @@ class Wall : public DrawableObject, public PhysicalObject, public MechanicsObjec
         void            run();
         void            applyForce(int m, Vect v, int dir);
         void            draw(SDL_Surface* screen);
+        void            pause();
+        void            unpause();
 };
 
 #endif // WALL_H

@@ -48,7 +48,7 @@ void GraphicsEngine::run(Room& room)
     {
         Object* obj = room.getObjectAt(i);
 
-        if(obj->isDrawable())
+        if(obj->isDrawable() && obj->getActiveDraw())
             temp.push_back(dynamic_cast<DrawableObject*>(obj));
     }
 

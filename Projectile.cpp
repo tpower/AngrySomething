@@ -18,7 +18,10 @@ Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
 {
     type = 1;
     numBirds++;
-    active = true;
+    activeDraw = true;
+    activePhys = true;
+    activeMech = false;
+    activeCont = false;
 }
 
 Projectile::~Projectile()
@@ -42,4 +45,20 @@ void Projectile::draw(SDL_Surface* screen)
     loc = pos;
 
     SDL_BlitSurface(image, NULL, screen, &loc);
+}
+
+void Projectile::pause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = false;
+    activeCont = false;
+}
+
+void Projectile::unpause()
+{
+    activeDraw = true;
+    activePhys = true;
+    activeMech = false;
+    activeCont = false;
 }

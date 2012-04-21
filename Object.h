@@ -19,7 +19,10 @@ class Object
         bool        physical;
         bool        mechanical;
         bool        controllable;
-        bool        active;
+        bool        activeDraw;
+        bool        activePhys;
+        bool        activeMech;
+        bool        activeCont;
         int         type;   //1 = level, 2 = Utility
 
     public:
@@ -38,6 +41,16 @@ class Object
         bool            isPhysical();
         bool            isMechanical();
         bool            isControllable();
+        bool            getActiveDraw() {return activeDraw;}
+        bool            getActivePhys() {return activePhys;}
+        bool            getActiveMech() {return activeMech;}
+        bool            getActiveCont() {return activeCont;}
+//        void            setActiveDraw(bool b) {activeDraw = b;}
+//        void            setActivePhys(bool b) {activePhys = b;}
+//        void            setActiveMech(bool b) {activeMech = b;}
+//        void            setActiveCont(bool b) {activeCont = b;}
+        virtual void    pause();
+        virtual void    unpause();
 
         virtual void    run();
 };

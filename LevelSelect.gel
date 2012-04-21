@@ -1,5 +1,9 @@
 2
-3
-4 Level1.bmp 50 50 131 120 1
-4 Level2.bmp 150 150 131 120 2
-4 Level3.bmp 250 250 131 120 3
+7
+4 Cordona.bmp 180 160 240 240 1
+4 Apathos.bmp 600 60 240 240 2
+4 Clavus.bmp 950 170 240 240 3
+4 Knoxen.bmp 250 550 240 240 4
+4 Darthon.bmp 838 550 240 240 5
+4 Ziggurat.bmp 500 300 150 150 6
+4 Back.bmp 50 680 25 25 -4

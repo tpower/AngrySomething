@@ -18,6 +18,8 @@ class Pig : public DrawableObject, public PhysicalObject, public MechanicsObject
         virtual void    run();
         void            applyForce(int m, Vect v, int dir);
         static int      getNumPigs() {return numPigs;}
+        void            pause();
+        void            unpause();
 };
 
 #endif // PIG_H

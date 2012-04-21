@@ -15,7 +15,7 @@ void ControlEngine::run(Room& room)
         {
             obj = room.getObjectAt(i);
 
-            if(obj->isControllable())
+            if(obj->isControllable() && obj->getActiveCont())
             {
                 dynamic_cast<ControllableObject*>(obj)->handle(event);
             }

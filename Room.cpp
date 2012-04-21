@@ -14,6 +14,7 @@
 #include "Pig.h"
 #include "ClickableObject.h"
 #include "PauseButton.h"
+#include "MenuItem.h"
 
 /*******************************************************************************
  ACCESSORS
@@ -119,12 +120,12 @@ bool Room::load(const char* f)
                     object.push_back(new ClickableObject(file.c_str(), x, y, w, h, v));
                     break;
                 }
-                case 5://PauseButton
+                case 5://MenuItem
                 {
                     string file;
-                    int x, y, w, h;
-                    inFile >> file >> x >> y >> w >> h;
-                    object.push_back(new PauseButton(file.c_str(), x, y, w, h));
+                    int x, y, w, h, v;
+                    inFile >> file >> x >> y >> w >> h >> v;
+                    object.push_back(new MenuItem(file.c_str(), x, y, w, h, v));
                     break;
                 }
             }
@@ -138,4 +139,30 @@ bool Room::load(const char* f)
 void Room::add(Object* obj)
 {
     object.push_back(obj);
+}
+
+//Not really sure that we actually want this as a bool
+bool Room::pause()
+{
+    Object* obj;
+
+    for(int i = 0; i < getNumObjects(); i++)
+    {
+        obj = getObjectAt(i);
+        (obj)->pause();
+    }
+    return true;
+}
+
+//Not really sure that we actually want this as a bool
+bool Room::unpause()
+{
+    Object* obj;
+
+    for(int i = 0; i < getNumObjects(); i++)
+    {
+        obj = getObjectAt(i);
+        (obj)->unpause();
+    }
+    return true;
 }

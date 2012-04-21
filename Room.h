@@ -38,6 +38,8 @@ class Room
         void                erase();
         void                setRoomType(int r) {roomType = r;}
         int                 getRoomType() {return roomType;}
+        bool                pause();
+        bool                unpause();
 };
 
 #endif

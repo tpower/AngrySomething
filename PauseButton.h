@@ -30,6 +30,8 @@ class PauseButton : public DrawableObject, public MechanicsObject, public Contro
         void        draw(SDL_Surface*);
         int         check();
         void        handle(SDL_Event);
+        void        pause();
+        void        unpause();
 };
 
 #endif // PAUSEBUTTON_H_INCLUDED

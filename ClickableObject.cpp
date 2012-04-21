@@ -7,7 +7,10 @@ ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, i
 {
     value = v;
     clicked = false;
-    active = true;
+    activeDraw = true;
+    activePhys = false;
+    activeMech = false;
+    activeCont = true;
 }
 
 ClickableObject::~ClickableObject()
@@ -71,4 +74,20 @@ void ClickableObject::draw(SDL_Surface* s)
     loc = pos;
 
     SDL_BlitSurface(image, NULL, s, &loc);
+}
+
+void ClickableObject::pause()
+{
+    activeDraw = false;
+    activePhys = false;
+    activeMech = false;
+    activeCont = false;
+}
+
+void ClickableObject::unpause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = false;
+    activeCont = true;
 }

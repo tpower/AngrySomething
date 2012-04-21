@@ -15,7 +15,7 @@ void MechanicsEngine::run(Room& room)
     {
         obj = room.getObjectAt(i);
 
-        if(obj->isMechanical())
+        if(obj->isMechanical() && obj->getActiveMech())
         {
             objTemp = dynamic_cast<MechanicsObject*>(obj)->process();
             if(objTemp)

@@ -35,7 +35,7 @@ void PhysicsEngine::runObjects(Room& room)
     {
         Object* obj = room.getObjectAt(i);
 
-        if(obj->isPhysical())
+        if(obj->isPhysical() && obj->getActivePhys())
         {
             PhysicalObject *pObj = dynamic_cast<PhysicalObject*>(obj);
 

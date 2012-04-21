@@ -25,6 +25,8 @@ class Projectile : public DrawableObject, public CircleObject, public MechanicsO
 
         virtual void    run();
         void            draw(SDL_Surface* s);
+        void            pause();
+        void            unpause();
 };
 
 #endif

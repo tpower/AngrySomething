@@ -8,9 +8,12 @@ PauseButton::PauseButton(const char* file, int x, int y, int w, int h)
 
 {
     type = 2;
-    active = false;
     Value = 0;
     clicked = false;
+    activeDraw = true;
+    activePhys = false;
+    activeMech = true;
+    activeCont = true;
 }
 
 PauseButton::~PauseButton()
@@ -89,7 +92,7 @@ void PauseButton::handle(SDL_Event e)
                             if(dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->check() == 3)
                             {   //Exit to title screen
                                 MenuOpen = false;
-                                Value = -4;
+                                Value = -3;
                                 clicked = true;
                             }
                         }
@@ -126,4 +129,20 @@ void PauseButton::draw(SDL_Surface* s)
     loc = pos;
 
     SDL_BlitSurface(image, NULL, s, &loc);
+}
+
+void PauseButton::pause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = true;
+    activeCont = true;
+}
+
+void PauseButton::unpause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = true;
+    activeCont = true;
 }

@@ -4,18 +4,23 @@
 int Pig::numPigs = 0;
 
 Pig::Pig(const char* file, int x, int y, int vx, int vy)
-    :   DrawableObject(file, 2),
-        PhysicalObject(vx, vy),
-        Object(x, y, 40, 40)
+    :   Object(x, y, 40, 40),
+        DrawableObject(file, 2),
+        PhysicalObject(vx, vy)
 {
     health = 100;
     numPigs++;
+
+    activeDraw = true;
+    activePhys = true;
+    activeMech = false;
+    activeCont = false;
 }
 
 Pig::Pig(const Pig& other)
-    :   DrawableObject("TestA.bmp", 2),
-        PhysicalObject(other.pos.x, other.pos.y),
-        Object(other.pos.x, other.pos.y)
+    :   Object(other.pos.x, other.pos.y),
+        DrawableObject("TestA.bmp", 2),
+        PhysicalObject(other.pos.x, other.pos.y)
 {
     numPigs++;
 }
@@ -43,4 +48,20 @@ void Pig::applyForce(int m, Vect v, int dir)
     {
         health -= 50;
     }
+}
+
+void Pig::pause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = false;
+    activeCont = false;
+}
+
+void Pig::unpause()
+{
+    activeDraw = true;
+    activePhys = true;
+    activeMech = false;
+    activeCont = false;
 }

@@ -17,7 +17,11 @@ UFObird::UFObird(const char* file, const char* file2, int x, int y, int vx, int 
     numBirds++;
     image2 = file2;
     UFOactive = false;
-    active = true;
+
+    activeDraw = true;
+    activePhys = true;
+    activeMech = true;
+    activeCont = false;
 }
 
 UFObird::~UFObird()
@@ -82,3 +86,18 @@ void UFObird::draw(SDL_Surface* s)
         SDL_BlitSurface(Spaceship, NULL, s, &temp);
 }
 
+void UFObird::pause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = false;
+    activeCont = false;
+}
+
+void UFObird::unpause()
+{
+    activeDraw = true;
+    activePhys = true;
+    activeMech = true;
+    activeCont = false;
+}
