@@ -43,6 +43,8 @@ Sling::Sling(const char* file, int x, int y, string ammo)
     projectileCount = (int)projectiles.length();
 
     type = 1;
+
+    active = true;
 }
 
 /*******************************************************************************

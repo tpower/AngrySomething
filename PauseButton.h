@@ -5,6 +5,7 @@
 
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
+#include "ControllableObject.h"
 
 #include "ClickableObject.h"
 
@@ -19,12 +20,15 @@ class PauseButton : public DrawableObject, public MechanicsObject, public Contro
         ClickableObject* button2;
         ClickableObject* button3;
         ClickableObject* Unpause;
+        int              Value;
+        bool             clicked;
 
     public:
         PauseButton(const char* file, int x, int y, int w, int h);
         ~PauseButton();
 
         void        draw(SDL_Surface*);
+        int         check();
         void        handle(SDL_Event);
 };
 

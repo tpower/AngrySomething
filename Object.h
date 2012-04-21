@@ -19,6 +19,7 @@ class Object
         bool        physical;
         bool        mechanical;
         bool        controllable;
+        bool        active;
         int         type;   //1 = level, 2 = Utility
 
     public:

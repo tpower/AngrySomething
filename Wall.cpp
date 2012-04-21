@@ -8,6 +8,7 @@ Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
 {
     health = 100;
     type = 1;
+    active = true;
 }
 
 void Wall::run()

@@ -17,6 +17,7 @@ UFObird::UFObird(const char* file, const char* file2, int x, int y, int vx, int 
     numBirds++;
     image2 = file2;
     UFOactive = false;
+    active = true;
 }
 
 UFObird::~UFObird()

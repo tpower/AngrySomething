@@ -7,6 +7,7 @@ ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, i
 {
     value = v;
     clicked = false;
+    active = true;
 }
 
 ClickableObject::~ClickableObject()

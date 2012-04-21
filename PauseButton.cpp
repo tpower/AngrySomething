@@ -8,6 +8,9 @@ PauseButton::PauseButton(const char* file, int x, int y, int w, int h)
 
 {
     type = 2;
+    active = false;
+    Value = 0;
+    clicked = false;
 }
 
 PauseButton::~PauseButton()
@@ -61,33 +64,53 @@ void PauseButton::handle(SDL_Event e)
                         }
                         for(int i = 0; i < 4; i++)
                         {
-                            /*
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->process() == 4)
+                            dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->handle(event);
+                            if(dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->check() == 4)
                             {   //Continue Running
                                 MenuOpen = false;
-                                state = 0;
+                                Value = 0;
+                                clicked = true;
                             }
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->process() == 1)
+                            dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->handle(event);
+                            if(dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->check() == 1)
                             {   //Continue Running
                                 MenuOpen = false;
-                                state = 0;
+                                Value = 0;
+                                clicked = true;
                             }
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handle(event) == 2)
+                            dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->handle(event);
+                            if(dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->check() == 2)
                             {   //Restart the level
                                 MenuOpen = false;
-                                state = -5;
+                                Value = -5;
+                                clicked = true;
                             }
-                            if(dynamic_cast<MechanicsObject*>(temp.getObjectAt(i))->handle(event) == 3)
+                            dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->handle(event);
+                            if(dynamic_cast<ControllableObject*>(temp.getObjectAt(i))->check() == 3)
                             {   //Exit to title screen
                                 MenuOpen = false;
-                                state = -4;
-                            }*/
+                                Value = -4;
+                                clicked = true;
+                            }
                         }
                     }
                 }
             }
         }
     }
+}
+
+int PauseButton::check()
+{
+    int temp = 0;
+    if(clicked)
+    {
+        temp = Value;
+        clicked = false;
+        Value = 0;
+    }
+
+    return temp;
 }
 
 /*******************************************************************************

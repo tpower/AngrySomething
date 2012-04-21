@@ -18,6 +18,7 @@ Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
 {
     type = 1;
     numBirds++;
+    active = true;
 }
 
 Projectile::~Projectile()
