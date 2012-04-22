@@ -21,13 +21,29 @@ void Wall::run()
 
 void Wall::applyForce(int m, Vect v, int dir)
 {
-    PhysicalObject::applyForce(m, v, dir);
+    if(dir == 0)
+    {
+        v.y = vel.y * .8;   //friction
+        acc.x += ((m * (v.x - vel.x)) / mass) * .5;
+        acc.y += (v.y - vel.y) * .35;
+    }
+    else if(dir == 1)
+    {
+        v.x = vel.x * .8;   //friction
+        acc.x += (v.x - vel.x) * .5;
+        acc.y += ((m * (v.y - vel.y)) / mass) * .35;
+    }
+    else
+    {
+        acc.x += ((m * (v.x - vel.x)) / mass) * .5;
+        acc.y += ((m * (v.y - vel.y)) / mass) * .35;
+    }
 
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 30)
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 15)
     {
         health -= 50;
     }
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 30)
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 20)
     {
         health -= 101;
     }
