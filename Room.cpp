@@ -25,6 +25,11 @@ Room::Room()
     roomType = Level;
 }
 
+Room::~Room()
+{
+    SDL_FreeSurface(background);
+}
+
 /*******************************************************************************
  ACCESSORS
  Name:              getObjectAt, getNumObjects
@@ -45,6 +50,12 @@ void Room::remove(int i)
     object.erase(object.begin()+i);
 }
 
+void Room::setBackground(char* file)
+{
+    SDL_FreeSurface(background);
+    background = SDL_LoadBMP(file);
+}
+
 void Room::erase()
 {
     while(!object.empty())
@@ -52,6 +63,11 @@ void Room::erase()
         delete object[0];
         object.erase(object.begin());
     }
+}
+
+SDL_Surface* Room::getBackground()
+{
+    return background;
 }
 
 /*******************************************************************************
@@ -81,6 +97,9 @@ bool Room::load(const char* f)
 
         int dataType;
         int numObjects;
+        string backgroundFile;
+
+        inFile >> backgroundFile;
         inFile >> roomType;
         inFile >> numObjects;
         for(int i = 0; i < numObjects; i++)
@@ -130,6 +149,8 @@ bool Room::load(const char* f)
                 }
             }
         }
+
+        background = SDL_LoadBMP(backgroundFile.c_str());
 
         loaded = true;
     }

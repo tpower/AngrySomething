@@ -11,6 +11,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <SDL/SDL.h>
 
 class Object;
 
@@ -21,11 +22,13 @@ enum {Level = 1, Utility = 2};
 class Room
 {
     private:
-        vector<Object*> object;
-        int roomType;
+        vector<Object*>     object;
+        int                 roomType;
+        SDL_Surface*        background;
 
     public:
         Room();
+        ~Room();
 
         Room                operator=(const Room& other);
 
@@ -38,6 +41,8 @@ class Room
         void                erase();
         void                setRoomType(int r) {roomType = r;}
         int                 getRoomType() {return roomType;}
+        void                setBackground(char* file);
+        SDL_Surface*        getBackground();
         bool                pause();
         bool                unpause();
 };
