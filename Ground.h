@@ -12,6 +12,8 @@ class Ground : public DrawableObject, public PhysicalObject, public MechanicsObj
         ~Ground();
 
         Ground& operator=(Ground& other);
+
+        void applyForce(int m, Vect v, int dir);
 };
 
 #endif // GROUND_H_INCLUDED

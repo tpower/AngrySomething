@@ -23,7 +23,7 @@ PhysicalObject::PhysicalObject(int vx, int vy)
     acc.x = 0;
     acc.y = GRAV;     //gravity
 
-    mass = pos.w * pos.h;
+    mass = 1600;
 
     collisionSide = NO_COLLISION;
 

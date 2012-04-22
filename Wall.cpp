@@ -21,15 +21,13 @@ void Wall::run()
 
 void Wall::applyForce(int m, Vect v, int dir)
 {
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) < .85)
-    {
-        PhysicalObject::applyForce(m, v, dir);
-    }
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 7)
+    PhysicalObject::applyForce(m, v, dir);
+
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 30)
     {
         health -= 50;
     }
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 8)
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 30)
     {
         health -= 101;
     }
