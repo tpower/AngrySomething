@@ -4,7 +4,7 @@
 int Pig::numPigs = 0;
 
 Pig::Pig(const char* file, int x, int y, int vx, int vy)
-    :   Object(x, y, 40, 40),
+    :   Object(x, y, 20, 20),
         DrawableObject(file, 2),
         PhysicalObject(vx, vy)
 {

@@ -35,6 +35,8 @@ class Sling : public DrawableObject, public MechanicsObject, public Controllable
         string          projectiles;
         static int      projectileCount;
         SDL_Surface*    launcherImg;
+        int             centerX;
+        int             centerY;
 
     public:
         Sling(const char* file1, int x, int y, string ammo);
