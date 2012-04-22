@@ -48,6 +48,9 @@ Sling::Sling(const char* file, int x, int y, string ammo)
     activePhys = false;
     activeMech = true;
     activeCont = true;
+
+    centerX = pos.x;
+    centerY = pos.y;
 }
 
 /*******************************************************************************
@@ -113,9 +116,6 @@ void Sling::handle(SDL_Event e)
     monk = NULL;
     static bool grabbed = false;
 
-    int static centerX = pos.x;
-    int static centerY = pos.y;
-
     if(checkBounds(e))
     {
         if(e.type == SDL_MOUSEMOTION && grabbed)
@@ -173,7 +173,7 @@ void Sling::handle(SDL_Event e)
             {
                 if(projectileCount > 0)
                 {
-                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*10, (centerY - pos.y)*10);
+                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.5, (centerY - pos.y)*.4);
                 }
 
                 projectileCount--;

@@ -1,6 +1,7 @@
 2
-4
-4 Knoxen1.bmp 300 300 25 25 41
-4 Knoxen2.bmp 350 300 25 25 42
-4 Knoxen3.bmp 400 300 25 25 43
-4 Back.bmp 300 500 25 25 -3
+5
+6 Knoxen_Big.bmp 100 100
+4 Knoxen1.bmp 260 120 25 25 41
+4 Knoxen2.bmp 380 160 25 25 42
+4 Knoxen3.bmp 270 265 25 25 43
+4 Back.bmp 50 680 25 25 -3

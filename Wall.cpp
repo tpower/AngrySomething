@@ -17,11 +17,6 @@ Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
 void Wall::run()
 {
     move();
-
-    if(health <= 0)
-    {
-        state = -1;
-    }
 }
 
 void Wall::applyForce(int m, Vect v, int dir)
@@ -40,6 +35,7 @@ void Wall::applyForce(int m, Vect v, int dir)
     }
 }
 
+/*
 void Wall::draw(SDL_Surface* screen)
 {
     static SDL_Rect loc;
@@ -47,6 +43,7 @@ void Wall::draw(SDL_Surface* screen)
 
     SDL_BlitSurface(image, NULL, screen, &loc);
 }
+*/
 
 void Wall::pause()
 {

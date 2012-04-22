@@ -15,6 +15,8 @@
 #include "ClickableObject.h"
 #include "PauseButton.h"
 #include "MenuItem.h"
+#include "NonInteractionObject.h"
+#include "DestructableWall.h"
 
 /*******************************************************************************
  ACCESSORS
@@ -145,6 +147,22 @@ bool Room::load(const char* f)
                     int x, y, w, h, v;
                     inFile >> file >> x >> y >> w >> h >> v;
                     object.push_back(new MenuItem(file.c_str(), x, y, w, h, v));
+                    break;
+                }
+                case 6://NonInteractionObject
+                {
+                    string file;
+                    int x, y;
+                    inFile >> file >> x >> y;
+                    object.push_back(new NonInteractionObject(file.c_str(), x, y));
+                    break;
+                }
+                case 7://DestructableWall
+                {
+                    string file;
+                    int x, y, xvel, yvel, w, h;
+                    inFile >> file >> x >> y >> xvel >> yvel >> w >> h;
+                    object.push_back(new DestructableWall(file.c_str(), x, y, xvel, yvel, w, h));
                     break;
                 }
             }

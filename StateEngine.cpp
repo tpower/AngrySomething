@@ -65,9 +65,9 @@ bool StateEngine::run(Room& room)
             running = room.load("LevelSelect.gel");
             paused = false;
             break;
-        //You beat the previous level, move to the next level
+        //You beat the previous level, move to the title screen
         case -2:
-            if(!room.load(decideLevel(currentLevel).c_str()))
+            //if(!room.load(decideLevel(currentLevel).c_str()))
                 running = room.load("TitleScreen.gel");
             paused = false;
             break;

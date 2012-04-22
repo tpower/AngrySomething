@@ -1,14 +1,14 @@
 /*******************************************************************************
  Filename:                  PhysicalObject.cpp
  Classname:                 PhysicalObject
- 
+
  Description:               This file defines the PhysicalObject class.
  ******************************************************************************/
 
 #include "PhysicalObject.h"
 
 const double GRAV       = .3;
-const double TERM_VEL   = 10;
+const double TERM_VEL   = 20;
 
 /*******************************************************************************
  PhysicalObject()
@@ -16,17 +16,17 @@ const double TERM_VEL   = 10;
 PhysicalObject::PhysicalObject(int vx, int vy)
 {
     physical = true;
-    
+
     vel.x = vx;
     vel.y = vy;
-    
+
     acc.x = 0;
     acc.y = GRAV;     //gravity
-    
+
     mass = pos.w * pos.h;
-    
+
     collisionSide = NO_COLLISION;
-    
+
     shape = BOX;
 }
 
@@ -84,22 +84,22 @@ void PhysicalObject::move()
 {
     vel.x += acc.x;
     vel.y += acc.y;
-    
+
     //terminal velocities
     if(vel.y > TERM_VEL)  vel.y = TERM_VEL;
     if(vel.y < -TERM_VEL) vel.y = -TERM_VEL;
     if(vel.x > TERM_VEL)  vel.x = TERM_VEL;
     if(vel.x < -TERM_VEL) vel.x = -TERM_VEL;
-    
+
     if(abs(vel.x) < .3) vel.x = 0;
     if(abs(vel.y) < 1.5 && collisionSide == BOTTOM) vel.y = 0;
-    
+
     acc.x = 0;
     acc.y = GRAV;
-    
+
     pos.x += round(vel.x);
     pos.y += round(vel.y);
-    
+
     collisionSide = NO_COLLISION;
 }
 
