@@ -17,7 +17,6 @@
 #include "MenuItem.h"
 #include "NonInteractionObject.h"
 #include "DestructableWall.h"
-#include "Ground.h"
 
 /*******************************************************************************
  ACCESSORS
@@ -164,14 +163,6 @@ bool Room::load(const char* f)
                     int x, y, xvel, yvel, w, h;
                     inFile >> file >> x >> y >> xvel >> yvel >> w >> h;
                     object.push_back(new DestructableWall(file.c_str(), x, y, xvel, yvel, w, h));
-                    break;
-                }
-                case 8: //Ground
-                {
-                    string file;
-                    int x, y, xvel, yvel, w, h;
-                    inFile >> file >> x >> y >> xvel >> yvel >> w >> h;
-                    object.push_back(new Ground(file.c_str(), x, y, xvel, yvel, w, h));
                     break;
                 }
             }
