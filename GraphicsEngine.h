@@ -20,7 +20,6 @@ class GraphicsEngine
 {
     private:
         SDL_Surface*    screen;
-        SDL_Surface*    background;
 
     public:
         GraphicsEngine();

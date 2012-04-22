@@ -23,8 +23,6 @@ GraphicsEngine::GraphicsEngine()
     {
         exit(-1);
     }
-
-    background = SDL_LoadBMP("background.bmp");
 }
 
 /*******************************************************************************
@@ -34,7 +32,6 @@ GraphicsEngine::GraphicsEngine()
 GraphicsEngine::~GraphicsEngine()
 {
     SDL_FreeSurface(screen);
-    SDL_FreeSurface(background);
 }
 
 /*******************************************************************************
@@ -54,14 +51,14 @@ void GraphicsEngine::run(Room& room)
 
     sortByLayer(temp);
 
-    SDL_BlitSurface(background, NULL, screen, NULL);
+
     for(int i = 0; i < temp.size(); i++)
     {
         temp[i]->draw(screen);
     }
 
     SDL_Flip(screen);
-    SDL_BlitSurface(background, NULL, screen, NULL);
+    SDL_BlitSurface(room.getBackground(), NULL, screen, NULL);
 }
 
 void GraphicsEngine::sortByLayer(vector<DrawableObject*>& list)
