@@ -9,7 +9,7 @@
 #include <cmath>
 
 UFObird::UFObird(const char* file, const char* file2, int x, int y, int vx, int vy)
-    :   Object(x, y, 50, 50),
+    :   Object(x, y, 36, 36),
         Projectile(file, x, y, vx, vy)
 
 {
@@ -47,14 +47,14 @@ void UFObird::run()
  ******************************************************************************/
 Object* UFObird::process()
 {
-    if(pos.x >= 350 and pos.y >= 25)
+    if(pos.x >= 700 and pos.y >= 25)
     {
         UFOactive = true;
         vel.x = 0;
         vel.y = -1;
         acc.x = 0;
         acc.y = -1;
-        pos.x = 350;
+        pos.x = 700;
     }
 
     return NULL;
@@ -66,7 +66,7 @@ void UFObird::draw(SDL_Surface* s)
     static SDL_Rect loc;
     loc = pos;
 
-    temp.x = 250;
+    temp.x = 600;
     temp.w = 200;
     temp.y = 10;
     temp.h = 100;

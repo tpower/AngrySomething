@@ -15,7 +15,7 @@ Circle CircleObject::getCircle()
 void CircleObject::run()
 {
     move();
-    
+
     circ.cent.x = pos.x + circ.rad;
     circ.cent.y = pos.y + circ.rad;
 }

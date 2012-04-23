@@ -7,7 +7,7 @@
 
 #include "PhysicalObject.h"
 
-const double GRAV       = .3;
+const double GRAV       = .1;
 const double TERM_VEL   = 20;
 
 /*******************************************************************************

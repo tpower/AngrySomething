@@ -17,7 +17,9 @@
 #include "MenuItem.h"
 #include "NonInteractionObject.h"
 #include "DestructableWall.h"
-#include "Ground.h"
+#include "Spaceship.h"
+#include "ConversationBox.h"
+#include "Timer.h"
 
 /*******************************************************************************
  ACCESSORS
@@ -166,12 +168,27 @@ bool Room::load(const char* f)
                     object.push_back(new DestructableWall(file.c_str(), x, y, xvel, yvel, w, h));
                     break;
                 }
-                case 8: //Ground
+                case 8://Spaceship
                 {
                     string file;
-                    int x, y, xvel, yvel, w, h;
-                    inFile >> file >> x >> y >> xvel >> yvel >> w >> h;
-                    object.push_back(new Ground(file.c_str(), x, y, xvel, yvel, w, h));
+                    int x, y, d, t;
+                    inFile >> file >> x >> y >> d >> t;
+                    object.push_back(new Spaceship(file.c_str(), x, y, d, t));
+                    break;
+                }
+                case 9://ConversationBox
+                {
+                    int x, y;
+                    string data;
+                    inFile >> x >> y >> data;
+                    object.push_back(new ConversationBox(x, y, data.c_str()));
+                    break;
+                }
+                case 10://Timer
+                {
+                    int t;
+                    inFile >> t;
+                    object.push_back(new Timer(t));
                     break;
                 }
             }
