@@ -82,6 +82,7 @@ void DrawableObject::draw(SDL_Surface* s)
     loc = pos;
 
     SDL_BlitSurface(image, &pos, s, &loc);
+    
 }
 
 int DrawableObject::getLayer()

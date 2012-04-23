@@ -2,7 +2,8 @@
 
 ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, int v)
     :   Object(x, y, w, h),
-        DrawableObject(file, 3)
+        DrawableObject(file, 3),
+        AudibleObject("noise.wav")
 
 {
     value = v;
@@ -44,6 +45,7 @@ void ClickableObject::handle(SDL_Event e)
             if(mouseX >= pos.x && mouseX <= pos.x + pos.w && mouseY >= pos.y && mouseY <= pos.y + pos.h)
             {
                 clicked = true;
+                shouldBeNoisy();
             }
         }
     }

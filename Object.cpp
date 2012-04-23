@@ -18,7 +18,7 @@ Object::Object(int x, int y, int w, int h)
     pos.w = w;
     pos.h = h;
 
-    drawable = physical = mechanical = controllable = false;
+    drawable = physical = mechanical = controllable = audible = false;
 
     state = 0;
     type = 0;
@@ -75,6 +75,11 @@ bool Object::isMechanical()
 bool Object::isControllable()
 {
     return controllable;
+}
+
+bool Object::isAudible()
+{
+    return audible;
 }
 
 int Object::check()
