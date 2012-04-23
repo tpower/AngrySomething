@@ -21,3 +21,8 @@ void MechanicsObject::adjustScore(int x)
 {
     score += x;
 }
+
+void MechanicsObject::resetScore()
+{
+    score = 0;
+}

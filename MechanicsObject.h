@@ -17,6 +17,7 @@ class MechanicsObject : virtual public Object
     
         int getScore();
         void adjustScore(int);
+        static void resetScore();
 };
 
 #endif

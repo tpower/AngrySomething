@@ -41,7 +41,7 @@ DrawableObject::DrawableObject(const char* file, int l = 0)
     font    = NULL;
     
     //Open font
-    font = TTF_OpenFont("lazy.ttf", 14);
+    font = TTF_OpenFont("font.ttf", 14);
     
     if(font == NULL)
     {
@@ -107,7 +107,15 @@ void DrawableObject::draw(SDL_Surface* s)
     loc = pos;
 
     SDL_BlitSurface(image, &pos, s, &loc);
+
+    message = TTF_RenderText_Solid(font, ":)", fontColor);
     
+    if(message == NULL)
+    {
+        cout << "Bad." << endl;    
+    }
+    
+    SDL_BlitSurface(message, NULL, s, &loc);
 }
 
 int DrawableObject::getLayer()
