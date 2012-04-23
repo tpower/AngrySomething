@@ -14,6 +14,11 @@ Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
     activeCont = false;
 }
 
+Wall::~Wall()
+{
+    adjustScore(50);
+}
+
 void Wall::run()
 {
     move();

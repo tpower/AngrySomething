@@ -1,5 +1,7 @@
 #include "MechanicsObject.h"
 
+int MechanicsObject::score = 0;
+
 MechanicsObject::MechanicsObject()
 {
     mechanical  = true;
@@ -8,4 +10,14 @@ MechanicsObject::MechanicsObject()
 Object* MechanicsObject::process()
 {
     return NULL;
+}
+
+int MechanicsObject::getScore()
+{
+    return score;
+}
+
+void MechanicsObject::adjustScore(int x)
+{
+    score += x;
 }
