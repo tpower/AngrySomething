@@ -29,6 +29,29 @@ DrawableObject::DrawableObject(const char* file, int l = 0)
 
     Uint32 colorkey = SDL_MapRGB( image->format, 0xFF, 0xAE, 0xC9);
     SDL_SetColorKey( image, SDL_SRCCOLORKEY, colorkey );
+    
+    //Initialize SDL_ttf
+    if(TTF_Init() == -1)
+    {
+        cout << SDL_GetError() << endl;
+    }
+    
+    //Initialize Message and Font
+    message = NULL;
+    font    = NULL;
+    
+    //Open font
+    font = TTF_OpenFont("lazy.ttf", 14);
+    
+    if(font == NULL)
+    {
+        cout << SDL_GetError() << endl;
+    }
+    
+    //Set Font Color
+    fontColor.r = 255;
+    fontColor.g = 255;
+    fontColor.b = 255;
 }
 
 /*******************************************************************************
@@ -50,6 +73,8 @@ DrawableObject::DrawableObject(const DrawableObject& other)
 DrawableObject::~DrawableObject()
 {
     SDL_FreeSurface(image);
+    SDL_FreeSurface(message);
+    TTF_CloseFont(font);
 }
 
 /*******************************************************************************
@@ -82,6 +107,15 @@ void DrawableObject::draw(SDL_Surface* s)
     loc = pos;
 
     SDL_BlitSurface(image, &pos, s, &loc);
+
+    message = TTF_RenderText_Solid(font, ":)", fontColor);
+    
+    if(message == NULL)
+    {
+        cout << "Bad." << endl;    
+    }
+    
+    SDL_BlitSurface(message, NULL, s, &loc);
 }
 
 int DrawableObject::getLayer()
