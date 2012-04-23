@@ -7,7 +7,10 @@
                             running the game loop and handling communication
                             between the Physics and Graphics Engines.
  ******************************************************************************/
+
+#include <cstdlib>
 #include "Game.h"
+using namespace std;
 
 /*******************************************************************************
  Name:              Game
@@ -19,51 +22,14 @@ Game::Game()
 }
 
 /*******************************************************************************
- Name:              Game
- Description:       Copy constructor for Game class
-
- Input:
-    other           Game object to be copied
- ******************************************************************************/
-Game::Game(const Game& other)
-{
-
-}
-
-/*******************************************************************************
- Name:              ~Game
- Description:       Destructor for Game class
- ******************************************************************************/
-Game::~Game()
-{
-
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Game class
-
- Input:
-    other           const Game&
- ******************************************************************************/
-Game Game::operator=(const Game& other)
-{
-    if(&other != this)
-    {
-
-    }
-
-    return *this;
-}
-
-/*******************************************************************************
  Name:              init
  Description:       This method handles any initialization involved before the
                     run loop begins
  ******************************************************************************/
 void Game::init()
 {
-    running = room.load();
+    running = room.load("TitleScreen.gel");
+    room.setRoomType(Utility);
 }
 
 /*******************************************************************************
@@ -75,24 +41,14 @@ void Game::init()
  ******************************************************************************/
 int Game::run()
 {
-    int mechState;
     while(running)
     {
-        mechState = mech.run(room);
+        running = state.run(room);
+        control.run(room);
+        mech.run(room);
         phys.run(room);
         grph.run(room);
-        switch(mechState)
-        {
-            // Lose
-            case -1:
-                running = false;
-                break;
-            // Win
-            case 1:
-                running = room.load();
-                break;
-        }
-        SDL_Delay(20);
+        SDL_Delay(5);
     }
 
     return 0;

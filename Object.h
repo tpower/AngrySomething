@@ -18,21 +18,39 @@ class Object
         bool        drawable;
         bool        physical;
         bool        mechanical;
+        bool        controllable;
+        bool        activeDraw;
+        bool        activePhys;
+        bool        activeMech;
+        bool        activeCont;
+        int         type;   //1 = level, 2 = Utility
 
     public:
         Object(int x = 0, int y = 0, int w = 0, int h = 0);
-        Object(const Object&);
         virtual ~Object();
 
         Object          operator=(const Object& other);
-
         void            setPos(SDL_Rect p);
+
+        virtual int     check();
 
         SDL_Rect        getPos();
         int             getState();
+        int             getType();
         bool            isDrawable();
         bool            isPhysical();
         bool            isMechanical();
+        bool            isControllable();
+        bool            getActiveDraw() {return activeDraw;}
+        bool            getActivePhys() {return activePhys;}
+        bool            getActiveMech() {return activeMech;}
+        bool            getActiveCont() {return activeCont;}
+//        void            setActiveDraw(bool b) {activeDraw = b;}
+//        void            setActivePhys(bool b) {activePhys = b;}
+//        void            setActiveMech(bool b) {activeMech = b;}
+//        void            setActiveCont(bool b) {activeCont = b;}
+        virtual void    pause();
+        virtual void    unpause();
 
         virtual void    run();
 };

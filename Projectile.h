@@ -9,26 +9,24 @@
 #define AngrySomething_Projectile_h
 
 #include "DrawableObject.h"
-#include "PhysicalObject.h"
+#include "CircleObject.h"
 #include "MechanicsObject.h"
 
-class Projectile : public DrawableObject, public PhysicalObject, public MechanicsObject
+class Projectile : public DrawableObject, public CircleObject, public MechanicsObject
 {
-    private:
+    protected:
         static int numBirds;
+
     public:
         Projectile(const char* file, int x, int y, int vx, int vy);
-        Projectile(const Projectile& other);
         ~Projectile();
 
-        Projectile&     operator=(const Projectile& other);
+        static int      getNumBirds() {return numBirds;}
 
-//        virtual void    draw(SDL_Surface* screen);
         virtual void    run();
         void            draw(SDL_Surface* s);
-        void            applyForce(int m, vect v, int dir);
-
-        static int      getNumBirds(){return numBirds;}
+        void            pause();
+        void            unpause();
 };
 
 #endif

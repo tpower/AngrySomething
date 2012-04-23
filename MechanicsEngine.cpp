@@ -1,4 +1,3 @@
-
 #include "MechanicsEngine.h"
 #include "Object.h"
 #include "MechanicsObject.h"
@@ -6,42 +5,24 @@
 #include "Projectile.h"
 #include "Sling.h"
 
-int MechanicsEngine::run(Room& room)
+void MechanicsEngine::run(Room& room)
 {
     int state = 0;
-    if(SDL_PollEvent(&event))
+    Object* obj;
+    Object* objTemp = NULL;
+
+    for(int i = 0; i < room.getNumObjects() && !state; i++)
     {
-        if( event.type == SDL_QUIT )
-        {
-            exit(0);
-        }
+        obj = room.getObjectAt(i);
 
-        for(int i = 0; i < room.getNumObjects(); i++)
+        if(obj->isMechanical() && obj->getActiveMech())
         {
-            Object* obj = room.getObjectAt(i);
-            Object* temp = NULL;
-
-            if(obj->isMechanical())
+            objTemp = dynamic_cast<MechanicsObject*>(obj)->process();
+            if(objTemp)
             {
-                temp = dynamic_cast<MechanicsObject*>(obj)->handle(event);
-                if(temp)
-                {
-                    room.add(temp);
-                }
+                room.add(objTemp);
             }
-
         }
     }
 
-    if(Pig::getNumPigs() <= 0)
-    {
-        state = 1;
-    }
-
-    if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <= 0)
-    {
-        state = -1;
-    }
-
-    return state;
 }

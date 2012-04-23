@@ -25,9 +25,11 @@ int Sling::projectileCount = 0;
 
 Sling::Sling(const char* file, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
-        DrawableObject(file),
+        DrawableObject(file, 2),
         MechanicsObject()
 {
+    grabbed = false;
+
     launcherImg = SDL_LoadBMP("Slingshot.bmp");
 
     Slingshot.x = x - 25;
@@ -35,8 +37,20 @@ Sling::Sling(const char* file, int x, int y, string ammo)
 
     radius = 75;
 
+    monk = NULL;
+
     projectiles = ammo;
     projectileCount = (int)projectiles.length();
+
+    type = 1;
+
+    activeDraw = true;
+    activePhys = false;
+    activeMech = true;
+    activeCont = true;
+
+    centerX = pos.x;
+    centerY = pos.y;
 }
 
 /*******************************************************************************
@@ -82,6 +96,9 @@ Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVe
         case 'N':
             p = new Projectile("Monkey.bmp", xPos, yPos, xVel, yVel);
             break;
+        case 'U':
+            p = new UFObird("AngryBird.bmp", "UFO.bmp", xPos, yPos, xVel, yVel);
+            break;
     }
 
     return p;
@@ -94,13 +111,10 @@ Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVe
  Input:
     e               SDL_Event
  ******************************************************************************/
-Object* Sling::handle(SDL_Event e)
+void Sling::handle(SDL_Event e)
 {
-    Projectile* monk = NULL;
-    static bool grabbed = false;;
-
-    int static centerX = pos.x;
-    int static centerY = pos.y;
+    monk = NULL;
+    static bool grabbed = false;
 
     if(checkBounds(e))
     {
@@ -159,8 +173,7 @@ Object* Sling::handle(SDL_Event e)
             {
                 if(projectileCount > 0)
                 {
-                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.2, (centerY - pos.y)*.2);
-
+                    monk = createMonkey(projectiles[projectileCount - 1], pos.x, pos.y, (centerX - pos.x)*.5, (centerY - pos.y)*.4);
                 }
 
                 projectileCount--;
@@ -172,9 +185,6 @@ Object* Sling::handle(SDL_Event e)
             }
         }
     }
-
-
-    return monk;
 }
 
 /*******************************************************************************
@@ -191,4 +201,27 @@ void Sling::draw(SDL_Surface* s)
 
     SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);
+}
+
+Object* Sling::process()
+{
+    Projectile* m = monk;
+    monk = NULL;
+    return m;
+}
+
+void Sling::pause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = false;
+    activeCont = false;
+}
+
+void Sling::unpause()
+{
+    activeDraw = true;
+    activePhys = false;
+    activeMech = true;
+    activeCont = true;
 }

@@ -15,16 +15,19 @@
 class DrawableObject : virtual public Object
 {
     protected:
-        SDL_Surface* image;
+        SDL_Surface*    image;
+        int             layer;
 
     public:
-        DrawableObject(const char* file);
+        DrawableObject(const char* file, int);
         DrawableObject(const DrawableObject& other);
         ~DrawableObject();
 
         DrawableObject& operator=(const DrawableObject& other);
 
         virtual void    draw(SDL_Surface*);
+
+        int             getLayer();
 };
 
 #endif

@@ -19,44 +19,15 @@ Object::Object(int x, int y, int w, int h)
     pos.w = w;
     pos.h = h;
 
-    drawable = physical = mechanical = false;
+    drawable = physical = mechanical = controllable = false;
 
     state = 0;
+    type = 0;
 }
 
-/*******************************************************************************
- Name:              Object
- Description:       Copy constructor for Object class
- ******************************************************************************/
-Object::Object(const Object& other)
-{
-    pos = other.pos;
-}
-
-/*******************************************************************************
- Name:              ~Object
- Description:       Destructor for Object class
- ******************************************************************************/
 Object::~Object()
 {
 
-}
-
-/*******************************************************************************
- Name:              operator=
- Description:       Overloaded assignment operator for Object class
-
- Input:
-    other           const Object&
- ******************************************************************************/
-Object Object::operator=(const Object& other)
-{
-    if(&other != this)
-    {
-        pos = other.pos;
-    }
-
-    return *this;
 }
 
 /*******************************************************************************
@@ -77,6 +48,16 @@ SDL_Rect Object::getPos()
     return pos;
 }
 
+int Object::getState()
+{
+    return state;
+}
+
+int Object::getType()
+{
+    return type;
+}
+
 bool Object::isDrawable()
 {
     return drawable;
@@ -92,6 +73,16 @@ bool Object::isMechanical()
     return mechanical;
 }
 
+bool Object::isControllable()
+{
+    return controllable;
+}
+
+int Object::check()
+{
+    return 0;
+}
+
 /*******************************************************************************
  Name:              run
  Description:       ??????
@@ -101,7 +92,12 @@ void Object::run()
 
 }
 
-int Object::getState()
+void Object::pause()
 {
-    return state;
+
+}
+
+void Object::unpause()
+{
+
 }

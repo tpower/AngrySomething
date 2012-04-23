@@ -4,7 +4,6 @@
 
  Description:               This file defines the DrawableObject class.
  ******************************************************************************/
-
 #include <iostream>
 
 #include "DrawableObject.h"
@@ -15,7 +14,7 @@ using namespace std;
  Name:              DrawableObject
  Description:       Primary constructor
  ******************************************************************************/
-DrawableObject::DrawableObject(const char* file)
+DrawableObject::DrawableObject(const char* file, int l = 0)
 {
     drawable = true;
 
@@ -25,6 +24,8 @@ DrawableObject::DrawableObject(const char* file)
     {
         cout << SDL_GetError() << endl;
     }
+
+    layer = l;
 
     Uint32 colorkey = SDL_MapRGB( image->format, 0xFF, 0xAE, 0xC9);
     SDL_SetColorKey( image, SDL_SRCCOLORKEY, colorkey );
@@ -81,4 +82,9 @@ void DrawableObject::draw(SDL_Surface* s)
     loc = pos;
 
     SDL_BlitSurface(image, &pos, s, &loc);
+}
+
+int DrawableObject::getLayer()
+{
+    return layer;
 }
