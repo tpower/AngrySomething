@@ -1,8 +1,6 @@
 /*******************************************************************************
  Filename:                  AudioEngine.cpp
- Classname:                 AudioEngine
- 
- Description:               
+ Classname:                 AudioEngine  
  ******************************************************************************/
 
 #include "AudioEngine.h"

@@ -1,8 +1,6 @@
 /*******************************************************************************
  Filename:                  ClickableObject.h
  Classname:                 ClickableObject
- 
- Description:               
  ******************************************************************************/
 
 #ifndef CLICKABLEOBJECT_H_INCLUDED

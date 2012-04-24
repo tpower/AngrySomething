@@ -2,7 +2,8 @@
  Filename:                  Spaceship.h
  Classname:                 Spaceship
  
- Description:               
+ Description:               This class is a spaceship used in the initial
+                            cut-scene
  ******************************************************************************/
 
 #ifndef SPACESHIP_H_INCLUDED

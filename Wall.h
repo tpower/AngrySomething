@@ -2,8 +2,11 @@
  Filename:                  Wall.h
  Classname:                 Wall
  
- Description:               The Wall class is an object that is used to create
-                            structures and barriers within the game.
+ Description:               This file implements the Wall class. This class
+                            is an object that occupies physical space, is
+                            drawn on the screen, and is an obstical that the
+                            player must overcome. This variety is not
+                            destroy-able in game.
  ******************************************************************************/
 
 #ifndef WALL_H

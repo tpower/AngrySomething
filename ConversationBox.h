@@ -1,8 +1,6 @@
 /*******************************************************************************
  Filename:                  ConversationBox.h
  Classname:                 ConversationBox
- 
- Description:               
  ******************************************************************************/
 
 #ifndef CONVERSATIONBOX_H_INCLUDED

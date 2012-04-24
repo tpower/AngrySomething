@@ -1,8 +1,6 @@
 /*******************************************************************************
  Filename:                  NonInteractionObject.h
- Classname:                 NonInteractionObject
- 
- Description:               
+ Classname:                 NonInteractionObject            
  ******************************************************************************/
 
 #include "NonInteractionObject.h"

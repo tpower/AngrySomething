@@ -1,8 +1,6 @@
 /*******************************************************************************
  Filename:                  AudioEngine.h
  Classname:                 AudioEngine
- 
- Description:               
  ******************************************************************************/
 
 #ifndef AngrySomething_AudioEngine_h

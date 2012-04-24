@@ -1,8 +1,6 @@
 /*******************************************************************************
  Filename:                  ClickableObject.h
  Classname:                 ClickableObject
- 
- Description:               
  ******************************************************************************/
 
 #include "ClickableObject.h"

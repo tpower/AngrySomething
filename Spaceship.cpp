@@ -2,11 +2,23 @@
  Filename:                  Spaceship.h
  Classname:                 Spaceship
  
- Description:               
+ Description:               This class is a spaceship used in the initial
+                            cut-scene
  ******************************************************************************/
 
 #include "Spaceship.h"
 
+/*******************************************************************************
+ Name:              Spaceship
+ Description:       Primary constructor
+ 
+ Input:
+    file            char* filepath for image file
+    x               int horizontal position
+    y               int vertical position
+    d               int direction
+    t               int start time
+ ******************************************************************************/
 Spaceship::Spaceship(const char* file, int x, int y, int d, int t)
     :   Object(x, y, 100, 100),
         DrawableObject(file, 2),
@@ -23,6 +35,13 @@ Spaceship::Spaceship(const char* file, int x, int y, int d, int t)
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              process
+ Description:       This method overrides MechanicsObject::process()
+ 
+ Output:
+    returns         Object* to be added to the room
+ ******************************************************************************/
 Object* Spaceship::process()
 {
     if((SDL_GetTicks() - startTime) > time + 5000)
@@ -55,6 +74,13 @@ Object* Spaceship::process()
     return NULL;
 }
 
+/*******************************************************************************
+ Name:              draw
+ Description:       This method overrides DrawableObject::draw()
+ 
+ Input:
+    s               SDL_Surface* to be drawn to
+ ******************************************************************************/
 void Spaceship::draw(SDL_Surface* s)
 {
     static SDL_Rect loc;
@@ -66,6 +92,10 @@ void Spaceship::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the Spaceship
+ ******************************************************************************/
 void Spaceship::pause()
 {
     activeDraw = true;
@@ -74,6 +104,10 @@ void Spaceship::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the Spaceship if it is paused
+ ******************************************************************************/
 void Spaceship::unpause()
 {
     activeDraw = true;

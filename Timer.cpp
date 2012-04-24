@@ -1,14 +1,18 @@
 /*******************************************************************************
  Filename:                  Timer.h
- Classname:                 Timer
- 
- Description:               
+ Classname:                 Timer       
  ******************************************************************************/
 
 #include "Timer.h"
 
-Timer::Timer(int t)
-    :   MechanicsObject()
+/*******************************************************************************
+ Name:              Timer
+ Description:       Primary constructor
+ 
+ Input:
+    t               int roomTime
+ ******************************************************************************/
+Timer::Timer(int t) : MechanicsObject()
 {
     roomTime = t;
     startTime = SDL_GetTicks();
@@ -21,6 +25,13 @@ Timer::Timer(int t)
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              process
+ Description:       This method overrides MechanicsObject::process()
+ 
+ Output:
+    returns         Object* to be added to room
+ ******************************************************************************/
 Object* Timer::process()
 {
     if((SDL_GetTicks() - startTime) >= roomTime)

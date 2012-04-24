@@ -1,6 +1,5 @@
 /*******************************************************************************
  Filename:                  Geometry.h
- Classname:                 
  
  Description:               The structs defined in Geometry are shape objects
                             used by the PhysicsEngine to determine collisions

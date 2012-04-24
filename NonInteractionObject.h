@@ -1,8 +1,6 @@
 /*******************************************************************************
  Filename:                  NonInteractionObject.h
  Classname:                 NonInteractionObject
- 
- Description:               
  ******************************************************************************/
 
 #ifndef NONINTERACTIONOBJECT_H_INCLUDED
