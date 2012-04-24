@@ -239,11 +239,11 @@ void Sling::draw(SDL_Surface* s)
     static SDL_Rect loc;
     loc = pos;
 
-    Uint32 colorkey1 = SDL_MapRGB( image->format, 0xFF, 0xAE, 0xC9);
-    SDL_SetColorKey( image, SDL_SRCCOLORKEY, colorkey1 );
+    Uint32 colorkey1 = SDL_MapRGB(image->format, 0xFF, 0xAE, 0xC9);
+    SDL_SetColorKey(image, SDL_SRCCOLORKEY, colorkey1);
 
     Uint32 colorkey2 = SDL_MapRGB(launcherImg->format, 0xFF, 0xAE, 0xC9);
-    SDL_SetColorKey(launcherImg, SDL_SRCCOLORKEY, colorkey2 );
+    SDL_SetColorKey(launcherImg, SDL_SRCCOLORKEY, colorkey2);
 
     SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);

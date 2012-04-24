@@ -22,7 +22,7 @@ using namespace std;
 DrawableObject::DrawableObject(const char* file, int l = 0)
 {
     drawable = true;
-
+    
     image = SDL_LoadBMP(file);
 
     if(!image)

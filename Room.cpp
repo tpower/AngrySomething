@@ -6,6 +6,8 @@
                             game and handles loading levels from files.
  ******************************************************************************/
 
+#include <iostream>
+
 #include "Room.h"
 #include "Object.h"
 #include "DrawableObject.h"
@@ -29,6 +31,7 @@
 Room::Room()
 {
     roomType = Level;
+    background = NULL;
 }
 
 /*******************************************************************************
@@ -69,10 +72,14 @@ void Room::remove(int i)
     object.erase(object.begin()+i);
 }
 
-void Room::setBackground(char* file)
+void Room::setBackground(const char* file)
 {
     SDL_FreeSurface(background);
     background = SDL_LoadBMP(file);
+    if(!background)
+    {
+        cout << "background file error" << endl;
+    }
 }
 
 void Room::erase()
@@ -106,7 +113,6 @@ bool Room::load(const char* f)
     {
         loaded = false;
     }
-
     else
     {
         if(!object.empty())
@@ -208,7 +214,7 @@ bool Room::load(const char* f)
             }
         }
 
-        background = SDL_LoadBMP(backgroundFile.c_str());
+        setBackground(backgroundFile.c_str());
         
         MechanicsObject::resetScore();
 
