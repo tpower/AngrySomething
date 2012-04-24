@@ -66,10 +66,10 @@ bool StateEngine::run(Room& room)
         }
     }
 
-    if(state == -2)
+    if(roomNum == -2)
         currentLevel++;
     
-    switch(state)
+    switch(roomNum)
     {
         //Pause/Unpause the game
         case -6:
