@@ -47,7 +47,7 @@ void UFObird::run()
  ******************************************************************************/
 Object* UFObird::process()
 {
-    if(pos.x >= 700 and pos.y >= 25)
+    if(pos.x >= 700 and pos.y >= 50)
     {
         UFOactive = true;
         vel.x = 0;
