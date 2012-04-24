@@ -59,7 +59,7 @@ CordonaBG.bmp
 7 CordonaLMaterial.bmp 560 260 0 0 40 20
 7 CordonaLMaterial.bmp 540 240 0 0 40 20
 
-1 Stretchy.bmp 200 550 NNNNNNNNNN
+1 MonkeySling.bmp Spaceship.bmp 200 550 NNNNNNNNNN
 
 2 Enemy.bmp 540 660 0 0
 

@@ -15,7 +15,6 @@
 
 int Sling::projectileCount = 0;
 
-
 /*******************************************************************************
     Name:                   Constructor
     Description:            Constructs a Sling class
@@ -29,7 +28,7 @@ int Sling::projectileCount = 0;
             None
 
  ******************************************************************************/
-Sling::Sling(const char* file, int x, int y, string ammo)
+Sling::Sling(const char* file, const char* file2, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
         DrawableObject(file, 2),
         MechanicsObject()
@@ -37,8 +36,7 @@ Sling::Sling(const char* file, int x, int y, string ammo)
     grabbed = false;
 
     // loads the image of the object
-    launcherImg = SDL_LoadBMP("AngryBirdSlingshot.bmp");
-
+    launcherImg = SDL_LoadBMP(file2);
     // sets position of the slingshot
     Slingshot.x = x - 25;
     Slingshot.y = y;
@@ -239,11 +237,11 @@ void Sling::draw(SDL_Surface* s)
     static SDL_Rect loc;
     loc = pos;
 
-    Uint32 colorkey1 = SDL_MapRGB( image->format, 0xFF, 0xAE, 0xC9);
-    SDL_SetColorKey( image, SDL_SRCCOLORKEY, colorkey1 );
+    Uint32 colorkey1 = SDL_MapRGB(image->format, 0xFF, 0xAE, 0xC9);
+    SDL_SetColorKey(image, SDL_SRCCOLORKEY, colorkey1);
 
     Uint32 colorkey2 = SDL_MapRGB(launcherImg->format, 0xFF, 0xAE, 0xC9);
-    SDL_SetColorKey(launcherImg, SDL_SRCCOLORKEY, colorkey2 );
+    SDL_SetColorKey(launcherImg, SDL_SRCCOLORKEY, colorkey2);
 
     SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);

@@ -22,7 +22,7 @@ using namespace std;
 DrawableObject::DrawableObject(const char* file, int l = 0)
 {
     drawable = true;
-
+    
     image = SDL_LoadBMP(file);
 
     if(!image)
@@ -32,8 +32,8 @@ DrawableObject::DrawableObject(const char* file, int l = 0)
 
     layer = l;
 
-    Uint32 colorkey = SDL_MapRGB( image->format, 0xFF, 0xAE, 0xC9);
-    SDL_SetColorKey( image, SDL_SRCCOLORKEY, colorkey );
+    Uint32 colorkey = SDL_MapRGB(image->format, 0xFF, 0xAE, 0xC9);
+    SDL_SetColorKey(image, SDL_SRCCOLORKEY, colorkey);
     
     //Initialize SDL_ttf
     if(TTF_Init() == -1)

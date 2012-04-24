@@ -1,10 +1,12 @@
 /*******************************************************************************
- Filename:                  Room.h
+ Filename:                  Room.cpp
  Classname:                 Room
  
  Description:               The Room class is a container for objects in the
                             game and handles loading levels from files.
  ******************************************************************************/
+
+#include <iostream>
 
 #include "Room.h"
 #include "Object.h"
@@ -29,6 +31,7 @@
 Room::Room()
 {
     roomType = Level;
+    background = NULL;
 }
 
 /*******************************************************************************
@@ -69,10 +72,14 @@ void Room::remove(int i)
     object.erase(object.begin()+i);
 }
 
-void Room::setBackground(char* file)
+void Room::setBackground(const char* file)
 {
     SDL_FreeSurface(background);
     background = SDL_LoadBMP(file);
+    if(!background)
+    {
+        cout << "background file error" << endl;
+    }
 }
 
 void Room::erase()
@@ -106,7 +113,6 @@ bool Room::load(const char* f)
     {
         loaded = false;
     }
-
     else
     {
         if(!object.empty())
@@ -128,10 +134,10 @@ bool Room::load(const char* f)
             {
                 case 1://Sling
                 {
-                    string file, birds;
+                    string file, file2, birds;
                     int x, y;
-                    inFile >> file >> x >> y >> birds;
-                    object.push_back(new Sling(file.c_str(), x, y, birds.c_str()));
+                    inFile >> file >> file2 >> x >> y >> birds;
+                    object.push_back(new Sling(file.c_str(), file2.c_str(), x, y, birds.c_str()));
                     break;
                 }
                 case 2://Pig
@@ -208,7 +214,7 @@ bool Room::load(const char* f)
             }
         }
 
-        background = SDL_LoadBMP(backgroundFile.c_str());
+        setBackground(backgroundFile.c_str());
         
         MechanicsObject::resetScore();
 

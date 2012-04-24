@@ -42,7 +42,7 @@ class Room
         void                erase();
         void                setRoomType(int r) {roomType = r;}
         int                 getRoomType() {return roomType;}
-        void                setBackground(char* file);
+        void                setBackground(const char* file);
         SDL_Surface*        getBackground();
         bool                pause();
         bool                unpause();

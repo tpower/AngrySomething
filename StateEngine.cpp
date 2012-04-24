@@ -153,22 +153,22 @@ bool StateEngine::run(Room& room)
             paused = false;
             break;
         case 3:
-            running = room.load("Clavus.gel");
+            running = room.load("Paxtonia.gel");
             currentLevel = 3;
             paused = false;
             break;
         case 31:
-            running = room.load("Clavus1.gel");
+            running = room.load("Paxtonia1.gel");
             currentLevel = 31;
             paused = false;
             break;
         case 32:
-            running = room.load("Clavus2.gel");
+            running = room.load("Paxtonia2.gel");
             currentLevel = 32;
             paused = false;
             break;
         case 33:
-            running = room.load("Clavus3.gel");
+            running = room.load("Paxtonia3.gel");
             currentLevel = 33;
             paused = false;
             break;
@@ -193,22 +193,22 @@ bool StateEngine::run(Room& room)
             paused = false;
             break;
         case 5:
-            running = room.load("Darthon.gel");
+            running = room.load("Nilbog.gel");
             currentLevel = 5;
             paused = false;
             break;
         case 51:
-            running = room.load("Darthon1.gel");
+            running = room.load("Nilbog1.gel");
             currentLevel = 51;
             paused = false;
             break;
         case 52:
-            running = room.load("Darthon2.gel");
+            running = room.load("Nilbog2.gel");
             currentLevel = 52;
             paused = false;
             break;
         case 53:
-            running = room.load("Darthon3.gel");
+            running = room.load("Nilbog3.gel");
             currentLevel = 53;
             paused = false;
             break;
@@ -272,16 +272,16 @@ string StateEngine::decideLevel(int i)
             s = "Apathos3.gel";
             break;
         case 3:
-            s = "Clavus.gel";
+            s = "Paxtonia.gel";
             break;
         case 31:
-            s = "Clavus1.gel";
+            s = "Paxtonia1.gel";
             break;
         case 32:
-            s = "Clavus2.gel";
+            s = "Paxtonia2.gel";
             break;
         case 33:
-            s = "Clavus3.gel";
+            s = "Paxtonia3.gel";
             break;
         case 4:
             s = "Knoxen.gel";
@@ -296,16 +296,16 @@ string StateEngine::decideLevel(int i)
             s = "Knoxen3.gel";
             break;
         case 5:
-            s = "Darthon.gel";
+            s = "Nilbog.gel";
             break;
         case 51:
-            s = "Darthon1.gel";
+            s = "Nilbog1.gel";
             break;
         case 52:
-            s = "Darthon2.gel";
+            s = "Nilbog2.gel";
             break;
         case 53:
-            s = "Darthon3.gel";
+            s = "Nilbog3.gel";
             break;
         case 6:
             s = "Ziggurat.gel";

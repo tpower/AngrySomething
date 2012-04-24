@@ -1,0 +1,120 @@
+PaxtoniaBG.bmp
+1
+111
+1 MonkeySling.bmp Spaceship.bmp 200 550 NNNNNNNNNN
+2 Enemy.bmp 500 300 0 0
+2 Enemy.bmp 580 300 0 0
+2 Enemy.bmp 660 300 0 0
+2 Enemy.bmp 740 300 0 0
+2 Enemy.bmp 820 300 0 0
+
+7 PaxtoniaLMaterial.bmp 500 700 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 680 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 660 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 640 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 620 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 600 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 580 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 560 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 540 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 520 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 500 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 480 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 460 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 440 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 420 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 400 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 380 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 360 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 340 0 0 20 20
+7 PaxtoniaLMaterial.bmp 500 320 0 0 20 20
+
+7 PaxtoniaLMaterial.bmp 580 700 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 680 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 660 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 640 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 620 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 600 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 580 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 560 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 540 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 520 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 500 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 480 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 460 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 440 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 420 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 400 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 380 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 360 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 340 0 0 20 20
+7 PaxtoniaLMaterial.bmp 580 320 0 0 20 20
+
+7 PaxtoniaLMaterial.bmp 660 700 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 680 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 660 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 640 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 620 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 600 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 580 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 560 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 540 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 520 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 500 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 480 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 460 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 440 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 420 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 400 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 380 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 360 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 340 0 0 20 20
+7 PaxtoniaLMaterial.bmp 660 320 0 0 20 20
+
+7 PaxtoniaLMaterial.bmp 740 700 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 680 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 660 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 640 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 620 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 600 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 580 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 560 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 540 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 520 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 500 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 480 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 460 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 440 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 420 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 400 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 380 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 360 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 340 0 0 20 20
+7 PaxtoniaLMaterial.bmp 740 320 0 0 20 20
+
+7 PaxtoniaLMaterial.bmp 820 700 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 680 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 660 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 640 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 620 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 600 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 580 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 560 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 540 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 520 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 500 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 480 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 460 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 440 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 420 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 400 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 380 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 360 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 340 0 0 20 20
+7 PaxtoniaLMaterial.bmp 820 320 0 0 20 20
+
+4 Menu.bmp 10 10 50 50 -6
+5 Resume.bmp 70 30 25 25 -6
+5 Reset.bmp 120 30 25 25 -5
+5 Exit.bmp 160 30 25 25 -3
+5 Unpause.bmp 200 15 25 25 -6
