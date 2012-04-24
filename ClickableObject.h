@@ -16,7 +16,7 @@
 using namespace std;
 
 class ClickableObject : public DrawableObject, public ControllableObject,
-                        public MechanicsObject, public AudibleObject
+                        public MechanicsObject
 {
     private:
         int     value;

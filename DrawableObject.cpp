@@ -46,7 +46,7 @@ DrawableObject::DrawableObject(const char* file, int l = 0)
     font    = NULL;
     
     //Open font
-    font = TTF_OpenFont("font.ttf", 14);
+    font = TTF_OpenFont("font.ttf", 28);
     
     if(font == NULL)
     {
@@ -54,9 +54,9 @@ DrawableObject::DrawableObject(const char* file, int l = 0)
     }
     
     //Set Font Color
-    fontColor.r = 255;
-    fontColor.g = 255;
-    fontColor.b = 255;
+    fontColor.r = 0;
+    fontColor.g = 0;
+    fontColor.b = 0;
 }
 
 /*******************************************************************************
@@ -110,13 +110,4 @@ void DrawableObject::draw(SDL_Surface* s)
     loc = pos;
 
     SDL_BlitSurface(image, &pos, s, &loc);
-
-    message = TTF_RenderText_Solid(font, ":)", fontColor);
-    
-    if(message == NULL)
-    {
-        cout << "Bad." << endl;    
-    }
-    
-    SDL_BlitSurface(message, NULL, s, &loc);
 }
