@@ -9,6 +9,7 @@
 #define DrawableObject_H
 
 #include <SDL/SDL.h>
+#include "SDL_ttf/SDL_ttf.h"
 
 #include "Object.h"
 
@@ -16,6 +17,9 @@ class DrawableObject : virtual public Object
 {
     protected:
         SDL_Surface*    image;
+        SDL_Surface*    message;
+        TTF_Font*       font;
+        SDL_Color       fontColor;
         int             layer;
 
     public:

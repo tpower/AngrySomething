@@ -1,24 +1,23 @@
 ApathosBG.bmp
 1
-23
-1 Stretchy.bmp 200 550 NNNNNNNNNN
-2 Enemy.bmp 610 640 0 0
-2 Enemy.bmp 730 640 0 0
-2 Enemy.bmp 670 560 0 0
-7 LightSteel.bmp 550 700 0 0 260 20
-7 LightSteel.bmp 550 620 0 0 20 80
-7 LightSteel.bmp 590 680 0 0 20 20
-7 LightSteel.bmp 630 680 0 0 20 20
-7 LightSteel.bmp 590 660 0 0 60 20
-7 LightSteel.bmp 590 620 0 0 20 40
-7 LightSteel.bmp 670 620 0 0 20 80
-7 LightSteel.bmp 710 680 0 0 20 20
-7 LightSteel.bmp 750 680 0 0 20 20
-7 LightSteel.bmp 710 660 0 0 60 20
-7 LightSteel.bmp 750 620 0 0 20 40
-7 LightSteel.bmp 790 620 0 0 20 80
-7 LightSteel.bmp 590 600 0 0 180 20
-7 LightSteel.bmp 670 580 0 0 20 20
+20
+1 Stretchy.bmp 200 400 NNNNNNNNNN
+2 Enemy.bmp 1140 600 0 0
+
+3 ApathosHMaterial.bmp 860 320 0 0 19 400
+3 ApathosHMaterial.bmp 880 320 0 0 19 400
+3 ApathosHMaterial.bmp 900 300 0 0 19 420
+3 ApathosHMaterial.bmp 920 300 0 0 19 420
+3 ApathosHMaterial.bmp 940 280 0 0 19 440
+3 ApathosHMaterial.bmp 960 280 0 0 19 440
+3 ApathosHMaterial.bmp 980 260 0 0 19 460
+3 ApathosHMaterial.bmp 1000 260 0 0 19 460
+3 ApathosHMaterial.bmp 1020 240 0 0 19 480
+3 ApathosHMaterial.bmp 1040 240 0 0 19 480
+3 ApathosHMaterial.bmp 1060 220 0 0 19 500
+3 ApathosHMaterial.bmp 1080 220 0 0 19 500
+3 ApathosHMaterial.bmp 1100 620 0 0 99 99
+
 4 Menu.bmp 10 10 50 50 -6
 5 Resume.bmp 70 30 25 25 -6
 5 Reset.bmp 120 30 25 25 -5

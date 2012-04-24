@@ -8,9 +8,16 @@
 
 class MechanicsObject : virtual public Object
 {
+    private:
+        static int score;
+    
     public:
         MechanicsObject();
         virtual Object* process();
+    
+        int getScore();
+        void adjustScore(int);
+        static void resetScore();
 };
 
 #endif

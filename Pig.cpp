@@ -28,6 +28,7 @@ Pig::Pig(const Pig& other)
 Pig::~Pig()
 {
     numPigs--;
+    adjustScore(100);
 }
 
 void Pig::run()

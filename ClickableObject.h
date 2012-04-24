@@ -6,12 +6,13 @@
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
 #include "ControllableObject.h"
+#include "AudibleObject.h"
 
 #include <string>
 
 using namespace std;
 
-class ClickableObject : public DrawableObject, public ControllableObject, public MechanicsObject
+class ClickableObject : public DrawableObject, public ControllableObject, public MechanicsObject, public AudibleObject
 {
     private:
         int value;

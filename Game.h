@@ -19,6 +19,7 @@
 #include "MechanicsEngine.h"
 #include "StateEngine.h"
 #include "ControlEngine.h"
+#include "AudioEngine.h"
 
 class Game
 {
@@ -29,6 +30,7 @@ class Game
         PhysicsEngine   phys;
         MechanicsEngine mech;
         ControlEngine   control;
+        AudioEngine     audi;
         bool            running;
 
     public:

@@ -207,6 +207,17 @@ void Sling::draw(SDL_Surface* s)
 
     SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);
+    
+    char buffer[10];
+    sprintf(buffer,"%d",getScore());
+    
+    message = TTF_RenderText_Solid(font, buffer, fontColor);
+    
+    static SDL_Rect scoreLoc;
+    scoreLoc.x = 1100;
+    scoreLoc.y = 30;
+    
+    SDL_BlitSurface(message, NULL, s, &scoreLoc);
 }
 
 Object* Sling::process()

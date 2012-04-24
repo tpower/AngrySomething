@@ -42,7 +42,7 @@ bool StateEngine::run(Room& room)
 
     if(state == -2)
             currentLevel++;
-    static bool paused = false;
+//    static bool paused = false;
     switch(state)
     {
         //Pause/Unpause the game

@@ -14,6 +14,11 @@ Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
     activeCont = false;
 }
 
+Wall::~Wall()
+{
+    adjustScore(50);
+}
+
 void Wall::run()
 {
     move();
@@ -45,7 +50,7 @@ void Wall::applyForce(int m, Vect v, int dir)
         health -= 50;
     }
 
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 10)
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 17)
     {
         health -= 101;
     }

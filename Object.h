@@ -19,6 +19,7 @@ class Object
         bool        physical;
         bool        mechanical;
         bool        controllable;
+        bool        audible;
         bool        activeDraw;
         bool        activePhys;
         bool        activeMech;
@@ -41,6 +42,7 @@ class Object
         bool            isPhysical();
         bool            isMechanical();
         bool            isControllable();
+        bool            isAudible();
         bool            getActiveDraw() {return activeDraw;}
         bool            getActivePhys() {return activePhys;}
         bool            getActiveMech() {return activeMech;}

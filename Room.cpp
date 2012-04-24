@@ -195,9 +195,12 @@ bool Room::load(const char* f)
         }
 
         background = SDL_LoadBMP(backgroundFile.c_str());
+        
+        MechanicsObject::resetScore();
 
         loaded = true;
     }
+    
     return loaded;
 }
 

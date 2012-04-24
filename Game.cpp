@@ -47,6 +47,7 @@ int Game::run()
         mech.run(room);
         phys.run(room);
         grph.run(room);
+        audi.run(room);
         SDL_Delay(5);
     }
 

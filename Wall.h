@@ -12,7 +12,7 @@ class Wall : public DrawableObject, public PhysicalObject, public MechanicsObjec
 
     public:
         Wall(const char* file, int x, int y, int vx, int vy, int w, int h);
-
+        ~Wall();
         virtual void    run();
         void            applyForce(int m, Vect v, int dir);
         //void            draw(SDL_Surface* screen);
