@@ -38,7 +38,7 @@ class Sling : public DrawableObject, public MechanicsObject, public Controllable
         int             centerY;
 
     public:
-        Sling(const char* file1, int x, int y, string ammo);
+        Sling(const char* file1, const char* file2, int x, int y, string ammo);
         ~Sling();
 
         void        handle(SDL_Event);

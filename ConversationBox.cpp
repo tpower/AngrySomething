@@ -52,11 +52,17 @@ Object* ConversationBox::process()
 
         switch(person)
         {
-            case 'M':
-                image = SDL_LoadBMP("MonkeyConvBox.bmp");
+            case '1':
+                image = SDL_LoadBMP("ConversationMonkey1.bmp");
                 break;
-            case 'W':
-                image = SDL_LoadBMP("WolfConvBox.bmp");
+            case '2':
+                image = SDL_LoadBMP("ConversationMonkey2.bmp");
+                break;
+            case '3':
+                image = SDL_LoadBMP("ConversationMonkey3.bmp");
+                break;
+            case '4':
+                image = SDL_LoadBMP("ConversationMonkey4.bmp");
                 break;
         }
     }
