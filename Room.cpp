@@ -1,5 +1,5 @@
 /*******************************************************************************
- Filename:                  Room.h
+ Filename:                  Room.cpp
  Classname:                 Room
  
  Description:               The Room class is a container for objects in the

@@ -15,7 +15,6 @@
 
 int Sling::projectileCount = 0;
 
-
 /*******************************************************************************
     Name:                   Constructor
     Description:            Constructs a Sling class
@@ -37,8 +36,7 @@ Sling::Sling(const char* file, int x, int y, string ammo)
     grabbed = false;
 
     // loads the image of the object
-    launcherImg = SDL_LoadBMP("AngryBirdSlingshot.bmp");
-
+    launcherImg = SDL_LoadBMP(file2);
     // sets position of the slingshot
     Slingshot.x = x - 25;
     Slingshot.y = y;
