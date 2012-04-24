@@ -23,14 +23,14 @@
 
 int Sling::projectileCount = 0;
 
-Sling::Sling(const char* file, int x, int y, string ammo)
+Sling::Sling(const char* file, const char* file2, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
         DrawableObject(file, 2),
         MechanicsObject()
 {
     grabbed = false;
 
-    launcherImg = SDL_LoadBMP("AngryBirdSlingshot.bmp");
+    launcherImg = SDL_LoadBMP(file2);
 
     Slingshot.x = x - 25;
     Slingshot.y = y;

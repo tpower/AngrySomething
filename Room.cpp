@@ -114,10 +114,10 @@ bool Room::load(const char* f)
             {
                 case 1://Sling
                 {
-                    string file, birds;
+                    string file, file2, birds;
                     int x, y;
-                    inFile >> file >> x >> y >> birds;
-                    object.push_back(new Sling(file.c_str(), x, y, birds.c_str()));
+                    inFile >> file >> file2 >> x >> y >> birds;
+                    object.push_back(new Sling(file.c_str(), file2.c_str(), x, y, birds.c_str()));
                     break;
                 }
                 case 2://Pig
