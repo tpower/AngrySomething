@@ -1,3 +1,12 @@
+/*******************************************************************************
+ Filename:                  UFOBird.h
+ Classname:                 UFOBird
+ 
+ Description:               The UFOBird class is a subclass of Projectile that
+                            is abducted from the game by a UFO in the initial
+                            cut-scene.
+ ******************************************************************************/
+
 #ifndef UFOBIRD_H_INCLUDED
 #define UFOBIRD_H_INCLUDED
 
@@ -9,6 +18,7 @@ class UFObird : public Projectile
         const char* image2;
         SDL_Surface* Spaceship;
         bool UFOactive;
+    
     public:
         UFObird(const char* file,const char* file2, int x, int y, int vx, int vy);
         ~UFObird();
@@ -22,4 +32,4 @@ class UFObird : public Projectile
         void            unpause();
 };
 
-#endif // UFOBIRD_H_INCLUDED
+#endif

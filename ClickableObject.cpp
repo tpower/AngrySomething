@@ -1,10 +1,16 @@
+/*******************************************************************************
+ Filename:                  ClickableObject.h
+ Classname:                 ClickableObject
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "ClickableObject.h"
 
 ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, int v)
     :   Object(x, y, w, h),
         DrawableObject(file, 3),
         AudibleObject("noise.wav")
-
 {
     value = v;
     clicked = false;
@@ -12,11 +18,6 @@ ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, i
     activePhys = false;
     activeMech = false;
     activeCont = true;
-}
-
-ClickableObject::~ClickableObject()
-{
-
 }
 
 /*******************************************************************************

@@ -1,15 +1,20 @@
+/*******************************************************************************
+ Filename:                  PauseButton.h
+ Classname:                 PauseButton
+ 
+ Description:               
+ ******************************************************************************/
+
 #ifndef PAUSEBUTTON_H_INCLUDED
 #define PAUSEBUTTON_H_INCLUDED
 
 #include <SDL/SDL.h>
+#include <string>
 
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
 #include "ControllableObject.h"
-
 #include "ClickableObject.h"
-
-#include <string>
 
 using namespace std;
 
@@ -25,7 +30,6 @@ class PauseButton : public DrawableObject, public MechanicsObject, public Contro
 
     public:
         PauseButton(const char* file, int x, int y, int w, int h);
-        ~PauseButton();
 
         void        draw(SDL_Surface*);
         int         check();
@@ -34,4 +38,4 @@ class PauseButton : public DrawableObject, public MechanicsObject, public Contro
         void        unpause();
 };
 
-#endif // PAUSEBUTTON_H_INCLUDED
+#endif

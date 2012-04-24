@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  StateEngine.h
+ Classname:                 StateEngine
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "StateEngine.h"
 
 bool StateEngine::run(Room& room)

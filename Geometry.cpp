@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  Geometry.h
+ Classname:                 
+ 
+ Description:               The structs defined in Geometry are shape objects
+                            used by the PhysicsEngine to determine collisions
+ ******************************************************************************/
 
 #include "Geometry.h"
 
@@ -269,114 +276,6 @@ bool Circle::containsPoint(Point p)
 {
     Vect v(cent, p);
     return v.len() <= rad;
-}
-
-/*******************************************************************************
- Rect methods
- ******************************************************************************/
-Rect::Rect(Point one, Point two, Point three, Point four)
-{
-    a = one; 
-    b = two;
-    c = three;
-    d = four;
-}
-
-Rect::Rect(SDL_Rect r)
-{
-    a = Point(r.x, r.y);
-    b = Point(r.x + r.w, r.y);
-    c = Point(r.x + r.w, r.y + r.h);
-    d = Point(r.x, r.y + r.h);
-}
-
-Rect::Rect(Box bx)
-{
-    a = bx.tLeft();
-    b = bx.tRight();
-    c = bx.bRight();
-    d = bx.tLeft();
-}
-
-Rect Rect::operator+(Vect v)
-{
-    Rect temp(a + v, b + v, c + v, d + v);
-    return temp;
-}
-
-Point Rect::center()
-{
-    Line l(a,c);
-    return l.midpoint();
-}
-
-int Rect::top()
-{
-    int max = a.y;
-    if(b.y < max)
-        max = b.y;
-    if(c.y < max)
-        max = c.y;
-    if(d.y < max)
-        max = d.y;
-    return max;
-}
-
-int Rect::bottom() 
-{
-    int min = a.y;
-    if(b.y > min)
-        min = b.y;
-    if(c.y > min)
-        min = c.y;
-    if(d.y > min)
-        min = d.y;
-    return min;
-}
-
-int Rect::left()   
-{
-    int min = a.x;
-    if(b.x < min)
-        min = b.y;
-    if(c.x < min)
-        min = c.y;
-    if(d.x < min)
-        min = d.y;
-    return min;
-    
-}
-
-int Rect::right()  
-{
-    int max = a.x;
-    if(b.x > max)
-        max = b.y;
-    if(c.x > max)
-        max = c.x;
-    if(d.x > max)
-        max = d.x;
-    return max;
-}
-
-int Rect::height()
-{
-    return bottom() - top();
-}
-
-int Rect::width()
-{
-    return right() - left();
-}
-
-SDL_Rect Rect::sdlVer()
-{
-    SDL_Rect t;
-    t.x = left();
-    t.y = top();
-    t.w = width();
-    t.h = height();
-    return t;
 }
 
 /*******************************************************************************

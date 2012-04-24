@@ -1,9 +1,15 @@
+/*******************************************************************************
+ Filename:                  MenuItem.h
+ Classname:                 MenuItem
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "MenuItem.h"
 
 MenuItem::MenuItem(const char* file, int x, int y, int w, int h, int v)
     :   Object(x, y, w, h),
         DrawableObject(file, 3)
-
 {
     value = v;
     clicked = false;
@@ -11,11 +17,6 @@ MenuItem::MenuItem(const char* file, int x, int y, int w, int h, int v)
     activePhys = false;
     activeMech = false;
     activeCont = false;
-}
-
-MenuItem::~MenuItem()
-{
-
 }
 
 /*******************************************************************************

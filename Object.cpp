@@ -1,8 +1,9 @@
 /*******************************************************************************
- Filename:                  Object.cpp
+ Filename:                  Object.h
  Classname:                 Object
-
- Description:               This file defines the Object class.
+ 
+ Description:               The Object class is the base class for objects
+                            within the game environment.
  ******************************************************************************/
 
 #include "Object.h"

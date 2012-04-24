@@ -1,3 +1,11 @@
+/*******************************************************************************
+ Filename:                  DestructableWall.h
+ Classname:                 DestructableWall
+ 
+ Description:               The DestructableWall class is a subclass of Wall
+                            that can be destroyed.
+ ******************************************************************************/
+
 #include "DestructableWall.h"
 
 DestructableWall::DestructableWall(const char* file, int x, int y, int vx, int vy, int w, int h)

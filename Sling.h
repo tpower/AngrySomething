@@ -2,10 +2,8 @@
  Filename:                  Sling.h
  Classname:                 Sling
 
- Description:               This file declares the Sling class. This class
-                            is an object capable of taking user input to direct
-                            the slings angle, and spawn a bird at the proper
-                            velocity and position.
+ Description:               The Sling class is an object that receives user
+                            input and launches Projectiles across the screen.
  ******************************************************************************/
 
 #ifndef SLING_H
@@ -51,4 +49,4 @@ class Sling : public DrawableObject, public MechanicsObject, public Controllable
         void        unpause();
 };
 
-#endif // SLING_H
+#endif

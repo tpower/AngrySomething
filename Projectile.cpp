@@ -1,8 +1,9 @@
 /*******************************************************************************
  Filename:                  Projectile.h
  Classname:                 Projectile
-
- Description:               This file defines the Projectile class.
+ 
+ Description:               The Projectile class is an object that is launched
+                            from a sling to destroy enemies.
  ******************************************************************************/
 
 #include "Projectile.h"

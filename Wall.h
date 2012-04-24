@@ -1,3 +1,11 @@
+/*******************************************************************************
+ Filename:                  Wall.h
+ Classname:                 Wall
+ 
+ Description:               The Wall class is an object that is used to create
+                            structures and barriers within the game.
+ ******************************************************************************/
+
 #ifndef WALL_H
 #define WALL_H
 
@@ -13,11 +21,11 @@ class Wall : public DrawableObject, public PhysicalObject, public MechanicsObjec
     public:
         Wall(const char* file, int x, int y, int vx, int vy, int w, int h);
         ~Wall();
+    
         virtual void    run();
         void            applyForce(int m, Vect v, int dir);
-        //void            draw(SDL_Surface* screen);
         void            pause();
         void            unpause();
 };
 
-#endif // WALL_H
+#endif

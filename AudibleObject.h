@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  AudibleObject.h
+ Classname:                 AudibleObject
+ 
+ Description:               The AudibleObject class is a subclass of Object that
+                            has impementation to play sound effects.
+ ******************************************************************************/
 
 #ifndef AngrySomething_AudibleObject_h
 #define AngrySomething_AudibleObject_h

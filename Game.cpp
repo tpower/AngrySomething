@@ -1,15 +1,16 @@
 /*******************************************************************************
- Filename:                  Game.cpp
+ Filename:                  Game.h
  Classname:                 Game
-
- Description:               This file defines the Game class. This class will
-                            be the controller for the game. It is in charge of
-                            running the game loop and handling communication
-                            between the Physics and Graphics Engines.
+ 
+ Description:               The Game class is in charge of running the game loop
+                            and handling communication between engines within
+                            the game.
  ******************************************************************************/
 
 #include <cstdlib>
+
 #include "Game.h"
+
 using namespace std;
 
 /*******************************************************************************

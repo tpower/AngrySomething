@@ -1,25 +1,31 @@
+/*******************************************************************************
+ Filename:                  ClickableObject.h
+ Classname:                 ClickableObject
+ 
+ Description:               
+ ******************************************************************************/
+
 #ifndef CLICKABLEOBJECT_H_INCLUDED
 #define CLICKABLEOBJECT_H_INCLUDED
 
 #include <SDL/SDL.h>
+#include <string>
 
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
 #include "ControllableObject.h"
 #include "AudibleObject.h"
 
-#include <string>
-
 using namespace std;
 
 class ClickableObject : public DrawableObject, public ControllableObject, public MechanicsObject, public AudibleObject
 {
     private:
-        int value;
-        bool clicked;
+        int     value;
+        bool    clicked;
+    
     public:
         ClickableObject(const char* file, int x, int y, int w, int h, int v);
-        ~ClickableObject();
 
         void        draw(SDL_Surface*);
         int         check();
@@ -28,4 +34,4 @@ class ClickableObject : public DrawableObject, public ControllableObject, public
         void        unpause();
 };
 
-#endif // CLICKABLEOBJECT_H_INCLUDED
+#endif

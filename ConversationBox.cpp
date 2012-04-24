@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  ConversationBox.h
+ Classname:                 ConversationBox
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "ConversationBox.h"
 
 ConversationBox::ConversationBox(int x, int y, string c)

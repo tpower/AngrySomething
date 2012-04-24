@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  Spaceship.h
+ Classname:                 Spaceship
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "Spaceship.h"
 
 Spaceship::Spaceship(const char* file, int x, int y, int d, int t)

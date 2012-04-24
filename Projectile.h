@@ -2,7 +2,8 @@
  Filename:                  Projectile.h
  Classname:                 Projectile
 
- Description:               This file declares the Projectile class.
+ Description:               The Projectile class is an object that is launched
+                            from a sling to destroy enemies.
  ******************************************************************************/
 
 #ifndef AngrySomething_Projectile_h

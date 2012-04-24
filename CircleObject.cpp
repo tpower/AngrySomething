@@ -1,3 +1,11 @@
+/*******************************************************************************
+ Filename:                  CircleObject.h
+ Classname:                 CircleObject
+ 
+ Description:               The CircleObject class is a subclass of
+ PhysicalObject that adds circular collision handling
+ to a PhysicalObject.
+ ******************************************************************************/
 
 #include "CircleObject.h"
 
@@ -20,9 +28,6 @@ void CircleObject::run()
     circ.cent.y = pos.y + circ.rad;
 }
 
-/*******************************************************************************
- applyForce()
- ******************************************************************************/
 void CircleObject::applyForce(int m, Vect v)
 {
     acc.x += ((m * (v.x)) / mass) * .8;

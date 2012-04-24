@@ -2,16 +2,17 @@
  Filename:                  Room.h
  Classname:                 Room
 
- Description:               This file declares the Room class.
+ Description:               The Room class is a container for objects in the
+                            game and handles loading levels from files.
  ******************************************************************************/
 
 #ifndef AngrySomething_Room_h
 #define AngrySomething_Room_h
 
+#include <SDL/SDL.h>
 #include <vector>
 #include <fstream>
 #include <string>
-#include <SDL/SDL.h>
 
 class Object;
 

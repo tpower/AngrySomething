@@ -1,12 +1,21 @@
+/*******************************************************************************
+ Filename:                  StateEngine.h
+ Classname:                 StateEngine
+ 
+ Description:               
+ ******************************************************************************/
+
 #ifndef STATEENGINE_H
 #define STATEENGINE_H
+
+#include <string>
+
 #include "MechanicsEngine.h"
 #include "Object.h"
 #include "MechanicsObject.h"
-#include "Pig.h"
+#include "Enemy.h"
 #include "Projectile.h"
 #include "Sling.h"
-#include <string>
 
 class StateEngine
 {
@@ -14,4 +23,4 @@ class StateEngine
         bool run(Room& room);
         string  decideLevel(int i);
 };
-#endif // STATEENGINE_H
+#endif

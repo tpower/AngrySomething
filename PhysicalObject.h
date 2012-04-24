@@ -2,12 +2,13 @@
  Filename:                  PhysicalObject.h
  Classname:                 PhysicalObject
 
- Description:               This file declares the PhysicalObject class.
+ Description:               The PhysicalObject class is a subclass of Object
+                            that can move around the screen and collide with
+                            other PhysicalObjects.
  ******************************************************************************/
 
 #ifndef PhysicalObject_H
 #define PhysicalObject_H
-
 
 #include "Object.h"
 #include "Geometry.h"

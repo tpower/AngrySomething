@@ -2,8 +2,7 @@
  Filename:                  PhysicsEngine.h
  Classname:                 PhysicsEngine
  
- Description:               This file declares the PhysicsEngine class. The 
-                            PhysicsEngine class is responsible for moving
+ Description:               The PhysicsEngine class is responsible for moving
                             objects and detecting collisions within the room.
  ******************************************************************************/
 

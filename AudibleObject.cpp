@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  AudibleObject.cpp
+ Classname:                 AudibleObject
+ 
+ Description:               The AudibleObject class is a subclass of Object that
+                            has impementation to play sound effects.
+ ******************************************************************************/
 
 #include "AudibleObject.h"
 
