@@ -12,17 +12,22 @@
 
 #include "Sling.h"
 
-/*******************************************************************************
- Name:              Sling
- Description:       Constructor
-
- Input:
-    file            The image filename
-    x, y            The x and y coordinates of the object
- ******************************************************************************/
-
 int Sling::projectileCount = 0;
 
+
+/*******************************************************************************
+    Name:                   Constructor
+    Description:            Constructs a Sling class
+    Input:
+            const char*     the name of the bitmap file for the graphics
+            int             the x position of the object on the screen
+            int             the y position of the object on the screen
+            string          string indicating the order of ammunition to be fired
+
+    Output:
+            None
+
+ ******************************************************************************/
 Sling::Sling(const char* file, int x, int y, string ammo)
     :   Object(x, y, 180, 150),
         DrawableObject(file, 2),
@@ -30,20 +35,25 @@ Sling::Sling(const char* file, int x, int y, string ammo)
 {
     grabbed = false;
 
+    // loads the image of the object
     launcherImg = SDL_LoadBMP("AngryBirdSlingshot.bmp");
 
+    // sets position of the slingshot
     Slingshot.x = x - 25;
     Slingshot.y = y;
 
+    // sets radius of the fire area
     radius = 75;
 
     monk = NULL;
 
+    // loads ammo for the slingshot to fire
     projectiles = ammo;
     projectileCount = (int)projectiles.length();
 
     type = 1;
 
+    // sets which engines should manipulate it
     activeDraw = true;
     activePhys = false;
     activeMech = true;
@@ -54,8 +64,13 @@ Sling::Sling(const char* file, int x, int y, string ammo)
 }
 
 /*******************************************************************************
- Name:              ~Sling
- Description:       destructor
+    Name:               Deconstructor
+    Description:        Desconstructs the object, freeing it's image surface used
+                        for drawing
+    Input:
+                        None
+    Output:
+                        None
 
  ******************************************************************************/
 Sling::~Sling()
@@ -64,11 +79,16 @@ Sling::~Sling()
 }
 
 /*******************************************************************************
- Name:              checkBounds
- Description:       Checks to see if the mouse is currently near enough
-                    to the Sling to interact with it
- Input:
-    e               SDL_Event
+    Name:                   checkBounds
+    Description:            Checks to see if the mouse is currently near enough
+                            to the Sling to interact with it.
+    Input:
+            SDL_Event       represents the mouse event inputted by user
+
+    Output:
+            Returns         a boolean indicating whether the mouse was in the
+                            bounds of the Sling.
+
  ******************************************************************************/
 bool Sling::checkBounds(SDL_Event e)
 {
@@ -81,12 +101,20 @@ bool Sling::checkBounds(SDL_Event e)
 }
 
 /*******************************************************************************
- Name:              createMonkey
- Description:       Creates and returns a Monkey with correct position, velocity,
-                    and accelleration
- Input:
-    xVel, yVel      The x and y velocities of the object
- ******************************************************************************/
+    Name:                   createMonkey
+    Description:            Creates and returns a Monkey with correct position,
+                            velocity, and acceleration
+    Input:
+            char            represents the type of projectile to be spawned
+            int             represents the x spawn position of the projectile
+            int             represents the y spawn position of the projectile
+            int             represents the x spawn velocity of the projectile
+            int             represents the y spawn velocity of the projectile
+
+    Output:
+            Projectile*     a pointer to the projectile to be added to the room
+                            array
+******************************************************************************/
 Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVel)
 {
     Projectile* p;
@@ -106,10 +134,16 @@ Projectile* Sling::createMonkey(char type, int xPos, int yPos, int xVel, int yVe
 
 
 /*******************************************************************************
- Name:              handle
- Description:       handles user input
- Input:
-    e               SDL_Event
+    Name:                   Handle
+    Description:            Overridden handle method. Handles user input,
+                            spawning a projectile based on the moust position
+                            and whether or not it is clicked.
+    Input:
+            SDL_Event       an SDL_Event storing the user input to be handled
+
+    Output:
+            None
+
  ******************************************************************************/
 void Sling::handle(SDL_Event e)
 {
@@ -188,11 +222,16 @@ void Sling::handle(SDL_Event e)
 }
 
 /*******************************************************************************
- Name:              draw
- Description:       Draws the Object to the given SDL_Surface*
+    Name:                   Draw
+    Description:            Overridden draw method. Draws the Object to the
+                            screen. Displays both the sling and the strechy
+                            component of it.
+    Input:
+            SDL_Surface*    a SDL_Surface* representing the screen
 
- Input:
-    s               SDL_Surface* to be drawn onto
+    Output:
+            None
+
  ******************************************************************************/
 void Sling::draw(SDL_Surface* s)
 {
@@ -207,19 +246,31 @@ void Sling::draw(SDL_Surface* s)
 
     SDL_BlitSurface(launcherImg, NULL, s, &Slingshot);
     SDL_BlitSurface(image, NULL, s, &loc);
-    
+
     char buffer[10];
     sprintf(buffer,"%d",getScore());
-    
+
     message = TTF_RenderText_Solid(font, buffer, fontColor);
-    
+
     static SDL_Rect scoreLoc;
     scoreLoc.x = 1100;
     scoreLoc.y = 30;
-    
+
     SDL_BlitSurface(message, NULL, s, &scoreLoc);
 }
 
+/*******************************************************************************
+    Name:                   Process
+    Description:            Overidden function of the MechanicsObject class.
+                            Returns a projectile if one is created
+    Input:
+            None
+
+    Output:
+            Returns         an Object* of an Object that needs to be added to the
+                            array of Object* in Room.
+
+ ******************************************************************************/
 Object* Sling::process()
 {
     Projectile* m = monk;
@@ -227,6 +278,17 @@ Object* Sling::process()
     return m;
 }
 
+/*******************************************************************************
+    Name:                   pause
+    Description:            Turns off all of the components of the Object that
+                            get handled by engines except for Graphics.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void Sling::pause()
 {
     activeDraw = true;
@@ -235,6 +297,17 @@ void Sling::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+    Name:                   unpause
+    Description:            Turns on all of the components of the Object that
+                            get handled by engines for this specific Object.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void Sling::unpause()
 {
     activeDraw = true;

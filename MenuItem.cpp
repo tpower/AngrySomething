@@ -22,7 +22,7 @@ MenuItem::~MenuItem()
  Name:              handle
  Description:       handles user input
  Input:
-    e               SDL_Event
+    SDL_Event e
  ******************************************************************************/
 void MenuItem::handle(SDL_Event e)
 {
