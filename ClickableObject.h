@@ -9,7 +9,6 @@
 #define CLICKABLEOBJECT_H_INCLUDED
 
 #include <SDL/SDL.h>
-#include <string>
 
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
@@ -18,7 +17,8 @@
 
 using namespace std;
 
-class ClickableObject : public DrawableObject, public ControllableObject, public MechanicsObject, public AudibleObject
+class ClickableObject : public DrawableObject, public ControllableObject,
+                        public MechanicsObject, public AudibleObject
 {
     private:
         int     value;

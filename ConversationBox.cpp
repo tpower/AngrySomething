@@ -7,6 +7,15 @@
 
 #include "ConversationBox.h"
 
+/*******************************************************************************
+ Name:              ConversationBox
+ Description:       Primary constructor
+ 
+ Input:
+    x               int horizontal position
+    y               int vertical position
+    c               string to be assigned to conv
+ ******************************************************************************/
 ConversationBox::ConversationBox(int x, int y, string c)
     :   Object(x, y, 100, 200),
         DrawableObject("MonkeyConvBox.bmp", 10),
@@ -26,6 +35,14 @@ ConversationBox::ConversationBox(int x, int y, string c)
     startTime = SDL_GetTicks();
 }
 
+
+/*******************************************************************************
+ Name:              process
+ Description:       This method overrides MechanicsObject::process()
+ 
+ Output:
+    returns         Object*
+ ******************************************************************************/
 Object* ConversationBox::process()
 {
     if( !(index >= conv.length() + 2) && SDL_GetTicks() - startTime > dispTime*1000)
@@ -52,6 +69,13 @@ Object* ConversationBox::process()
     return NULL;
 }
 
+/*******************************************************************************
+ Name:              draw
+ Description:       This method overrides DrawableObject::draw()
+ 
+ Input:
+    s               SDL_Surface* to be drawn to
+ ******************************************************************************/
 void ConversationBox::draw(SDL_Surface* s)
 {
     static SDL_Rect loc;
@@ -63,6 +87,10 @@ void ConversationBox::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the ConversationBox
+ ******************************************************************************/
 void ConversationBox::pause()
 {
     activeDraw = true;
@@ -71,6 +99,10 @@ void ConversationBox::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the ConversationBox if it is paused
+ ******************************************************************************/
 void ConversationBox::unpause()
 {
     activeDraw = true;

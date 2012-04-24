@@ -1,41 +1,60 @@
 /*******************************************************************************
- Filename:                  StateEngine.h
- Classname:                 StateEngine
- 
- Description:               
+ Filename:                  Sling.cpp
+ Classname:                 Sling
+
+ Description:               This file implements StateEngine. The state engine
+                            is responsible for managing the state of the objects
+                            in the Room as well as managing the condition of the
+                            Room and level.
  ******************************************************************************/
 
 #include "StateEngine.h"
+#include "Enemy.h"
+#include "Projectile.h"
+#include "Sling.h"
 
+/*******************************************************************************
+    Name:                   run
+    Description:            Checks all the Objects in the Room passed as an
+                            argument to see if any need to removed from the
+                            room. Then it checks all of the Objects to see if
+                            one demands a room change or change in condition of
+                            the program and acts to change the Room accordingly.
+    Input:
+            Room&           the Room to be managed
+
+    Output:
+            Returns         a boolean value indicating if the Game should
+                            continue running
+ ******************************************************************************/
 bool StateEngine::run(Room& room)
 {
     static int currentLevel = 0;
-    int state = 0;
+    int roomNum = 0;
     bool running = true;
-    //Object* obj;
 
-    for(int i = 0; i < room.getNumObjects() && !state; i++)
+    for(int i = 0; i < room.getNumObjects() && !roomNum; i++)
     {
-        state = room.getObjectAt(i)->check();
+        roomNum = room.getObjectAt(i)->check();
         if(room.getObjectAt(i)->getState() == -1)
             room.remove(i--);
         else if(room.getObjectAt(i)->getState() == -4)
-            state = -4;
+            roomNum = -4;
     }
 
     //If the room is a level
     if(room.getRoomType() == 1)
     {
-        if(Pig::getNumPigs() <= 0)
+        if(Enemy::getNumEnemies() <= 0)
         {
             //Win Condition
-            state = -2;
+            roomNum = -2;
         }
 
         if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <= 0)
         {
             //Lose Condition
-            state = -4;
+            roomNum = -4;
         }
     }
     //If the room ends with a cutscene
@@ -43,13 +62,13 @@ bool StateEngine::run(Room& room)
     {
         if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <=0)
         {
-            state = 1001;
+            roomNum = 1001;
         }
     }
 
     if(state == -2)
-            currentLevel++;
-//    static bool paused = false;
+        currentLevel++;
+    
     switch(state)
     {
         //Pause/Unpause the game
@@ -84,8 +103,7 @@ bool StateEngine::run(Room& room)
             break;
         //You beat the previous level, move to the Level Select screen
         case -2:
-            //if(!room.load(decideLevel(currentLevel).c_str()))
-                running = room.load("LevelSelect.gel");
+            running = room.load("LevelSelect.gel");
             paused = false;
             break;
         // You Lose. Exit the program
@@ -214,16 +232,18 @@ bool StateEngine::run(Room& room)
     return running;
 }
 
+/*******************************************************************************
+    Name:                   decideLevel
+    Description:            Decides the Room to be loaded and returns a string
+                            indicating the Room to be loaded.
+    Input:
+            int             a value indicating which Room to be loaded
+
+    Output:
+            Returns         a string representing the Room to be loaded
+ ******************************************************************************/
 string StateEngine::decideLevel(int i)
 {
-    /*
-    char buffer[1];
-    string s = "Level";
-    //s += sprintf(buffer,"%d",i);
-    itoa(i, buffer, 10);
-    s += buffer;
-    s += ".gel";
-    */
     string s;
     switch(i)
     {

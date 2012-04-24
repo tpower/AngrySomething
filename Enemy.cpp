@@ -10,15 +10,26 @@
 
 #include "Enemy.h"
 
-int Pig::numPigs = 0;
+int Enemy::numEnemies = 0;
 
-Pig::Pig(const char* file, int x, int y, int vx, int vy)
+/*******************************************************************************
+ Name:              Enemy
+ Description:       Primary constructor
+ 
+ Input:
+    file            char* filepath for image file
+    x               int horizontal position
+    y               int vertical position
+    vx              int horizontal velocity
+    vy              int vertical velocity
+ ******************************************************************************/
+Enemy::Enemy(const char* file, int x, int y, int vx, int vy)
     :   Object(x, y, 20, 20),
         DrawableObject(file, 2),
         PhysicalObject(vx, vy)
 {
     health = 100;
-    numPigs++;
+    numEnemies++;
 
     activeDraw = true;
     activePhys = true;
@@ -26,21 +37,21 @@ Pig::Pig(const char* file, int x, int y, int vx, int vy)
     activeCont = false;
 }
 
-Pig::Pig(const Pig& other)
-    :   Object(other.pos.x, other.pos.y),
-        DrawableObject("TestA.bmp", 2),
-        PhysicalObject(other.pos.x, other.pos.y)
+/*******************************************************************************
+ Name:              ~Enemy
+ Description:       Destructor
+ ******************************************************************************/
+Enemy::~Enemy()
 {
-    numPigs++;
-}
-
-Pig::~Pig()
-{
-    numPigs--;
+    numEnemies--;
     adjustScore(100);
 }
 
-void Pig::run()
+/*******************************************************************************
+ Name:              run
+ Description:       This method overrides PhysicalObject::run()
+ ******************************************************************************/
+void Enemy::run()
 {
     move();
 
@@ -50,7 +61,16 @@ void Pig::run()
     }
 }
 
-void Pig::applyForce(int m, Vect v, int dir)
+/*******************************************************************************
+ Name:              applyForce
+ Description:       This method overrides PhysicalObject::applyForce()
+ 
+ Input:
+    m               int mass of colliding Object
+    v               Vect velocity of colliding Object
+    dir             int direction of collision
+ ******************************************************************************/
+void Enemy::applyForce(int m, Vect v, int dir)
 {
     PhysicalObject::applyForce(m, v, dir);
 
@@ -60,7 +80,14 @@ void Pig::applyForce(int m, Vect v, int dir)
     }
 }
 
-void Pig::draw(SDL_Surface* s)
+/*******************************************************************************
+ Name:              draw
+ Description:       This method overrides DrawableObject::draw()
+ 
+ Input:
+    s               SDL_Surface* to be drawn to
+ ******************************************************************************/
+void Enemy::draw(SDL_Surface* s)
 {
     static SDL_Rect loc;
     loc = pos;
@@ -68,7 +95,11 @@ void Pig::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
-void Pig::pause()
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the Enemy
+ ******************************************************************************/
+void Enemy::pause()
 {
     activeDraw = true;
     activePhys = false;
@@ -76,7 +107,11 @@ void Pig::pause()
     activeCont = false;
 }
 
-void Pig::unpause()
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the Enemy if it is paused
+ ******************************************************************************/
+void Enemy::unpause()
 {
     activeDraw = true;
     activePhys = true;

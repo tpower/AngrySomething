@@ -7,6 +7,18 @@
 
 #include "ClickableObject.h"
 
+/*******************************************************************************
+ Name:              ClickableObject
+ Description:       Primary constructor
+ 
+ Input:
+    file            char* filepath to an image file
+    x               int horizontal position
+    y               int vertical position
+    w               int width
+    h               int height
+    v               int value of ClickableObject
+ ******************************************************************************/
 ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, int v)
     :   Object(x, y, w, h),
         DrawableObject(file, 3),
@@ -22,9 +34,10 @@ ClickableObject::ClickableObject(const char* file, int x, int y, int w, int h, i
 
 /*******************************************************************************
  Name:              handle
- Description:       handles user input
+ Description:       This method overrides ControllableObject::handle()
+ 
  Input:
-    e               SDL_Event
+    e               SDL_Event to be handled
  ******************************************************************************/
 void ClickableObject::handle(SDL_Event e)
 {
@@ -52,6 +65,14 @@ void ClickableObject::handle(SDL_Event e)
     }
 }
 
+/*******************************************************************************
+ Name:              check
+ Description:       This method returns the value of the ClickableObject when it
+                    is clicked
+ 
+ Output:
+    returns         int value of ClickableObject
+ ******************************************************************************/
 int ClickableObject::check()
 {
     int temp = 0;
@@ -66,7 +87,7 @@ int ClickableObject::check()
 
 /*******************************************************************************
  Name:              draw
- Description:       Draws the Object to the given SDL_Surface*
+ Description:       This method draws the Object to the given SDL_Surface*
 
  Input:
     s               SDL_Surface* to be drawn onto
@@ -79,6 +100,10 @@ void ClickableObject::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the ClickableObject
+ ******************************************************************************/
 void ClickableObject::pause()
 {
     activeDraw = false;
@@ -87,6 +112,10 @@ void ClickableObject::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the ClickableObject if it is paused
+ ******************************************************************************/
 void ClickableObject::unpause()
 {
     activeDraw = true;

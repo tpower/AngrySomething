@@ -13,7 +13,12 @@ const double GRAV       = .1;
 const double TERM_VEL   = 20;
 
 /*******************************************************************************
- PhysicalObject()
+ Name:              PhysicalObject
+ Description:       Primary constructor
+ 
+ Input:
+    vx              int horizontal velocity
+    vy              int vertical velocity
  ******************************************************************************/
 PhysicalObject::PhysicalObject(int vx, int vy)
 {
@@ -34,6 +39,7 @@ PhysicalObject::PhysicalObject(int vx, int vy)
 
 /*******************************************************************************
  MODIFIERS
+ Name:              setVel, setAcc, setCollisionSide
  ******************************************************************************/
 void PhysicalObject::setVel(Vect v)
 {
@@ -53,6 +59,7 @@ void PhysicalObject::setCollisionSide(int s)
 
 /*******************************************************************************
  ACCESSORS
+ Name:              getVel, getAcc, getMass, getCollisionSide, getShape
  ******************************************************************************/
 Vect PhysicalObject::getVel()
 {
@@ -80,7 +87,9 @@ int PhysicalObject::getShape()
 }
 
 /*******************************************************************************
- move()
+ Name:              move
+ Description:       This method changes the PhysicalObject's position on the
+                    screen based on velocity and acceleration
  ******************************************************************************/
 void PhysicalObject::move()
 {
@@ -106,7 +115,8 @@ void PhysicalObject::move()
 }
 
 /*******************************************************************************
- run()
+ Name:              run
+ Description:       This method runs the PhysicalObject
  ******************************************************************************/
 void PhysicalObject::run()
 {
@@ -114,7 +124,13 @@ void PhysicalObject::run()
 }
 
 /*******************************************************************************
- applyForce()
+ Name:              applyForce
+ Description:       This method handles a force given by a collision
+ 
+ Input:
+    m               int mass of colliding object
+    v               Vect of colliding objects velocity
+    dir             int direction of collision
  ******************************************************************************/
 void PhysicalObject::applyForce(int m, Vect v, int dir)
 {

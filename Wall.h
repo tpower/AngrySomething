@@ -13,7 +13,8 @@
 #include "PhysicalObject.h"
 #include "MechanicsObject.h"
 
-class Wall : public DrawableObject, public PhysicalObject, public MechanicsObject
+class Wall : public DrawableObject, public PhysicalObject,
+             public MechanicsObject
 {
     protected:
         int health;

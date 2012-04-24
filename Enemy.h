@@ -13,20 +13,19 @@
 #include "PhysicalObject.h"
 #include "MechanicsObject.h"
 
-class Pig : public DrawableObject, public PhysicalObject, public MechanicsObject
+class Enemy : public DrawableObject, public PhysicalObject, public MechanicsObject
 {
     private:
         int health;
-        static int numPigs;
+        static int numEnemies;
 
     public:
-        Pig(const char* file, int x, int y, int vx, int vy);
-        Pig(const Pig& other);
-        ~Pig();
+        Enemy(const char* file, int x, int y, int vx, int vy);
+        ~Enemy();
 
         virtual void    run();
         void            applyForce(int m, Vect v, int dir);
-        static int      getNumPigs() {return numPigs;}
+        static int      getNumEnemies() {return numEnemies;}
         void            draw(SDL_Surface*);
         void            pause();
         void            unpause();

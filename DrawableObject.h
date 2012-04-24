@@ -25,14 +25,13 @@ class DrawableObject : virtual public Object
 
     public:
         DrawableObject(const char* file, int);
-        DrawableObject(const DrawableObject& other);
         ~DrawableObject();
 
         DrawableObject& operator=(const DrawableObject& other);
+    
+        int             getLayer();
 
         virtual void    draw(SDL_Surface*);
-
-        int             getLayer();
 };
 
 #endif

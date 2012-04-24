@@ -14,6 +14,10 @@ using namespace std;
 /*******************************************************************************
  Name:              DrawableObject
  Description:       Primary constructor
+ 
+ Input:
+    file            char* filepath for image file
+    l               int layer
  ******************************************************************************/
 DrawableObject::DrawableObject(const char* file, int l = 0)
 {
@@ -56,18 +60,6 @@ DrawableObject::DrawableObject(const char* file, int l = 0)
 }
 
 /*******************************************************************************
- Name:              DrawableObject
- Description:       Copy constructor
-
- Input:
-    other           DrawableObject& to be copied
- ******************************************************************************/
-DrawableObject::DrawableObject(const DrawableObject& other)
-{
-    *image = *(other.image);
-}
-
-/*******************************************************************************
  Name:              ~DrawableObject
  Description:       Destructor
  ******************************************************************************/
@@ -89,10 +81,20 @@ DrawableObject& DrawableObject::operator=(const DrawableObject& other)
 {
     if(&other != this)
     {
-        *image = *(other.image);
+        *image      = *(other.image);
+        *message    = *(other.message);
     }
 
     return *this;
+}
+
+/*******************************************************************************
+ ACCESSORS
+ Name:              getLayer
+ ******************************************************************************/
+int DrawableObject::getLayer()
+{
+    return layer;
 }
 
 /*******************************************************************************
@@ -117,9 +119,4 @@ void DrawableObject::draw(SDL_Surface* s)
     }
     
     SDL_BlitSurface(message, NULL, s, &loc);
-}
-
-int DrawableObject::getLayer()
-{
-    return layer;
 }

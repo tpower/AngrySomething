@@ -7,8 +7,6 @@
  ******************************************************************************/
 
 #include "GraphicsEngine.h"
-#include "DrawableObject.h"
-#include "Room.h"
 
 /*******************************************************************************
  Name:              GraphicsEngine
@@ -60,6 +58,14 @@ void GraphicsEngine::run(Room& room)
     SDL_BlitSurface(room.getBackground(), NULL, screen, NULL);
 }
 
+/*******************************************************************************
+ Name:              sortByLayer
+ Description:       This method sorts the room by layer to be drawn on the
+                    screen
+ 
+ Input:
+    list            vector<DrawableObject*> to be sorted
+ ******************************************************************************/
 void GraphicsEngine::sortByLayer(vector<DrawableObject*>& list)
 {
     for(int i = 0; i < list.size(); i++)

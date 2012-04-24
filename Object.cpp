@@ -10,7 +10,13 @@
 
 /*******************************************************************************
  Name:              Object
- Description:       Default constructor for Object class
+ Description:       Primary constructor
+ 
+ Input:
+    x               int horizontal position
+    y               int vertical position
+    w               int width
+    h               int height
  ******************************************************************************/
 Object::Object(int x, int y, int w, int h)
 {
@@ -26,6 +32,10 @@ Object::Object(int x, int y, int w, int h)
     type = 0;
 }
 
+/*******************************************************************************
+ Name:              ~Object
+ Description:       Destructor
+ ******************************************************************************/
 Object::~Object()
 {
 
@@ -33,7 +43,7 @@ Object::~Object()
 
 /*******************************************************************************
  MUTATORS
- Name:              setType, setPos
+ Name:              setPos
  ******************************************************************************/
 void Object::setPos(SDL_Rect p)
 {
@@ -42,7 +52,8 @@ void Object::setPos(SDL_Rect p)
 
 /*******************************************************************************
  ACCESSORS
- Name:              getType, getPos
+ Name:              getPos, getState, getType, isDrawable, isPhysical,
+                    isMechanical, isControllable, isAudible, check
  ******************************************************************************/
 SDL_Rect Object::getPos()
 {
@@ -90,19 +101,18 @@ int Object::check()
 }
 
 /*******************************************************************************
- Name:              run
- Description:       ??????
+ Name:              pause
+ Description:       This method temporarily disables the Object
  ******************************************************************************/
-void Object::run()
-{
-
-}
-
 void Object::pause()
 {
 
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the NonInteractionObject if it is paused
+ ******************************************************************************/
 void Object::unpause()
 {
 

@@ -17,7 +17,8 @@
 
 using namespace std;
 
-class MenuItem : public DrawableObject, public ControllableObject, public MechanicsObject
+class MenuItem : public DrawableObject, public ControllableObject,
+                 public MechanicsObject
 {
     private:
         int value;

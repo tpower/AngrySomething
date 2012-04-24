@@ -104,6 +104,13 @@ void PauseButton::handle(SDL_Event e)
     }
 }
 
+/*******************************************************************************
+ Name:              check
+ Description:       This method checks to see if the room needs to change
+ 
+ Output:
+    returns         int
+ ******************************************************************************/
 int PauseButton::check()
 {
     int temp = 0;
@@ -132,6 +139,10 @@ void PauseButton::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the PauseButton
+ ******************************************************************************/
 void PauseButton::pause()
 {
     activeDraw = true;
@@ -140,6 +151,10 @@ void PauseButton::pause()
     activeCont = true;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the PauseButton if it is paused
+ ******************************************************************************/
 void PauseButton::unpause()
 {
     activeDraw = true;

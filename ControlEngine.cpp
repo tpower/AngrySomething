@@ -7,6 +7,14 @@
 
 #include "ControlEngine.h"
 
+/*******************************************************************************
+ Name:              run
+ Description:       This method handles user events for all ControllableObjects
+                    in the room
+ 
+ Input:
+    room            Room& containing ControllableObjects
+ ******************************************************************************/
 void ControlEngine::run(Room& room)
 {
     Object* obj;

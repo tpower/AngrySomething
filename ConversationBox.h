@@ -23,6 +23,7 @@ class ConversationBox : public DrawableObject, public MechanicsObject
                 startTime, 
                 dispTime;
         char    person;
+    
     public:
         ConversationBox(int x, int y, string c);
 

@@ -7,10 +7,18 @@
 
 #include "NonInteractionObject.h"
 
+/*******************************************************************************
+ Name:              NonInterationObject
+ Description:       Primary constructor
+ 
+ Input:
+    file            char* filepath for image file
+    x               int horizontal position
+    y               int vertical position
+ ******************************************************************************/
 NonInteractionObject::NonInteractionObject(const char* file, int x, int y)
     :   Object(x, y),
         DrawableObject(file, 3)
-
 {
     activeDraw = true;
     activePhys = false;
@@ -20,7 +28,7 @@ NonInteractionObject::NonInteractionObject(const char* file, int x, int y)
 
 /*******************************************************************************
  Name:              draw
- Description:       Draws the Object to the given SDL_Surface*
+ Description:       Overrides DrawableObject::draw()
 
  Input:
     s               SDL_Surface* to be drawn onto
@@ -33,6 +41,10 @@ void NonInteractionObject::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the NonInteractionObject
+ ******************************************************************************/
 void NonInteractionObject::pause()
 {
     activeDraw = true;
@@ -41,6 +53,10 @@ void NonInteractionObject::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the NonInteractionObject if it is paused
+ ******************************************************************************/
 void NonInteractionObject::unpause()
 {
     activeDraw = true;

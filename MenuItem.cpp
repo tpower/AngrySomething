@@ -21,9 +21,10 @@ MenuItem::MenuItem(const char* file, int x, int y, int w, int h, int v)
 
 /*******************************************************************************
  Name:              handle
- Description:       handles user input
+ Description:       This method overrides ControllableObject::handle()
+ 
  Input:
-    e               SDL_Event
+    e               SDL_Event to be handled
  ******************************************************************************/
 void MenuItem::handle(SDL_Event e)
 {
@@ -50,6 +51,14 @@ void MenuItem::handle(SDL_Event e)
     }
 }
 
+/*******************************************************************************
+ Name:              check
+ Description:       This method returns the value of the MenuItem when it is
+                    clicked
+ 
+ Output:
+    returns         int value of ClickableObject
+ ******************************************************************************/
 int MenuItem::check()
 {
     int temp = 0;
@@ -77,6 +86,10 @@ void MenuItem::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the MenuItem
+ ******************************************************************************/
 void MenuItem::pause()
 {
     activeDraw = true;
@@ -85,6 +98,10 @@ void MenuItem::pause()
     activeCont = true;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the MenuItem if it is paused
+ ******************************************************************************/
 void MenuItem::unpause()
 {
     activeDraw = false;
