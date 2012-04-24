@@ -45,10 +45,18 @@ void Pig::applyForce(int m, Vect v, int dir)
 {
     PhysicalObject::applyForce(m, v, dir);
 
-    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 7)
+    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 4)
     {
-        health -= 50;
+        health -= 100;
     }
+}
+
+void Pig::draw(SDL_Surface* s)
+{
+    static SDL_Rect loc;
+    loc = pos;
+
+    SDL_BlitSurface(image, NULL, s, &loc);
 }
 
 void Pig::pause()

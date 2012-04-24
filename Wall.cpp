@@ -30,25 +30,25 @@ void Wall::applyForce(int m, Vect v, int dir)
     {
         v.y = vel.y * .8;   //friction
         acc.x += ((m * (v.x - vel.x)) / mass) * .5;
-        acc.y += (v.y - vel.y) * .8;
+        acc.y += (v.y - vel.y) * .2;
     }
     else if(dir == 1)
     {
         v.x = vel.x * .8;   //friction
-        acc.x += (v.x - vel.x) * .8;
-        acc.y += ((m * (v.y - vel.y)) / mass) * .35;
+        acc.x += (v.x - vel.x) * .5;
+        acc.y += ((m * (v.y - vel.y)) / mass) * .2;
     }
     else
     {
         acc.x += ((m * (v.x - vel.x)) / mass) * .5;
-        acc.y += ((m * (v.y - vel.y)) / mass) * .35;
+        acc.y += ((m * (v.y - vel.y)) / mass) * .2;
     }
-    
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 30)
+
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 7)
     {
         health -= 50;
     }
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 30)
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 17)
     {
         health -= 101;
     }

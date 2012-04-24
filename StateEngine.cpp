@@ -12,6 +12,8 @@ bool StateEngine::run(Room& room)
         state = room.getObjectAt(i)->check();
         if(room.getObjectAt(i)->getState() == -1)
             room.remove(i--);
+        else if(room.getObjectAt(i)->getState() == -4)
+            state = -4;
     }
 
     //If the room is a level
@@ -26,7 +28,15 @@ bool StateEngine::run(Room& room)
         if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <= 0)
         {
             //Lose Condition
-            state = -1;
+            state = -4;
+        }
+    }
+    //If the room ends with a cutscene
+    else if(room.getRoomType() == 3)
+    {
+        if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <=0)
+        {
+            state = 1001;
         }
     }
 
@@ -65,10 +75,10 @@ bool StateEngine::run(Room& room)
             running = room.load("LevelSelect.gel");
             paused = false;
             break;
-        //You beat the previous level, move to the title screen
+        //You beat the previous level, move to the Level Select screen
         case -2:
             //if(!room.load(decideLevel(currentLevel).c_str()))
-                running = room.load("TitleScreen.gel");
+                running = room.load("LevelSelect.gel");
             paused = false;
             break;
         // You Lose. Exit the program
@@ -187,6 +197,11 @@ bool StateEngine::run(Room& room)
             currentLevel = 61;
             paused = false;
             break;
+        case 1001:
+            running = room.load("IntroCutscene.gel");
+            currentLevel = 1001;
+            paused = false;
+            break;
     }
 
     return running;
@@ -270,6 +285,9 @@ string StateEngine::decideLevel(int i)
             break;
         case 61:
             s = "Ziggurat1.gel";
+            break;
+        case 1001:
+            s = "IntroCutscene.gel";
             break;
     }
     return s;

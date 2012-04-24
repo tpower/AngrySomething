@@ -28,8 +28,7 @@ Game::Game()
  ******************************************************************************/
 void Game::init()
 {
-    running = room.load("TitleScreen.gel");
-    room.setRoomType(Utility);
+    running = room.load("IntroLevel.gel");
 }
 
 /*******************************************************************************

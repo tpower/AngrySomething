@@ -1,18 +1,50 @@
-Space.bmp
+ClavusBG.bmp
 1
-17
-1 Stretchy.bmp 100 350 NNNNNNNNNN
-2 Enemy.bmp 225 440 0 0
-2 Enemy.bmp 295 440 0 0
-2 Enemy.bmp 260 340 0 0
-3 PlankV.bmp 200 400 0 0 20 80
-3 PlankV.bmp 270 400 0 0 20 80
-3 PlankV.bmp 340 400 0 0 20 80
-3 PlankH.bmp 200 380 0 0 80 20
-3 PlankH.bmp 280 380 0 0 80 20
-3 PlankV.bmp 230 300 0 0 20 80
-3 PlankV.bmp 310 300 0 0 20 80
-3 PlankH.bmp 240 270 0 0 80 20
+46
+1 Stretchy.bmp 200 540 NNNNNNNNNN
+2 Enemy.bmp 660 560 0 0
+2 Enemy.bmp 660 300 0 0
+2 Enemy.bmp 940 560 0 0
+2 Enemy.bmp 940 300 0 0
+
+7 ClavusLMaterial.bmp 540 700 0 0 260 20
+7 ClavusLMaterial.bmp 540 600 0 0 20 100
+7 ClavusLMaterial.bmp 780 600 0 0 20 100
+7 ClavusLMaterial.bmp 540 580 0 0 260 20
+7 ClavusLMaterial.bmp 540 480 0 0 20 100
+7 ClavusLMaterial.bmp 780 480 0 0 20 100
+7 ClavusLMaterial.bmp 540 460 0 0 260 20
+7 ClavusLMaterial.bmp 540 360 0 0 20 100
+7 ClavusLMaterial.bmp 780 360 0 0 20 100
+7 ClavusLMaterial.bmp 540 340 0 0 260 20
+7 ClavusLMaterial.bmp 540 320 0 0 100 20
+7 ClavusLMaterial.bmp 660 320 0 0 20 20
+7 ClavusLMaterial.bmp 700 320 0 0 100 20
+7 ClavusLMaterial.bmp 580 260 0 0 20 60
+7 ClavusLMaterial.bmp 620 260 0 0 20 60
+7 ClavusLMaterial.bmp 700 260 0 0 20 60
+7 ClavusLMaterial.bmp 740 260 0 0 20 60
+7 ClavusLMaterial.bmp 580 240 0 0 180 20
+
+7 ClavusLMaterial.bmp 820 700 0 0 260 20
+7 ClavusLMaterial.bmp 820 600 0 0 20 100
+7 ClavusLMaterial.bmp 1060 600 0 0 20 100
+7 ClavusLMaterial.bmp 820 580 0 0 260 20
+7 ClavusLMaterial.bmp 820 480 0 0 20 100
+7 ClavusLMaterial.bmp 1060 480 0 0 20 100
+7 ClavusLMaterial.bmp 820 460 0 0 260 20
+7 ClavusLMaterial.bmp 820 360 0 0 20 100
+7 ClavusLMaterial.bmp 1060 360 0 0 20 100
+7 ClavusLMaterial.bmp 820 340 0 0 260 20
+7 ClavusLMaterial.bmp 820 320 0 0 100 20
+7 ClavusLMaterial.bmp 940 320 0 0 20 20
+7 ClavusLMaterial.bmp 980 320 0 0 100 20
+7 ClavusLMaterial.bmp 860 260 0 0 20 60
+7 ClavusLMaterial.bmp 900 260 0 0 20 60
+7 ClavusLMaterial.bmp 980 260 0 0 20 60
+7 ClavusLMaterial.bmp 1020 260 0 0 20 60
+7 ClavusLMaterial.bmp 860 240 0 0 180 20
+
 4 Menu.bmp 10 10 50 50 -6
 5 Resume.bmp 70 30 25 25 -6
 5 Reset.bmp 120 30 25 25 -5
