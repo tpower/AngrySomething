@@ -53,7 +53,7 @@ void Projectile::run()
 {
     CircleObject::run();
 
-    if(pow(pow(vel.y, 2.0) + pow(vel.x, 2.0), .5) < 1)
+    if(pow(pow(vel.y, 2.0) + pow(vel.x, 2.0), .5) < .1)
     {
         state = -1;
     }

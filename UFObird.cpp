@@ -26,11 +26,37 @@ UFObird::UFObird(const char* file, const char* file2, int x, int y, int vx, int 
     activeCont = false;
 }
 
+/*******************************************************************************
+    Name:                   Destructor
+    Description:            Destructs the UFPbird and decrements the static
+                            bird counter.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 UFObird::~UFObird()
 {
     numBirds--;
 }
 
+/*******************************************************************************
+    Name:                   Run
+    Description:            Overridden function of the PhysicalObject class.
+                            Calls the move method of the PhysicalObject class
+                            which it inherits from then checks to see if the
+                            velocity of the Object is less than 1. If that is
+                            case, the state is set to -1 indicating it needs to
+                            be removed.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void UFObird::run()
 {
     move();
@@ -42,10 +68,17 @@ void UFObird::run()
 }
 
 /*******************************************************************************
- Name:              handle
- Description:       handles user input
- Input:
-    e               SDL_Event
+    Name:                   Process
+    Description:            Overidden function of the MechanicsObject class. Checks to
+                            if the UFObird class is in the correct spot to activate the
+                            UFO scripted event
+    Input:
+            None
+
+    Output:
+            Returns         an Object* of an Object that needs to be added to the
+                            array of Object* in Room.
+
  ******************************************************************************/
 Object* UFObird::process()
 {
@@ -62,6 +95,19 @@ Object* UFObird::process()
     return NULL;
 }
 
+/*******************************************************************************
+    Name:                   Draw
+    Description:            Overridden draw method. Draws the Object to the
+                            screen. UFObirds display two images, the bird and
+                            the UFO which consumes it once the script is
+                            activated.
+    Input:
+            SDL_Surface*    a SDL_Surface* representing the screen
+
+    Output:
+            None
+
+ ******************************************************************************/
 void UFObird::draw(SDL_Surface* s)
 {
     SDL_Rect temp;
@@ -88,6 +134,17 @@ void UFObird::draw(SDL_Surface* s)
         SDL_BlitSurface(Spaceship, NULL, s, &temp);
 }
 
+/*******************************************************************************
+    Name:                   pause
+    Description:            Turns off all of the components of the Object that
+                            get handled by engines except for Graphics.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void UFObird::pause()
 {
     activeDraw = true;
@@ -96,6 +153,17 @@ void UFObird::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+    Name:                   unpause
+    Description:            Turns on all of the components of the Object that
+                            get handled by engines for this specific Object.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void UFObird::unpause()
 {
     activeDraw = true;

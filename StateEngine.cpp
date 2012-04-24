@@ -10,19 +10,33 @@
 #include "Projectile.h"
 #include "Sling.h"
 
+/*******************************************************************************
+    Name:                   run
+    Description:            Checks all the Objects in the Room passed as an
+                            argument to see if any need to removed from the
+                            room. Then it checks all of the Objects to see if
+                            one demands a room change or change in condition of
+                            the program and acts to change the Room accordingly.
+    Input:
+            Room&           the Room to be managed
+
+    Output:
+            Returns         a boolean value indicating if the Game should
+                            continue running
+ ******************************************************************************/
 bool StateEngine::run(Room& room)
 {
     static int currentLevel = 0;
-    int state = 0;
+    int roomNum = 0;
     bool running = true;
 
-    for(int i = 0; i < room.getNumObjects() && !state; i++)
+    for(int i = 0; i < room.getNumObjects() && !roomNum; i++)
     {
-        state = room.getObjectAt(i)->check();
+        roomNum = room.getObjectAt(i)->check();
         if(room.getObjectAt(i)->getState() == -1)
             room.remove(i--);
         else if(room.getObjectAt(i)->getState() == -4)
-            state = -4;
+            roomNum = -4;
     }
 
     //If the room is a level
@@ -31,13 +45,13 @@ bool StateEngine::run(Room& room)
         if(Enemy::getNumEnemies() <= 0)
         {
             //Win Condition
-            state = -2;
+            roomNum = -2;
         }
 
         if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <= 0)
         {
             //Lose Condition
-            state = -4;
+            roomNum = -4;
         }
     }
     //If the room ends with a cutscene
@@ -45,7 +59,7 @@ bool StateEngine::run(Room& room)
     {
         if(Projectile::getNumBirds() <= 0 && Sling::getProjectileCount() <=0)
         {
-            state = 1001;
+            roomNum = 1001;
         }
     }
 
@@ -215,6 +229,16 @@ bool StateEngine::run(Room& room)
     return running;
 }
 
+/*******************************************************************************
+    Name:                   decideLevel
+    Description:            Decides the Room to be loaded and returns a string
+                            indicating the Room to be loaded.
+    Input:
+            int             a value indicating which Room to be loaded
+
+    Output:
+            Returns         a string representing the Room to be loaded
+ ******************************************************************************/
 string StateEngine::decideLevel(int i)
 {
     string s;

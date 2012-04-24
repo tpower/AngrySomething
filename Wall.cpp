@@ -23,16 +23,51 @@ Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
     activeCont  = false;
 }
 
+/*******************************************************************************
+    Name:                   Destructor
+    Description:            Destructs the Wall and adds 50 points the static
+                            score counter.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 Wall::~Wall()
 {
     adjustScore(50);
 }
 
+/*******************************************************************************
+    Name:                   Run()
+    Description:            Calls the move method of the PhysicalObject class
+                            which it inherits from.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void Wall::run()
 {
     move();
 }
 
+/*******************************************************************************
+    Name:                   applyForce
+    Description:            Overridden applyForce method. Applies a vector from
+                            a collision to this object and adjusts it's health
+                            if that vector force was great enough to cause
+                            damage to it.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void Wall::applyForce(int m, Vect v, int dir)
 {
     if(dir == 0)
@@ -46,6 +81,7 @@ void Wall::applyForce(int m, Vect v, int dir)
         v.x = vel.x * .8;   //friction
         acc.x += (v.x - vel.x) * .5;
         acc.y += ((m * (v.y - vel.y)) / mass) * .2;
+
     }
     else
     {
@@ -57,6 +93,7 @@ void Wall::applyForce(int m, Vect v, int dir)
     {
         health -= 50;
     }
+
     if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 17)
     {
         health -= 101;
@@ -71,6 +108,17 @@ void Wall::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+    Name:                   unpause
+    Description:            Turns on all of the components of the Object that
+                            get handled by engines for this specific Object.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void Wall::unpause()
 {
     activeDraw = true;
