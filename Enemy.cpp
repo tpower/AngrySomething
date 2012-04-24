@@ -12,6 +12,17 @@
 
 int Enemy::numEnemies = 0;
 
+/*******************************************************************************
+ Name:              Enemy
+ Description:       Primary constructor
+ 
+ Input:
+    file            char* filepath for image file
+    x               int horizontal position
+    y               int vertical position
+    vx              int horizontal velocity
+    vy              int vertical velocity
+ ******************************************************************************/
 Enemy::Enemy(const char* file, int x, int y, int vx, int vy)
     :   Object(x, y, 20, 20),
         DrawableObject(file, 2),
@@ -26,20 +37,20 @@ Enemy::Enemy(const char* file, int x, int y, int vx, int vy)
     activeCont = false;
 }
 
-Enemy::Enemy(const Enemy& other)
-    :   Object(other.pos.x, other.pos.y),
-        DrawableObject("TestA.bmp", 2),
-        PhysicalObject(other.pos.x, other.pos.y)
-{
-    numEnemies++;
-}
-
+/*******************************************************************************
+ Name:              ~Enemy
+ Description:       Destructor
+ ******************************************************************************/
 Enemy::~Enemy()
 {
     numEnemies--;
     adjustScore(100);
 }
 
+/*******************************************************************************
+ Name:              run
+ Description:       This method overrides PhysicalObject::run()
+ ******************************************************************************/
 void Enemy::run()
 {
     move();
@@ -50,6 +61,15 @@ void Enemy::run()
     }
 }
 
+/*******************************************************************************
+ Name:              applyForce
+ Description:       This method overrides PhysicalObject::applyForce()
+ 
+ Input:
+    m               int mass of colliding Object
+    v               Vect velocity of colliding Object
+    dir             int direction of collision
+ ******************************************************************************/
 void Enemy::applyForce(int m, Vect v, int dir)
 {
     PhysicalObject::applyForce(m, v, dir);
@@ -60,6 +80,13 @@ void Enemy::applyForce(int m, Vect v, int dir)
     }
 }
 
+/*******************************************************************************
+ Name:              draw
+ Description:       This method overrides DrawableObject::draw()
+ 
+ Input:
+    s               SDL_Surface* to be drawn to
+ ******************************************************************************/
 void Enemy::draw(SDL_Surface* s)
 {
     static SDL_Rect loc;
@@ -68,6 +95,10 @@ void Enemy::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the Enemy
+ ******************************************************************************/
 void Enemy::pause()
 {
     activeDraw = true;
@@ -76,6 +107,10 @@ void Enemy::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the Enemy if it is paused
+ ******************************************************************************/
 void Enemy::unpause()
 {
     activeDraw = true;

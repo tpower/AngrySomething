@@ -21,7 +21,6 @@ class Enemy : public DrawableObject, public PhysicalObject, public MechanicsObje
 
     public:
         Enemy(const char* file, int x, int y, int vx, int vy);
-        Enemy(const Enemy& other);
         ~Enemy();
 
         virtual void    run();

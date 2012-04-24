@@ -14,8 +14,7 @@
 class DestructableWall : public Wall
 {
     public:
-        DestructableWall(const char* file, int x, int y, int vx, int vy, int w,
-                         int h);
+        DestructableWall(const char* file, int x, int y, int vx, int vy, int w, int h);
         void    run();
 };
 

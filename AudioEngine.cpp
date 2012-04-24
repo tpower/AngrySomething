@@ -8,6 +8,10 @@
 #include "AudioEngine.h"
 #include "AudibleObject.h"
 
+/*******************************************************************************
+ Name:              AudioEngine
+ Description:       Default constructor
+ ******************************************************************************/
 AudioEngine::AudioEngine()
 {
     if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
@@ -27,12 +31,24 @@ AudioEngine::AudioEngine()
     }
 }
 
+/*******************************************************************************
+ Name:              AudioEngine
+ Description:       Destructor
+ ******************************************************************************/
 AudioEngine::~AudioEngine()
 {
     Mix_FreeMusic(music);
     Mix_CloseAudio();
 }
 
+/*******************************************************************************
+ Name:              run
+ Description:       This method plays sound effects of every AudibleObject in
+                    the room
+ 
+ Input:
+    room            Room& that contains AudibleObjects
+ ******************************************************************************/
 void AudioEngine::run(Room& room)
 {
     for(int i = 0; i < room.getNumObjects(); i++)

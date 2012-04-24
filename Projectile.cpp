@@ -12,6 +12,17 @@
 
 int Projectile::numBirds = 0;
 
+/*******************************************************************************
+ Name:              Projectile
+ Description:       Primary constructor
+ 
+ Input:
+    file            char* filepath for image file
+    x               int horizontal position
+    y               int vertical position
+    vx              int horizontal velocity
+    vy              int vertical velocity
+ ******************************************************************************/
 Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     :   Object(x, y, 20, 20),
         DrawableObject(file, 2),
@@ -25,11 +36,19 @@ Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              ~Projectile
+ Description:       Destructor
+ ******************************************************************************/
 Projectile::~Projectile()
 {
     numBirds--;
 }
 
+/*******************************************************************************
+ Name:              run
+ Description:       This method overrides PhysicalObject::run()
+ ******************************************************************************/
 void Projectile::run()
 {
     CircleObject::run();
@@ -40,14 +59,25 @@ void Projectile::run()
     }
 }
 
-void Projectile::draw(SDL_Surface* screen)
+/*******************************************************************************
+ Name:              draw
+ Description:       This method overrides DrawableObject::draw()
+ 
+ Input:
+    s               SDL_Surface* to be drawn to
+ ******************************************************************************/
+void Projectile::draw(SDL_Surface* s)
 {
     static SDL_Rect loc;
     loc = pos;
 
-    SDL_BlitSurface(image, NULL, screen, &loc);
+    SDL_BlitSurface(image, NULL, s, &loc);
 }
 
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the Projectile
+ ******************************************************************************/
 void Projectile::pause()
 {
     activeDraw = true;
@@ -56,6 +86,10 @@ void Projectile::pause()
     activeCont = false;
 }
 
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the Projectile if it is paused
+ ******************************************************************************/
 void Projectile::unpause()
 {
     activeDraw = true;

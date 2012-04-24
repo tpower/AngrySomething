@@ -8,6 +8,13 @@
 
 #include "AudibleObject.h"
 
+/*******************************************************************************
+ Name:              AudibleObject
+ Description:       Primary constructor
+ 
+ Input:
+    file            string filepath of soundbite
+ ******************************************************************************/
 AudibleObject::AudibleObject(string file)
 {
     noise = Mix_LoadWAV( "noise.wav" );
@@ -19,11 +26,19 @@ AudibleObject::AudibleObject(string file)
     audible = true;
 }
 
+/*******************************************************************************
+ Name:              ~AudibleObject
+ Description:       Destructor
+ ******************************************************************************/
 AudibleObject::~AudibleObject()
 {
     Mix_FreeChunk(noise);
 }
 
+/*******************************************************************************
+ ACCESSORS
+ Name:              wantsToBeNoisy, shouldBeNoisy, getNoise
+ ******************************************************************************/
 bool AudibleObject::wantsToBeNoisy()
 {
     return noisy;

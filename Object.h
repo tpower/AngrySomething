@@ -50,8 +50,6 @@ class Object
         bool            getActiveCont() {return activeCont;}
         virtual void    pause();
         virtual void    unpause();
-
-        virtual void    run();
 };
 
 #endif

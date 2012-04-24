@@ -9,6 +9,13 @@
 #include "MechanicsEngine.h"
 #include "MechanicsObject.h"
 
+/*******************************************************************************
+ Name:              run
+ Description:       This method processes all MechanicalObjects in the room
+ 
+ Input:
+    room            Room& containing MechanicalObjects
+ ******************************************************************************/
 void MechanicsEngine::run(Room& room)
 {
     int state = 0;

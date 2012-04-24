@@ -17,6 +17,9 @@ const int FIELD_H = 720;
 /*******************************************************************************
  Name:              run
  Description:       Runs all objects in the room and tests for collisions
+ 
+ Input:
+    room            Room& containing PhysicalObjects
  ******************************************************************************/
 void PhysicsEngine::run(Room& room)
 {
@@ -26,7 +29,10 @@ void PhysicsEngine::run(Room& room)
 
 /*******************************************************************************
  Name:              runObjects
- Description:       This method runs every physical object in a given room.
+ Description:       This method runs every physical object in a given room
+ 
+ Input:
+    room            Room& containing PhysicalObjects
  ******************************************************************************/
 void PhysicsEngine::runObjects(Room& room)
 {
@@ -47,7 +53,10 @@ void PhysicsEngine::runObjects(Room& room)
 /*******************************************************************************
  Name:              detectCollisions
  Description:       This method detects collisions between all PhysicalObjects
-                    in a given room.
+                    in a given room
+ 
+ Input:
+    room            Room& containing PhysicalObjects
  ******************************************************************************/
 void PhysicsEngine::detectCollisions(Room& room)
 {
@@ -86,7 +95,10 @@ void PhysicsEngine::detectCollisions(Room& room)
 /*******************************************************************************
  Name:              handleWallCollision
  Description:       This method keeps a PhysicalObject from leaving the
-                    boundaries of the screen.
+                    boundaries of the screen
+ 
+ Input:
+    pObj            PhysicalObject* to test for wall collisions
  ******************************************************************************/
 void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 {
@@ -143,6 +155,10 @@ void PhysicsEngine::handleWallCollision(PhysicalObject* pObj)
 /*******************************************************************************
  Name:              doCollide
  Description:       Determines if two PhysicalObjects collided
+ 
+ Input:
+    a               PhysicalObject*
+    b               PhysicalObject*
  ******************************************************************************/
 bool PhysicsEngine::doCollide(PhysicalObject *a, PhysicalObject *b)
 {
@@ -157,7 +173,13 @@ bool PhysicsEngine::doCollide(CircleObject *a, CircleObject *b)
 }
 
 /*******************************************************************************
- Name:               resolveCollision
+ Name:              resolveCollision
+ Description:       This method determines the type of collision and calls
+                    appropriate hanlding methods
+ 
+ Input:
+    a               PhysicalObject*
+    b               PhysicalObject*
  ******************************************************************************/
 void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
 {
@@ -178,6 +200,15 @@ void PhysicsEngine::resolveCollision(PhysicalObject* obj, PhysicalObject* obj2)
     }
 }
 
+/*******************************************************************************
+ Name:              resolveCollision
+ Description:       This method determines the type of collision and calls
+ appropriate hanlding methods
+ 
+ Input:
+    a               CircleObject*
+    b               CircleObject*
+ ******************************************************************************/
 void PhysicsEngine::resolveCollision(CircleObject* obj, CircleObject* obj2)
 {
     handleCollision(obj, obj2);
@@ -186,6 +217,11 @@ void PhysicsEngine::resolveCollision(CircleObject* obj, CircleObject* obj2)
 
 /*******************************************************************************
  Name:              sideOfCollision
+ Description:       This method determines the side of a box collision
+ 
+ Input:
+    a               PhysicalObject*
+    b               PhysicalObject*
  ******************************************************************************/
 int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 {
@@ -273,6 +309,11 @@ int PhysicsEngine::sideOfCollision(PhysicalObject* obj, PhysicalObject* obj2)
 
 /*******************************************************************************
  Name:              handleCollision_Box
+ Desription:        This method handles a box collision
+ 
+ Input:
+    a               PhysicalObject*
+    b               PhysicalObject*
  ******************************************************************************/
 void PhysicsEngine::handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj2, int side)
 {
@@ -314,7 +355,12 @@ void PhysicsEngine::handleCollision_Box(PhysicalObject* obj, PhysicalObject* obj
 }
 
 /*******************************************************************************
- Name:              handleCollision_Circle
+ Name:              handleCollision
+ Desription:        This method handles a circle collision
+ 
+ Input:
+    a               CircleObject*
+    b               CircleObject*
  ******************************************************************************/
 void PhysicsEngine::handleCollision(CircleObject* obj, CircleObject* obj2)
 {

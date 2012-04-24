@@ -23,14 +23,18 @@
 #include "Timer.h"
 
 /*******************************************************************************
- ACCESSORS
- Name:              getObjectAt, getNumObjects
+ Name:              Room
+ Description:       Default constructor
  ******************************************************************************/
 Room::Room()
 {
     roomType = Level;
 }
 
+/*******************************************************************************
+ Name:              ~Room
+ Description:       Destructor
+ ******************************************************************************/
 Room::~Room()
 {
     SDL_FreeSurface(background);
@@ -38,7 +42,7 @@ Room::~Room()
 
 /*******************************************************************************
  ACCESSORS
- Name:              getObjectAt, getNumObjects
+ Name:              getObjectAt, getNumObjects, getBackground
  ******************************************************************************/
 Object* Room::getObjectAt(int i)
 {
@@ -50,6 +54,15 @@ int Room::getNumObjects()
     return (int)object.size();
 }
 
+SDL_Surface* Room::getBackground()
+{
+    return background;
+}
+
+/*******************************************************************************
+ MODIFIERS
+ Name:              remove, setBackground, erase, add
+ ******************************************************************************/
 void Room::remove(int i)
 {
     delete object[i];
@@ -71,9 +84,9 @@ void Room::erase()
     }
 }
 
-SDL_Surface* Room::getBackground()
+void Room::add(Object* obj)
 {
-    return background;
+    object.push_back(obj);
 }
 
 /*******************************************************************************
@@ -205,12 +218,13 @@ bool Room::load(const char* f)
     return loaded;
 }
 
-void Room::add(Object* obj)
-{
-    object.push_back(obj);
-}
-
-//Not really sure that we actually want this as a bool
+/*******************************************************************************
+ Name:              pause
+ Description:       This method temporarily disables the Room
+ 
+ Output:
+    returns         bool TRUE
+ ******************************************************************************/
 bool Room::pause()
 {
     Object* obj;
@@ -223,7 +237,13 @@ bool Room::pause()
     return true;
 }
 
-//Not really sure that we actually want this as a bool
+/*******************************************************************************
+ Name:              unpause
+ Description:       This method enables the Room if it is paused
+ 
+ Output:
+    returns         bool TRUE
+ ******************************************************************************/
 bool Room::unpause()
 {
     Object* obj;
