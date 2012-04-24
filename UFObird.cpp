@@ -1,16 +1,29 @@
 /*******************************************************************************
- Filename:                  UFOBird.h
- Classname:                 UFOBird
- 
- Description:               The UFOBird class is a subclass of Projectile that
-                            is abducted from the game by a UFO in the initial
-                            cut-scene.
+ Filename:                  UFObird.h
+ Classname:                 UFObird
+
+ Description:               This file defines the UFObird class. This class
+                            is used in the scripted cutscene and spawns an
+                            AngryBird which is abducted by aliens.
  ******************************************************************************/
 
 #include <cmath>
 
-#include "UFObird.h"
+/*******************************************************************************
+    Name:                   Constructor
+    Description:            Constructs a UFOBird class
+    Input:
+            const char*     the name of the bitmap file for the UFO graphic
+            const char*     the name of the bitmap file for the Bird graphic
+            int             the x position of the object on the screen
+            int             the y position of the object on the screen
+            int             the initial x velocity of the object
+            int             the initial y velocity of the object
 
+    Output:
+            None
+
+ ******************************************************************************/
 UFObird::UFObird(const char* file, const char* file2, int x, int y, int vx, int vy)
     :   Object(x, y, 36, 36),
         Projectile(file, x, y, vx, vy)

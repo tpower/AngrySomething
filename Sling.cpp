@@ -1,9 +1,11 @@
 /*******************************************************************************
  Filename:                  Sling.h
  Classname:                 Sling
- 
- Description:               The Sling class is an object that receives user
-                            input and launches Projectiles across the screen.
+
+ Description:               This file implements the Sling class. This class
+                            is an object capable of taking user input to direct
+                            the slings angle, and spawn a bird at the proper
+                            velocity and position.
  ******************************************************************************/
 
 #include <cmath>

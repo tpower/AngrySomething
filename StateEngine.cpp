@@ -1,8 +1,11 @@
 /*******************************************************************************
- Filename:                  StateEngine.h
- Classname:                 StateEngine
- 
- Description:               
+ Filename:                  Sling.cpp
+ Classname:                 Sling
+
+ Description:               This file implements StateEngine. The state engine
+                            is responsible for managing the state of the objects
+                            in the Room as well as managing the condition of the
+                            Room and level.
  ******************************************************************************/
 
 #include "StateEngine.h"

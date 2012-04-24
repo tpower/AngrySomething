@@ -1,15 +1,33 @@
 /*******************************************************************************
- Filename:                  Wall.h
+ Filename:                  Wall.cpp
  Classname:                 Wall
- 
- Description:               The Wall class is an object that is used to create
-                            structures and barriers within the game.
+
+ Description:               This file implements the Wall class. This class
+                            is an object that occupies physical space, is
+                            drawn on the screen, and is an obstical that the
+                            player must overcome. This variety is not
+                            destroy-able in game.
  ******************************************************************************/
 
+#include "Wall.h"
 #include <cmath>
 
-#include "Wall.h"
+/*******************************************************************************
+    Name:                   Constructor
+    Description:            Constructs a Wall class
+    Input:
+            const char*     the name of the bitmap file for the graphics
+            int             the x position of the object on the screen
+            int             the y position of the object on the screen
+            int             the initial x velocity of the object
+            int             the initial y velocity of the object
+            int             the width of the object
+            int             the height of the object
 
+    Output:
+            None
+
+ ******************************************************************************/
 Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
     :   Object(x, y, w, h),
         DrawableObject(file, 2),
@@ -100,6 +118,17 @@ void Wall::applyForce(int m, Vect v, int dir)
     }
 }
 
+/*******************************************************************************
+    Name:                   pause
+    Description:            Turns off all of the components of the Object that
+                            get handled by engines except for Graphics.
+    Input:
+            None
+
+    Output:
+            None
+
+ ******************************************************************************/
 void Wall::pause()
 {
     activeDraw = true;
