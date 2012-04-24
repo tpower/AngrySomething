@@ -16,7 +16,6 @@
 #include "MechanicsObject.h"
 #include "ControllableObject.h"
 #include "Projectile.h"
-#include "UFObird.h"
 
 using namespace std;
 

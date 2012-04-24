@@ -18,7 +18,8 @@
 
 using namespace std;
 
-class PauseButton : public DrawableObject, public MechanicsObject, public ControllableObject
+class PauseButton : public DrawableObject, public MechanicsObject,
+                    public ControllableObject
 {
     private:
         ClickableObject* button1;

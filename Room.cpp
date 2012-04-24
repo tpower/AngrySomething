@@ -126,7 +126,7 @@ bool Room::load(const char* f)
                     string file;
                     int x, y, xvel, yvel;
                     inFile >> file >> x >> y >> xvel >> yvel;
-                    object.push_back(new Pig(file.c_str(),  x, y, xvel, yvel));
+                    object.push_back(new Enemy(file.c_str(),  x, y, xvel, yvel));
                     break;
                 }
                 case 3://Wall

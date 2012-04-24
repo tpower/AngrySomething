@@ -6,13 +6,15 @@
  ******************************************************************************/
 
 #include "StateEngine.h"
+#include "Enemy.h"
+#include "Projectile.h"
+#include "Sling.h"
 
 bool StateEngine::run(Room& room)
 {
     static int currentLevel = 0;
     int state = 0;
     bool running = true;
-    //Object* obj;
 
     for(int i = 0; i < room.getNumObjects() && !state; i++)
     {
@@ -26,7 +28,7 @@ bool StateEngine::run(Room& room)
     //If the room is a level
     if(room.getRoomType() == 1)
     {
-        if(Pig::getNumPigs() <= 0)
+        if(Enemy::getNumEnemies() <= 0)
         {
             //Win Condition
             state = -2;
@@ -48,8 +50,8 @@ bool StateEngine::run(Room& room)
     }
 
     if(state == -2)
-            currentLevel++;
-//    static bool paused = false;
+        currentLevel++;
+    
     switch(state)
     {
         //Pause/Unpause the game
@@ -84,8 +86,7 @@ bool StateEngine::run(Room& room)
             break;
         //You beat the previous level, move to the Level Select screen
         case -2:
-            //if(!room.load(decideLevel(currentLevel).c_str()))
-                running = room.load("LevelSelect.gel");
+            running = room.load("LevelSelect.gel");
             paused = false;
             break;
         // You Lose. Exit the program
@@ -216,14 +217,6 @@ bool StateEngine::run(Room& room)
 
 string StateEngine::decideLevel(int i)
 {
-    /*
-    char buffer[1];
-    string s = "Level";
-    //s += sprintf(buffer,"%d",i);
-    itoa(i, buffer, 10);
-    s += buffer;
-    s += ".gel";
-    */
     string s;
     switch(i)
     {

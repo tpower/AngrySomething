@@ -7,11 +7,7 @@
  ******************************************************************************/
 
 #include "MechanicsEngine.h"
-#include "Object.h"
 #include "MechanicsObject.h"
-#include "Enemy.h"
-#include "Projectile.h"
-#include "Sling.h"
 
 void MechanicsEngine::run(Room& room)
 {

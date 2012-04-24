@@ -7,8 +7,6 @@
                             the game.
  ******************************************************************************/
 
-#include <cstdlib>
-
 #include "Game.h"
 
 using namespace std;

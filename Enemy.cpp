@@ -10,15 +10,15 @@
 
 #include "Enemy.h"
 
-int Pig::numPigs = 0;
+int Enemy::numEnemies = 0;
 
-Pig::Pig(const char* file, int x, int y, int vx, int vy)
+Enemy::Enemy(const char* file, int x, int y, int vx, int vy)
     :   Object(x, y, 20, 20),
         DrawableObject(file, 2),
         PhysicalObject(vx, vy)
 {
     health = 100;
-    numPigs++;
+    numEnemies++;
 
     activeDraw = true;
     activePhys = true;
@@ -26,21 +26,21 @@ Pig::Pig(const char* file, int x, int y, int vx, int vy)
     activeCont = false;
 }
 
-Pig::Pig(const Pig& other)
+Enemy::Enemy(const Enemy& other)
     :   Object(other.pos.x, other.pos.y),
         DrawableObject("TestA.bmp", 2),
         PhysicalObject(other.pos.x, other.pos.y)
 {
-    numPigs++;
+    numEnemies++;
 }
 
-Pig::~Pig()
+Enemy::~Enemy()
 {
-    numPigs--;
+    numEnemies--;
     adjustScore(100);
 }
 
-void Pig::run()
+void Enemy::run()
 {
     move();
 
@@ -50,7 +50,7 @@ void Pig::run()
     }
 }
 
-void Pig::applyForce(int m, Vect v, int dir)
+void Enemy::applyForce(int m, Vect v, int dir)
 {
     PhysicalObject::applyForce(m, v, dir);
 
@@ -60,7 +60,7 @@ void Pig::applyForce(int m, Vect v, int dir)
     }
 }
 
-void Pig::draw(SDL_Surface* s)
+void Enemy::draw(SDL_Surface* s)
 {
     static SDL_Rect loc;
     loc = pos;
@@ -68,7 +68,7 @@ void Pig::draw(SDL_Surface* s)
     SDL_BlitSurface(image, NULL, s, &loc);
 }
 
-void Pig::pause()
+void Enemy::pause()
 {
     activeDraw = true;
     activePhys = false;
@@ -76,7 +76,7 @@ void Pig::pause()
     activeCont = false;
 }
 
-void Pig::unpause()
+void Enemy::unpause()
 {
     activeDraw = true;
     activePhys = true;

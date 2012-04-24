@@ -10,7 +10,6 @@
 NonInteractionObject::NonInteractionObject(const char* file, int x, int y)
     :   Object(x, y),
         DrawableObject(file, 3)
-
 {
     activeDraw = true;
     activePhys = false;

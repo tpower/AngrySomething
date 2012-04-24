@@ -8,7 +8,8 @@
 
 #include "DestructableWall.h"
 
-DestructableWall::DestructableWall(const char* file, int x, int y, int vx, int vy, int w, int h)
+DestructableWall::DestructableWall(const char* file, int x, int y, int vx,
+                                   int vy, int w, int h)
     :   Object(x, y, w, h),
         Wall(file, x, y, vx, vy, w, h)
 {

@@ -9,6 +9,7 @@
 #include <cmath>
 
 #include "Sling.h"
+#include "UFObird.h"
 
 /*******************************************************************************
  Name:              Sling

@@ -6,6 +6,7 @@
  ******************************************************************************/
 
 #include "AudioEngine.h"
+#include "AudibleObject.h"
 
 AudioEngine::AudioEngine()
 {

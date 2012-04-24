@@ -3,8 +3,8 @@
  Classname:                 CircleObject
  
  Description:               The CircleObject class is a subclass of
- PhysicalObject that adds circular collision handling
- to a PhysicalObject.
+                            PhysicalObject that adds circular collision handling
+                            to a PhysicalObject.
  ******************************************************************************/
 
 #include "CircleObject.h"
