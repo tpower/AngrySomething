@@ -43,7 +43,7 @@ void Wall::applyForce(int m, Vect v, int dir)
     {
         health -= 50;
     }
-    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 10)
+    if(pow((pow(v.y,2) + pow(v.x, 2)), .5) > 17)
     {
         health -= 101;
     }
