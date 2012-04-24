@@ -1,3 +1,11 @@
+/*******************************************************************************
+ Filename:                  Geometry.h
+ Classname:                 
+ 
+ Description:               The structs defined in Geometry are shape objects
+                            used by the PhysicsEngine to determine collisions
+ ******************************************************************************/
+
 #ifndef ANGRYSOMETHING_GEOMETRY_H
 #define ANGRYSOMETHING_GEOMETRY_H
 
@@ -7,7 +15,7 @@
 using namespace std;
 
 /*******************************************************************************
- Enum side, shape
+ Enum side
  ******************************************************************************/
 enum side
 {
@@ -22,6 +30,9 @@ enum side
     TOP_LEFT        = 8
 };
 
+/*******************************************************************************
+ Enum shape
+ ******************************************************************************/
 enum shape
 {
     BOX     = 0,
@@ -117,28 +128,6 @@ struct Circle
     int     left();
     int     right();
     bool    containsPoint(Point p);
-};
-
-/*******************************************************************************
- Rect
- ******************************************************************************/
-struct Rect
-{
-    Point a, b, c, d;
-    
-    Rect(Point one, Point two, Point three, Point four);
-    Rect(SDL_Rect r);
-    Rect(Box bx);
-    
-    Rect        operator+(Vect v);
-    Point       center();
-    int         top();
-    int         bottom();
-    int         left();
-    int         right();
-    int         height();
-    int         width();
-    SDL_Rect    sdlVer();
 };
 
 /*******************************************************************************

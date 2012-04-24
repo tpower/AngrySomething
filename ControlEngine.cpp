@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  ControlEngine.h
+ Classname:                 ControlEngine
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "ControlEngine.h"
 
 void ControlEngine::run(Room& room)

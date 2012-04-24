@@ -1,8 +1,9 @@
 /*******************************************************************************
- Filename:                  Room.cpp
+ Filename:                  Room.h
  Classname:                 Room
-
- Description:               This file defines the Room class.
+ 
+ Description:               The Room class is a container for objects in the
+                            game and handles loading levels from files.
  ******************************************************************************/
 
 #include "Room.h"
@@ -11,7 +12,7 @@
 #include "PhysicalObject.h"
 #include "Sling.h"
 #include "Wall.h"
-#include "Pig.h"
+#include "Enemy.h"
 #include "ClickableObject.h"
 #include "PauseButton.h"
 #include "MenuItem.h"

@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  NonInteractionObject.h
+ Classname:                 NonInteractionObject
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "NonInteractionObject.h"
 
 NonInteractionObject::NonInteractionObject(const char* file, int x, int y)
@@ -9,11 +16,6 @@ NonInteractionObject::NonInteractionObject(const char* file, int x, int y)
     activePhys = false;
     activeMech = false;
     activeCont = false;
-}
-
-NonInteractionObject::~NonInteractionObject()
-{
-
 }
 
 /*******************************************************************************

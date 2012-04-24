@@ -1,9 +1,8 @@
 /*******************************************************************************
- Filename:                  GraphicsEngine.cpp
+ Filename:                  GraphicsEngine.h
  Classname:                 GraphicsEngine
-
- Description:               This file defines the GraphicsEngine class. The
-                            GraphicsEngine class is responsible for output to
+ 
+ Description:               The GraphicsEngine class handles drawing objects to
                             the screen.
  ******************************************************************************/
 

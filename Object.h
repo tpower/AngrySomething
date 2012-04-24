@@ -2,7 +2,8 @@
  Filename:                  Object.h
  Classname:                 Object
 
- Description:               This file declares the Object class.
+ Description:               The Object class is the base class for objects
+                            within the game environment.
  ******************************************************************************/
 
 #ifndef AngrySomething_Object_h
@@ -47,10 +48,6 @@ class Object
         bool            getActivePhys() {return activePhys;}
         bool            getActiveMech() {return activeMech;}
         bool            getActiveCont() {return activeCont;}
-//        void            setActiveDraw(bool b) {activeDraw = b;}
-//        void            setActivePhys(bool b) {activePhys = b;}
-//        void            setActiveMech(bool b) {activeMech = b;}
-//        void            setActiveCont(bool b) {activeCont = b;}
         virtual void    pause();
         virtual void    unpause();
 

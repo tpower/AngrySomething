@@ -1,19 +1,28 @@
+/*******************************************************************************
+ Filename:                  ConversationBox.h
+ Classname:                 ConversationBox
+ 
+ Description:               
+ ******************************************************************************/
+
 #ifndef CONVERSATIONBOX_H_INCLUDED
 #define CONVERSATIONBOX_H_INCLUDED
 
+#include <string>
+
 #include "DrawableObject.h"
 #include "MechanicsObject.h"
-
-#include <string>
 
 using namespace std;
 
 class ConversationBox : public DrawableObject, public MechanicsObject
 {
     private:
-        string conv;
-        int index, startTime, dispTime;
-        char person;
+        string  conv;
+        int     index, 
+                startTime, 
+                dispTime;
+        char    person;
     public:
         ConversationBox(int x, int y, string c);
 
@@ -23,4 +32,4 @@ class ConversationBox : public DrawableObject, public MechanicsObject
         void            unpause();
 };
 
-#endif // CONVERSATIONBOX_H_INCLUDED
+#endif

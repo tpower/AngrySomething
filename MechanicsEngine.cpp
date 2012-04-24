@@ -1,7 +1,15 @@
+/*******************************************************************************
+ Filename:                  MechanicsEngine.h
+ Classname:                 MechanicsEngine
+ 
+ Description:               The MechanicsEngine class handles the game mechanics
+                            events within the game.
+ ******************************************************************************/
+
 #include "MechanicsEngine.h"
 #include "Object.h"
 #include "MechanicsObject.h"
-#include "Pig.h"
+#include "Enemy.h"
 #include "Projectile.h"
 #include "Sling.h"
 
@@ -24,5 +32,4 @@ void MechanicsEngine::run(Room& room)
             }
         }
     }
-
 }

@@ -2,14 +2,15 @@
  Filename:                  DrawableObject.h
  Classname:                 DrawableObject
 
- Description:               This file declares the DrawableObject class.
+ Description:               The DrawableObject class is a subclass of Object
+                            that can be drawn to the screen.
  ******************************************************************************/
 
 #ifndef DrawableObject_H
 #define DrawableObject_H
 
 #include <SDL/SDL.h>
-#include "SDL_ttf/SDL_ttf.h"
+#include <SDL_ttf/SDL_ttf.h>
 
 #include "Object.h"
 

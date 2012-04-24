@@ -2,8 +2,7 @@
  Filename:                  GraphicsEngine.h
  Classname:                 GraphicsEngine
 
- Description:               This file declares the GraphicsEngine class. The
-                            GraphicsEngine class is responsible for output to
+ Description:               The GraphicsEngine class handles drawing objects to
                             the screen.
  ******************************************************************************/
 
@@ -11,10 +10,9 @@
 #define AngrySomething_GraphicsEngine_h
 
 #include <SDL/SDL.h>
+
 #include "DrawableObject.h"
 #include "Room.h"
-
-class Room;
 
 class GraphicsEngine
 {
@@ -25,8 +23,8 @@ class GraphicsEngine
         GraphicsEngine();
         ~GraphicsEngine();
 
-        void            run(Room&);
-        void            sortByLayer(vector<DrawableObject*>&);
+        void    run(Room&);
+        void    sortByLayer(vector<DrawableObject*>&);
 };
 
 #endif

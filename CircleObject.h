@@ -1,3 +1,11 @@
+/*******************************************************************************
+ Filename:                  CircleObject.h
+ Classname:                 CircleObject
+ 
+ Description:               The CircleObject class is a subclass of
+                            PhysicalObject that adds circular collision handling
+                            to a PhysicalObject.
+ ******************************************************************************/
 
 #ifndef AngrySomething_CircleObject_h
 #define AngrySomething_CircleObject_h

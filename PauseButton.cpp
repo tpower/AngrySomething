@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  PauseButton.h
+ Classname:                 PauseButton
+ 
+ Description:               
+ ******************************************************************************/
+
 #include "PauseButton.h"
 #include "GraphicsEngine.h"
 #include "Room.h"
@@ -5,7 +12,6 @@
 PauseButton::PauseButton(const char* file, int x, int y, int w, int h)
     :   Object(x, y, w, h),
         DrawableObject(file, 3)
-
 {
     type = 2;
     Value = 0;
@@ -14,11 +20,6 @@ PauseButton::PauseButton(const char* file, int x, int y, int w, int h)
     activePhys = false;
     activeMech = true;
     activeCont = true;
-}
-
-PauseButton::~PauseButton()
-{
-
 }
 
 /*******************************************************************************

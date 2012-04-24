@@ -2,10 +2,9 @@
  Filename:                  Game.h
  Classname:                 Game
 
- Description:               This file declares the Game class. This class will
-                            be the controller for the game. It is in charge of
-                            running the game loop and handling communication
-                            between the Physics and Graphics Engines.
+ Description:               The Game class is in charge of running the game loop
+                            and handling communication between engines within
+                            the game.
  ******************************************************************************/
 
 #ifndef AngrySomething_Game_h
@@ -38,7 +37,6 @@ class Game
 
         void    init();
         int     run();
-
 };
 
 #endif

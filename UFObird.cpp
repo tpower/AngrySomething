@@ -1,17 +1,19 @@
 /*******************************************************************************
- Filename:                  UFObird.h
- Classname:                 UFObird
-
- Description:               This file defines the UFObird class.
+ Filename:                  UFOBird.h
+ Classname:                 UFOBird
+ 
+ Description:               The UFOBird class is a subclass of Projectile that
+                            is abducted from the game by a UFO in the initial
+                            cut-scene.
  ******************************************************************************/
 
-#include "UFObird.h"
 #include <cmath>
+
+#include "UFObird.h"
 
 UFObird::UFObird(const char* file, const char* file2, int x, int y, int vx, int vy)
     :   Object(x, y, 36, 36),
         Projectile(file, x, y, vx, vy)
-
 {
     type = 1;
     numBirds++;

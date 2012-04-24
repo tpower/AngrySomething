@@ -1,17 +1,26 @@
-#include "Wall.h"
+/*******************************************************************************
+ Filename:                  Wall.h
+ Classname:                 Wall
+ 
+ Description:               The Wall class is an object that is used to create
+                            structures and barriers within the game.
+ ******************************************************************************/
+
 #include <cmath>
+
+#include "Wall.h"
 
 Wall::Wall(const char* file, int x, int y, int vx, int vy, int w, int h)
     :   Object(x, y, w, h),
         DrawableObject(file, 2),
         PhysicalObject(vx, vy)
 {
-    health = 100;
-    type = 1;
-    activeDraw = true;
-    activePhys = true;
-    activeMech = false;
-    activeCont = false;
+    health      = 100;
+    type        = 1;
+    activeDraw  = true;
+    activePhys  = true;
+    activeMech  = false;
+    activeCont  = false;
 }
 
 Wall::~Wall()
@@ -53,16 +62,6 @@ void Wall::applyForce(int m, Vect v, int dir)
         health -= 101;
     }
 }
-
-/*
-void Wall::draw(SDL_Surface* screen)
-{
-    static SDL_Rect loc;
-    loc = pos;
-
-    SDL_BlitSurface(image, NULL, screen, &loc);
-}
-*/
 
 void Wall::pause()
 {

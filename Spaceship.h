@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  Spaceship.h
+ Classname:                 Spaceship
+ 
+ Description:               
+ ******************************************************************************/
+
 #ifndef SPACESHIP_H_INCLUDED
 #define SPACESHIP_H_INCLUDED
 
@@ -18,6 +25,7 @@ class Spaceship : public DrawableObject, public MechanicsObject
         int direction;
         int startTime;
         int time;
+    
     public:
         Spaceship(const char* file, int x, int y, int d, int t);
 
@@ -27,4 +35,4 @@ class Spaceship : public DrawableObject, public MechanicsObject
         void            unpause();
 };
 
-#endif // SPACESHIP_H_INCLUDED
+#endif

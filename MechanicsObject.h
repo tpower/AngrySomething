@@ -1,3 +1,10 @@
+/*******************************************************************************
+ Filename:                  MechanicsObject.h
+ Classname:                 MechanicsObject
+ 
+ Description:               The MechanicsObject class is a subclass of Object
+                            that has game mechanics features.
+ ******************************************************************************/
 
 #ifndef AngrySomething_MechanicsObject_h
 #define AngrySomething_MechanicsObject_h

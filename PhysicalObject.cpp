@@ -1,8 +1,10 @@
 /*******************************************************************************
- Filename:                  PhysicalObject.cpp
+ Filename:                  PhysicalObject.h
  Classname:                 PhysicalObject
-
- Description:               This file defines the PhysicalObject class.
+ 
+ Description:               The PhysicalObject class is a subclass of Object
+                            that can move around the screen and collide with
+                            other PhysicalObjects.
  ******************************************************************************/
 
 #include "PhysicalObject.h"
@@ -21,7 +23,7 @@ PhysicalObject::PhysicalObject(int vx, int vy)
     vel.y = vy;
 
     acc.x = 0;
-    acc.y = GRAV;     //gravity
+    acc.y = GRAV;
 
     mass = 1600;
 
