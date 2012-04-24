@@ -30,7 +30,7 @@ PhysicalObject::PhysicalObject(int vx, int vy)
     acc.x = 0;
     acc.y = GRAV;
 
-    mass = 1600;
+    mass = 100;
 
     collisionSide = NO_COLLISION;
 

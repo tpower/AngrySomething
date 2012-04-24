@@ -12,7 +12,7 @@
 #include "Geometry.h"
 
 const int FIELD_W = 1280;
-const int FIELD_H = 720;
+const int FIELD_H = 700;
 
 /*******************************************************************************
  Name:              run
