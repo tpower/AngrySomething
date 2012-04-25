@@ -1,0 +1,52 @@
+Assets/Art/PlanetBackgrounds/PaxtoniaBG.bmp
+Assets/Audio/MonkeyStrikeForceTitleTheme.wav
+1
+45
+1 Assets/Art/GameArt/MonkeySling.bmp Assets/Art/GameArt/Spaceship.bmp 200 540 NNNNNNNNNN
+2 Assets/Art/GameArt/Enemy.bmp 660 540 0 0
+2 Assets/Art/GameArt/Enemy.bmp 660 280 0 0
+2 Assets/Art/GameArt/Enemy.bmp 940 540 0 0
+2 Assets/Art/GameArt/Enemy.bmp 940 280 0 0
+
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 680 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 580 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 780 580 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 560 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 460 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 780 460 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 440 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 340 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 780 340 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 320 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 540 300 0 0 100 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 660 300 0 0 20 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 700 300 0 0 100 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 580 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 620 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 700 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 740 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 580 220 0 0 180 20
+
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 680 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 580 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 1060 580 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 560 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 460 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 1060 460 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 440 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 340 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 1060 340 0 0 20 100
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 320 0 0 260 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 820 300 0 0 100 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 940 300 0 0 20 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 980 300 0 0 100 20
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 860 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 900 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 980 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 1020 240 0 0 20 60
+7 Assets/Art/PlanetMaterials/PaxtoniaLMaterial.bmp 860 220 0 0 180 20
+
+4 Assets/Art/Interface/Menu.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Resume.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Reset.bmp 170 10 150 50 -5
+5 Assets/Art/Interface/Exit.bmp 330 10 150 50 -3

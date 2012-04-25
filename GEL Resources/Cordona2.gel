@@ -1,0 +1,46 @@
+Assets/Art/PlanetBackgrounds/CordonaBG.bmp
+Assets/Audio/MonkeyStrikeForceTitleTheme.wav
+1
+39
+1 Assets/Art/GameArt/MonkeySling.bmp Assets/Art/GameArt/Spaceship.bmp 200 550 NNNNNNNNNN
+2 Assets/Art/GameArt/Enemy.bmp 680 520 0 0
+2 Assets/Art/GameArt/Enemy.bmp 720 580 0 0
+2 Assets/Art/GameArt/Enemy.bmp 760 520 0 0
+
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 540 600 0 0 20 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 540 620 0 0 40 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 560 640 0 0 40 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 580 660 0 0 60 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 620 680 0 0 220 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 820 660 0 0 60 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 860 640 0 0 40 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 880 620 0 0 40 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 900 600 0 0 20 20
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 720 600 0 0 20 19
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 660 500 0 0 20 40
+3 Assets/Art/PlanetMaterials/CordonaHMaterial.bmp 780 500 0 0 20 40
+
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 580 600 0 0 20 40
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 620 600 0 0 20 60
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 580 580 0 0 60 20
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 620 480 0 0 20 100
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 620 460 0 0 60 20
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 680 620 0 0 20 60
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 720 620 0 0 20 60
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 760 620 0 0 20 60
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 680 600 0 0 40 20
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 740 600 0 0 40 20
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 680 560 0 0 20 40
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 760 560 0 0 20 40
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 660 540 0 0 140 20
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 660 480 0 0 140 20
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 820 600 0 0 20 60
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 860 600 0 0 20 40
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 820 580 0 0 60 20
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 820 480 0 0 20 100
+7 Assets/Art/PlanetMaterials/CordonaLMaterial.bmp 780 460 0 0 60 20
+
+4 Assets/Art/Interface/Menu.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Resume.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Reset.bmp 170 10 150 50 -5
+5 Assets/Art/Interface/Exit.bmp 330 10 150 50 -3

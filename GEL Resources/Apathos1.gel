@@ -1,0 +1,40 @@
+Assets/Art/PlanetBackgrounds/ApathosBG.bmp
+Assets/Audio/MonkeyStrikeForceTitleTheme.wav
+1
+31
+
+1 Assets/Art/GameArt/MonkeySling.bmp Assets/Art/GameArt/Spaceship.bmp 200 550 NNNNNNNNNN
+2 Assets/Art/GameArt/Enemy.bmp 540 660 0 0
+2 Assets/Art/GameArt/Enemy.bmp 620 660 0 0
+2 Assets/Art/GameArt/Enemy.bmp 700 660 0 0
+2 Assets/Art/GameArt/Enemy.bmp 780 660 0 0
+2 Assets/Art/GameArt/Enemy.bmp 860 660 0 0
+2 Assets/Art/GameArt/Enemy.bmp 940 660 0 0
+
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 500 680 0 0 500 20
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 1100 680 0 0 100 20
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 500 580 0 0 20 100
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 580 580 0 0 20 100
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 660 580 0 0 20 100
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 740 580 0 0 20 100
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 820 580 0 0 20 100
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 900 580 0 0 20 100
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 980 580 0 0 20 100
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 420 500 0 0 20 200
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 1120 80 0 0 20 600
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 1140 80 0 0 20 600
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 1160 80 0 0 20 600
+
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 540 40 0 0 20 20
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 620 40 0 0 20 20
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 700 40 0 0 20 20
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 780 40 0 0 20 20
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 860 40 0 0 20 20
+3 Assets/Art/PlanetMaterials/ApathosHMaterial.bmp 940 40 0 0 20 20
+
+7 Assets/Art/PlanetMaterials/ApathosLMaterial.bmp 500 60 0 0 680 20
+
+4 Assets/Art/Interface/Menu.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Resume.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Reset.bmp 170 10 150 50 -5
+5 Assets/Art/Interface/Exit.bmp 330 10 150 50 -3

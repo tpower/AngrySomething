@@ -1,0 +1,54 @@
+Assets/Art/PlanetBackgrounds/KnoxenBG.bmp
+Assets/Audio/MonkeyStrikeForceTitleTheme.wav
+1
+47
+1 Assets/Art/GameArt/MonkeySling.bmp Assets/Art/GameArt/Spaceship.bmp 200 540 NNNNNNNNNN
+2 Assets/Art/GameArt/Enemy.bmp 600 440 0 0
+2 Assets/Art/GameArt/Enemy.bmp 700 620 0 0
+2 Assets/Art/GameArt/Enemy.bmp 800 440 0 0
+
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 540 640 0 0 20 60
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 540 520 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 540 400 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 580 600 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 620 600 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 580 480 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 620 480 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 580 460 0 0 60 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 660 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 700 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 740 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 660 640 0 0 100 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 680 620 0 0 20 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 680 600 0 0 60 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 720 580 0 0 20 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 680 560 0 0 60 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 680 540 0 0 20 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 680 520 0 0 60 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 720 500 0 0 20 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 780 600 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 820 600 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 780 480 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 820 480 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 780 460 0 0 60 20
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 860 640 0 0 20 60
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 860 520 0 0 20 100
+7 Assets/Art/PlanetMaterials/KnoxenLMaterial.bmp 860 400 0 0 20 100
+
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 540 620 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 540 500 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 580 580 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 620 580 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 720 620 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 680 580 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 720 540 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 680 500 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 780 580 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 820 580 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 860 620 0 0 20 20
+3 Assets/Art/PlanetMaterials/KnoxenHMaterial.bmp 860 500 0 0 20 20
+
+4 Assets/Art/Interface/Menu.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Resume.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Reset.bmp 170 10 150 50 -5
+5 Assets/Art/Interface/Exit.bmp 330 10 150 50 -3

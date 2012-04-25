@@ -1,0 +1,9 @@
+Assets/Art/PlanetBackgrounds/AngryBirdsBG.bmp
+Assets/Audio/MonkeyStrikeForceTitleTheme.wav
+3
+5
+1 Assets/Art/IntroCutscene/AngryBirdSling.bmp Assets/Art/IntroCutscene/AngryBirdSlingshot.bmp 200 500 U
+4 Assets/Art/Interface/Menu.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Resume.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Reset.bmp 170 10 150 50 -5
+5 Assets/Art/Interface/Exit.bmp 330 10 150 50 -3

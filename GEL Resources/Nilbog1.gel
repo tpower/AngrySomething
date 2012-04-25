@@ -1,0 +1,34 @@
+Assets/Art/PlanetBackgrounds/NilbogBG.bmp
+Assets/Audio/MonkeyStrikeForceTitleTheme.wav
+1
+28
+1 Assets/Art/GameArt/MonkeySling.bmp Assets/Art/GameArt/Spaceship.bmp 200 550 NNNNNNNNNN
+2 Assets/Art/GameArt/Enemy.bmp 600 620 0 0
+2 Assets/Art/GameArt/Enemy.bmp 700 420 0 0
+2 Assets/Art/GameArt/Enemy.bmp 760 540 0 0
+
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 540 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 580 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 540 640 0 0 80 20
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 540 540 0 0 20 100
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 640 600 0 0 20 100
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 680 600 0 0 20 100
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 640 560 0 0 60 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 660 460 0 0 20 100
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 620 440 0 0 100 20
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 660 400 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 720 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 760 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 800 660 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 720 640 0 0 100 20
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 740 580 0 0 20 60
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 800 580 0 0 20 60
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 740 560 0 0 80 20
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 740 520 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 800 520 0 0 20 40
+7 Assets/Art/PlanetMaterials/NilbogLMaterial.bmp 740 500 0 0 80 20
+
+4 Assets/Art/Interface/Menu.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Resume.bmp 10 10 150 50 -6
+5 Assets/Art/Interface/Reset.bmp 170 10 150 50 -5
+5 Assets/Art/Interface/Exit.bmp 330 10 150 50 -3
