@@ -34,6 +34,8 @@ Projectile::Projectile(const char* file, int x, int y, int vx, int vy)
     activePhys = true;
     activeMech = false;
     activeCont = false;
+    
+    mass = 250;
 }
 
 /*******************************************************************************

@@ -14,7 +14,6 @@
 class AudioEngine
 {
     private:
-        Mix_Music *music;
         
     public:
         AudioEngine();

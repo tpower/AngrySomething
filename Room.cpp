@@ -32,6 +32,7 @@ Room::Room()
 {
     roomType = Level;
     background = NULL;
+    music = NULL;
 }
 
 /*******************************************************************************
@@ -64,7 +65,7 @@ SDL_Surface* Room::getBackground()
 
 /*******************************************************************************
  MODIFIERS
- Name:              remove, setBackground, erase, add
+ Name:              remove, setBackground, setBGM, erase, add
  ******************************************************************************/
 void Room::remove(int i)
 {
@@ -79,6 +80,27 @@ void Room::setBackground(const char* file)
     if(!background)
     {
         cout << "background file error" << endl;
+    }
+}
+
+void Room::setBGM(const char *file)
+{
+    if(strcmp(file, "continue") && strcmp(file, "none"))
+    {
+        music = Mix_LoadMUS(file);
+        if(music == NULL)
+            exit(-1);
+        
+        if(Mix_PlayingMusic() == 1)
+            Mix_HaltMusic();  
+        
+        if(Mix_PlayMusic(music, -1) == -1)
+            exit(-1);
+    }
+    else if(!strcmp(file, "none"))
+    {
+        if(Mix_PlayingMusic() == 1)
+            Mix_HaltMusic();   
     }
 }
 
@@ -123,8 +145,9 @@ bool Room::load(const char* f)
         int dataType;
         int numObjects;
         string backgroundFile;
+        string musicFile;
 
-        inFile >> backgroundFile;
+        inFile >> backgroundFile >> musicFile;
         inFile >> roomType;
         inFile >> numObjects;
         for(int i = 0; i < numObjects; i++)
@@ -215,6 +238,7 @@ bool Room::load(const char* f)
         }
 
         setBackground(backgroundFile.c_str());
+        setBGM(musicFile.c_str());
         
         MechanicsObject::resetScore();
 

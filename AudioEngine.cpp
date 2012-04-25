@@ -16,17 +16,6 @@ AudioEngine::AudioEngine()
     {
         exit(-1);
     }
-    
-    music = Mix_LoadMUS("music.wav");
-    if(music == NULL)
-    {
-        exit(-1);
-    }
-    
-    if(Mix_PlayMusic( music, -1 ) == -1)
-    {
-        exit(-1);
-    }
 }
 
 /*******************************************************************************
@@ -35,7 +24,6 @@ AudioEngine::AudioEngine()
  ******************************************************************************/
 AudioEngine::~AudioEngine()
 {
-    Mix_FreeMusic(music);
     Mix_CloseAudio();
 }
 

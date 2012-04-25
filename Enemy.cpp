@@ -74,9 +74,13 @@ void Enemy::applyForce(int m, Vect v, int dir)
 {
     PhysicalObject::applyForce(m, v, dir);
 
-    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 4)
+    if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 3)
     {
         health -= 100;
+    }
+    else if(pow((pow(v.y,2.0) + pow(v.x, 2.0)), .5) > 2)
+    {
+        health -= 25;
     }
 }
 

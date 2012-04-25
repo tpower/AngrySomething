@@ -10,6 +10,7 @@
 #define AngrySomething_Room_h
 
 #include <SDL/SDL.h>
+#include <SDL_mixer/SDL_mixer.h>
 #include <vector>
 #include <fstream>
 #include <string>
@@ -26,6 +27,7 @@ class Room
         vector<Object*>     object;
         int                 roomType;
         SDL_Surface*        background;
+        Mix_Music*          music;
 
     public:
         Room();
@@ -43,6 +45,7 @@ class Room
         void                setRoomType(int r) {roomType = r;}
         int                 getRoomType() {return roomType;}
         void                setBackground(const char* file);
+        void                setBGM(const char* file);
         SDL_Surface*        getBackground();
         bool                pause();
         bool                unpause();
